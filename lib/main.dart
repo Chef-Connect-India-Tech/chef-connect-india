@@ -15,18 +15,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'GlassmorphicContainer Example',
-      home: GlassmorphicSample(),
+      title: 'Chef Connect India',
+      home: ChefConnectMain(),
     );
   }
 }
 
-class GlassmorphicSample extends StatefulWidget {
+class ChefConnectMain extends StatefulWidget {
   @override
-  State<GlassmorphicSample> createState() => GlassmorphicSampleState();
+  State<ChefConnectMain> createState() => ChefConnectMainState();
 }
 
-class GlassmorphicSampleState extends State<GlassmorphicSample> {
+class ChefConnectMainState extends State<ChefConnectMain> {
  
   @override
   Widget build(BuildContext context) {
