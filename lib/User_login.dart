@@ -1,10 +1,12 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:glass_morphism/Registration_user.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+// import 'package:pin_code_fields/pin_code_fields.dart';
 enum MobileVerificationState { SHOW_MOBILE_FORM_STATE, SHOW_OTP_FORMS_STATE }
 class USer_login extends StatefulWidget {
   USer_login({Key? key}) : super(key: key);
@@ -14,8 +16,8 @@ class USer_login extends StatefulWidget {
 }
 
 class _USer_loginState extends State<USer_login> {
-   MobileVerificationState currentState =
-      MobileVerificationState.SHOW_MOBILE_FORM_STATE;
+  MobileVerificationState currentState =
+  MobileVerificationState.SHOW_MOBILE_FORM_STATE;
 
   final _phoneController = TextEditingController();
   final _otpController = TextEditingController();
@@ -63,7 +65,7 @@ class _USer_loginState extends State<USer_login> {
       });
       if (authCredential.user != null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>Registration_user(phonenumbera: a)));
+            context, MaterialPageRoute(builder: (context) =>Registration_user(phonenumber: a)));
       }
     } on FirebaseException catch (e) {
       setState(() {
@@ -133,7 +135,6 @@ class _USer_loginState extends State<USer_login> {
                     setState(() {
                       isLoading = false;
                     });
-                    // ignore: deprecated_member_use
                     _scaffoldKey.currentState?.showBottomSheet(
                         (context) => Text("${verificationFailed.message}"));
                   },
@@ -168,7 +169,6 @@ class _USer_loginState extends State<USer_login> {
         SizedBox(
           height: 16,
         ),
-        // ignore: deprecated_member_use
         FlatButton(
             color: Colors.blueAccent,
             onPressed: () {
@@ -253,88 +253,6 @@ class _USer_loginState extends State<USer_login> {
                           SizedBox(
                             height: 60,
                           ),
-                          // Wrap(
-                          //       direction: Axis.horizontal,
-                          //       alignment: WrapAlignment.center,
-                          //       children: [
-                          //         // CountryCodePicker(
-                          //         //   onChanged: _onCountryChange,
-                          //         //   initialSelection: 'IN',
-                          //         //   favorite: ['+91', 'IN'],
-                          //         //   // optional. Shows only country name and flag
-                          //         //   showCountryOnly: false,
-                          //         //   // optional. Shows only country name and flag when popup is closed.
-                          //         //   showOnlyCountryWhenClosed: false,
-                          //         //   // optional. aligns the flag and the Text left
-                          //         //   // alignLeft: false,
-                          //         //   enabled: true,
-                          //         // ),
-                          //         Padding(
-                          //           padding: const EdgeInsets.all(10.0),
-                          //           child: Container(
-                          //             width: 150,
-                          //             child: TextFormField(
-                          //               controller: _phoneController,
-                          //               keyboardType: TextInputType.phone,
-                          //               decoration: InputDecoration(
-                          //                 fillColor: Colors.white60,
-                          //                 hintText: "Enter Phone Number",hintStyle: TextStyle(
-                          //                   color: Colors.black, fontSize: 15),
-                          //               filled: true,
-                          //               prefixIcon: Padding(
-                          //           padding: const EdgeInsets.symmetric(
-                          //               vertical: 14, horizontal: 15),
-                          //           child: Text(
-                          //             " (+91) ",
-                          //             style: TextStyle(
-                          //               color: Colors.black,
-                          //               fontSize: 15,
-                          //             ),
-                          //           ),
-                          //                                         ),
-                          //                                         // suffixIcon: InkWell(
-                          //                                         //   onTap: () {},
-                          //                                         //   child: Padding(
-                          //                                         //     padding: const EdgeInsets.symmetric(
-                          //                                         //         vertical: 20, horizontal: 15),
-                          //                                         //     child: Text(
-                          //                                         //       'Send OTP',
-                          //                                         //       style: TextStyle(
-                          //                                         //         color: Color.fromARGB(255, 18, 68, 138),
-                          //                                         //         fontSize: 14,
-                          //                                         //         fontWeight: FontWeight.bold,
-                          //                                         //       ),
-                          //                                         //     ),
-                          //                                         //   ),
-                          //                                         // ),
-                          //                                         // border: OutlineInputBorder(
-                          //                                         //   borderRadius: BorderRadius.circular(10),
-                          //                                         //   borderSide: BorderSide(
-                          //                                         //     color: Colors.white,
-                          //                                         //     width: 2,
-                          //                                         //   ),
-                          //                                         // ),
-                          //                                         // focusedBorder: new OutlineInputBorder(
-                          //                                         //   borderRadius: new BorderRadius.circular(10.0),
-                          //                                         //   borderSide: BorderSide(
-                          //                                         //     color: Colors.white60,
-                          //                                         //     width: 2,
-                          //                                         //   ),
-                          //                                         // ),
-                          //                                         // enabledBorder: OutlineInputBorder(
-                          //                                         //   borderRadius: BorderRadius.circular(10),
-                          //                                         //   borderSide: BorderSide(
-                          //                                         //     color: Colors.white,
-                          //                                         //     width: 2,
-                          //                                         //   ),
-                          //                                         // ),
-                          //                                         ),
-                                          
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       ],
-                          //     ),
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: TextFormField(
@@ -425,19 +343,7 @@ class _USer_loginState extends State<USer_login> {
                                 ),
                               ),
                             ),
-                          ),
-                          // SafeArea(
-                          //     child: Container(
-                          //   padding: EdgeInsets.all(16),
-                          //   child: isLoading
-                          //       ? Center(
-                          //           child: CircularProgressIndicator(),
-                          //         )
-                          //       : currentState == MobileVerificationState.SHOW_MOBILE_FORM_STATE
-                          //           ? getMobileFormWidget(context)
-                          //           : getOtpFormWidget(context),
-                          // )),
-                          
+                          ),                          
                           SizedBox(
                             height: 20,
                           ),
@@ -471,6 +377,7 @@ class _USer_loginState extends State<USer_login> {
                           ),
                           TextFormField(
                             controller: _otpController,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(hintText: "Enter OTP"),
                           ),
                           SizedBox(
