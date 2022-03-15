@@ -1,8 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:glass_morphism/User_login.dart';
 import 'package:glassmorphism/glassmorphism.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -21,6 +27,7 @@ class GlassmorphicSample extends StatefulWidget {
 }
 
 class GlassmorphicSampleState extends State<GlassmorphicSample> {
+ 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

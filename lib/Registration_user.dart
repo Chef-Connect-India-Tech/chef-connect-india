@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class Registration_user extends StatefulWidget {
-  Registration_user({Key? key}) : super(key: key);
+  late String phonenumbera;
+
+  Registration_user(  {required this.phonenumbera,}) ;
 
   @override
   State<Registration_user> createState() => _Registration_userState();
@@ -70,7 +72,33 @@ class _Registration_userState extends State<Registration_user> {
                             ),
                             SizedBox(
                               height: 20,
-                            ),
+                             ),
+                            //  TextFormField(
+                            //   autofocus: false,
+                            //   controller: firstnameEditingController,
+                            //   keyboardType: TextInputType.name,
+                            //   validator: (value) {
+                            //     RegExp regex = RegExp(r'^.{3,}$');
+                            //     if (value!.isEmpty) {
+                            //       return ("First Name cannot be Empty");
+                            //     }
+                            //     if (!regex.hasMatch(value)) {
+                            //       return ("Enter Valid name(Min. 3 Character)");
+                            //     }
+                            //     return null;
+                            //   },
+                            //   onSaved: (value) {
+                            //     firstnameEditingController.text = value!;
+                            //   },
+                            //   textInputAction: TextInputAction.next,
+                            //   decoration: InputDecoration(
+                            //     prefixIcon: Icon(Icons.person),
+                            //     contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            //     hintText: "First Name",
+                            //     border: OutlineInputBorder(
+                            //       borderRadius: BorderRadius.circular(10),
+                            //     ),
+                            //   )),
                             TextFormField(
                               decoration: InputDecoration(
                                 fillColor: Colors.white60,
