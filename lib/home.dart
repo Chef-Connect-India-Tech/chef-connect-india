@@ -54,8 +54,8 @@ class _HomeState extends State<Home> {
     return Container(
       margin: EdgeInsets.all(4.0),
       padding: EdgeInsets.all(4.0),
-      height: 120,
-      width: 120,
+      height: 100,
+      width: 100,
       child: OutlineButton(
         onPressed: () {
           setState(() {
