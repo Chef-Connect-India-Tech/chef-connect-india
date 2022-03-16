@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:glass_morphism/Helper/model.dart';
-import 'package:glass_morphism/select_mode.dart';
+import 'package:glass_morphism/Main%20Screen/select_mode.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class Registration_user extends StatefulWidget {

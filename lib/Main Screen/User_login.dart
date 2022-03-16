@@ -1,13 +1,15 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/Registration_user.dart';
+import 'package:glass_morphism/Main%20Screen/Registration_user.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
 // import 'package:pin_code_fields/pin_code_fields.dart';
 enum MobileVerificationState { SHOW_MOBILE_FORM_STATE, SHOW_OTP_FORMS_STATE }
+
 class USer_login extends StatefulWidget {
   USer_login({Key? key}) : super(key: key);
 
@@ -17,7 +19,7 @@ class USer_login extends StatefulWidget {
 
 class _USer_loginState extends State<USer_login> {
   MobileVerificationState currentState =
-  MobileVerificationState.SHOW_MOBILE_FORM_STATE;
+      MobileVerificationState.SHOW_MOBILE_FORM_STATE;
 
   final _phoneController = TextEditingController();
   final _otpController = TextEditingController();
@@ -53,8 +55,8 @@ class _USer_loginState extends State<USer_login> {
 
   void signInWithPhoneAuthCredential(
       PhoneAuthCredential phoneAuthCredential) async {
-      String a=  this.phoneNumber + _phoneController.text;
-      print(this.phoneNumber + _phoneController.text);
+    String a = this.phoneNumber + _phoneController.text;
+    print(this.phoneNumber + _phoneController.text);
     setState(() {
       isLoading = true;
     });
@@ -66,7 +68,9 @@ class _USer_loginState extends State<USer_login> {
       });
       if (authCredential.user != null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Registration_user(phonenumber: a)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => Registration_user(phonenumber: a)));
       }
     } on FirebaseException catch (e) {
       setState(() {
@@ -239,11 +243,11 @@ class _USer_loginState extends State<USer_login> {
                         children: [
                           // getMobileFormWidget(context),
                           //  getOtpFormWidget(context),
-                          
+
                           SizedBox(
                             height: 40,
                           ),
-                          
+
                           CircleAvatar(
                             backgroundColor: Color(0xFF092349),
                             radius: 80,
@@ -276,35 +280,43 @@ class _USer_loginState extends State<USer_login> {
                                 ),
                                 suffixIcon: InkWell(
                                   onTap: () async {
-                                      check();
-                                      // alert();
-                                      await _auth.verifyPhoneNumber(
-                                          phoneNumber: this.phoneNumber + _phoneController.text,
-                                          verificationCompleted: (phoneAuthCredential) async {
+                                    check();
+                                    // alert();
+                                    await _auth.verifyPhoneNumber(
+                                        phoneNumber: this.phoneNumber +
+                                            _phoneController.text,
+                                        verificationCompleted:
+                                            (phoneAuthCredential) async {
+                                          setState(() {
+                                            isLoading = false;
+                                          });
+                                          // signInWithPhoneAuthCredential();
+                                        },
+                                        verificationFailed:
+                                            (verificationFailed) async {
+                                          setState(() {
+                                            isLoading = false;
+                                          });
+                                          _scaffoldKey.currentState
+                                              ?.showBottomSheet((context) => Text(
+                                                  "${verificationFailed.message}"));
+                                        },
+                                        codeSent: (verificationId,
+                                            resendingToken) async {
+                                          setState(() {
                                             setState(() {
                                               isLoading = false;
                                             });
-                                            // signInWithPhoneAuthCredential();
-                                          },
-                                          verificationFailed: (verificationFailed) async {
-                                            setState(() {
-                                              isLoading = false;
-                                            });
-                                            _scaffoldKey.currentState?.showBottomSheet(
-                                                (context) => Text("${verificationFailed.message}"));
-                                          },
-                                          codeSent: (verificationId, resendingToken) async {
-                                            setState(() {
-                                              setState(() {
-                                                isLoading = false;
-                                              });
-                                              currentState =
-                                                  MobileVerificationState.SHOW_OTP_FORMS_STATE;
-                                              this.verificationId = verificationId;
-                                            });
-                                          },
-                                          codeAutoRetrievalTimeout: (verificationId) async {});
-                                    },
+                                            currentState =
+                                                MobileVerificationState
+                                                    .SHOW_OTP_FORMS_STATE;
+                                            this.verificationId =
+                                                verificationId;
+                                          });
+                                        },
+                                        codeAutoRetrievalTimeout:
+                                            (verificationId) async {});
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 20, horizontal: 15),
@@ -341,7 +353,7 @@ class _USer_loginState extends State<USer_login> {
                                 ),
                               ),
                             ),
-                          ),                          
+                          ),
                           SizedBox(
                             height: 20,
                           ),
@@ -393,10 +405,11 @@ class _USer_loginState extends State<USer_login> {
                                   )),
                               onPressed: () {
                                 PhoneAuthCredential phoneAuthCredential =
-                                PhoneAuthProvider.credential(
-                                    verificationId: verificationId,
-                                    smsCode: _otpController.text);
-                                signInWithPhoneAuthCredential(phoneAuthCredential);
+                                    PhoneAuthProvider.credential(
+                                        verificationId: verificationId,
+                                        smsCode: _otpController.text);
+                                signInWithPhoneAuthCredential(
+                                    phoneAuthCredential);
                               },
                               child: Text(
                                 'Validate OTP',

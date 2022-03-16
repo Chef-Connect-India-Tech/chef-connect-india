@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/User_login.dart';
-import 'package:glass_morphism/select_mode.dart';
+import 'package:glass_morphism/Main%20Screen/User_login.dart';
+import 'package:glass_morphism/Main%20Screen/select_mode.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chef Connect India',
-      // home: ChefConnectMain(),
-      home: Select_Mode(),
+      home: ChefConnectMain(),
+      // home: Select_Mode(),
     );
   }
 }
