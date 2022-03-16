@@ -76,16 +76,16 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.indigo[900],
-        title: const Text('Home'),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.indigo[900],
+      //   title: const Text('Home'),
+      // ),
       body: Center(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 30,),
+              SizedBox(height: 150,),
               Text(
                 "Select City",
                 style: TextStyle(
