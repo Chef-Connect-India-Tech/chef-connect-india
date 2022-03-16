@@ -167,7 +167,12 @@ class _USer_loginState extends State<USer_login> {
         Spacer(),
         TextFormField(
           controller: _otpController,
-          decoration: InputDecoration(hintText: "Enter OTP"),
+          decoration: InputDecoration(
+            hintText: "Enter OTP",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
         ),
         SizedBox(
           height: 16,
@@ -340,7 +345,7 @@ class _USer_loginState extends State<USer_login> {
                                 focusedBorder: new OutlineInputBorder(
                                   borderRadius: new BorderRadius.circular(10.0),
                                   borderSide: BorderSide(
-                                    color: Colors.white60,
+                                    color: Colors.white,
                                     width: 2,
                                   ),
                                 ),
@@ -385,10 +390,44 @@ class _USer_loginState extends State<USer_login> {
                               ],
                             ),
                           ),
-                          TextFormField(
-                            controller: _otpController,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(hintText: "Enter OTP"),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              controller: _otpController,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                fillColor: Colors.white54,
+                                filled: true,
+                                hintText: "Enter OTP",
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.white60,
+                                    width: 2,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
                           SizedBox(
                             height: 50,
