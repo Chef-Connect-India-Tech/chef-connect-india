@@ -241,7 +241,7 @@ class _Select_ModeState extends State<Select_Mode> {
                       height: 10,
                     ),
                     Text(
-                      "Select Hire Mode",
+                      "Looking For",
                       style: TextStyle(
                         color: Color.fromARGB(255, 18, 68, 138),
                         fontSize: 30,
