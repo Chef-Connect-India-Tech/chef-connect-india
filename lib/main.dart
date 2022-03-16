@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Chef Connect India',
       // home: ChefConnectMain(),
-      home: Select_Mode(),
+      home: ChefConnectMain(),
     );
   }
 }
