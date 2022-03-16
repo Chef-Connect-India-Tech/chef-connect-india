@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_morphism/User_login.dart';
+import 'package:glass_morphism/main.dart';
 
 
 class Home extends StatefulWidget {
@@ -49,7 +50,7 @@ class _HomeState extends State<Home> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => USer_login(),
+                          builder: (context) => ChefConnectMain(),
                         ),
                       );
                     },

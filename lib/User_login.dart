@@ -35,6 +35,7 @@ class _USer_loginState extends State<USer_login> {
   String verificationId = "";
   bool isLoading = false;
   FirebaseAuth _auth = FirebaseAuth.instance;
+  User? user = FirebaseAuth.instance.currentUser;
 
   void alert() {
     if (_phoneController.text == "") {
@@ -65,14 +66,13 @@ class _USer_loginState extends State<USer_login> {
       });
       if (authCredential.user != null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>Registration_user(phonenumber: a)));
+            context, MaterialPageRoute(builder: (context) => Registration_user(phonenumber: a)));
       }
     } on FirebaseException catch (e) {
       setState(() {
         isLoading = false;
       });
       _scaffoldKey.currentState
-          // ignore: deprecated_member_use
           ?.showSnackBar(SnackBar(content: Text("${e.message}")));
     }
   }
@@ -116,7 +116,6 @@ class _USer_loginState extends State<USer_login> {
         SizedBox(
           height: 16,
         ),
-        // ignore: deprecated_member_use
         Center(
           child: FlatButton(
             color: Colors.blueAccent,
@@ -257,7 +256,7 @@ class _USer_loginState extends State<USer_login> {
                             padding: const EdgeInsets.all(10.0),
                             child: TextFormField(
                               controller: _phoneController,
-                               keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
                                 fillColor: Colors.white60,
                                 hintText: 'Phone Number',
@@ -291,7 +290,6 @@ class _USer_loginState extends State<USer_login> {
                                             setState(() {
                                               isLoading = false;
                                             });
-                                            // ignore: deprecated_member_use
                                             _scaffoldKey.currentState?.showBottomSheet(
                                                 (context) => Text("${verificationFailed.message}"));
                                           },
@@ -398,8 +396,7 @@ class _USer_loginState extends State<USer_login> {
                                 PhoneAuthProvider.credential(
                                     verificationId: verificationId,
                                     smsCode: _otpController.text);
-
-                            signInWithPhoneAuthCredential(phoneAuthCredential);
+                                signInWithPhoneAuthCredential(phoneAuthCredential);
                               },
                               child: Text(
                                 'Validate OTP',

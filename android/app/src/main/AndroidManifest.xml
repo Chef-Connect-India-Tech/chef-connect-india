@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.glass_morphism">
    <application
-        android:label="glass_morphism"
+        android:label="Chef Connect"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
