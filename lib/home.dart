@@ -12,7 +12,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   String uid = "";
-  int selected = 0;
+  int city = 0;
+  int chef_type = 0;
 
   Widget customRadio(IconData icon, String text, int index) {
     return Container(
@@ -20,33 +21,42 @@ class _HomeState extends State<Home> {
       padding: EdgeInsets.all(20.0),
       height: 150,
       width: 150,
-      child: OutlineButton(
-        onPressed: () {
-          setState(() {
-            selected = index;
-          });
-        },
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Icon(
-            icon,
-            size: 30.0,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            text,
-            style: TextStyle(
-              color: (selected == index) ? Colors.green : Colors.blueGrey,
+      child: ElevatedButton(
+          onPressed: () {
+            setState(() {
+              city = index;
+            });
+          },
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Icon(
+              icon,
+              size: 30.0,
+              color: (city == index)
+                  ? Color.fromARGB(255, 18, 68, 138)
+                  : Colors.black,
             ),
-          ),
-        ]),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        borderSide: BorderSide(
-          color: (selected == index) ? Colors.green : Colors.blueGrey,
-        ),
-        padding: EdgeInsets.all(10.0),
-      ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: (city == index)
+                      ? Color.fromARGB(255, 18, 68, 138)
+                      : Colors.black),
+            ),
+          ]),
+          style: ElevatedButton.styleFrom(
+            primary: (city == index) ? Color(0xFFC4C4C4) : Colors.white54,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            side: BorderSide(
+              width: 2,
+              color: (city == index) ? Colors.white : Colors.black26,
+            ),
+            padding: EdgeInsets.all(5.0),
+          )),
     );
   }
 
@@ -56,34 +66,42 @@ class _HomeState extends State<Home> {
       padding: EdgeInsets.all(4.0),
       height: 100,
       width: 100,
-      child: OutlineButton(
-        onPressed: () {
-          setState(() {
-            selected = index;
-          });
-        },
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Icon(
-            icon,
-            size: 20.0,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: (selected == index) ? Colors.green : Colors.blueGrey,
+      child: ElevatedButton(
+          onPressed: () {
+            setState(() {
+              chef_type = index;
+            });
+          },
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Icon(
+              icon,
+              size: 20.0,
+              color: (chef_type == index)
+                  ? Color.fromARGB(255, 18, 68, 138)
+                  : Colors.black,
             ),
-          ),
-        ]),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        borderSide: BorderSide(
-          color: (selected == index) ? Colors.green : Colors.blueGrey,
-        ),
-        padding: EdgeInsets.all(5.0),
-      ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: (chef_type == index)
+                      ? Color.fromARGB(255, 18, 68, 138)
+                      : Colors.black),
+            ),
+          ]),
+          style: ElevatedButton.styleFrom(
+            primary: (chef_type == index) ? Color(0xFFC4C4C4) : Colors.white54,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            side: BorderSide(
+              width: 2,
+              color: (chef_type == index) ? Colors.white : Colors.black26,
+            ),
+            padding: EdgeInsets.all(5.0),
+          )),
     );
   }
 
@@ -139,12 +157,12 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 150,
+                      height: 180,
                     ),
                     Text(
                       "Select City",
                       style: TextStyle(
-                        color: Colors.indigo[900],
+                        color: Color.fromARGB(255, 18, 68, 138),
                         fontSize: 30,
                       ),
                     ),
@@ -156,12 +174,12 @@ class _HomeState extends State<Home> {
                       customRadio(Icons.local_airport_sharp, "Jaipur", 2),
                     ]),
                     SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
                     Text(
                       "Select Hire Mode",
                       style: TextStyle(
-                        color: Colors.indigo[900],
+                        color: Color.fromARGB(255, 18, 68, 138),
                         fontSize: 30,
                       ),
                     ),
@@ -174,7 +192,7 @@ class _HomeState extends State<Home> {
                       custRadio(Icons.person, "Permanent\nChef", 3),
                     ]),
                     SizedBox(
-                      height: 80,
+                      height: 60,
                     ),
                     SizedBox(
                       height: 50,
