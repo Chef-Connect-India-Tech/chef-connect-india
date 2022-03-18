@@ -18,12 +18,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chef Connect India',
-      home: checkuser(),
+      home: ChefConnectMain(),
     );
   }
 }
-
-
 class ChefConnectMain extends StatefulWidget {
   @override
   State<ChefConnectMain> createState() => ChefConnectMainState();
@@ -157,40 +155,5 @@ class ChefConnectMainState extends State<ChefConnectMain> {
         ),
       ),
     );
-  }
-}
-class checkuser extends StatefulWidget {
-  const checkuser({ Key? key }) : super(key: key);
-
-  @override
-  State<checkuser> createState() => _checkuserState();
-}
-
-class _checkuserState extends State<checkuser> {
-  @override
-  late FirebaseAuth _auth;
-  late User _user;
-  bool isLoading = true;
-  @override
-  void initState() {
-    super.initState();
-    _auth = FirebaseAuth.instance;
-    _user = _auth.currentUser!;
-    isLoading = false;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print('===============================================');
-    print(_user);
-    return isLoading
-        ? Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          )
-        : _user == null
-            ? ChefConnectMain()
-            : Select_Mode();
   }
 }
