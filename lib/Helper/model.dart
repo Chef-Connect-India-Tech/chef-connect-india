@@ -7,7 +7,13 @@ class UserModel {
   String? phone;
   String? role;
 
-  UserModel({this.uid, this.email, this.firstname,this.lastname, this.phone, this.role});
+  UserModel(
+      {this.uid,
+      this.email,
+      this.firstname,
+      this.lastname,
+      this.phone,
+      this.role});
 
   // receiving data from server
   factory UserModel.fromMap(map) {
@@ -34,7 +40,8 @@ class UserModel {
     };
   }
 }
-class chefModel {
+
+class ChefModel {
   String? cid;
   String? email;
   String? firstname;
@@ -67,48 +74,72 @@ class chefModel {
   String? pan;
   String? verified;
 
-  chefModel({this.cid, this.email, this.firstname,this.lastname, this.dob, this.city,
-              this.role, this.profilepic, this.country,this.pincode, this.mobile1, this.mobile2,
-              this.workpreference, this.dutystatus, this.currentsalary,this.expectedsalary, this.cheffees, this.experience,
-              this.cuisineexpert, this. specialities, this.menuimages,this. rating, this.education, this.languages,
-              this.level, this. professionallevel,this.address, this. poi,this.aadhar, this. pan});
+  ChefModel(
+      {this.cid,
+      this.email,
+      this.firstname,
+      this.lastname,
+      this.dob,
+      this.city,
+      this.role,
+      this.profilepic,
+      this.country,
+      this.pincode,
+      this.mobile1,
+      this.mobile2,
+      this.workpreference,
+      this.dutystatus,
+      this.currentsalary,
+      this.expectedsalary,
+      this.cheffees,
+      this.experience,
+      this.cuisineexpert,
+      this.specialities,
+      this.menuimages,
+      this.rating,
+      this.education,
+      this.languages,
+      this.level,
+      this.professionallevel,
+      this.address,
+      this.poi,
+      this.aadhar,
+      this.pan});
 
   // receiving data from server
-  factory chefModel.fromMap(map) {
-    return chefModel(
-        cid: map['uid'],
-        email: map['email'],
-        firstname: map['firstname'],
-        lastname: map['lastname'],
-        dob: map['dob'],
-        city: map['city'],
-        role: map['role'],
-        profilepic: map['profilepic'],
-        country: map['country'],
-        pincode: map['pincode'],
-        mobile1: map['mobile1'],
-        mobile2: map['mobile2'],
-        workpreference: map['workpreference'],
-        dutystatus: map['dutystatus'],
-        currentsalary: map['currentsalary'],
-        expectedsalary: map['expectedsalary'],
-        cheffees: map['cheffees'],
-        experience: map['experience'],
-        cuisineexpert: map['cuisineexpert'],
-        specialities: map['specialities'],
-        menuimages: map['menuimages'],
-        rating: map['rating'],
-        education: map['education'],
-        languages: map['languages'],
-        level: map['level'],
-        professionallevel: map['professionallevel'],
-        address: map['address'],
-        poi: map['proof of identity'],
-        aadhar: map['aadhar'],
-        pan: map['professionallevel'],
-        
-        );
-        
+  factory ChefModel.fromMap(map) {
+    return ChefModel(
+      cid: map['uid'],
+      email: map['email'],
+      firstname: map['firstname'],
+      lastname: map['lastname'],
+      dob: map['dob'],
+      city: map['city'],
+      role: map['role'],
+      profilepic: map['profilepic'],
+      country: map['country'],
+      pincode: map['pincode'],
+      mobile1: map['mobile1'],
+      mobile2: map['mobile2'],
+      workpreference: map['workpreference'],
+      dutystatus: map['dutystatus'],
+      currentsalary: map['currentsalary'],
+      expectedsalary: map['expectedsalary'],
+      cheffees: map['cheffees'],
+      experience: map['experience'],
+      cuisineexpert: map['cuisineexpert'],
+      specialities: map['specialities'],
+      menuimages: map['menuimages'],
+      rating: map['rating'],
+      education: map['education'],
+      languages: map['languages'],
+      level: map['level'],
+      professionallevel: map['professionallevel'],
+      address: map['address'],
+      poi: map['proof of identity'],
+      aadhar: map['aadhar'],
+      pan: map['professionallevel'],
+    );
   }
   // sending data to our server
   Map<String, dynamic> toMap() {
@@ -120,23 +151,23 @@ class chefModel {
       'dob': dob,
       'city': city,
       'role': role,
-      'profilepic':profilepic,
+      'profilepic': profilepic,
       'mobile1': mobile1,
       'mobile2': mobile2,
       'dutystatus': dutystatus,
-      'workpreference':workpreference,
+      'workpreference': workpreference,
       'currentsalary': currentsalary,
-      'expectedsalary': expectedsalary,      
+      'expectedsalary': expectedsalary,
       'cheffees': cheffees,
       'experience': experience,
       'cuisineexpert': cuisineexpert,
       'specialities': specialities,
-      'menuimages':menuimages,
-      'rating':rating,
+      'menuimages': menuimages,
+      'rating': rating,
       'educatione': education,
       'languages': languages,
-      'level':level,
-      'professionallevel':  professionallevel,
+      'level': level,
+      'professionallevel': professionallevel,
       'address': address,
       'aadhar': aadhar,
       'poi': poi,
