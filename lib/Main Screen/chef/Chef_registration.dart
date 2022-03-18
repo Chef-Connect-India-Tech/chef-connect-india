@@ -60,6 +60,7 @@ class _Registration_chefState extends State<Registration_chef> {
               this.value = value;
               WorklocationEditingController.text = value!;
             }));
+            
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -220,53 +221,54 @@ class _Registration_chefState extends State<Registration_chef> {
                             SizedBox(
                               height: 10,
                             ),
-                            TextFormField(
-                              autofocus: false,
-                              controller: WorklocationEditingController,
-                              keyboardType: TextInputType.name,
-                              validator: (value) {
-                                RegExp regex = RegExp(r'^.{3,}$');
-                                if (value!.isEmpty) {
-                                  return ("First Name cannot be Empty");
-                                }
-                                if (!regex.hasMatch(value)) {
-                                  return ("Enter Valid name(Min. 3 Character)");
-                                }
-                                return null;
-                              },
-                              onSaved: (value) {
-                                WorklocationEditingController.text = value!;
-                              },
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                fillColor: Colors.white60,
-                                hintText: 'Work Location',
-                                hintStyle: TextStyle(
-                                    color: Colors.black, fontSize: 15),
-                                filled: true,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                    width: 2,
-                                  ),
-                                ),
-                                focusedBorder: new OutlineInputBorder(
-                                  borderRadius: new BorderRadius.circular(10.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.white60,
-                                    width: 2,
-                                  ),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                    width: 2,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            cheftype,
+                            // TextFormField(
+                            //   autofocus: false,
+                            //   controller: WorklocationEditingController,
+                            //   keyboardType: TextInputType.name,
+                            //   validator: (value) {
+                            //     RegExp regex = RegExp(r'^.{3,}$');
+                            //     if (value!.isEmpty) {
+                            //       return ("First Name cannot be Empty");
+                            //     }
+                            //     if (!regex.hasMatch(value)) {
+                            //       return ("Enter Valid name(Min. 3 Character)");
+                            //     }
+                            //     return null;
+                            //   },
+                            //   onSaved: (value) {
+                            //     WorklocationEditingController.text = value!;
+                            //   },
+                            //   textInputAction: TextInputAction.next,
+                            //   decoration: InputDecoration(
+                            //     fillColor: Colors.white60,
+                            //     hintText: 'Work Location',
+                            //     hintStyle: TextStyle(
+                            //         color: Colors.black, fontSize: 15),
+                            //     filled: true,
+                            //     border: OutlineInputBorder(
+                            //       borderRadius: BorderRadius.circular(10),
+                            //       borderSide: BorderSide(
+                            //         color: Colors.white,
+                            //         width: 2,
+                            //       ),
+                            //     ),
+                            //     focusedBorder: new OutlineInputBorder(
+                            //       borderRadius: new BorderRadius.circular(10.0),
+                            //       borderSide: BorderSide(
+                            //         color: Colors.white60,
+                            //         width: 2,
+                            //       ),
+                            //     ),
+                            //     enabledBorder: OutlineInputBorder(
+                            //       borderRadius: BorderRadius.circular(10),
+                            //       borderSide: BorderSide(
+                            //         color: Colors.white,
+                            //         width: 2,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                             SizedBox(
                               height: 10,
                             ),
