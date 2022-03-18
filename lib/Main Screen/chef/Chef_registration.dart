@@ -36,13 +36,12 @@ class _Registration_chefState extends State<Registration_chef> {
   final emailEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();
   final confirmPasswordEditingController = TextEditingController();
-
-  final worklocation = ['Jaipur', 'Bangalore'];
+   final worklocation = ['Jaipur', 'Bangalore'];
   String? value;
 
   @override
   Widget build(BuildContext context) {
-    final worklocation = DropdownButtonFormField<String>(
+    final cheftype = DropdownButtonFormField<String>(
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.person),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
@@ -540,12 +539,11 @@ class _Registration_chefState extends State<Registration_chef> {
         MaterialPageRoute(builder: (context) => Chef_dashboard()),
         (route) => false);
   }
-
-  DropdownMenuItem<String> buildMenuItem(String worklocation) =>
-      DropdownMenuItem(
-          value: worklocation,
-          child: Text(
-            worklocation,
-            style: TextStyle(fontSize: 18),
-          ));
+   DropdownMenuItem<String> buildMenuItem(String worklocation) => DropdownMenuItem(
+        value: worklocation,
+        child: Text(
+          worklocation,
+          style: TextStyle(fontSize: 18),
+        ),
+      );
 }
