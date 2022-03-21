@@ -115,10 +115,7 @@ class _user_homeState extends State<user_home> {
                 ),
               ),
               onPressed: () {
-                print('Pressed');
-              },
-              onLongPress: () {
-                print('Long press');
+                // print('Pressed');
               },
             )
           ]),
