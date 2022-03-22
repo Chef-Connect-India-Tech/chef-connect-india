@@ -1,23 +1,25 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/Registration_user.dart';
+import 'package:glass_morphism/roles/chef/chef_registration_1.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
 // import 'package:pin_code_fields/pin_code_fields.dart';
 enum MobileVerificationState { SHOW_MOBILE_FORM_STATE, SHOW_OTP_FORMS_STATE }
-class USer_login extends StatefulWidget {
-  USer_login({Key? key}) : super(key: key);
+
+class chef_login extends StatefulWidget {
+  chef_login({Key? key}) : super(key: key);
 
   @override
-  State<USer_login> createState() => _USer_loginState();
+  State<chef_login> createState() => _chef_loginState();
 }
 
-class _USer_loginState extends State<USer_login> {
+class _chef_loginState extends State<chef_login> {
   MobileVerificationState currentState =
-  MobileVerificationState.SHOW_MOBILE_FORM_STATE;
+      MobileVerificationState.SHOW_MOBILE_FORM_STATE;
 
   final _phoneController = TextEditingController();
   final _otpController = TextEditingController();
@@ -35,8 +37,9 @@ class _USer_loginState extends State<USer_login> {
   String verificationId = "";
   bool isLoading = false;
   FirebaseAuth _auth = FirebaseAuth.instance;
+  User? user = FirebaseAuth.instance.currentUser;
 
-  void alert() {
+  void phonealert() {
     if (_phoneController.text == "") {
       Alert(
               context: context,
@@ -50,10 +53,33 @@ class _USer_loginState extends State<USer_login> {
     }
   }
 
+  void alert() {
+    if (_phoneController.text == "" && _otpController.text == "") {
+      Alert(
+              context: context,
+              title: "PhoneNumber and OTP Required",
+              desc: "Please enter Phone No. and OTP")
+          .show();
+    } else if (_phoneController.text == "") {
+      Alert(
+              context: context,
+              title: "PhoneNumber Required",
+              desc: "Please enter Phone No.")
+          .show();
+    } else if (_otpController.text == "") {
+      Alert(context: context, title: "OTP Required", desc: "Please enter OTP.")
+          .show();
+    } else {
+      setState(() {
+        isLoading = true;
+      });
+    }
+  }
+
   void signInWithPhoneAuthCredential(
       PhoneAuthCredential phoneAuthCredential) async {
-      String a=  this.phoneNumber + _phoneController.text;
-      print(this.phoneNumber + _phoneController.text);
+    String a = this.phoneNumber + _phoneController.text;
+    print(this.phoneNumber + _phoneController.text);
     setState(() {
       isLoading = true;
     });
@@ -65,14 +91,15 @@ class _USer_loginState extends State<USer_login> {
       });
       if (authCredential.user != null) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>Registration_user(phonenumber: a)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => chef_registration_one(phonenumber: a)));
       }
     } on FirebaseException catch (e) {
       setState(() {
         isLoading = false;
       });
       _scaffoldKey.currentState
-          // ignore: deprecated_member_use
           ?.showSnackBar(SnackBar(content: Text("${e.message}")));
     }
   }
@@ -81,12 +108,6 @@ class _USer_loginState extends State<USer_login> {
     return Column(
       children: [
         Spacer(),
-        // TextFormField(
-        //   controller: _phoneController,
-        //   decoration: InputDecoration(
-        //     hintText: "Enter Phone Number",
-        //   ),
-        // ),
         Wrap(
           direction: Axis.horizontal,
           alignment: WrapAlignment.center,
@@ -95,12 +116,8 @@ class _USer_loginState extends State<USer_login> {
               onChanged: _onCountryChange,
               initialSelection: 'IN',
               favorite: ['+91', 'IN'],
-              // optional. Shows only country name and flag
               showCountryOnly: false,
-              // optional. Shows only country name and flag when popup is closed.
               showOnlyCountryWhenClosed: false,
-              // optional. aligns the flag and the Text left
-              // alignLeft: false,
               enabled: true,
             ),
             Container(
@@ -116,13 +133,12 @@ class _USer_loginState extends State<USer_login> {
         SizedBox(
           height: 16,
         ),
-        // ignore: deprecated_member_use
         Center(
           child: FlatButton(
             color: Colors.blueAccent,
             onPressed: () async {
               check();
-              // alert();
+              phonealert();
               await _auth.verifyPhoneNumber(
                   phoneNumber: this.phoneNumber + _phoneController.text,
                   verificationCompleted: (phoneAuthCredential) async {
@@ -164,7 +180,12 @@ class _USer_loginState extends State<USer_login> {
         Spacer(),
         TextFormField(
           controller: _otpController,
-          decoration: InputDecoration(hintText: "Enter OTP"),
+          decoration: InputDecoration(
+            hintText: "Enter OTP",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
         ),
         SizedBox(
           height: 16,
@@ -240,11 +261,11 @@ class _USer_loginState extends State<USer_login> {
                         children: [
                           // getMobileFormWidget(context),
                           //  getOtpFormWidget(context),
-                          
+
                           SizedBox(
                             height: 40,
                           ),
-                          
+
                           CircleAvatar(
                             backgroundColor: Color(0xFF092349),
                             radius: 80,
@@ -257,7 +278,7 @@ class _USer_loginState extends State<USer_login> {
                             padding: const EdgeInsets.all(10.0),
                             child: TextFormField(
                               controller: _phoneController,
-                               keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
                                 fillColor: Colors.white60,
                                 hintText: 'Phone Number',
@@ -277,36 +298,43 @@ class _USer_loginState extends State<USer_login> {
                                 ),
                                 suffixIcon: InkWell(
                                   onTap: () async {
-                                      check();
-                                      // alert();
-                                      await _auth.verifyPhoneNumber(
-                                          phoneNumber: this.phoneNumber + _phoneController.text,
-                                          verificationCompleted: (phoneAuthCredential) async {
+                                    check();
+                                    phonealert();
+                                    await _auth.verifyPhoneNumber(
+                                        phoneNumber: this.phoneNumber +
+                                            _phoneController.text,
+                                        verificationCompleted:
+                                            (phoneAuthCredential) async {
+                                          setState(() {
+                                            isLoading = false;
+                                          });
+                                          // signInWithPhoneAuthCredential();
+                                        },
+                                        verificationFailed:
+                                            (verificationFailed) async {
+                                          setState(() {
+                                            isLoading = false;
+                                          });
+                                          _scaffoldKey.currentState
+                                              ?.showBottomSheet((context) => Text(
+                                                  "${verificationFailed.message}"));
+                                        },
+                                        codeSent: (verificationId,
+                                            resendingToken) async {
+                                          setState(() {
                                             setState(() {
                                               isLoading = false;
                                             });
-                                            // signInWithPhoneAuthCredential();
-                                          },
-                                          verificationFailed: (verificationFailed) async {
-                                            setState(() {
-                                              isLoading = false;
-                                            });
-                                            // ignore: deprecated_member_use
-                                            _scaffoldKey.currentState?.showBottomSheet(
-                                                (context) => Text("${verificationFailed.message}"));
-                                          },
-                                          codeSent: (verificationId, resendingToken) async {
-                                            setState(() {
-                                              setState(() {
-                                                isLoading = false;
-                                              });
-                                              currentState =
-                                                  MobileVerificationState.SHOW_OTP_FORMS_STATE;
-                                              this.verificationId = verificationId;
-                                            });
-                                          },
-                                          codeAutoRetrievalTimeout: (verificationId) async {});
-                                    },
+                                            currentState =
+                                                MobileVerificationState
+                                                    .SHOW_OTP_FORMS_STATE;
+                                            this.verificationId =
+                                                verificationId;
+                                          });
+                                        },
+                                        codeAutoRetrievalTimeout:
+                                            (verificationId) async {});
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 20, horizontal: 15),
@@ -330,7 +358,7 @@ class _USer_loginState extends State<USer_login> {
                                 focusedBorder: new OutlineInputBorder(
                                   borderRadius: new BorderRadius.circular(10.0),
                                   borderSide: BorderSide(
-                                    color: Colors.white60,
+                                    color: Colors.white,
                                     width: 2,
                                   ),
                                 ),
@@ -343,7 +371,7 @@ class _USer_loginState extends State<USer_login> {
                                 ),
                               ),
                             ),
-                          ),                          
+                          ),
                           SizedBox(
                             height: 20,
                           ),
@@ -375,10 +403,44 @@ class _USer_loginState extends State<USer_login> {
                               ],
                             ),
                           ),
-                          TextFormField(
-                            controller: _otpController,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(hintText: "Enter OTP"),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              controller: _otpController,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                fillColor: Colors.white54,
+                                filled: true,
+                                hintText: "Enter OTP",
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.white60,
+                                    width: 2,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
                           SizedBox(
                             height: 50,
@@ -395,11 +457,11 @@ class _USer_loginState extends State<USer_login> {
                                   )),
                               onPressed: () {
                                 PhoneAuthCredential phoneAuthCredential =
-                                PhoneAuthProvider.credential(
-                                    verificationId: verificationId,
-                                    smsCode: _otpController.text);
-
-                            signInWithPhoneAuthCredential(phoneAuthCredential);
+                                    PhoneAuthProvider.credential(
+                                        verificationId: verificationId,
+                                        smsCode: _otpController.text);
+                                signInWithPhoneAuthCredential(
+                                    phoneAuthCredential);
                               },
                               child: Text(
                                 'Validate OTP',

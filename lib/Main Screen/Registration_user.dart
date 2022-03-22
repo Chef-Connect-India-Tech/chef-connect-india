@@ -5,13 +5,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:glass_morphism/Helper/model.dart';
-import 'package:glass_morphism/home.dart';
+import 'package:glass_morphism/Main%20Screen/select_mode.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class Registration_user extends StatefulWidget {
   late String phonenumber;
 
-  Registration_user(  {required this.phonenumber,}) ;
+  Registration_user({
+    required this.phonenumber,
+  });
 
   @override
   State<Registration_user> createState() => _Registration_userState();
@@ -93,32 +95,6 @@ class _Registration_userState extends State<Registration_user> {
                             SizedBox(
                               height: 20,
                             ),
-                            //  TextFormField(
-                            //   autofocus: false,
-                            //   controller: firstnameEditingController,
-                            //   keyboardType: TextInputType.name,
-                            //   validator: (value) {
-                            //     RegExp regex = RegExp(r'^.{3,}$');
-                            //     if (value!.isEmpty) {
-                            //       return ("First Name cannot be Empty");
-                            //     }
-                            //     if (!regex.hasMatch(value)) {
-                            //       return ("Enter Valid name(Min. 3 Character)");
-                            //     }
-                            //     return null;
-                            //   },
-                            //   onSaved: (value) {
-                            //     firstnameEditingController.text = value!;
-                            //   },
-                            //   textInputAction: TextInputAction.next,
-                            //   decoration: InputDecoration(
-                            //     prefixIcon: Icon(Icons.person),
-                            //     contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            //     hintText: "First Name",
-                            //     border: OutlineInputBorder(
-                            //       borderRadius: BorderRadius.circular(10),
-                            //     ),
-                            //   )),
                             TextFormField(
                               autofocus: false,
                               controller: firstNameEditingController,
@@ -228,7 +204,8 @@ class _Registration_userState extends State<Registration_user> {
                                   return ("Please Enter Your Email");
                                 }
                                 // reg expression for email validation
-                                if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                if (!RegExp(
+                                        "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                                     .hasMatch(value)) {
                                   return ("Please Enter a valid email");
                                 }
@@ -381,7 +358,6 @@ class _Registration_userState extends State<Registration_user> {
                                     )),
                                 onPressed: () {
                                   postDetailsToFirestore();
-
                                 },
                                 child: Text(
                                   'Register',
@@ -406,7 +382,6 @@ class _Registration_userState extends State<Registration_user> {
       ),
     );
   }
-
 
   postDetailsToFirestore() async {
     // calling our firestore
@@ -434,7 +409,7 @@ class _Registration_userState extends State<Registration_user> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => Home()),
+        MaterialPageRoute(builder: (context) => Select_Mode()),
         (route) => false);
   }
 }

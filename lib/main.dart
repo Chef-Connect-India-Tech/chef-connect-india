@@ -1,6 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/User_login.dart';
+import 'package:glass_morphism/Main%20Screen/User_login.dart';
+import 'package:glass_morphism/roles/chef/chef_login.dart';
+import 'package:glass_morphism/roles/chef/chef_registration_1.dart';
+import 'package:glass_morphism/roles/user/user_home.dart';
+// import 'package:glass_morphism/Main%20Screen/select_mode.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -17,6 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Chef Connect India',
       home: ChefConnectMain(),
+      // home: chef_registration_one(phonenumber: '+917337504725'),
     );
   }
 }
@@ -134,7 +138,14 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                             primary: Colors.white54,
                             onPrimary: Color.fromARGB(255, 18, 68, 138),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => chef_login(),
+                              ),
+                            );
+                          },
                           child: Text(
                             'Sign in as Chef',
                             style: TextStyle(
