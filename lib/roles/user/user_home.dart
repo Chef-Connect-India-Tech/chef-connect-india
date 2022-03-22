@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:glass_morphism/Helper/list.dart';
 
 class user_home extends StatefulWidget {
-  final String city;
-  final String hiremode;
-  const user_home({Key? key, required this.city, required this.hiremode})
-      : super(key: key);
+  // final String city;
+  // final String hiremode;
+  const user_home({
+    Key? key,
+    // required this.city,
+    // required this.hiremode
+  }) : super(key: key);
 
   @override
   State<user_home> createState() => _user_homeState();
@@ -66,7 +69,7 @@ class _user_homeState extends State<user_home> {
                     .toList(),
                 options: CarouselOptions(
                     enableInfiniteScroll: true,
-                    reverse: true,
+                    reverse: false,
                     autoPlay: true,
                     enlargeCenterPage: true,
                     viewportFraction: 0.8,
@@ -99,7 +102,7 @@ class _user_homeState extends State<user_home> {
           ),
           Row(children: [
             Text(
-              " Top Chef",
+              " Top Chefs",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.indigo[900],
@@ -124,7 +127,7 @@ class _user_homeState extends State<user_home> {
           StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection("chefs")
-                // .where('', isEqualTo: '${widget.hiremode}')
+                .where('dutystatus', isEqualTo: true)
                 .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -141,15 +144,22 @@ class _user_homeState extends State<user_home> {
                 primary: true,
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   print(document.data());
-                  return new AwesomeListItem(
-                    title: document['chefid'].toString(),
-                    content: document['cuisineexpert'].toString(),
-                    city: document['city'].toString(),
-                    level: document['professionallevel'].toString(),
-                    experience: document['experience'].toString(),
-                    profilepic: document['profilepic'],
-                    color: Color(0xFFEF7A85),
-                  );
+                  // return new AwesomeListItem(
+                  //   title: document['chefid'].toString(),
+                  //   content: document['cuisineexpert'].toString(),
+                  //   city: document['city'].toString(),
+                  //   level: document['professionallevel'].toString(),
+                  //   experience: document['experience'].toString(),
+                  //   profilepic: document['profilepic'],
+                  //   color: Color(0xFFEF7A85),
+                  // );
+                  return new list_view(
+                      chefid: document['chefid'],
+                      cusineexpert: document['cuisineexpert'].toString(),
+                      level: document['professionallevel'].toString(),
+                      speciality: document['specialities'].toString(),
+                      experience: document['experience'].toString(),
+                      profilepic: document['profilepic']);
                 }).toList(),
               );
             },

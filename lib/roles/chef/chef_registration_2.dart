@@ -510,6 +510,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     chefModel.currentsalary = salaryEditingController.text;
     chefModel.cuisineexpert = cusineEditingController.text;
     chefModel.workpreference = timeEditingController.text;
+    chefModel.dutystatus = true;
     chefModel.role = 'chef';
     chefModel.profilepic =
         'http://chefconnect.co.in/assets/images/logo_chef.png';

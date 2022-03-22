@@ -56,7 +56,7 @@ class ChefModel {
   String? mobile1;
   String? mobile2;
   String? workpreference;
-  String? dutystatus;
+  bool dutystatus;
   String? currentsalary;
   String? expectedsalary;
   String? cheffees;
@@ -90,7 +90,7 @@ class ChefModel {
       this.mobile1,
       this.mobile2,
       this.workpreference,
-      this.dutystatus,
+      this.dutystatus = true,
       this.currentsalary,
       this.expectedsalary,
       this.cheffees,

@@ -293,7 +293,8 @@ class _Select_ModeState extends State<Select_Mode> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => user_home(
-                                    city: cityholder, hiremode: chefholder),
+                                    // city: cityholder, hiremode: chefholder
+                                    ),
                               ));
                         },
                         child: Text(
