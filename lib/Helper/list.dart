@@ -6,17 +6,19 @@ class AwesomeListItem extends StatefulWidget {
   var title;
   var content;
   var color;
-  var phone;
-  var branch;
-  var clg;
+  var experience;
+  var level;
+  var city;
+  var profilepic;
 
   AwesomeListItem(
       {required this.title,
       required this.content,
       required this.color,
-      required this.branch,
-      required this.phone,
-      required this.clg});
+      required this.level,
+      required this.experience,
+      required this.profilepic,
+      required this.city});
 
   @override
   _AwesomeListItemState createState() => new _AwesomeListItemState();
@@ -56,7 +58,7 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       new Text(
-                        widget.title,
+                        widget.title.toString(),
                         style: TextStyle(
                             color: Colors.grey.shade800,
                             fontSize: 18.0,
@@ -65,7 +67,7 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                       new Padding(
                         padding: const EdgeInsets.only(top: 16.0),
                         child: new Text(
-                          widget.branch,
+                          widget.content.toString(),
                           style: TextStyle(
                               color: Colors.grey.shade500,
                               fontSize: 12.0,
@@ -75,7 +77,27 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                       new Padding(
                         padding: const EdgeInsets.only(top: 16.0),
                         child: new Text(
-                          widget.phone,
+                          widget.city.toString(),
+                          style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      new Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: new Text(
+                          widget.level.toString(),
+                          style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      new Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: new Text(
+                          widget.experience.toString(),
                           style: TextStyle(
                               color: Colors.grey.shade500,
                               fontSize: 12.0,
@@ -98,7 +120,7 @@ class _AwesomeListItemState extends State<AwesomeListItem> {
                         height: 100.0,
                         width: 100.0,
                         child: Image(
-                          image: AssetImage('assets/cci_logo.png'),
+                          image: NetworkImage('${widget.profilepic}'),
                         ),
                       ),
                     ),

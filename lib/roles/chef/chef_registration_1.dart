@@ -18,7 +18,8 @@ class _chef_registration_oneState extends State<chef_registration_one> {
   final lastNameEditingController = new TextEditingController();
   final workExperienceEditingController = new TextEditingController();
   final worklocationEditingController = new TextEditingController();
-  final workTypeEditingController = new TextEditingController();
+  final currentlocationEditingController = new TextEditingController();
+
   final worklocation = ['Jaipur', 'Bangalore'];
   final workType = ['Party Chef', 'Kitchen Professional', 'Private Chef'];
   String? locValue;
@@ -46,7 +47,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                   child: Center(
                     child: GlassmorphicContainer(
                       width: 330,
-                      height: 750,
+                      height: 710,
                       borderRadius: 10,
                       blur: 0.1,
                       alignment: Alignment.bottomCenter,
@@ -108,6 +109,11 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 },
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
+                                  labelText: 'First Name',
+                                  labelStyle: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   prefixIcon: Icon(Icons.account_circle),
                                   fillColor: Colors.white60,
                                   hintText: 'First Name',
@@ -139,7 +145,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 ),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 7,
                               ),
                               // secondNameField,
                               TextFormField(
@@ -161,6 +167,11 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 },
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
+                                  labelText: 'Last Name',
+                                  labelStyle: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   prefixIcon: Icon(Icons.account_circle),
                                   fillColor: Colors.white60,
                                   hintText: 'Last Name',
@@ -192,9 +203,8 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 ),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 7,
                               ),
-                              // secondNameField,
                               TextFormField(
                                 autofocus: false,
                                 controller: workExperienceEditingController,
@@ -213,6 +223,11 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 },
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
+                                  labelText: 'Work Experience',
+                                  labelStyle: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   prefixIcon: Icon(Icons.history_outlined),
                                   fillColor: Colors.white60,
                                   hintText: 'Work Experience',
@@ -244,10 +259,73 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 ),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 7,
+                              ),
+                              TextFormField(
+                                autofocus: false,
+                                controller: currentlocationEditingController,
+                                keyboardType: TextInputType.streetAddress,
+                                validator: (value) {
+                                  if (value!.isEmpty ||
+                                      !RegExp(r'^[a-z A-Z]+$')
+                                          .hasMatch(value)) {
+                                    //allow upper and lower case alphabets and space
+                                    return "Enter Current Location";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onSaved: (value) {
+                                  currentlocationEditingController.text =
+                                      value!;
+                                },
+                                textInputAction: TextInputAction.next,
+                                decoration: InputDecoration(
+                                  labelText: 'Current Location',
+                                  labelStyle: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                  prefixIcon: Icon(Icons.my_location),
+                                  fillColor: Colors.white60,
+                                  hintText: 'Ex: Jaipur',
+                                  hintStyle: TextStyle(
+                                      color: Colors.black, fontSize: 15),
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  focusedBorder: new OutlineInputBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(10.0),
+                                    borderSide: BorderSide(
+                                      color: Colors.white60,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                      width: 2,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 7,
                               ),
                               DropdownButtonFormField<String>(
                                 decoration: InputDecoration(
+                                  labelText: 'Work Location',
+                                  labelStyle: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                   prefixIcon: Icon(Icons.pin_drop),
                                   fillColor: Colors.white60,
                                   hintText: 'Select Work Location',
@@ -298,106 +376,77 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                   return null;
                                 },
                               ),
+                              // SizedBox(
+                              //   height: 15,
+                              // ),
+
                               SizedBox(
                                 height: 10,
                               ),
-                              DropdownButtonFormField<String>(
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.pin_drop),
-                                  fillColor: Colors.white60,
-                                  hintText: 'Select Work Type',
-                                  hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 15),
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  focusedBorder: new OutlineInputBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0),
-                                    borderSide: BorderSide(
-                                      color: Colors.white60,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                                validator: (wvalue) {
-                                  if (wvalue == null) {
-                                    //allow upper and lower case alphabets and space
-                                    return "Select Work Type";
-                                  }
-                                  return null;
-                                },
-                                autofocus: false,
-                                value: cheftypeValue,
-                                isExpanded: true,
-                                iconSize: 25,
-                                icon: Icon(Icons.arrow_drop_down,
-                                    color: Colors.black),
-                                items: workType.map(buildChefMenuItem).toList(),
-                                onChanged: (wvalue) => setState(() {
-                                  this.cheftypeValue = wvalue;
-                                  workTypeEditingController.text = wvalue!;
-                                }),
-                                onSaved: (wvalue) {
-                                  workTypeEditingController.text = wvalue!;
-                                },
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
                               // signUpButton
-                              ElevatedButton(
-                                  onPressed: () {
-                                    if (formGlobalKey.currentState!
-                                        .validate()) {
-                                      // print('phn: ${widget.phonenumber}');
-                                      // print(
-                                      //     "fn: ${firstNameEditingController.text}");
-                                      // print(
-                                      //     "ln: ${lastNameEditingController.text}");
-                                      // print(
-                                      //     "wrk exp: ${workExperienceEditingController.text}");
-                                      // print(
-                                      //     "wrk loc: ${worklocationEditingController.text}");
-                                      // print(
-                                      //     "wrk typ: ${workTypeEditingController.text}");
+                              Container(
+                                width: 200,
+                                height: 50,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(
+                                          color: Colors.white,
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      primary: Colors.white54,
+                                      onPrimary:
+                                          Color.fromARGB(255, 18, 68, 138),
+                                    ),
+                                    onPressed: () {
+                                      if (formGlobalKey.currentState!
+                                          .validate()) {
+                                        // print('phn: ${widget.phonenumber}');
+                                        // print(
+                                        //     "fn: ${firstNameEditingController.text}");
+                                        // print(
+                                        //     "ln: ${lastNameEditingController.text}");
+                                        // print(
+                                        //     "wrk exp: ${workExperienceEditingController.text}");
+                                        // print(
+                                        //     "wrk loc: ${worklocationEditingController.text}");
+                                        // print(
+                                        //     "wrk typ: ${workTypeEditingController.text}");
 
-                                      Navigator.push(
-                                          (context),
-                                          MaterialPageRoute(
-                                              builder: (context) => chef_registration_two(
-                                                  firstname:
-                                                      firstNameEditingController
-                                                          .text,
-                                                  lastname:
-                                                      lastNameEditingController
-                                                          .text,
-                                                  phonenumber:
-                                                      widget.phonenumber,
-                                                  workexperience:
-                                                      workExperienceEditingController
-                                                          .text,
-                                                  worklocation:
-                                                      worklocationEditingController
-                                                          .text,
-                                                  worktype:
-                                                      workTypeEditingController
-                                                          .text)));
-                                    }
-                                  },
-                                  child: Text("Next"))
+                                        Navigator.push(
+                                            (context),
+                                            MaterialPageRoute(
+                                                builder: (context) => chef_registration_two(
+                                                    firstname:
+                                                        firstNameEditingController
+                                                            .text,
+                                                    lastname:
+                                                        lastNameEditingController
+                                                            .text,
+                                                    phonenumber:
+                                                        widget.phonenumber,
+                                                    workexperience:
+                                                        workExperienceEditingController
+                                                            .text,
+                                                    worklocation:
+                                                        worklocationEditingController
+                                                            .text,
+                                                    currentlocation:
+                                                        currentlocationEditingController
+                                                            .text)));
+                                      }
+                                    },
+                                    child: Text(
+                                      "Next",
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )),
+                              )
                             ],
                           ),
                         ),
@@ -418,15 +467,6 @@ class _chef_registration_oneState extends State<chef_registration_one> {
         value: worklocation,
         child: Text(
           worklocation,
-          style: TextStyle(fontSize: 18),
-        ),
-      );
-
-  DropdownMenuItem<String> buildChefMenuItem(String worktype) =>
-      DropdownMenuItem(
-        value: worktype,
-        child: Text(
-          worktype,
           style: TextStyle(fontSize: 18),
         ),
       );

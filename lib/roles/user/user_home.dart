@@ -66,7 +66,7 @@ class _user_homeState extends State<user_home> {
                     .toList(),
                 options: CarouselOptions(
                     enableInfiniteScroll: true,
-                    reverse: false,
+                    reverse: true,
                     autoPlay: true,
                     enlargeCenterPage: true,
                     viewportFraction: 0.8,
@@ -101,16 +101,18 @@ class _user_homeState extends State<user_home> {
             Text(
               " Top Chef",
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 color: Colors.indigo[900],
-                fontSize: 30,
+                fontSize: 20,
               ),
             ),
             Spacer(),
             TextButton(
               child: Text(
-                'view more >',
+                " View More >",
                 style: TextStyle(
-                  color: Colors.redAccent,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.indigo[900],
                   fontSize: 20,
                 ),
               ),
@@ -122,7 +124,7 @@ class _user_homeState extends State<user_home> {
           StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection("chefs")
-                .where('hiremode', isEqualTo: '${widget.hiremode}')
+                // .where('', isEqualTo: '${widget.hiremode}')
                 .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -140,11 +142,12 @@ class _user_homeState extends State<user_home> {
                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                   print(document.data());
                   return new AwesomeListItem(
-                    title: document['name'],
-                    content: document['rollno'],
-                    clg: document['college'],
-                    branch: document['branch'],
-                    phone: document['phone'],
+                    title: document['chefid'].toString(),
+                    content: document['cuisineexpert'].toString(),
+                    city: document['city'].toString(),
+                    level: document['professionallevel'].toString(),
+                    experience: document['experience'].toString(),
+                    profilepic: document['profilepic'],
                     color: Color(0xFFEF7A85),
                   );
                 }).toList(),
