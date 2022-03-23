@@ -280,7 +280,7 @@ class _list_viewState extends State<list_view> {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 3.0,
-                        color: Color.fromARGB(255, 163, 163, 163),
+                        color: Colors.indigoAccent,
                       ),
                       borderRadius:
                           BorderRadius.all(Radius.elliptical(55.0, 57.5)),

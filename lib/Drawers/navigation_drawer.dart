@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/Drawers/bottom_sheet.dart';
 import 'package:chef_connect_india/main.dart';
+import 'package:chef_connect_india/roles/user/select_mode.dart';
 // import 'package:chef_connect_india/roles/user/user_home.dart';
 import 'package:chef_connect_india/roles/user/user_profile.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,7 +34,7 @@ class NavBar extends StatelessWidget {
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.network(
-                  'https://aravindreddymokireddy.github.io/img/profile-img.png',
+                  '${user!.photoURL}',
                   fit: BoxFit.cover,
                   width: 90,
                   height: 90,
@@ -55,12 +57,26 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.person),
             title: Text('Location'),
-            onTap: () => null,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Bottom_Sheet(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.person),
             title: Text('Hire Mode'),
-            onTap: () => null,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Select_Mode(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.person),

@@ -1,5 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:chef_connect_india/Helper/model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:chef_connect_india/home.dart';
 import 'package:chef_connect_india/roles/user/user_home.dart';
@@ -27,6 +30,7 @@ class ChefList {
 }
 
 class _Select_ModeState extends State<Select_Mode> {
+  final _auth = FirebaseAuth.instance;
   String uid = "";
   String cityholder = '';
   String chefholder = '';
@@ -61,6 +65,7 @@ class _Select_ModeState extends State<Select_Mode> {
       icon: Icon(Icons.location_city_outlined),
     ),
   ];
+
   Widget customRadio(
     String text,
     int index,
@@ -289,13 +294,13 @@ class _Select_ModeState extends State<Select_Mode> {
                         onPressed: () {
                           print('city name is:${cityholder}');
                           print('city name is:${chefholder}');
-                          Navigator.push(
-                              context,
+                          postDetailsToFirestore();
+                          Navigator.pushAndRemoveUntil(
+                              (context),
                               MaterialPageRoute(
-                                builder: (context) => user_home(
-                                    // city: cityholder, hiremode: chefholder
-                                    ),
-                              ));
+                                builder: (context) => user_home(),
+                              ),
+                              (route) => false);
                         },
                         child: Text(
                           'Proceed',
@@ -315,5 +320,26 @@ class _Select_ModeState extends State<Select_Mode> {
         ),
       ),
     );
+  }
+
+  postDetailsToFirestore() async {
+    // calling our firestore
+    // calling our user model
+    // sedning these values
+    User? user = _auth.currentUser;
+
+    UserModel userModel = UserModel();
+
+    // writing all the values
+    userModel.uid = user!.uid;
+    userModel.selectedLocation = cityholder;
+    userModel.hiremode = chefholder;
+
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("users");
+    return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+      'selectedLocation': userModel.selectedLocation,
+      'hiremode': userModel.hiremode
+    }).then((value) => user_home());
   }
 }

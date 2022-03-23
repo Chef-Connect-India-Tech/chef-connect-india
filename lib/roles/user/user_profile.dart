@@ -1,4 +1,5 @@
 // import 'package:chef_connect_india/Main%20Screen/User_login.dart';
+import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,15 @@ class _user_profileState extends State<user_profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        // shadowColor: Colors.deepPurpleAccent,
+        toolbarHeight: 70, // default is 56
+        // toolbarOpacity: 0.5,
+        elevation: 50.0,
+        title: Text('Chef Connect India'),
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -76,171 +86,207 @@ class _user_profileState extends State<user_profile> {
               );
             }
             // return setDataToTextField(data);
-            return Center(
-              child: Container(
-                padding: EdgeInsets.all(32),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'First Name',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+            return SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.all(32),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'First Name',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['firstname'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Last Name',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 12,
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['lastname'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Email',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          Text(data['firstname'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Last Name',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['email'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Mobile 1',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 12,
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['mobile1'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Mobile 2',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          Text(data['lastname'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Email',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['mobile2'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Date of Birth',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 12,
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['dob'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'City',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          Text(data['email'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Mobile 1',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['city'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Country',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 12,
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['country'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Pincode',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                          Text(data['mobile1'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Mobile 2',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(data['pincode'])
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                      child: Text('open dialog'),
-                      onPressed: () async {
-                        await openDialog(data);
-                      },
-                    ),
-                  ],
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['mobile2'].toString())
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Date of Birth',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['dob'].toString())
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'City',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['city'].toString())
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Country',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['country'].toString())
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Pincode',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['pincode'].toString())
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Selected Location',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['selectedLocation'].toString())
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Hiremode',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['hiremode'].toString())
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                        child: Text('Update Details'),
+                        onPressed: () async {
+                          await openDialog(data);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
