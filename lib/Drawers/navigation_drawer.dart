@@ -3,6 +3,7 @@
 import 'package:chef_connect_india/Drawers/bottom_sheet.dart';
 import 'package:chef_connect_india/main.dart';
 import 'package:chef_connect_india/roles/user/select_mode.dart';
+import 'package:chef_connect_india/roles/user/user_home.dart';
 // import 'package:chef_connect_india/roles/user/user_home.dart';
 import 'package:chef_connect_india/roles/user/user_profile.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,25 +51,37 @@ class NavBar extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text('My Bookings'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Location'),
+            leading: Icon(Icons.home),
+            title: Text('Home Page'),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Bottom_Sheet(),
+                  builder: (context) => user_home(),
                 ),
               );
             },
           ),
           ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text('My Bookings'),
+            onTap: () => null,
+          ),
+          // ListTile(
+          //   leading: Icon(Icons.person),
+          //   title: Text('Location'),
+          //   onTap: () {
+          //     // Navigator.push(
+          //     //   context,
+          //     //   MaterialPageRoute(
+          //     //     builder: (context) => Bottom_Sheet(),
+          //     //   ),
+          //     // );
+          //   },
+          // ),
+          ListTile(
             leading: Icon(Icons.person),
-            title: Text('Hire Mode'),
+            title: Text('Location and Hire Mode'),
             onTap: () {
               Navigator.push(
                 context,
@@ -77,6 +90,9 @@ class NavBar extends StatelessWidget {
                 ),
               );
             },
+          ),
+          Divider(
+            thickness: 2,
           ),
           ListTile(
             leading: Icon(Icons.person),
@@ -91,8 +107,18 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.notifications),
             title: Text('Profile'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => user_profile(),
+                ),
+              );
+            },
           ),
-          Divider(),
+          Divider(
+            thickness: 2,
+          ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
@@ -103,7 +129,9 @@ class NavBar extends StatelessWidget {
             title: Text('Policies'),
             onTap: () => null,
           ),
-          Divider(),
+          Divider(
+            thickness: 2,
+          ),
           ListTile(
             title: Text('LogOut'),
             leading: Icon(Icons.exit_to_app),

@@ -137,7 +137,7 @@ class _user_homeState extends State<user_home> {
           StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection("chefs")
-                .where('dutystatus', isEqualTo: true)
+                // .where('dutystatus', isEqualTo: true)
                 .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
