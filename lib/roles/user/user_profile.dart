@@ -334,6 +334,8 @@ class _user_profileState extends State<user_profile> {
                     height: 10,
                   ),
                   TextField(
+                    // readOnly: true,
+                    enabled: false,
                     controller: _phoneController =
                         TextEditingController(text: data['mobile1']),
                     autofocus: true,

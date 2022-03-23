@@ -67,18 +67,18 @@ class NavBar extends StatelessWidget {
             title: Text('My Bookings'),
             onTap: () => null,
           ),
-          // ListTile(
-          //   leading: Icon(Icons.person),
-          //   title: Text('Location'),
-          //   onTap: () {
-          //     // Navigator.push(
-          //     //   context,
-          //     //   MaterialPageRoute(
-          //     //     builder: (context) => Bottom_Sheet(),
-          //     //   ),
-          //     // );
-          //   },
-          // ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Location'),
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => Bottom_Sheet(),
+              //   ),
+              // );
+            },
+          ),
           ListTile(
             leading: Icon(Icons.person),
             title: Text('Location and Hire Mode'),
