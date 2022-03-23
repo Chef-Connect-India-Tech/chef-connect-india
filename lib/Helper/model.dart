@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   String? uid;
   String? username;
@@ -218,4 +220,12 @@ class ChefModel {
       'verified': verified
     };
   }
+  
+}
+class Firebasehelper {static void updatemsg(appointid,status) async{
+    CollectionReference appointmentdatbase =
+    FirebaseFirestore.instance.collection("users");
+    var result = await appointmentdatbase.doc(appointid).update({"firstname":status});
+  }
+
 }

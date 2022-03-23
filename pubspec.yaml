@@ -29,6 +29,7 @@ dependencies:
   multiselect_formfield: ^0.1.7
   adobe_xd: ^2.0.1
   google_fonts: ^2.3.1
+  paginate_firestore: ^1.0.3
   # lite_rolling_switch: ^0.1.1
 
 

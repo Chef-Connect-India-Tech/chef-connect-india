@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:chef_connect_india/Drawers/bottom_sheet.dart';
+//import 'package:chef_connect_india/Drawers/bottom_sheet.dart';
 import 'package:chef_connect_india/main.dart';
 import 'package:chef_connect_india/roles/user/select_mode.dart';
 import 'package:chef_connect_india/roles/user/user_home.dart';
@@ -43,7 +43,7 @@ class NavBar extends StatelessWidget {
               ),
             ),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.white,
               image: DecorationImage(
                   fit: BoxFit.fill,
                   image: NetworkImage(

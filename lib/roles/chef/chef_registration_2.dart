@@ -1,5 +1,6 @@
 // ignore_for_file: unused_field, deprecated_member_use
 
+import 'package:chef_connect_india/roles/chef/Booking.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -524,7 +525,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => chef_dashboard()),
+        MaterialPageRoute(builder: (context) => Chef_dashboard()),
         (route) => false);
   }
 }
