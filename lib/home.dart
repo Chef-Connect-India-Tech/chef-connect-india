@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/Drawers/navigation_drawer.dart';
-import 'package:glass_morphism/Main%20Screen/User_login.dart';
+import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
+import 'package:chef_connect_india/Main%20Screen/User_login.dart';
 
 class Home extends StatefulWidget {
   late String city;

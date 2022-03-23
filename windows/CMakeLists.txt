@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(glass_morphism LANGUAGES CXX)
+project(chef_connect_india LANGUAGES CXX)
 
-set(BINARY_NAME "glass_morphism")
+set(BINARY_NAME "chef_connect_india")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/Helper/list.dart';
+import 'package:chef_connect_india/Helper/list.dart';
 
 class user_home extends StatefulWidget {
   // final String city;
@@ -46,6 +47,15 @@ class _user_homeState extends State<user_home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        // shadowColor: Colors.deepPurpleAccent,
+        toolbarHeight: 70, // default is 56
+        // toolbarOpacity: 0.5,
+        elevation: 50.0,
+        title: Text('Chef Connect India'),
+      ),
       body: SafeArea(
           child: Container(
         child: Column(children: [

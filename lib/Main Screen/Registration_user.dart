@@ -1,11 +1,11 @@
-// ignore_for_file: must_be_immutable, unused_field
+// ignore_for_file: must_be_immutable, unused_field, deprecated_member_use
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:glass_morphism/Helper/model.dart';
-import 'package:glass_morphism/Main%20Screen/select_mode.dart';
+import 'package:chef_connect_india/Helper/model.dart';
+import 'package:chef_connect_india/Main%20Screen/select_mode.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class Registration_user extends StatefulWidget {
@@ -259,6 +259,7 @@ class _Registration_userState extends State<Registration_user> {
                                 if (!regex.hasMatch(value)) {
                                   return ("Enter Valid Password(Min. 6 Character)");
                                 }
+                                return null;
                               },
                               onSaved: (value) {
                                 passwordEditingController.text = value!;
@@ -387,18 +388,24 @@ class _Registration_userState extends State<Registration_user> {
     // calling our firestore
     // calling our user model
     // sedning these values
+    var name =
+        '${firstNameEditingController.text} ${lastNameEditingController.text}';
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
 
+    user!.updateProfile(displayName: name);
+
     UserModel userModel = UserModel();
 
     // writing all the values
-    userModel.uid = user!.uid;
+    userModel.uid = user.uid;
     userModel.email = emailEditingController.text;
     userModel.firstname = firstNameEditingController.text;
     userModel.lastname = lastNameEditingController.text;
-    userModel.phone = widget.phonenumber;
+    userModel.mobile1 = widget.phonenumber;
+    userModel.profilepic =
+        'http://chefconnect.co.in/assets/images/logo_chef.png';
     userModel.role = 'user';
 
     await firebaseFirestore

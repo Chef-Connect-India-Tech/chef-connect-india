@@ -1,29 +1,57 @@
 class UserModel {
   String? uid;
+  String? username;
   String? email;
   String? firstname;
   String? lastname;
-  // String? city;
-  String? phone;
+  String? mobile1;
+  String? mobile2;
+  DateTime? dob;
+  String? city;
+  String? country;
+  String? pincode;
+  String? hiremode;
+  // String? preferences;
+  String? selectedLocation;
   String? role;
+  String? profilepic;
 
   UserModel(
       {this.uid,
+      this.username,
       this.email,
       this.firstname,
       this.lastname,
-      this.phone,
+      this.mobile1,
+      this.mobile2,
+      this.dob,
+      this.city,
+      this.country,
+      this.pincode,
+      this.hiremode,
+      // this.preferences,
+      this.selectedLocation,
+      this.profilepic,
       this.role});
 
   // receiving data from server
   factory UserModel.fromMap(map) {
     return UserModel(
         uid: map['uid'],
+        username: map['username'],
         email: map['email'],
         firstname: map['firstname'],
         lastname: map['lastname'],
-        // city: map['city'],
-        phone: map['phone'],
+        mobile1: map['mobile1'],
+        mobile2: map['mobile2'],
+        dob: map['dob'],
+        city: map['city'],
+        country: map['country'],
+        pincode: map['pincode'],
+        hiremode: map['hiremode'],
+        profilepic: map['profilepic'],
+        // preferences: map['preferences'],
+        selectedLocation: map['selectedLocation'],
         role: map['role']);
   }
 
@@ -31,11 +59,21 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
+      'username':
+          '${firstname.toString().substring(0, 2)}${lastname.toString().substring(0, 2)}',
       'email': email,
       'firstname': firstname,
       'lastname': lastname,
-      'num': phone,
-      // 'city': city,
+      'mobile1': mobile1,
+      'mobile2': mobile2,
+      'dob': dob,
+      'city': city,
+      'country': country,
+      'pincode': pincode,
+      'hiremode': hiremode,
+      'profilepic': profilepic,
+      // 'preferences': preferences,
+      'selectedLocation': selectedLocation,
       'role': role,
     };
   }

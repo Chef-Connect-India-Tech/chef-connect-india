@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/roles/chef/chef_registration_2.dart';
+import 'package:chef_connect_india/roles/chef/chef_registration_2.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class chef_registration_one extends StatefulWidget {

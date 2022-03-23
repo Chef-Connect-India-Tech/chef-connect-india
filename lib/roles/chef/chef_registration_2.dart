@@ -1,11 +1,11 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, deprecated_member_use
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:glass_morphism/Helper/model.dart';
-import 'package:glass_morphism/roles/chef/chef_dashboard.dart';
+import 'package:chef_connect_india/Helper/model.dart';
+import 'package:chef_connect_india/roles/chef/chef_dashboard.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
@@ -492,14 +492,15 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     // calling our firestore
     // calling our user model
     // sedning these values
-
+    var name = '${widget.firstname} ${widget.lastname}';
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
+    user!.updateProfile(displayName: name);
 
     ChefModel chefModel = ChefModel();
 
     // writing all the values
-    chefModel.uid = user!.uid;
+    chefModel.uid = user.uid;
     // chefModel.email = emailEditingController.text;
     chefModel.firstname = widget.firstname;
     chefModel.lastname = widget.lastname;

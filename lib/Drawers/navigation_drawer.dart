@@ -1,6 +1,16 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:chef_connect_india/main.dart';
+// import 'package:chef_connect_india/roles/user/user_home.dart';
+import 'package:chef_connect_india/roles/user/user_profile.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
+  // CollectionReference _collectionRef =
+  //     FirebaseFirestore.instance.collection("users");
+  var user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -9,8 +19,16 @@ class NavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('Aravind Reddy'),
-            accountEmail: Text('aravind@gmail.com'),
+            onDetailsPressed: (() {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => user_profile(),
+                ),
+              );
+            }),
+            accountName: Text(user!.displayName.toString()),
+            accountEmail: Text(user!.phoneNumber.toString()),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.network(
@@ -73,7 +91,13 @@ class NavBar extends StatelessWidget {
           ListTile(
             title: Text('LogOut'),
             leading: Icon(Icons.exit_to_app),
-            onTap: () => null,
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushAndRemoveUntil(
+                  (context),
+                  MaterialPageRoute(builder: (context) => ChefConnectMain()),
+                  (route) => false);
+            },
           ),
         ],
       ),
