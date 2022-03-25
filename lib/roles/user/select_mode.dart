@@ -18,7 +18,7 @@ class Select_Mode extends StatefulWidget {
 class CityList {
   String city;
   int index;
-  Icon icon;
+  ImageIcon icon;
   CityList({required this.city, required this.index, required this.icon});
 }
 
@@ -57,12 +57,12 @@ class _Select_ModeState extends State<Select_Mode> {
     CityList(
       city: 'Banglore',
       index: 1,
-      icon: Icon(Icons.location_city_outlined),
+      icon: ImageIcon(AssetImage('assets/icons/Banglore.svg')),
     ),
     CityList(
       city: 'Jaipur',
       index: 2,
-      icon: Icon(Icons.location_city_outlined),
+      icon: ImageIcon(AssetImage('assets/icons/Jaipur.svg')),
     ),
   ];
 
@@ -72,7 +72,7 @@ class _Select_ModeState extends State<Select_Mode> {
     IconData icon,
   ) {
     return Container(
-      margin: EdgeInsets.all(10.0),
+      // margin: EdgeInsets.all(2.0),
       padding: EdgeInsets.all(20.0),
       height: 150,
       width: 150,
@@ -118,7 +118,7 @@ class _Select_ModeState extends State<Select_Mode> {
 
   Widget custRadio(String text, int index, IconData icon) {
     return Container(
-      margin: EdgeInsets.all(4.0),
+      // margin: EdgeInsets.all(4.0),
       padding: EdgeInsets.all(4.0),
       height: 100,
       width: 100,
@@ -179,140 +179,150 @@ class _Select_ModeState extends State<Select_Mode> {
             ),
             SafeArea(
               child: Center(
-                child: GlassmorphicContainer(
-                  width: 330,
-                  height: 620,
-                  borderRadius: 10,
-                  blur: 0.1,
-                  alignment: Alignment.bottomCenter,
-                  border: 0,
-                  linearGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFFffffff).withOpacity(0.5),
-                        Color(0xFFFFFFFF).withOpacity(0.5),
-                      ],
-                      stops: [
-                        0.1,
-                        1,
-                      ]),
-                  borderGradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFFffffff).withOpacity(1.0),
-                      Color((0xFFFFFFFF)).withOpacity(1.0),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Center(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 180,
-                    ),
-                    Text(
-                      "Select City",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 18, 68, 138),
-                        fontSize: 30,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Expanded(
-                              child: Container(
-                            // height: 350.0,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: cityList
-                                    .map((data) => customRadio(
-                                          data.city,
-                                          data.index,
-                                          Icons.location_city_outlined,
-                                        ))
-                                    .toList()),
-                          )),
-                        ]),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Looking For",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 18, 68, 138),
-                        fontSize: 30,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Expanded(
-                              child: Container(
-                            // height: 350.0,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: chefList
-                                    .map((data) => custRadio(
-                                          data.chef,
-                                          data.index,
-                                          Icons.person,
-                                        ))
-                                    .toList()),
-                          ))
-                        ]),
-                    SizedBox(
-                      height: 60,
-                    ),
-                    SizedBox(
-                      height: 50,
-                      width: 250,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              color: Colors.white,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          primary: Colors.white54,
-                          onPrimary: Color.fromARGB(255, 18, 68, 138),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 80),
+                    child: Center(
+                      child: GlassmorphicContainer(
+                        width: 330,
+                        height: 500,
+                        borderRadius: 10,
+                        blur: 0.1,
+                        alignment: Alignment.bottomCenter,
+                        border: 0,
+                        linearGradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color(0xFFffffff).withOpacity(0.5),
+                              Color(0xFFFFFFFF).withOpacity(0.5),
+                            ],
+                            stops: [
+                              0.1,
+                              1,
+                            ]),
+                        borderGradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xFFffffff).withOpacity(1.0),
+                            Color((0xFFFFFFFF)).withOpacity(1.0),
+                          ],
                         ),
-                        onPressed: () {
-                          print('city name is:${cityholder}');
-                          print('city name is:${chefholder}');
-                          postDetailsToFirestore();
-                          Navigator.pushAndRemoveUntil(
-                              (context),
-                              MaterialPageRoute(
-                                builder: (context) => user_home(),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 20,
                               ),
-                              (route) => false);
-                        },
-                        child: Text(
-                          'Proceed',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                              Text(
+                                "Select City",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 18, 68, 138),
+                                  fontSize: 30,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                        child: Container(
+                                      // height: 350.0,
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: cityList
+                                              .map((data) => customRadio(
+                                                    data.city,
+                                                    data.index,
+                                                    Icons
+                                                        .location_city_outlined,
+                                                  ))
+                                              .toList()),
+                                    )),
+                                  ]),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "Looking For",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 18, 68, 138),
+                                  fontSize: 30,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                        child: Container(
+                                      // height: 350.0,
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: chefList
+                                              .map((data) => custRadio(
+                                                    data.chef,
+                                                    data.index,
+                                                    Icons.person,
+                                                  ))
+                                              .toList()),
+                                    ))
+                                  ]),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              SizedBox(
+                                height: 50,
+                                width: 250,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color: Colors.white,
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    primary: Colors.white54,
+                                    onPrimary: Color.fromARGB(255, 18, 68, 138),
+                                  ),
+                                  onPressed: () {
+                                    print('city name is:${cityholder}');
+                                    print('city name is:${chefholder}');
+                                    postDetailsToFirestore();
+                                    Navigator.pushAndRemoveUntil(
+                                        (context),
+                                        MaterialPageRoute(
+                                          builder: (context) => user_home(),
+                                        ),
+                                        (route) => false);
+                                  },
+                                  child: Text(
+                                    'Proceed',
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

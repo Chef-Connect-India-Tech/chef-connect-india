@@ -100,7 +100,7 @@ class _USer_loginState extends State<USer_login> {
               initialSelection: 'IN',
               favorite: ['+91', 'IN'],
               // optional. Shows only country name and flag
-              showCountryOnly: false,
+              showCountryOnly: true,
               // optional. Shows only country name and flag when popup is closed.
               showOnlyCountryWhenClosed: false,
               // optional. aligns the flag and the Text left

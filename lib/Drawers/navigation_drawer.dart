@@ -1,12 +1,9 @@
 // ignore_for_file: must_be_immutable
 
-//import 'package:chef_connect_india/Drawers/bottom_sheet.dart';
 import 'package:chef_connect_india/main.dart';
 import 'package:chef_connect_india/roles/user/select_mode.dart';
 import 'package:chef_connect_india/roles/user/user_home.dart';
-// import 'package:chef_connect_india/roles/user/user_home.dart';
 import 'package:chef_connect_india/roles/user/user_profile.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -65,19 +62,7 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text('My Bookings'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Location'),
-            onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => Bottom_Sheet(),
-              //   ),
-              // );
-            },
+            onTap: () {},
           ),
           ListTile(
             leading: Icon(Icons.person),

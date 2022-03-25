@@ -1,8 +1,10 @@
 // import 'package:chef_connect_india/Main%20Screen/User_login.dart';
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
+// import 'package:chef_connect_india/Helper/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class user_profile extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class user_profile extends StatefulWidget {
 }
 
 class _user_profileState extends State<user_profile> {
+  var date = DateTime.now();
   TextEditingController? _firstnameController;
   TextEditingController? _lastnameController;
   TextEditingController? _phoneController;
@@ -19,6 +22,26 @@ class _user_profileState extends State<user_profile> {
   TextEditingController? _cityController;
   TextEditingController? _countryController;
   TextEditingController? _pincodeController;
+  // TextEditingController? _dateController;
+
+  Future pickDate(BuildContext context) async {
+    final initialDate = DateTime.now();
+    final newDate = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: DateTime(DateTime.now().year - 5),
+      lastDate: DateTime(DateTime.now().year + 5),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        _dobController!.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        ;
+      }
+    });
+
+    if (newDate == null) return;
+
+    setState(() => date = newDate);
+  }
 
   String name = '';
 
@@ -43,6 +66,7 @@ class _user_profileState extends State<user_profile> {
   // }
 
   updateData() {
+    // var current_user_uid = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection("users");
     return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
@@ -55,8 +79,22 @@ class _user_profileState extends State<user_profile> {
       'city': _cityController!.text,
       'country': _countryController!.text,
       'pincode': _pincodeController!.text,
+      'username':
+          '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
     }).then((value) => print("Updated Successfully"));
   }
+
+  // Future pickDate(BuildContext context) async {
+  //   final initialDate = DateTime.now();
+  //   final newDate = await showDatePicker(
+  //       context: context,
+  //       initialDate: initialDate,
+  //       firstDate: DateTime(DateTime.now().year - 5),
+  //       lastDate: DateTime(DateTime.now().year + 5));
+
+  //   if (newDate == null) return;
+  //   setState(() => date = newDate);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +130,23 @@ class _user_profileState extends State<user_profile> {
                   padding: EdgeInsets.all(32),
                   child: Column(
                     children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Username',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['username'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Row(
                         children: [
                           Expanded(
@@ -356,8 +411,12 @@ class _user_profileState extends State<user_profile> {
                     height: 10,
                   ),
                   TextField(
-                    controller: _dobController =
-                        TextEditingController(text: data['dob']),
+                    onTap: () => pickDate(context),
+                    controller: _dobController,
+                    readOnly: true,
+                    // decoration: InputDecoration(
+                    //   labelText: 'Date',
+                    // ),
                     autofocus: true,
                     decoration: InputDecoration(hintText: 'Enter your DOB'),
                   ),
