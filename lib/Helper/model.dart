@@ -222,10 +222,16 @@ class ChefModel {
   }
   
 }
-class Firebasehelper {static void updatemsg(appointid,status) async{
+class Firebasehelper {
+  static void updatemsg(appointid,status) async{
     CollectionReference appointmentdatbase =
-    FirebaseFirestore.instance.collection("users");
+    FirebaseFirestore.instance.collection("chefs");
     var result = await appointmentdatbase.doc(appointid).update({"firstname":status});
+  }
+  static void updatepic(appointid,status) async{
+    CollectionReference appointmentdatbase =
+    FirebaseFirestore.instance.collection("chefs");
+    var result = await appointmentdatbase.doc(appointid).update({"profilepic":status});
   }
 
 }
