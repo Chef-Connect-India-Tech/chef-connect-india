@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/roles/user/chef_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -167,6 +168,12 @@ class _list_viewState extends State<list_view> {
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
           onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => chef_pro(),
+              ),
+            );
             print('onTap Food');
           },
           child: SizedBox(

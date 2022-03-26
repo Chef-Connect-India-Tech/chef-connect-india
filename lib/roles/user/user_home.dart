@@ -70,12 +70,15 @@ class _user_homeState extends State<user_home> {
                   items: _carouselImages
                       .map((item) => Padding(
                             padding: const EdgeInsets.only(left: 3, right: 3),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  image: DecorationImage(
-                                      image: NetworkImage(item),
-                                      fit: BoxFit.fitWidth)),
+                            child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    image: DecorationImage(
+                                        image: NetworkImage(item),
+                                        fit: BoxFit.fitWidth)),
+                              ),
                             ),
                           ))
                       .toList(),
@@ -99,7 +102,8 @@ class _user_homeState extends State<user_home> {
               height: 10,
             ),
             DotsIndicator(
-              dotsCount: _carouselImages.length == 0 ? 1 : _carouselImages.length,
+              dotsCount:
+                  _carouselImages.length == 0 ? 1 : _carouselImages.length,
               position: _dotPosition.toDouble(),
               decorator: DotsDecorator(
                 activeColor: Colors.red,
@@ -133,11 +137,11 @@ class _user_homeState extends State<user_home> {
                 ),
                 onPressed: () {
                   Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => view_more(),
-                ),
-              );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => view_more(),
+                    ),
+                  );
                 },
               )
             ]),
@@ -147,8 +151,8 @@ class _user_homeState extends State<user_home> {
                   .limit(3)
                   // .where('dutystatus', isEqualTo: true)
                   .snapshots(),
-              builder:
-                  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
                   return Center(
                     child: CircularProgressIndicator(),
@@ -160,7 +164,8 @@ class _user_homeState extends State<user_home> {
                   padding: const EdgeInsets.all(0.0),
                   scrollDirection: Axis.vertical,
                   primary: true,
-                  children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  children:
+                      snapshot.data!.docs.map((DocumentSnapshot document) {
                     print(document.data());
                     // return new AwesomeListItem(
                     //   title: document['chefid'].toString(),

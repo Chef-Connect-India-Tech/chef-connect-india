@@ -1,5 +1,4 @@
-import 'package:chef_connect_india/roles/user/menus.dart';
-import 'package:chef_connect_india/roles/user/user_profile.dart';
+import 'package:chef_connect_india/roles/user/chef_details.dart';
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/user/User_login.dart';
 // import 'package:chef_connect_india/roles/chef/chef_dashboard.dart';
@@ -21,9 +20,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chef Connect India',
-      // home: ChefConnectMain(),
+      home: ChefConnectMain(),
       // home: user_profile(),
-      home: menus_pre_cust(),
+      // home: chef_pro(),
       // home: chef_registration_one(phonenumber: '+917337504725'),
     );
   }
@@ -63,8 +62,8 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Color(0xFFffffff).withOpacity(0.5),
-                        Color(0xFFFFFFFF).withOpacity(0.5),
+                        Color(0xFFffffff).withOpacity(0.0),
+                        Color(0xFFFFFFFF).withOpacity(0.0),
                       ],
                       stops: [
                         0.1,
@@ -98,12 +97,12 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
-                                color: Colors.white,
-                                width: 2,
+                                color: Colors.blueGrey,
+                                width: 3,
                               ),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            primary: Colors.white54,
+                            primary: Colors.white,
                             onPrimary: Color.fromARGB(255, 18, 68, 138),
                           ),
                           onPressed: () {
@@ -134,12 +133,12 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
-                                color: Colors.white,
-                                width: 2,
+                                color: Colors.blueGrey,
+                                width: 3,
                               ),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            primary: Colors.white54,
+                            primary: Colors.white,
                             onPrimary: Color.fromARGB(255, 18, 68, 138),
                           ),
                           onPressed: () {

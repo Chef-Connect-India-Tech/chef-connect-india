@@ -17,7 +17,7 @@ class ProfilePageUser extends StatefulWidget {
 
 class MapScreenState extends State<ProfilePageUser>
     with SingleTickerProviderStateMixin {
-      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   bool _status = true;
   final FocusNode myFocusNode = FocusNode();
@@ -119,13 +119,14 @@ class MapScreenState extends State<ProfilePageUser>
       // oldaadhar: value['aadhar'];
       // oldpan: value['professionallevel'];
       //oldMobileNumber = value['city'];
-      
+
       print(oldfirstname);
       _controller.text = oldFullName.toString();
       _controller1.text = oldMobileNumber.toString();
     });
     _controller = new TextEditingController(text: oldFullName);
   }
+
   File? image;
   final imagePicker = ImagePicker();
   late String downloadURL;
@@ -134,18 +135,19 @@ class MapScreenState extends State<ProfilePageUser>
     final pick = await imagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       if (pick != null) {
-        image=File(pick.path);
-      }
-    else {}
+        image = File(pick.path);
+      } else {}
     });
-    Reference ref= FirebaseStorage.instance.ref().child("profileURL's").child(documentId!);
-    FirebaseFirestore firebaseFirestore= FirebaseFirestore.instance;
+    Reference ref =
+        FirebaseStorage.instance.ref().child("profileURL's").child(documentId!);
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     await ref.putFile(image!);
-    downloadURL= await ref.getDownloadURL();
-    if (downloadURL != null ) {
-         Firebasehelper.updatepic(documentId, downloadURL);
-                    }
+    downloadURL = await ref.getDownloadURL();
+    if (downloadURL != null) {
+      Firebasehelper.updatepic(documentId, downloadURL);
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     User? user = _auth.currentUser;
@@ -190,8 +192,8 @@ class MapScreenState extends State<ProfilePageUser>
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
-                                    image:
-                                       NetworkImage('https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+                                    image: NetworkImage(
+                                        'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
                                     fit: BoxFit.cover,
                                   ),
                                 )),
@@ -204,7 +206,7 @@ class MapScreenState extends State<ProfilePageUser>
                               children: <Widget>[
                                 GestureDetector(
                                   onTap: () {
-                                     ImagePickerMethod();
+                                    ImagePickerMethod();
                                   },
                                   child: CircleAvatar(
                                     backgroundColor: Colors.red,
@@ -323,6 +325,7 @@ class MapScreenState extends State<ProfilePageUser>
     myFocusNode.dispose();
     super.dispose();
   }
+
   Widget _getActionButtons() {
     return Padding(
       padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 45.0),
@@ -335,7 +338,6 @@ class MapScreenState extends State<ProfilePageUser>
               padding: EdgeInsets.only(right: 10.0),
               child: Container(
                   child: RaisedButton(
-                    
                 child: Text("Save"),
                 textColor: Colors.white,
                 color: Colors.green,
@@ -349,7 +351,7 @@ class MapScreenState extends State<ProfilePageUser>
                   // handleUpdateData();
                   // print(newFullName);
                   setState(() {
-                    if (newFullName != null ) {
+                    if (newFullName != null) {
                       Firebasehelper.updatemsg(documentId, newFullName);
                       // print(documentId);
                       // var firebaseUser = FirebaseAuth.instance.currentUser;
