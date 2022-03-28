@@ -1,5 +1,6 @@
 import 'package:chef_connect_india/roles/chef/Booking.dart';
 import 'package:chef_connect_india/roles/chef/chef_profile.dart';
+import 'package:chef_connect_india/roles/chef/chef_profile_ui_new.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,12 @@ class _Chef_dashboardState extends State<Chef_dashboard> {
   final _auth = FirebaseAuth.instance;
   final screens = [
     Booking(),
-    ProfilePageUser(FirebaseAuth.instance.currentUser!.uid),
+    Chef_profile_ui(),
+    // ProfilePageUser(FirebaseAuth.instance.currentUser!.uid),
   ];
   @override
   Widget build(BuildContext context) {
-    
-  User? user = _auth.currentUser;
+    User? user = _auth.currentUser;
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
