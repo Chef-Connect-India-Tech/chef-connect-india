@@ -17,7 +17,7 @@ class ProfilePageUser extends StatefulWidget {
 
 class MapScreenState extends State<ProfilePageUser>
     with SingleTickerProviderStateMixin {
-      FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   bool _status = true;
   final FocusNode myFocusNode = FocusNode();
@@ -119,13 +119,14 @@ class MapScreenState extends State<ProfilePageUser>
       // oldaadhar: value['aadhar'];
       // oldpan: value['professionallevel'];
       //oldMobileNumber = value['city'];
-      
+
       print(oldfirstname);
       _controller.text = oldFullName.toString();
       _controller1.text = oldMobileNumber.toString();
     });
     _controller = new TextEditingController(text: oldFullName);
   }
+
   File? image;
   final imagePicker = ImagePicker();
   late String downloadURL;
@@ -134,185 +135,334 @@ class MapScreenState extends State<ProfilePageUser>
     final pick = await imagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       if (pick != null) {
-        image=File(pick.path);
-      }
-    else {}
+        image = File(pick.path);
+      } else {}
     });
-    Reference ref= FirebaseStorage.instance.ref().child("profileURL's").child(documentId!);
-    FirebaseFirestore firebaseFirestore= FirebaseFirestore.instance;
+    Reference ref =
+        FirebaseStorage.instance.ref().child("profileURL's").child(documentId!);
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     await ref.putFile(image!);
-    downloadURL= await ref.getDownloadURL();
-    if (downloadURL != null ) {
-         Firebasehelper.updatepic(documentId, downloadURL);
-                    }
+    downloadURL = await ref.getDownloadURL();
+    if (downloadURL != null) {
+      Firebasehelper.updatepic(documentId, downloadURL);
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     User? user = _auth.currentUser;
     return Scaffold(
-        body: Container(
-      color: Colors.white,
-      child: ListView(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Container(
-                height: 250.0,
-                color: Colors.white,
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                        padding: EdgeInsets.only(left: 20.0, top: 20.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(left: 25.0),
-                              child: Text('PROFILE',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0,
-                                      fontFamily: 'sans-serif-light',
-                                      color: Colors.black)),
-                            )
-                          ],
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.0),
-                      child: Stack(fit: StackFit.loose, children: <Widget>[
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                                width: 140.0,
-                                height: 140.0,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image:
-                                       NetworkImage('https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                                    fit: BoxFit.cover,
-                                  ),
-                                )),
-                          ],
-                        ),
-                        Padding(
-                            padding: EdgeInsets.only(top: 90.0, right: 100.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                GestureDetector(
-                                  onTap: () {
-                                     ImagePickerMethod();
-                                  },
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.red,
-                                    radius: 25.0,
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.white,
+        body: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        color: Colors.white,
+        child: ListView(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Container(
+                  height: 250.0,
+                  color: Colors.white,
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                          padding: EdgeInsets.only(left: 20.0, top: 20.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(left: 25.0),
+                                child: Text('PROFILE',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                        fontFamily: 'sans-serif-light',
+                                        color: Colors.black)),
+                              )
+                            ],
+                          )),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.0),
+                        child: Stack(fit: StackFit.loose, children: <Widget>[
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                  width: 140.0,
+                                  height: 140.0,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+                                      fit: BoxFit.cover,
                                     ),
-                                  ),
-                                )
-                              ],
-                            )),
-                      ]),
-                    )
-                  ],
+                                  )),
+                            ],
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(top: 90.0, right: 100.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  GestureDetector(
+                                    onTap: () {
+                                      ImagePickerMethod();
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.red,
+                                      radius: 25.0,
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )),
+                        ]),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                color: Color(0xffFFFFFF),
-                child: Padding(
+                Padding(
                   padding: EdgeInsets.only(bottom: 25.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.max,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Text(
-                                    'Personal Information',
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  _status ? _getEditIcon() : Container(),
-                                ],
-                              )
-                            ],
-                          )),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Text(
-                                    'Name',
-                                    style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                              Text(
+                                'Personal Information',
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
-                          )),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Flexible(
-                                child: TextField(
-                                  controller: _controller,
-                                  // ..text = oldFullName;
-                                  decoration: const InputDecoration(
-                                      // hintText: "Enter Your Name",
+                              _status ? _getEditIcon() : Container(),
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 400,
+                        width: 360,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.16),
+                              offset: Offset(0, 3.0),
+                              blurRadius: 12.0,
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Text(
+                                        'First Name',
+                                        style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      newFullName = value;
-                                    });
-                                    newFullName == null
-                                        ? newFullName = oldFullName
-                                        : newFullName = newFullName;
-                                  },
-                                  enabled: !_status,
-                                  autofocus: !_status,
-                                ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: TextField(
+                                      controller: _controller,
+                                      // ..text = oldFullName;
+                                      decoration: const InputDecoration(
+                                          // hintText: "Enter Your Name",
+                                          ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          newFullName = value;
+                                        });
+                                        newFullName == null
+                                            ? newFullName = oldFullName
+                                            : newFullName = newFullName;
+                                      },
+                                      enabled: !_status,
+                                      autofocus: !_status,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Text(
+                                        'Last Name',
+                                        style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: TextField(
+                                      controller: _controller,
+                                      // ..text = oldFullName;
+                                      decoration: const InputDecoration(
+                                          // hintText: "Enter Your Name",
+                                          ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          newFullName = value;
+                                        });
+                                        newFullName == null
+                                            ? newFullName = oldFullName
+                                            : newFullName = newFullName;
+                                      },
+                                      enabled: !_status,
+                                      autofocus: !_status,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Text(
+                                        'Mobile Number-2',
+                                        style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: TextField(
+                                      controller: _controller,
+                                      // ..text = oldFullName;
+                                      decoration: const InputDecoration(
+                                          // hintText: "Enter Your Name",
+                                          ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          newFullName = value;
+                                        });
+                                        newFullName == null
+                                            ? newFullName = oldFullName
+                                            : newFullName = newFullName;
+                                      },
+                                      enabled: !_status,
+                                      autofocus: !_status,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Text(
+                                        'Date Of Birth',
+                                        style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Flexible(
+                                    child: TextField(
+                                      controller: _controller,
+                                      // ..text = oldFullName;
+                                      decoration: const InputDecoration(
+                                          // hintText: "Enter Your Name",
+                                          ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          newFullName = value;
+                                        });
+                                        newFullName == null
+                                            ? newFullName = oldFullName
+                                            : newFullName = newFullName;
+                                      },
+                                      enabled: !_status,
+                                      autofocus: !_status,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
-                          )),
+                          ),
+                        ),
+                      ),
                       !_status ? _getActionButtons() : Container(),
                     ],
                   ),
                 ),
-              )
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     ));
   }
@@ -323,6 +473,7 @@ class MapScreenState extends State<ProfilePageUser>
     myFocusNode.dispose();
     super.dispose();
   }
+
   Widget _getActionButtons() {
     return Padding(
       padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 45.0),
@@ -335,7 +486,6 @@ class MapScreenState extends State<ProfilePageUser>
               padding: EdgeInsets.only(right: 10.0),
               child: Container(
                   child: RaisedButton(
-                    
                 child: Text("Save"),
                 textColor: Colors.white,
                 color: Colors.green,
@@ -349,7 +499,7 @@ class MapScreenState extends State<ProfilePageUser>
                   // handleUpdateData();
                   // print(newFullName);
                   setState(() {
-                    if (newFullName != null ) {
+                    if (newFullName != null) {
                       Firebasehelper.updatemsg(documentId, newFullName);
                       // print(documentId);
                       // var firebaseUser = FirebaseAuth.instance.currentUser;
