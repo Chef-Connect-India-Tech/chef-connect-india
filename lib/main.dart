@@ -1,4 +1,5 @@
-import 'package:chef_connect_india/roles/user/chef_details.dart';
+import 'package:chef_connect_india/roles/user/chef_details/chef_details.dart';
+import 'package:chef_connect_india/roles/user/chef_details/menus.dart';
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/user/User_login.dart';
 // import 'package:chef_connect_india/roles/chef/chef_dashboard.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'Chef Connect India',
       home: ChefConnectMain(),
       // home: user_profile(),
-      // home: chef_pro(),
+      // home: menus_pre_cust(),
       // home: chef_registration_one(phonenumber: '+917337504725'),
     );
   }

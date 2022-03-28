@@ -1,28 +1,28 @@
-import 'package:chef_connect_india/roles/chef/Booking.dart';
-import 'package:chef_connect_india/roles/chef/chef_profile.dart';
+import 'package:chef_connect_india/chef_portal/bookings.dart';
+import 'package:chef_connect_india/chef_portal/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Chef_dashboard extends StatefulWidget {
-  Chef_dashboard({Key? key}) : super(key: key);
+class chef_dashboard extends StatefulWidget {
+  chef_dashboard({Key? key}) : super(key: key);
 
   @override
-  State<Chef_dashboard> createState() => _Chef_dashboardState();
+  State<chef_dashboard> createState() => _chef_dashboardState();
 }
 
-class _Chef_dashboardState extends State<Chef_dashboard> {
+class _chef_dashboardState extends State<chef_dashboard> {
   int currentIndex = 0;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   final screens = [
-    Booking(),
-    ProfilePageUser(FirebaseAuth.instance.currentUser!.uid),
+    chef_bookings(),
+    // ProfilePageUser(FirebaseAuth.instance.currentUser!.uid),
+    chef_profile()
   ];
   @override
   Widget build(BuildContext context) {
-    
-  User? user = _auth.currentUser;
+    User? user = _auth.currentUser;
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(

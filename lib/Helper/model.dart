@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
@@ -62,7 +64,7 @@ class UserModel {
     return {
       'uid': uid,
       'username':
-          '${firstname.toString().substring(0, 2)}${lastname.toString().substring(0, 2)}',
+          '${firstname.toString().substring(0, 2)}${lastname.toString().substring(lastname!.length - 1)}${uid.toString().substring(uid!.length - 3)}',
       'email': email,
       'firstname': firstname,
       'lastname': lastname,
@@ -101,7 +103,7 @@ class ChefModel {
   String? expectedsalary;
   String? cheffees;
   String? experience;
-  String? cuisineexpert;
+  List? cuisineexpert;
   String? specialities;
   String? menuimages;
   String? rating;
@@ -189,7 +191,8 @@ class ChefModel {
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
-      'chefid': chefid,
+      'chefid':
+          '${firstname.toString().substring(0, 2)}${lastname.toString().substring(lastname!.length - 1)}${uid.toString().substring(uid!.length - 3)}',
       'email': email,
       'firstname': firstname,
       'lastname': lastname,
@@ -217,21 +220,25 @@ class ChefModel {
       'aadhar': aadhar,
       'poi': poi,
       'pan': pan,
-      'verified': verified
+      'verified': verified,
+      'country': country,
+      'pincode': pincode
     };
   }
-  
 }
+
 class Firebasehelper {
-  static void updatemsg(appointid,status) async{
+  static void updatemsg(appointid, status) async {
     CollectionReference appointmentdatbase =
-    FirebaseFirestore.instance.collection("chefs");
-    var result = await appointmentdatbase.doc(appointid).update({"firstname":status});
-  }
-  static void updatepic(appointid,status) async{
-    CollectionReference appointmentdatbase =
-    FirebaseFirestore.instance.collection("chefs");
-    var result = await appointmentdatbase.doc(appointid).update({"profilepic":status});
+        FirebaseFirestore.instance.collection("chefs");
+    var result =
+        await appointmentdatbase.doc(appointid).update({"firstname": status});
   }
 
+  static void updatepic(appointid, status) async {
+    CollectionReference appointmentdatbase =
+        FirebaseFirestore.instance.collection("chefs");
+    var result =
+        await appointmentdatbase.doc(appointid).update({"profilepic": status});
+  }
 }

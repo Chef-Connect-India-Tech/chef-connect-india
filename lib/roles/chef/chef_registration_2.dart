@@ -1,12 +1,10 @@
 // ignore_for_file: unused_field, deprecated_member_use
-
-import 'package:chef_connect_india/roles/chef/Booking.dart';
+import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:chef_connect_india/Helper/model.dart';
-import 'package:chef_connect_india/roles/chef/chef_dashboard.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
@@ -37,11 +35,11 @@ class _chef_registration_twoState extends State<chef_registration_two> {
 
   final formGlobalKey = GlobalKey<FormState>();
   final salaryEditingController = new TextEditingController();
-  final cusineEditingController = new TextEditingController();
+  // final cusineEditingController = new TextEditingController();
   // final workTypeEditingController = new TextEditingController();
   final timeEditingController = new TextEditingController();
   // final workType = ['Party Chef', 'Kitchen Professional', 'Private Chef'];
-  final time = ['Full Time', 'Part Time', 'Both'];
+  final time = ['Full Time', 'Part Time', 'Full Time or Part Time'];
   // String? cheftypeValue;
   String? timeValue;
   // final worklocation = ['Jaipur', 'Bangalore'];
@@ -378,8 +376,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                               onSaved: (value) {
                                 if (value == null) return;
                                 setState(() {
-                                  cusineEditingController.text =
-                                      value!.toString();
+                                  // cusineEditingController.text = value!;
                                   _myCusine = value;
                                 });
                               },
@@ -510,7 +507,8 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     chefModel.address = widget.currentlocation;
     chefModel.city = widget.worklocation;
     chefModel.currentsalary = salaryEditingController.text;
-    chefModel.cuisineexpert = cusineEditingController.text;
+    // chefModel.cuisineexpert = cusineEditingController.text;
+    chefModel.cuisineexpert = _myCusine;
     chefModel.workpreference = timeEditingController.text;
     chefModel.dutystatus = true;
     chefModel.role = 'chef';
@@ -525,7 +523,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => Chef_dashboard()),
+        MaterialPageRoute(builder: (context) => chef_dashboard()),
         (route) => false);
   }
 }
