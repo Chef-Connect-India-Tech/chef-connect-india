@@ -21,7 +21,7 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
   TextEditingController? _pincodeController;
 
   String name = '';
-updateData() {
+ updateData() {
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection("chefs");
     return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
@@ -151,6 +151,56 @@ updateData() {
                     ),
                   ],
                 ),
+                child:Column(
+                        children: [
+                          Row(
+                            children: [
+                             Expanded(
+                            child: Text(
+                              'First Name',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         Text(data['firstname'])
+                        
+                        ],
+                        
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Last Name',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['lastname'])
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'address',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text(data['address'])
+                        ],
+                      ),
+                      ], )
               ),
               SizedBox(
                 height: 15,
@@ -199,6 +249,80 @@ updateData() {
                     ),
                   ],
                 ),
+                child:Column(
+                        children: [
+                          Row(
+                            children: [
+                             Expanded(
+                            child: Text(
+                              'mobile2',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                        // Text(data['mobile2'])
+                        
+                        ],
+                        
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'dob',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         // Text(data['dob'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'city',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         // Text(data['city'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Country',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         // Text(data['city'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      
+                      ], )
               ),
               SizedBox(
                 height: 15,
@@ -246,6 +370,208 @@ updateData() {
                     ),
                   ],
                 ),
+                child:Column(
+                        children: [
+                          Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'pincode',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         // Text(data['city'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                          Row(
+                            children: [
+                             Expanded(
+                            child: Text(
+                              'email',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         //Text(data['email'])
+                        
+                        ],
+                        
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Work Preference',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         // Text(data['lastname'])
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'current salary low',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         // Text(data['address'])
+                        ],
+                      ),
+                       SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Current salary high',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         // Text(data['lastname'])
+                        ],
+                      ),
+                      ], )
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    'Details',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 148,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                          await openDialog(data);
+                        },
+                    child: Icon(
+                      Icons.edit,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 150,
+                width: 360,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.16),
+                      offset: Offset(0, 3.0),
+                      blurRadius: 12.0,
+                    ),
+                  ],
+                ),
+                child:Column(
+                        children: [
+                          Row(
+                            children: [
+                             Expanded(
+                            child: Text(
+                              'cheffes',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                        // Text(data['mobile2'])
+                        
+                        ],
+                        
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'experience',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         Text(data['experience'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'cuisineexpert',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         Text(data['cuisineexpert'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'education',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 12,
+                          ),
+                         // Text(data['city'])
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      
+                      ], )
               ),
               SizedBox(
                 height: 30,
@@ -315,41 +641,96 @@ updateData() {
                     decoration:
                         InputDecoration(hintText: 'Enter your Mobile Num 2'),
                   ),
-                  SizedBox(
+                   SizedBox(
                     height: 10,
                   ),
-                  TextField(
-                    controller: _dobController =
+                   TextField(
+                    controller: _phone2Controller =
                         TextEditingController(text: data['dob']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter your DOB'),
+                    decoration:
+                        InputDecoration(hintText: 'Date of Birth'),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextField(
-                    controller: _cityController =
+                    controller: _phone2Controller =
                         TextEditingController(text: data['city']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter your City'),
+                    decoration:
+                        InputDecoration(hintText: 'city'),
+                  ),
+                  
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
+                  // TextField(
+                  //   controller: _phone2Controller =
+                  //       TextEditingController(text: data['country']),
+                  //   autofocus: true,
+                  //   decoration:
+                  //       InputDecoration(hintText: 'country'),
+                  // ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: _phone2Controller =
+                        TextEditingController(text: data['email']),
+                    autofocus: true,
+                    decoration:
+                        InputDecoration(hintText: 'email'),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextField(
-                    // controller: _countryController =
-                    //     TextEditingController(text: data['country']),
+                    controller: _phone2Controller =
+                        TextEditingController(text: data['workpreference']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter your Country'),
+                    decoration:
+                        InputDecoration(hintText: 'workpreference'),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextField(
-                    controller: _pincodeController =
-                        TextEditingController(text: data['pincode']),
+                    controller: _phone2Controller =
+                        TextEditingController(text: data['currentsalary']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter your Pincode'),
+                    decoration:
+                        InputDecoration(hintText: 'currentsalary'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: _phone2Controller =
+                        TextEditingController(text: data['cheffees']),
+                    autofocus: true,
+                    decoration:
+                        InputDecoration(hintText: 'cheffees'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: _phone2Controller =
+                        TextEditingController(text: data['experience']),
+                    autofocus: true,
+                    decoration:
+                        InputDecoration(hintText: 'experience'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: _phone2Controller =
+                        TextEditingController(text: data['cuisineexpert']),
+                    autofocus: true,
+                    decoration:
+                        InputDecoration(hintText: 'cuisineexpert'),
                   ),
                 ],
               ),
