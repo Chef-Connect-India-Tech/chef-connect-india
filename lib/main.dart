@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:chef_connect_india/Main%20Screen/checkuser.dart';
+import 'package:chef_connect_india/roles/user/select_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/user/User_login.dart';
 // import 'package:chef_connect_india/roles/chef/chef_dashboard.dart';
@@ -6,6 +10,7 @@ import 'package:chef_connect_india/roles/chef/chef_login.dart';
 // import 'package:chef_connect_india/roles/user/user_home.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +37,42 @@ class ChefConnectMain extends StatefulWidget {
 }
 
 class ChefConnectMainState extends State<ChefConnectMain> {
+  // late String Finalphonenumber;
+
+  // void initState() {
+  //   Firebase.initializeApp();
+    
+  //   getData().whenComplete(() async {
+  //     // ignore: unnecessary_null_comparison
+  //     Timer(
+  //         Duration(seconds: 1),
+  //         // ignore: unnecessary_null_comparison
+  //         () => Finalphonenumber == null
+  //             ? Navigator.push(
+  //                             context,
+  //                             MaterialPageRoute(
+  //                               builder: (context) => ChefConnectMain(),
+  //                             ),
+  //                           )
+  //             :Navigator.push(
+  //                             context,
+  //                             MaterialPageRoute(
+  //                               builder: (context) => Select_Mode(),
+  //                             ),
+  //                           ));
+  //   });
+  // }
+  // Future getData() async {
+  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   // ignore: non_constant_identifier_names
+  //   var ObtainedEmail = prefs.getString('phonenumber');
+  //   // var ObtainedUser = prefs.getBool('admin');
+  //   setState(() {
+  //     Finalphonenumber = ObtainedEmail!;
+  //   });
+  //   print(Finalphonenumber);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

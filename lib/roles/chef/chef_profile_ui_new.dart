@@ -21,12 +21,9 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
   TextEditingController? _pincodeController;
 
   String name = '';
-
-  get data => null;
-
-  updateData() {
+updateData() {
     CollectionReference _collectionRef =
-        FirebaseFirestore.instance.collection("users");
+        FirebaseFirestore.instance.collection("chefs");
     return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
       "firstname": _firstnameController!.text,
       'lastname': _lastnameController!.text,
@@ -35,15 +32,35 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
       'mobile2': _phone2Controller!.text,
       'dob': _dobController!.text,
       'city': _cityController!.text,
-      'country': _countryController!.text,
-      'pincode': _pincodeController!.text,
     }).then((value) => print("Updated Successfully"));
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        // shadowColor: Colors.deepPurpleAccent,
+        toolbarHeight: 70, // default is 56
+        // toolbarOpacity: 0.5,
+        elevation: 50.0,
+        title: Text('PROFILE'),
+      ),
+      body: SafeArea(
+          child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection("chefs")
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .snapshots(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            var data = snapshot.data;
+            if (data == null) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+      return SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -105,12 +122,12 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
                     ),
                   ),
                   SizedBox(
-                    width: 160,
+                    width: 135,
                   ),
                   InkWell(
-                    onTap: () async {
-                      await openDialog(data);
-                    },
+                    onTap: ()async {
+                          await openDialog(data);
+                        },
                     child: Icon(
                       Icons.edit,
                     ),
@@ -138,6 +155,7 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
               SizedBox(
                 height: 15,
               ),
+              
               Row(
                 children: [
                   SizedBox(
@@ -149,6 +167,17 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
                       fontFamily: 'Roboto',
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 148,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                          await openDialog(data);
+                        },
+                    child: Icon(
+                      Icons.edit,
                     ),
                   ),
                 ],
@@ -187,6 +216,17 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                  SizedBox(
+                    width: 211,
+                  ),
+                  InkWell(
+                    onTap: () async {
+                          await openDialog(data);
+                        },
+                    child: Icon(
+                      Icons.edit,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(
@@ -213,8 +253,10 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
             ],
           ),
         ),
-      ),
-    );
+      );
+          },
+        ),
+     ), ),);
   }
 
   Future<String?> openDialog(data) => showDialog<String>(
@@ -324,6 +366,5 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
 
   void submit() {
     Navigator.of(context).pop();
-    updateData();
   }
 }

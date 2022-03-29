@@ -6,6 +6,7 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:pin_code_fields/pin_code_fields.dart';
 enum MobileVerificationState { SHOW_MOBILE_FORM_STATE, SHOW_OTP_FORMS_STATE }
@@ -63,6 +64,9 @@ class _USer_loginState extends State<USer_login> {
     try {
       final authCredential =
           await _auth.signInWithCredential(phoneAuthCredential);
+      // final SharedPreferences prefs =
+      //     await SharedPreferences.getInstance();
+      // prefs.setString('phonenumber', a);
       setState(() {
         isLoading = false;
       });
