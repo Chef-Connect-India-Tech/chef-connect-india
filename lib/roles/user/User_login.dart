@@ -6,6 +6,7 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:pin_code_fields/pin_code_fields.dart';
 enum MobileVerificationState { SHOW_MOBILE_FORM_STATE, SHOW_OTP_FORMS_STATE }
@@ -442,13 +443,17 @@ class _USer_loginState extends State<USer_login> {
                                     color: Colors.white70,
                                     width: 2,
                                   )),
-                              onPressed: () {
+                              onPressed: () async {
                                 PhoneAuthCredential phoneAuthCredential =
                                     PhoneAuthProvider.credential(
                                         verificationId: verificationId,
                                         smsCode: _otpController.text);
                                 signInWithPhoneAuthCredential(
                                     phoneAuthCredential);
+                                final SharedPreferences sharedPreferences =
+                                    await SharedPreferences.getInstance();
+                                sharedPreferences.setString(
+                                    'mobile1', phoneNumber);
                               },
                               child: Text(
                                 'Validate OTP',

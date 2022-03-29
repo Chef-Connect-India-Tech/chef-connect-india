@@ -38,6 +38,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
   // final cusineEditingController = new TextEditingController();
   // final workTypeEditingController = new TextEditingController();
   final timeEditingController = new TextEditingController();
+  final cheffeesEditingController = new TextEditingController();
   // final workType = ['Party Chef', 'Kitchen Professional', 'Private Chef'];
   final time = ['Full Time', 'Part Time', 'Full Time or Part Time'];
   // String? cheftypeValue;
@@ -63,15 +64,15 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     _myCusineResult = '';
   }
 
-  _saveForm() {
-    var form = formGlobalKey.currentState!;
-    if (form.validate()) {
-      form.save();
-      setState(() {
-        _myCusineResult = _myCusine.toString();
-      });
-    }
-  }
+  // _saveForm() {
+  //   var form = formGlobalKey.currentState!;
+  //   if (form.validate()) {
+  //     form.save();
+  //     setState(() {
+  //       _myCusineResult = _myCusine.toString();
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                   child: Center(
                     child: GlassmorphicContainer(
                       width: 330,
-                      height: 640,
+                      height: 750,
                       borderRadius: 10,
                       blur: 0.1,
                       alignment: Alignment.bottomCenter,
@@ -258,7 +259,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                             ),
                             DropdownButtonFormField<String>(
                               decoration: InputDecoration(
-                                labelText: 'Salary Per Month',
+                                labelText: 'Current Salary Per Month',
                                 labelStyle: TextStyle(
                                     fontSize: 15,
                                     color: Colors.black,
@@ -315,6 +316,60 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                             SizedBox(
                               height: 10,
                             ),
+                            TextFormField(
+                              autofocus: false,
+                              controller: cheffeesEditingController,
+                              keyboardType: TextInputType.number,
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                  return "Enter Correct Rate";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              onSaved: (value) {
+                                cheffeesEditingController.text = value!;
+                              },
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                labelText: 'Rate Per Plate',
+                                labelStyle: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                                prefixIcon: Icon(Icons.attach_money),
+                                fillColor: Colors.white60,
+                                // hintText: 'First Name',
+                                hintStyle: TextStyle(
+                                    color: Colors.black, fontSize: 15),
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.white60,
+                                    width: 2,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             MultiSelectFormField(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -365,6 +420,10 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 {
                                   "display": "Mexican",
                                   "value": "Mexican",
+                                },
+                                {
+                                  "display": "Multi Cuisine",
+                                  "value": "Multi Cuisine",
                                 },
                               ],
                               textField: 'display',
@@ -507,6 +566,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     chefModel.address = widget.currentlocation;
     chefModel.city = widget.worklocation;
     chefModel.currentsalary = salaryEditingController.text;
+    chefModel.cheffees = cheffeesEditingController.text;
     // chefModel.cuisineexpert = cusineEditingController.text;
     chefModel.cuisineexpert = _myCusine;
     chefModel.workpreference = timeEditingController.text;

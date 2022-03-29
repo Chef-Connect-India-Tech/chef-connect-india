@@ -1,5 +1,5 @@
-import 'package:chef_connect_india/roles/user/chef_details/chef_details.dart';
-import 'package:chef_connect_india/roles/user/chef_details/menus.dart';
+import 'dart:async';
+import 'package:chef_connect_india/roles/user/select_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/user/User_login.dart';
 // import 'package:chef_connect_india/roles/chef/chef_dashboard.dart';
@@ -8,6 +8,7 @@ import 'package:chef_connect_india/roles/chef/chef_login.dart';
 // import 'package:chef_connect_india/roles/user/user_home.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,11 +24,13 @@ class MyApp extends StatelessWidget {
       title: 'Chef Connect India',
       home: ChefConnectMain(),
       // home: user_profile(),
-      // home: menus_pre_cust(),
+      // home: custom_menu(),
       // home: chef_registration_one(phonenumber: '+917337504725'),
     );
   }
 }
+
+String? finalPhone;
 
 class ChefConnectMain extends StatefulWidget {
   @override
@@ -35,6 +38,24 @@ class ChefConnectMain extends StatefulWidget {
 }
 
 class ChefConnectMainState extends State<ChefConnectMain> {
+  // @override
+  void initstate() {
+    getValidationData().whenComplete(() async {
+      Timer(Duration(seconds: 2), () => Select_Mode());
+    });
+    super.initState();
+  }
+
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var obtainedPhone = sharedPreferences.getString('mobile1');
+    setState(() {
+      finalPhone = obtainedPhone;
+    });
+    print(finalPhone);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -115,7 +136,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                             );
                           },
                           child: Text(
-                            'Sign in as User',
+                            'Sign in as Customer',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               fontSize: 20,

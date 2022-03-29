@@ -1,9 +1,15 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:io';
 
 import 'package:chef_connect_india/Helper/model.dart';
+import 'package:chef_connect_india/Helper/utils.dart';
+import 'package:chef_connect_india/chef_portal/menus/customised.dart';
+import 'package:chef_connect_india/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,7 +23,7 @@ class chef_profile extends StatefulWidget {
 }
 
 class _chef_profileState extends State<chef_profile> {
-   File? image;
+  File? image;
   final imagePicker = ImagePicker();
   late String downloadURL;
   Future ImagePickerMethod() async {
@@ -28,16 +34,21 @@ class _chef_profileState extends State<chef_profile> {
         image = File(pick.path);
       } else {}
     });
-    Reference ref =
-        FirebaseStorage.instance.ref().child("profileURL's").child(FirebaseAuth.instance.currentUser!.uid);
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    Reference ref = FirebaseStorage.instance
+        .ref()
+        .child("chef-profile")
+        .child(FirebaseAuth.instance.currentUser!.uid);
     await ref.putFile(image!);
     downloadURL = await ref.getDownloadURL();
     if (downloadURL != null) {
-      Firebasehelper.updatepic(FirebaseAuth.instance.currentUser!.uid, downloadURL);
+      Firebasehelper.updatepic(
+          FirebaseAuth.instance.currentUser!.uid, downloadURL);
     }
   }
-  var date = DateTime.now();
+
+  // var date = DateTime.now();
+  DateTime dateTime = DateTime.now();
+  late String date;
   TextEditingController? _firstnameController;
   TextEditingController? _lastnameController;
   TextEditingController? _phoneController;
@@ -45,24 +56,36 @@ class _chef_profileState extends State<chef_profile> {
   TextEditingController? _emailController;
   TextEditingController? _dobController;
 
-  Future pickDate(BuildContext context) async {
-    final initialDate = DateTime.now();
-    final newDate = await showDatePicker(
-      context: context,
-      initialDate: initialDate,
-      firstDate: DateTime(DateTime.now().year -70),
-      lastDate: DateTime(DateTime.now().year + 1),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        _dobController!.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-        ;
-      }
-    });
+  // Future pickDate(BuildContext context) async {
+  //   final initialDate = DateTime.now();
+  //   final newDate = await showDatePicker(
+  //     context: context,
+  //     initialDate: initialDate,
+  //     firstDate: DateTime(DateTime.now().year - 70),
+  //     lastDate: DateTime(DateTime.now().year + 1),
+  //   ).then((selectedDate) {
+  //     if (selectedDate != null) {
+  //       _dobController!.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+  //       ;
+  //     }
+  //   });
 
-    if (newDate == null) return;
+  //   if (newDate == null) return;
 
-    setState(() => date = newDate);
-  }
+  //   setState(() => date = newDate);
+  // }
+
+  Widget buildDatePicker() => SizedBox(
+        height: 180,
+        child: CupertinoDatePicker(
+          minimumYear: 1947,
+          maximumYear: DateTime.now().year,
+          initialDateTime: dateTime,
+          mode: CupertinoDatePickerMode.date,
+          onDateTimeChanged: (dateTime) =>
+              setState(() => this.dateTime = dateTime),
+        ),
+      );
 
   Future<String?> open_personal_Dialog(data) => showDialog<String>(
         context: context,
@@ -95,6 +118,7 @@ class _chef_profileState extends State<chef_profile> {
                     height: 10,
                   ),
                   TextField(
+                    style: TextStyle(color: Colors.grey),
                     // readOnly: true,
                     enabled: false,
                     controller: _phoneController =
@@ -118,11 +142,24 @@ class _chef_profileState extends State<chef_profile> {
                     height: 10,
                   ),
                   TextField(
-                    onTap: () => pickDate(context),
-                    controller: _dobController,
+                    onTap: () => Utils.showSheet(
+                      context,
+                      child: buildDatePicker(),
+                      onClicked: () {
+                        final date_value =
+                            DateFormat('dd/MM/yyyy').format(dateTime);
+                        // Utils.showSnackBar(context, 'Selected "$date_value"');
+                        date = date_value;
+                        Navigator.of(context).pop();
+                        // Navigator.pop(context);
+                      },
+                    ),
+                    controller: _dobController =
+                        TextEditingController(text: data['dob']),
                     readOnly: true,
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter your DOB'),
+                    decoration:
+                        InputDecoration(hintText: 'Click to Enter your DOB'),
                   ),
                   SizedBox(
                     height: 10,
@@ -140,6 +177,13 @@ class _chef_profileState extends State<chef_profile> {
           ),
           actions: [
             TextButton(
+              onPressed: cancel,
+              child: Text('Cancel'),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            TextButton(
               onPressed: submit,
               child: Text('Update'),
             ),
@@ -152,6 +196,11 @@ class _chef_profileState extends State<chef_profile> {
     updateData();
   }
 
+  void cancel() {
+    Navigator.of(context).pop();
+    // updateData();
+  }
+
   updateData() {
     // var current_user_uid = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference _collectionRef =
@@ -162,7 +211,7 @@ class _chef_profileState extends State<chef_profile> {
       "mobile1": _phoneController!.text,
       "email": _emailController!.text,
       'mobile2': _phone2Controller!.text,
-      // 'dob': _dobController.text,
+      'dob': date,
       'username':
           '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
     }).then((value) => print("Updated Successfully"));
@@ -246,6 +295,14 @@ class _chef_profileState extends State<chef_profile> {
                                         ),
                                       ),
                                       child: InkWell(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 70, horizontal: 80),
+                                          child: Icon(
+                                            Icons.camera_alt,
+                                            size: 30,
+                                          ),
+                                        ),
                                         onTap: () {
                                           ImagePickerMethod();
                                         },
@@ -345,7 +402,7 @@ class _chef_profileState extends State<chef_profile> {
                               ),
                               Positioned(
                                 top: 20,
-                                left: 35,
+                                left: 10,
                                 child: Row(
                                   children: [
                                     Text(
@@ -367,7 +424,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['firstname'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -377,7 +434,7 @@ class _chef_profileState extends State<chef_profile> {
                               ),
                               Positioned(
                                 top: 55,
-                                left: 35,
+                                left: 10,
                                 child: Row(
                                   children: [
                                     Text(
@@ -399,7 +456,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['lastname'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -409,7 +466,7 @@ class _chef_profileState extends State<chef_profile> {
                               ),
                               Positioned(
                                 top: 95,
-                                left: 35,
+                                left: 10,
                                 child: Row(
                                   children: [
                                     Text(
@@ -431,7 +488,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['mobile1'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -440,7 +497,7 @@ class _chef_profileState extends State<chef_profile> {
                                 ),
                               ),
                               Positioned(
-                                left: 35,
+                                left: 10,
                                 bottom: 95.0,
                                 child: Row(
                                   children: [
@@ -463,7 +520,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['mobile2'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -472,7 +529,7 @@ class _chef_profileState extends State<chef_profile> {
                                 ),
                               ),
                               Positioned(
-                                left: 35,
+                                left: 10,
                                 bottom: 55.0,
                                 child: Row(
                                   children: [
@@ -495,7 +552,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['dob'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -504,33 +561,41 @@ class _chef_profileState extends State<chef_profile> {
                                 ),
                               ),
                               Positioned(
-                                left: 35,
+                                left: 10,
                                 bottom: 20.0,
                                 child: Row(
                                   children: [
-                                    Text(
-                                      'Email Id',
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
+                                    Wrap(children: [
+                                      Text(
+                                        'Email Id',
+                                        style: GoogleFonts.roboto(
+                                          fontSize: 18.0,
+                                          color: const Color(0xFF4A4B4D),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
+                                    ]),
                                     SizedBox(
                                       width: 42,
                                     ),
-                                    Text(
-                                      (() {
-                                        if (data['email'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['email'];
-                                      })(),
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
+                                    Wrap(
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      children: [
+                                        Text(
+                                          (() {
+                                            if (data['email'] == null) {
+                                              return "please add...";
+                                            }
+                                            return data['email'];
+                                          })(),
+                                          style: GoogleFonts.roboto(
+                                            fontSize: 15.0,
+                                            color: const Color(0xFF4A4B4D),
+                                            // fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ],
                                     )
                                   ],
                                 ),
@@ -602,7 +667,7 @@ class _chef_profileState extends State<chef_profile> {
                               ),
                               Positioned(
                                 top: 20,
-                                left: 35,
+                                left: 10,
                                 child: Row(
                                   children: [
                                     Text(
@@ -624,7 +689,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['address'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -634,7 +699,7 @@ class _chef_profileState extends State<chef_profile> {
                               ),
                               Positioned(
                                 top: 55,
-                                left: 35,
+                                left: 10,
                                 child: Row(
                                   children: [
                                     Text(
@@ -656,7 +721,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['country'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -665,7 +730,7 @@ class _chef_profileState extends State<chef_profile> {
                                 ),
                               ),
                               Positioned(
-                                left: 35,
+                                left: 10,
                                 top: 95.0,
                                 child: Row(
                                   children: [
@@ -688,7 +753,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['pincode'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -763,7 +828,7 @@ class _chef_profileState extends State<chef_profile> {
                               ),
                               Positioned(
                                 top: 20,
-                                left: 35,
+                                left: 10,
                                 child: Row(
                                   children: [
                                     Text(
@@ -785,7 +850,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['experience'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -795,7 +860,7 @@ class _chef_profileState extends State<chef_profile> {
                               ),
                               Positioned(
                                 top: 55,
-                                left: 35,
+                                left: 10,
                                 child: Row(
                                   children: [
                                     Text(
@@ -817,7 +882,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['workpreference'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -826,7 +891,7 @@ class _chef_profileState extends State<chef_profile> {
                                 ),
                               ),
                               Positioned(
-                                left: 35,
+                                left: 10,
                                 top: 93.0,
                                 child: Row(
                                   children: [
@@ -849,7 +914,7 @@ class _chef_profileState extends State<chef_profile> {
                                         return data['city'];
                                       })(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: 18.0,
+                                        fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
                                       ),
@@ -863,33 +928,33 @@ class _chef_profileState extends State<chef_profile> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Salary',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 240,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.edit,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // SizedBox(
+                  //   height: 15,
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     SizedBox(
+                  //       width: 15,
+                  //     ),
+                  //     Text(
+                  //       'Salary',
+                  //       style: TextStyle(
+                  //         fontFamily: 'Roboto',
+                  //         fontSize: 20,
+                  //         fontWeight: FontWeight.w500,
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 240,
+                  //     ),
+                  //     InkWell(
+                  //       onTap: () {},
+                  //       child: Icon(
+                  //         Icons.edit,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   SizedBox(
                     height: 15,
                   ),
@@ -917,6 +982,7 @@ class _chef_profileState extends State<chef_profile> {
                       ),
                     ],
                   ),
+
                   SizedBox(
                     height: 15,
                   ),
@@ -926,7 +992,7 @@ class _chef_profileState extends State<chef_profile> {
                         width: 15,
                       ),
                       Text(
-                        'Menu',
+                        'Dishes',
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           fontSize: 20,
@@ -937,7 +1003,14 @@ class _chef_profileState extends State<chef_profile> {
                         width: 240,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => custom_menu(),
+                            ),
+                          );
+                        },
                         child: Icon(
                           Icons.edit,
                         ),
@@ -957,9 +1030,16 @@ class _chef_profileState extends State<chef_profile> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        Navigator.pushAndRemoveUntil(
+                            (context),
+                            MaterialPageRoute(
+                                builder: (context) => ChefConnectMain()),
+                            (route) => false);
+                      },
                       child: Text(
-                        'Save details',
+                        'Log Out',
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           fontSize: 16,
