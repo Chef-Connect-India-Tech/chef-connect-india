@@ -1,7 +1,12 @@
+import 'dart:io';
+
+import 'package:chef_connect_india/Helper/model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 class chef_profile extends StatefulWidget {
@@ -12,6 +17,26 @@ class chef_profile extends StatefulWidget {
 }
 
 class _chef_profileState extends State<chef_profile> {
+   File? image;
+  final imagePicker = ImagePicker();
+  late String downloadURL;
+  Future ImagePickerMethod() async {
+    // ignore: unused_local_variable
+    final pick = await imagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pick != null) {
+        image = File(pick.path);
+      } else {}
+    });
+    Reference ref =
+        FirebaseStorage.instance.ref().child("profileURL's").child(FirebaseAuth.instance.currentUser!.uid);
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    await ref.putFile(image!);
+    downloadURL = await ref.getDownloadURL();
+    if (downloadURL != null) {
+      Firebasehelper.updatepic(FirebaseAuth.instance.currentUser!.uid, downloadURL);
+    }
+  }
   var date = DateTime.now();
   TextEditingController? _firstnameController;
   TextEditingController? _lastnameController;
@@ -25,8 +50,8 @@ class _chef_profileState extends State<chef_profile> {
     final newDate = await showDatePicker(
       context: context,
       initialDate: initialDate,
-      firstDate: DateTime(DateTime.now().year - 5),
-      lastDate: DateTime(DateTime.now().year + 5),
+      firstDate: DateTime(DateTime.now().year -70),
+      lastDate: DateTime(DateTime.now().year + 1),
     ).then((selectedDate) {
       if (selectedDate != null) {
         _dobController!.text = DateFormat('yyyy-MM-dd').format(selectedDate);
@@ -213,12 +238,17 @@ class _chef_profileState extends State<chef_profile> {
                                           image:
                                               NetworkImage(data['profilepic']),
                                           // AssetImage('assets/CCI1.png'),
-                                          fit: BoxFit.contain,
+                                          fit: BoxFit.cover,
                                         ),
                                         border: Border.all(
                                           width: 3.0,
                                           color: Colors.indigo,
                                         ),
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {
+                                          ImagePickerMethod();
+                                        },
                                       ),
                                     ),
                                   ],
