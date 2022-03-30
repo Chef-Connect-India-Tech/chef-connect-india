@@ -111,7 +111,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                         child: Image.asset('assets/CCI1.png'),
                       ),
                       SizedBox(
-                        height: 240,
+                        height: 200,
                       ),
                       SizedBox(
                         height: 50,
@@ -147,7 +147,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 50,
                       ),
                       SizedBox(
                         height: 50,
