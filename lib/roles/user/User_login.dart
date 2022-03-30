@@ -230,8 +230,8 @@ class _USer_loginState extends State<USer_login> {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Color(0xFFffffff).withOpacity(0.5),
-                            Color(0xFFFFFFFF).withOpacity(0.5),
+                            Color(0xFFffffff).withOpacity(0.0),
+                            Color(0xFFFFFFFF).withOpacity(0.0),
                           ],
                           stops: [
                             0.1,
@@ -241,8 +241,8 @@ class _USer_loginState extends State<USer_login> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Color(0xFFffffff).withOpacity(1.0),
-                          Color((0xFFFFFFFF)).withOpacity(1.0),
+                          Color(0xFFffffff).withOpacity(0.0),
+                          Color((0xFFFFFFFF)).withOpacity(0.0),
                         ],
                       ),
                       child: Column(
@@ -268,7 +268,7 @@ class _USer_loginState extends State<USer_login> {
                               controller: _phoneController,
                               keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
-                                fillColor: Colors.white60,
+                                fillColor: Colors.white,
                                 hintText: 'Phone Number',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 15),
@@ -370,7 +370,7 @@ class _USer_loginState extends State<USer_login> {
                                 Expanded(
                                   child: Container(
                                     height: 1.5,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     margin:
                                         EdgeInsets.symmetric(horizontal: 12),
                                   ),
@@ -378,12 +378,12 @@ class _USer_loginState extends State<USer_login> {
                                 Text(
                                   "Enter 6 digit OTP",
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
+                                      fontSize: 16, color: Colors.white),
                                 ),
                                 Expanded(
                                   child: Container(
                                     height: 1.5,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     margin:
                                         EdgeInsets.symmetric(horizontal: 12),
                                   ),
@@ -400,9 +400,13 @@ class _USer_loginState extends State<USer_login> {
                               controller: _otpController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                fillColor: Colors.white54,
+                                fillColor: Colors.white,
                                 filled: true,
                                 hintText: "Enter OTP",
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  color: Colors.black,
+                                ),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.white,
@@ -438,7 +442,7 @@ class _USer_loginState extends State<USer_login> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  primary: Colors.white54,
+                                  primary: Colors.white,
                                   side: BorderSide(
                                     color: Colors.white70,
                                     width: 2,

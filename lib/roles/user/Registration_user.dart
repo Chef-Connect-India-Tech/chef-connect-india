@@ -65,8 +65,8 @@ class _Registration_userState extends State<Registration_user> {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Color(0xFFffffff).withOpacity(0.5),
-                            Color(0xFFFFFFFF).withOpacity(0.5),
+                            Color(0xFFffffff).withOpacity(0.0),
+                            Color(0xFFFFFFFF).withOpacity(0.0),
                           ],
                           stops: [
                             0.1,
@@ -76,8 +76,8 @@ class _Registration_userState extends State<Registration_user> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Color(0xFFffffff).withOpacity(1.0),
-                          Color((0xFFFFFFFF)).withOpacity(1.0),
+                          Color(0xFFffffff).withOpacity(0.0),
+                          Color((0xFFFFFFFF)).withOpacity(0.0),
                         ],
                       ),
                       child: Padding(
@@ -116,7 +116,7 @@ class _Registration_userState extends State<Registration_user> {
                                 },
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
-                                  fillColor: Colors.white60,
+                                  fillColor: Colors.white,
                                   hintText: 'First Name',
                                   hintStyle: TextStyle(
                                       color: Colors.black, fontSize: 15),
@@ -167,7 +167,7 @@ class _Registration_userState extends State<Registration_user> {
                                 },
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
-                                  fillColor: Colors.white60,
+                                  fillColor: Colors.white,
                                   hintText: 'Last Name',
                                   hintStyle: TextStyle(
                                       color: Colors.black, fontSize: 15),
@@ -217,7 +217,7 @@ class _Registration_userState extends State<Registration_user> {
                                 },
                                 textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
-                                  fillColor: Colors.white60,
+                                  fillColor: Colors.white,
                                   hintText: 'Email',
                                   hintStyle: TextStyle(
                                       color: Colors.black, fontSize: 15),
@@ -249,103 +249,103 @@ class _Registration_userState extends State<Registration_user> {
                               SizedBox(
                                 height: 7,
                               ),
-                              TextFormField(
-                                autofocus: false,
-                                controller: passwordEditingController,
-                                obscureText: true,
-                                validator: (value) {
-                                  RegExp regex = RegExp(r'^.{6,}$');
-                                  if (value!.isEmpty) {
-                                    return ("Password is required for login");
-                                  }
-                                  if (!regex.hasMatch(value)) {
-                                    return ("Enter Valid Password(Min. 6 Character)");
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value) {
-                                  passwordEditingController.text = value!;
-                                },
-                                textInputAction: TextInputAction.next,
-                                decoration: InputDecoration(
-                                  fillColor: Colors.white60,
-                                  hintText: 'Password',
-                                  hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 15),
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  focusedBorder: new OutlineInputBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0),
-                                    borderSide: BorderSide(
-                                      color: Colors.white60,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // TextFormField(
+                              //   autofocus: false,
+                              //   controller: passwordEditingController,
+                              //   obscureText: true,
+                              //   validator: (value) {
+                              //     RegExp regex = RegExp(r'^.{6,}$');
+                              //     if (value!.isEmpty) {
+                              //       return ("Password is required for login");
+                              //     }
+                              //     if (!regex.hasMatch(value)) {
+                              //       return ("Enter Valid Password(Min. 6 Character)");
+                              //     }
+                              //     return null;
+                              //   },
+                              //   onSaved: (value) {
+                              //     passwordEditingController.text = value!;
+                              //   },
+                              //   textInputAction: TextInputAction.next,
+                              //   decoration: InputDecoration(
+                              //     fillColor: Colors.white,
+                              //     hintText: 'Password',
+                              //     hintStyle: TextStyle(
+                              //         color: Colors.black, fontSize: 15),
+                              //     filled: true,
+                              //     border: OutlineInputBorder(
+                              //       borderRadius: BorderRadius.circular(10),
+                              //       borderSide: BorderSide(
+                              //         color: Colors.white,
+                              //         width: 2,
+                              //       ),
+                              //     ),
+                              //     focusedBorder: new OutlineInputBorder(
+                              //       borderRadius:
+                              //           new BorderRadius.circular(10.0),
+                              //       borderSide: BorderSide(
+                              //         color: Colors.white60,
+                              //         width: 2,
+                              //       ),
+                              //     ),
+                              //     enabledBorder: OutlineInputBorder(
+                              //       borderRadius: BorderRadius.circular(10),
+                              //       borderSide: BorderSide(
+                              //         color: Colors.white,
+                              //         width: 2,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                               SizedBox(
                                 height: 7,
                               ),
-                              TextFormField(
-                                autofocus: false,
-                                controller: confirmPasswordEditingController,
-                                obscureText: true,
-                                validator: (value) {
-                                  if (confirmPasswordEditingController.text !=
-                                      passwordEditingController.text) {
-                                    return "Password don't match";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value) {
-                                  confirmPasswordEditingController.text =
-                                      value!;
-                                },
-                                textInputAction: TextInputAction.done,
-                                decoration: InputDecoration(
-                                  fillColor: Colors.white60,
-                                  hintText: 'Re-Enter Password',
-                                  hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 15),
-                                  filled: true,
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  focusedBorder: new OutlineInputBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0),
-                                    borderSide: BorderSide(
-                                      color: Colors.white60,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // TextFormField(
+                              //   autofocus: false,
+                              //   controller: confirmPasswordEditingController,
+                              //   obscureText: true,
+                              //   validator: (value) {
+                              //     if (confirmPasswordEditingController.text !=
+                              //         passwordEditingController.text) {
+                              //       return "Password don't match";
+                              //     }
+                              //     return null;
+                              //   },
+                              //   onSaved: (value) {
+                              //     confirmPasswordEditingController.text =
+                              //         value!;
+                              //   },
+                              //   textInputAction: TextInputAction.done,
+                              //   decoration: InputDecoration(
+                              //     fillColor: Colors.white,
+                              //     hintText: 'Re-Enter Password',
+                              //     hintStyle: TextStyle(
+                              //         color: Colors.black, fontSize: 15),
+                              //     filled: true,
+                              //     border: OutlineInputBorder(
+                              //       borderRadius: BorderRadius.circular(10),
+                              //       borderSide: BorderSide(
+                              //         color: Colors.white,
+                              //         width: 2,
+                              //       ),
+                              //     ),
+                              //     focusedBorder: new OutlineInputBorder(
+                              //       borderRadius:
+                              //           new BorderRadius.circular(10.0),
+                              //       borderSide: BorderSide(
+                              //         color: Colors.white60,
+                              //         width: 2,
+                              //       ),
+                              //     ),
+                              //     enabledBorder: OutlineInputBorder(
+                              //       borderRadius: BorderRadius.circular(10),
+                              //       borderSide: BorderSide(
+                              //         color: Colors.white,
+                              //         width: 2,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -357,7 +357,7 @@ class _Registration_userState extends State<Registration_user> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      primary: Colors.white54,
+                                      primary: Colors.white,
                                       side: BorderSide(
                                         color: Colors.white70,
                                         width: 2,

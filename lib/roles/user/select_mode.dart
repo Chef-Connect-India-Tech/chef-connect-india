@@ -57,7 +57,7 @@ class _Select_ModeState extends State<Select_Mode> {
     CityList(
       city: 'Banglore',
       index: 1,
-      icon: ImageIcon(AssetImage('assets/icons/Banglore.svg')),
+      icon: ImageIcon(AssetImage('assets/icons/Pune.svg')),
     ),
     CityList(
       city: 'Jaipur',
@@ -104,7 +104,7 @@ class _Select_ModeState extends State<Select_Mode> {
             ),
           ]),
           style: ElevatedButton.styleFrom(
-            primary: (cityin == index) ? Color(0xFFC4C4C4) : Colors.white54,
+            primary: (cityin == index) ? Colors.white : Colors.white54,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             side: BorderSide(
@@ -150,7 +150,7 @@ class _Select_ModeState extends State<Select_Mode> {
             ),
           ]),
           style: ElevatedButton.styleFrom(
-            primary: (chef_type == index) ? Color(0xFFC4C4C4) : Colors.white54,
+            primary: (chef_type == index) ? Colors.white : Colors.white54,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             side: BorderSide(
@@ -186,7 +186,7 @@ class _Select_ModeState extends State<Select_Mode> {
                     child: Center(
                       child: GlassmorphicContainer(
                         width: 330,
-                        height: 500,
+                        height: 690,
                         borderRadius: 10,
                         blur: 0.1,
                         alignment: Alignment.bottomCenter,
@@ -195,8 +195,8 @@ class _Select_ModeState extends State<Select_Mode> {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [
-                              Color(0xFFffffff).withOpacity(0.5),
-                              Color(0xFFFFFFFF).withOpacity(0.5),
+                              Color(0xFFffffff).withOpacity(0.0),
+                              Color(0xFFFFFFFF).withOpacity(0.0),
                             ],
                             stops: [
                               0.1,
@@ -206,8 +206,8 @@ class _Select_ModeState extends State<Select_Mode> {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Color(0xFFffffff).withOpacity(1.0),
-                            Color((0xFFFFFFFF)).withOpacity(1.0),
+                            Color(0xFFffffff).withOpacity(0.0),
+                            Color((0xFFFFFFFF)).withOpacity(0.0),
                           ],
                         ),
                         child: Padding(
@@ -221,12 +221,13 @@ class _Select_ModeState extends State<Select_Mode> {
                               Text(
                                 "Select City",
                                 style: TextStyle(
-                                  color: Color.fromARGB(255, 18, 68, 138),
+                                  color: Colors.white,
+                                  // color: Color.fromARGB(255, 18, 68, 138),
                                   fontSize: 30,
                                 ),
                               ),
                               SizedBox(
-                                height: 10,
+                                height: 5,
                               ),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -253,7 +254,8 @@ class _Select_ModeState extends State<Select_Mode> {
                               Text(
                                 "Looking For",
                                 style: TextStyle(
-                                  color: Color.fromARGB(255, 18, 68, 138),
+                                  color: Colors.white,
+                                  // color: Color.fromARGB(255, 18, 68, 138),
                                   fontSize: 30,
                                 ),
                               ),
@@ -266,7 +268,7 @@ class _Select_ModeState extends State<Select_Mode> {
                                     Expanded(
                                         child: Container(
                                       // height: 350.0,
-                                      child: Row(
+                                      child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: chefList
@@ -279,7 +281,7 @@ class _Select_ModeState extends State<Select_Mode> {
                                     ))
                                   ]),
                               SizedBox(
-                                height: 30,
+                                height: 40,
                               ),
                               SizedBox(
                                 height: 50,
@@ -293,7 +295,7 @@ class _Select_ModeState extends State<Select_Mode> {
                                       ),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    primary: Colors.white54,
+                                    primary: Colors.white,
                                     onPrimary: Color.fromARGB(255, 18, 68, 138),
                                   ),
                                   onPressed: () {

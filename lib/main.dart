@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:chef_connect_india/onboarding_Screen/onboarding_screen.dart';
 import 'package:chef_connect_india/roles/user/select_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/user/User_login.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chef Connect India',
-      home: ChefConnectMain(),
+      home: Onboarding_screen(),
       // home: user_profile(),
       // home: custom_menu(),
       // home: chef_registration_one(phonenumber: '+917337504725'),
@@ -102,7 +103,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 60,
+                        height: 5,
                       ),
                       CircleAvatar(
                         backgroundColor: Color(0xFF092349),
@@ -110,7 +111,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                         child: Image.asset('assets/CCI1.png'),
                       ),
                       SizedBox(
-                        height: 120,
+                        height: 240,
                       ),
                       SizedBox(
                         height: 50,
@@ -118,10 +119,10 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                color: Colors.blueGrey,
-                                width: 3,
-                              ),
+                              // side: BorderSide(
+                              //   color: Colors.b,
+                              //   width: 3,
+                              // ),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             primary: Colors.white,
@@ -146,7 +147,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       SizedBox(
                         height: 50,
@@ -154,10 +155,10 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                color: Colors.blueGrey,
-                                width: 3,
-                              ),
+                              // side: BorderSide(
+                              //   color: Colors.blueGrey,
+                              //   width: 3,
+                              // ),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             primary: Colors.white,

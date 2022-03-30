@@ -27,6 +27,7 @@ dependencies:
   image_picker: ^0.8.4+11
   multi_select_flutter: ^4.1.2
   multiselect_formfield: ^0.1.7
+  onboarding: ^3.0.0
   paginate_firestore: ^1.0.3
   pin_code_fields: ^7.3.0
   pinput: ^2.1.4

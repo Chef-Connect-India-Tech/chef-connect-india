@@ -33,7 +33,7 @@ class _user_profileState extends State<user_profile> {
       lastDate: DateTime(DateTime.now().year + 5),
     ).then((selectedDate) {
       if (selectedDate != null) {
-        _dobController!.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        _dobController?.text = DateFormat('dd-MM-yyyy').format(selectedDate);
         ;
       }
     });
@@ -75,7 +75,7 @@ class _user_profileState extends State<user_profile> {
       "mobile1": _phoneController!.text,
       "email": _emailController!.text,
       'mobile2': _phone2Controller!.text,
-      'dob': _dobController!.text,
+      'dob': _dobController?.text,
       'city': _cityController!.text,
       'country': _countryController!.text,
       'pincode': _pincodeController!.text,
