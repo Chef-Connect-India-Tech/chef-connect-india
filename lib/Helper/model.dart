@@ -233,5 +233,15 @@ class Firebasehelper {
     FirebaseFirestore.instance.collection("chefs");
     var result = await appointmentdatbase.doc(appointid).update({"profilepic":status});
   }
+  static void updatemenu(uid,doc,status) async{
+    CollectionReference appointmentdatbase =
+    FirebaseFirestore.instance.collection("Menu").doc(uid).collection('starters');
+    var result = await appointmentdatbase.doc(doc).update({"starters.isSelected": status});
+  }
+  static void updatemenu1(uid,docid1,statu) async{
+    CollectionReference appointmentdatbase =
+    FirebaseFirestore.instance.collection("Menu").doc(uid).collection('starters');
+    var result = await appointmentdatbase.doc(docid1).update({"isSelected": statu});
+  }
 
 }
