@@ -54,29 +54,50 @@ class _trailState extends State<trail> {
                         verified=snap.data?.docs[index]['isSelected'];
                         itemname=snap.data?.docs[index]['dish'];
                         //docid=snap.data?.docs[index]['docid'];
-                         return ContactItem(
-                        snap.data?.docs[index]['dish'],
-                        snap.data?.docs[index]['isSelected'],
-                        snap.data?.docs[index]['docid'],
-                        index,
-                      );
+                            return ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor: Colors.green[700],
+                                  child: Icon(
+                                    Icons.person_outline_outlined,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                title: Text(
+                                  snap.data?.docs[index]['dish'],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                
+                                trailing: snap.data?.docs[index]['isSelected']
+                                    ? Icon(
+                                        Icons.check_circle,
+                                        color: Colors.green[700],
+                                      )
+                                    : Icon(
+                                        Icons.check_circle_outline,
+                                        color: Colors.grey,
+                                      ),
+                                onTap: () {
+                                  var doc=snap.data?.docs[index]['docid'];
+                                  print(doc);
+
+                                  CollectionReference _collectionRef =
+                                  FirebaseFirestore.instance.collection("Menu");
+                              _collectionRef.doc(docc).collection('starters').doc(doc).update({
+                                "isSelected": true,
+                              }).then((value) => print("Updated Successfully"));
+                                  //print(isSelected);
+                                  print(snap.data?.docs[index]['docid']);
+                                },
+                              );
+                      //    ContactItem(
+                      //   snap.data?.docs[index]['dish'],
+                      //   snap.data?.docs[index]['isSelected'],
+                      //   snap.data?.docs[index]['docid'],
+                      //   index,
+                      // );
                          
-                        // return Container(
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        //     children: [
-                        //           Text(snap.data?.docs[index]['maincourse']['item']),
-                        //       Row(
-                        //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        //         // children: [
-                        //         //   Container(
-                        //         //       margin:EdgeInsets.all(10.0),
-                        //         //       child: Text(snap.data?.docs[index]['status'])),
-                        //         // ],
-                        //       )
-                        //     ],
-                        //   ),
-                        // );
                       },
                     ),
                   ),
