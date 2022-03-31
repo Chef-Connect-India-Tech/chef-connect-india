@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field, deprecated_member_use
 
 import 'package:chef_connect_india/roles/chef/Booking.dart';
+import 'package:chef_connect_india/roles/chef/trail.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,14 @@ class chef_registration_two extends StatefulWidget {
 }
 
 class _chef_registration_twoState extends State<chef_registration_two> {
+  List<Movie> favoriteMovies = [
+    Movie('Harry Potter'),
+    Movie('Spider Man'),
+    Movie('Venom'),
+    Movie('Transformers'),
+    Movie('The Last Witch Hunters')
+  ];
+  
   final _auth = FirebaseAuth.instance;
 
   // string for displaying the error Message
@@ -384,6 +393,15 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 });
                               },
                             ),
+              //               ElevatedButton(
+              //                 onPressed: () {
+              //                   Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) =>trail(),
+              //   ),
+              // );}, child: null,),
+                             
                             SizedBox(
                               height: 10,
                             ),
@@ -528,4 +546,69 @@ class _chef_registration_twoState extends State<chef_registration_two> {
         MaterialPageRoute(builder: (context) => Chef_dashboard()),
         (route) => false);
   }
+  void openDialog() {
+    showDialog(
+        context: context,
+        builder: (ctx) {
+          return AlertDialog(
+            title: Text('List'),
+            actions: <Widget>[Text('OK'), Text('Cancel')],
+            content: Container(
+                width: 300,
+                height: 400,
+                child: MultiSelectionExample(favoriteMovies)),
+          );
+        });
+  }
+}
+class MultiSelectionExample extends StatefulWidget {
+  List<Movie> favoriteMovies;
+
+  MultiSelectionExample(this.favoriteMovies);
+
+  @override
+  _MultiSelectionExampleState createState() => _MultiSelectionExampleState();
+}
+
+class _MultiSelectionExampleState extends State<MultiSelectionExample> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (ctx, index) {
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            widget.favoriteMovies[index].isSelected = !widget.favoriteMovies[index].isSelected;
+            setState(() {});
+          },
+          child: Container(
+            color: widget.favoriteMovies[index].isSelected
+                ? Colors.green[100]
+                : null,
+            child: Row(
+              children: <Widget>[
+                Checkbox(
+                    value: widget.favoriteMovies[index].isSelected,
+                     onChanged: (s) {
+                       widget.favoriteMovies[index].isSelected = !widget.favoriteMovies[index].isSelected;
+                      setState(() {});
+                    }),
+                Text(widget.favoriteMovies[index].movieName)
+              ],
+            ),
+          ),
+        );
+      },
+      itemCount: widget.favoriteMovies.length,
+    );
+  }
+}
+
+class Movie{
+  Movie(this.movieName);
+
+  String movieName;
+  bool isSelected=false;
 }
