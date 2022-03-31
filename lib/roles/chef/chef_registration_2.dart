@@ -393,14 +393,14 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 });
                               },
                             ),
-              //               ElevatedButton(
-              //                 onPressed: () {
-              //                   Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) =>trail(),
-              //   ),
-              // );}, child: null,),
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>trail(),
+                ),
+              );}, child: null,),
                              
                             SizedBox(
                               height: 10,
