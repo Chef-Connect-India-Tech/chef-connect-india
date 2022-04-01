@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/Helper/list.dart';
+import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 class user_home extends StatefulWidget {
   // final String city;
@@ -44,6 +45,38 @@ class _user_homeState extends State<user_home> {
   void initState() {
     fetchCarouselImages();
     super.initState();
+  }
+
+  final GenderEditingController = new TextEditingController();
+  final categoryofchefEditingController = new TextEditingController();
+  final salaryEditingController = new TextEditingController();
+
+  final SelectGender = ['Male', 'Female'];
+  final categoryofchef = [
+    'Basic',
+    'Intermediate',
+    'Expert',
+  ];
+  final salary = [
+    'under 10,000',
+    '10,000 - 20,000',
+    '20,000 - 40,000',
+    'above 40,000'
+  ];
+  String? salaryValue;
+
+  String? locValue;
+  String? chefvalue;
+
+  List? _myCusine;
+  late String _myCusineResult;
+  // final formKey = new GlobalKey<FormState>();
+
+  @override
+  void initState1() {
+    super.initState();
+    _myCusine = [];
+    _myCusineResult = '';
   }
 
   @override
@@ -110,7 +143,7 @@ class _user_homeState extends State<user_home> {
                             child: Column(
                               children: [
                                 Image.asset(
-                                  'assets/Private Chef.png',
+                                  'assets/partychef.jpeg',
                                   height: 300,
                                   width: 300,
                                 ),
@@ -157,57 +190,6 @@ class _user_homeState extends State<user_home> {
                                           decoration: InputDecoration(
                                             fillColor: Colors.grey.shade200,
                                             filled: true,
-                                            hintText: 'Enter Name',
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Mail Id',
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Phone Number',
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
                                             hintText: 'Enter Address',
                                             hintStyle: TextStyle(
                                               color: Colors.black,
@@ -219,23 +201,193 @@ class _user_homeState extends State<user_home> {
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 10,
+                                          height: 20,
                                         ),
-                                        TextFormField(
-                                          minLines: 5,
-                                          maxLines: 20,
+                                        DropdownButtonFormField<String>(
                                           decoration: InputDecoration(
+                                            labelText: 'Select Gender',
+                                            labelStyle: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            prefixIcon: Icon(Icons.person),
                                             fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Description',
+                                            hintText: 'Select Gender',
                                             hintStyle: TextStyle(
-                                              color: Colors.black,
-                                            ),
+                                                color: Colors.black,
+                                                fontSize: 15),
+                                            filled: true,
                                             border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
                                             ),
                                           ),
+                                          autofocus: false,
+                                          value: locValue,
+                                          isExpanded: true,
+                                          iconSize: 25,
+                                          icon: Icon(Icons.arrow_drop_down,
+                                              color: Colors.black),
+                                          items: SelectGender.map(buildMenuItem)
+                                              .toList(),
+                                          onChanged: (Gvalue) => setState(() {
+                                            this.locValue = Gvalue;
+                                            GenderEditingController.text =
+                                                Gvalue!;
+                                          }),
+                                          onSaved: (Gvalue) {
+                                            GenderEditingController.text =
+                                                Gvalue!;
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 55,
+                                        ),
+                                        DropdownButtonFormField<String>(
+                                          decoration: InputDecoration(
+                                            labelText: ' category of chef',
+                                            labelStyle: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            prefixIcon: Icon(Icons.leaderboard),
+                                            fillColor: Colors.grey.shade200,
+                                            // hintText: 'Select Current Salary',
+                                            hintStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15),
+                                            filled: true,
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                          ),
+                                          autofocus: false,
+                                          value: chefvalue,
+                                          isExpanded: true,
+                                          iconSize: 25,
+                                          icon: Icon(Icons.arrow_drop_down,
+                                              color: Colors.black),
+                                          items: categoryofchef
+                                              .map(buildMenuItem)
+                                              .toList(),
+                                          onChanged: (Cvalue) => setState(() {
+                                            this.chefvalue = Cvalue;
+                                            categoryofchefEditingController
+                                                .text = Cvalue!;
+                                          }),
+                                          onSaved: (Cvalue) {
+                                            categoryofchefEditingController
+                                                .text = Cvalue!;
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 70,
+                                        ),
+                                        DropdownButtonFormField<String>(
+                                          decoration: InputDecoration(
+                                            labelText:
+                                                'Current Salary Per Month',
+                                            labelStyle: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            prefixIcon: Icon(Icons.money),
+                                            fillColor: Colors.grey.shade200,
+                                            // hintText: 'Select Current Salary',
+                                            hintStyle: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15),
+                                            filled: true,
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                          ),
+                                          autofocus: false,
+                                          value: salaryValue,
+                                          isExpanded: true,
+                                          iconSize: 25,
+                                          icon: Icon(Icons.arrow_drop_down,
+                                              color: Colors.black),
+                                          items: salary
+                                              .map(buildMenuItem)
+                                              .toList(),
+                                          onChanged: (svalue) => setState(() {
+                                            this.salaryValue = svalue;
+                                            salaryEditingController.text =
+                                                svalue!;
+                                          }),
+                                          onSaved: (lvalue) {
+                                            salaryEditingController.text =
+                                                lvalue!;
+                                          },
                                         ),
                                       ],
                                     ),
@@ -312,11 +464,20 @@ class _user_homeState extends State<user_home> {
                                     backgroundColor: Colors.white,
                                     content: Column(
                                       children: [
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
                                         TextFormField(
                                           decoration: InputDecoration(
                                             fillColor: Colors.grey.shade200,
                                             filled: true,
-                                            hintText: 'Enter Name',
+                                            hintText: 'Enter Hotel name',
                                             hintStyle: TextStyle(
                                               color: Colors.black,
                                             ),
@@ -329,72 +490,208 @@ class _user_homeState extends State<user_home> {
                                         SizedBox(
                                           height: 10,
                                         ),
-                                        TextFormField(
+                                        DropdownButtonFormField<String>(
                                           decoration: InputDecoration(
+                                            labelText: ' category of chef',
+                                            labelStyle: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            prefixIcon: Icon(Icons.leaderboard),
                                             fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Mail Id',
+                                            // hintText: 'Select Current Salary',
                                             hintStyle: TextStyle(
-                                              color: Colors.black,
-                                            ),
+                                                color: Colors.black,
+                                                fontSize: 15),
+                                            filled: true,
                                             border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
                                             ),
                                           ),
+                                          autofocus: false,
+                                          value: chefvalue,
+                                          isExpanded: true,
+                                          iconSize: 25,
+                                          icon: Icon(Icons.arrow_drop_down,
+                                              color: Colors.black),
+                                          items: categoryofchef
+                                              .map(buildMenuItem)
+                                              .toList(),
+                                          onChanged: (Cvalue) => setState(() {
+                                            this.chefvalue = Cvalue;
+                                            categoryofchefEditingController
+                                                .text = Cvalue!;
+                                          }),
+                                          onSaved: (Cvalue) {
+                                            categoryofchefEditingController
+                                                .text = Cvalue!;
+                                          },
                                         ),
                                         SizedBox(
-                                          height: 10,
+                                          height: 60,
                                         ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Phone Number',
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                        MultiSelectFormField(
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                              color: Colors.white,
+                                              width: 2,
                                             ),
                                           ),
+                                          autovalidate:
+                                              AutovalidateMode.disabled,
+                                          chipBackGroundColor: Colors.blue,
+                                          chipLabelStyle: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                          dialogTextStyle: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                          checkBoxActiveColor: Colors.blue,
+                                          checkBoxCheckColor: Colors.white,
+                                          dialogShapeBorder:
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              10.0))),
+                                          title: Text(
+                                            "Cusine Expert",
+                                            style: TextStyle(fontSize: 16),
+                                          ),
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.length == 0) {
+                                              return 'Please select one or more options';
+                                            }
+                                            return null;
+                                          },
+                                          dataSource: [
+                                            {
+                                              "display": "Indian",
+                                              "value": "Indian",
+                                            },
+                                            {
+                                              "display": "Chinese",
+                                              "value": "Chinese",
+                                            },
+                                            {
+                                              "display": "Italian",
+                                              "value": "Italian",
+                                            },
+                                            {
+                                              "display": "Sushi",
+                                              "value": "Sushi",
+                                            },
+                                            {
+                                              "display": "Mexican",
+                                              "value": "Mexican",
+                                            },
+                                            {
+                                              "display": "Multi Cuisine",
+                                              "value": "Multi Cuisine",
+                                            },
+                                          ],
+                                          textField: 'display',
+                                          valueField: 'value',
+                                          okButtonLabel: 'OK',
+                                          cancelButtonLabel: 'CANCEL',
+                                          hintWidget: Text('Select Cusine'),
+                                          initialValue: _myCusine,
+                                          onSaved: (value) {
+                                            if (value == null) return;
+                                            setState(() {
+                                              // cusineEditingController.text = value!;
+                                              _myCusine = value;
+                                            });
+                                          },
                                         ),
                                         SizedBox(
-                                          height: 10,
+                                          height: 50,
                                         ),
-                                        TextFormField(
+                                        DropdownButtonFormField<String>(
                                           decoration: InputDecoration(
+                                            labelText:
+                                                'Current Salary Per Month',
+                                            labelStyle: TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold),
+                                            prefixIcon: Icon(Icons.money),
                                             fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Address',
+                                            // hintText: 'Select Current Salary',
                                             hintStyle: TextStyle(
-                                              color: Colors.black,
-                                            ),
+                                                color: Colors.black,
+                                                fontSize: 15),
+                                            filled: true,
                                             border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        TextFormField(
-                                          minLines: 5,
-                                          maxLines: 20,
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Description',
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
                                             ),
-                                            border: OutlineInputBorder(
+                                            enabledBorder: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
                                             ),
                                           ),
+                                          autofocus: false,
+                                          value: salaryValue,
+                                          isExpanded: true,
+                                          iconSize: 25,
+                                          icon: Icon(Icons.arrow_drop_down,
+                                              color: Colors.black),
+                                          items: salary
+                                              .map(buildMenuItem)
+                                              .toList(),
+                                          onChanged: (svalue) => setState(() {
+                                            this.salaryValue = svalue;
+                                            salaryEditingController.text =
+                                                svalue!;
+                                          }),
+                                          onSaved: (lvalue) {
+                                            salaryEditingController.text =
+                                                lvalue!;
+                                          },
                                         ),
                                       ],
                                     ),
@@ -429,7 +726,7 @@ class _user_homeState extends State<user_home> {
                             child: Column(
                               children: [
                                 Image.asset(
-                                  'assets/Permanent Chef.png',
+                                  'assets/kitchenprofessionals.jpeg',
                                   fit: BoxFit.fill,
                                 ),
                               ],
@@ -570,4 +867,30 @@ class _user_homeState extends State<user_home> {
       ),
     );
   }
+
+  DropdownMenuItem<String> buildMenuItem(String SelectGender) =>
+      DropdownMenuItem(
+        value: SelectGender,
+        child: Text(
+          SelectGender,
+          style: TextStyle(fontSize: 18),
+        ),
+      );
+
+  DropdownMenuItem<String> buildMenuItem1(String categoryofchef) =>
+      DropdownMenuItem(
+        value: categoryofchef,
+        child: Text(
+          categoryofchef,
+          style: TextStyle(fontSize: 18),
+        ),
+      );
+
+  DropdownMenuItem<String> buildMenuItem2(String Salary) => DropdownMenuItem(
+        value: Salary,
+        child: Text(
+          Salary,
+          style: TextStyle(fontSize: 18),
+        ),
+      );
 }

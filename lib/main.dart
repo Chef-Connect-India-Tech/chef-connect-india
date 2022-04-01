@@ -39,6 +39,24 @@ class ChefConnectMain extends StatefulWidget {
 }
 
 class ChefConnectMainState extends State<ChefConnectMain> {
+  // @override
+  void initstate() {
+    getValidationData().whenComplete(() async {
+      Timer(Duration(seconds: 2), () => Select_Mode());
+    });
+    super.initState();
+  }
+
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var obtainedPhone = sharedPreferences.getString('mobile1');
+    setState(() {
+      finalPhone = obtainedPhone;
+    });
+    print(finalPhone);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -93,7 +111,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                         child: Image.asset('assets/CCI1.png'),
                       ),
                       SizedBox(
-                        height: 200,
+                        height: 240,
                       ),
                       SizedBox(
                         height: 50,
@@ -129,7 +147,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                         ),
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 30,
                       ),
                       SizedBox(
                         height: 50,

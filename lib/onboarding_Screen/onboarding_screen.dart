@@ -22,7 +22,7 @@ class _Onboarding_screenState extends State<Onboarding_screen> {
               vertical: 45.0,
             ),
             child: Image.asset(
-              'assets/Private Chef.png',
+              'assets/partychef.jpeg',
             ),
           ),
           Container(
@@ -61,7 +61,7 @@ Chef will clean the kitchen and leave''',
               vertical: 45.0,
             ),
             child: Image.asset(
-              'assets/Permanent Chef.png',
+              'assets/Private Chef.png',
             ),
           ),
           Container(
@@ -98,7 +98,7 @@ Chef will clean the kitchen and leave''',
               vertical: 45.0,
             ),
             child: Image.asset(
-              'assets/Private Chef.png',
+              'assets/kitchenprofessionals.jpeg',
             ),
           ),
           Container(
