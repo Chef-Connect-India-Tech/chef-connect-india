@@ -6,6 +6,7 @@ import 'package:chef_connect_india/roles/user/user_home.dart';
 import 'package:chef_connect_india/roles/user/user_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NavBar extends StatelessWidget {
   // CollectionReference _collectionRef =
@@ -121,11 +122,14 @@ class NavBar extends StatelessWidget {
             title: Text('LogOut'),
             leading: Icon(Icons.exit_to_app),
             onTap: () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.pushAndRemoveUntil(
-                  (context),
-                  MaterialPageRoute(builder: (context) => ChefConnectMain()),
-                  (route) => false);
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.remove('uid');
+              await FirebaseAuth.instance.signOut().then((_) {
+                Navigator.pushAndRemoveUntil(
+                    (context),
+                    MaterialPageRoute(builder: (context) => ChefConnectMain()),
+                    (route) => false);
+              });
             },
           ),
         ],

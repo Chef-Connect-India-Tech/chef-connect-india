@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:chef_connect_india/Helper/model.dart';
 import 'package:chef_connect_india/roles/user/select_mode.dart';
 import 'package:glassmorphism/glassmorphism.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Registration_user extends StatefulWidget {
   late String phonenumber;
@@ -424,12 +425,15 @@ class _Registration_userState extends State<Registration_user> {
     await firebaseFirestore
         .collection("users")
         .doc(user.uid)
-        .set(userModel.toMap());
+        .set(userModel.toMap())
+        .then((value) async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('uid', user.uid);
+      Navigator.pushAndRemoveUntil(
+          (context),
+          MaterialPageRoute(builder: (context) => Select_Mode()),
+          (route) => false);
+    });
     Fluttertoast.showToast(msg: "Account created successfully :) ");
-
-    Navigator.pushAndRemoveUntil(
-        (context),
-        MaterialPageRoute(builder: (context) => Select_Mode()),
-        (route) => false);
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:chef_connect_india/onboarding_Screen/onboarding_screen.dart';
 import 'package:chef_connect_india/roles/user/select_mode.dart';
+import 'package:chef_connect_india/roles/user/user_home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/user/User_login.dart';
 // import 'package:chef_connect_india/roles/chef/chef_dashboard.dart';
@@ -10,25 +12,37 @@ import 'package:chef_connect_india/roles/chef/chef_login.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
-void main() async {
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Chef Connect India',
+//       home: Onboarding_screen(),
+//       // home: user_profile(),
+//       // home: custom_menu(),
+//       // home: chef_registration_one(phonenumber: '+917337504725'),
+//     );
+//   }
+// }
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Chef Connect India',
-      home: Onboarding_screen(),
-      // home: user_profile(),
-      // home: custom_menu(),
-      // home: chef_registration_one(phonenumber: '+917337504725'),
-    );
-  }
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var uid = prefs.getString('uid');
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: uid == null ? ChefConnectMain() : user_home(),
+  ));
 }
 
 String? finalPhone;
