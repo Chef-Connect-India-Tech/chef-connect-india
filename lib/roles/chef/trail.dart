@@ -54,54 +54,53 @@ class _trailState extends State<trail> {
                         verified=snap.data?.docs[index]['isSelected'];
                         itemname=snap.data?.docs[index]['dish'];
                         //docid=snap.data?.docs[index]['docid'];
-                            return ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor: Colors.green[700],
-                                  child: Icon(
-                                    Icons.person_outline_outlined,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                title: Text(
-                                  snap.data?.docs[index]['dish'],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                            // return ListTile(
+                            //     leading: CircleAvatar(
+                            //       backgroundColor: Colors.green[700],
+                            //       child: Icon(
+                            //         Icons.person_outline_outlined,
+                            //         color: Colors.white,
+                            //       ),
+                            //     ),
+                            //     title: Text(
+                            //       snap.data?.docs[index]['dish'],
+                            //       style: TextStyle(
+                            //         fontWeight: FontWeight.w500,
+                            //       ),
+                            //     ),
                                 
-                                trailing: snap.data?.docs[index]['isSelected']
-                                    ? Icon(
-                                        Icons.check_circle,
-                                        color: Colors.green[700],
-                                      )
-                                    : Icon(
-                                        Icons.check_circle_outline,
-                                        color: Colors.grey,
-                                      ),
-                                onTap: () {
-                                  var doc=snap.data?.docs[index]['docid'];
-                                  print(doc);
+                            //     trailing: snap.data?.docs[index]['isSelected']
+                            //         ? Icon(
+                            //             Icons.check_circle,
+                            //             color: Colors.green[700],
+                            //           )
+                            //         : Icon(
+                            //             Icons.check_circle_outline,
+                            //             color: Colors.grey,
+                            //           ),
+                            //     onTap: () {
+                            //       var doc=snap.data?.docs[index]['docid'];
+                            //       print(doc);
 
-                                  CollectionReference _collectionRef =
-                                  FirebaseFirestore.instance.collection("Menu");
-                              _collectionRef.doc(docc).collection('starters').doc(doc).update({
-                                "isSelected": true,
-                              }).then((value) => print("Updated Successfully"));
-                                  //print(isSelected);
-                                  print(snap.data?.docs[index]['docid']);
-                                },
-                              );
-                      //    ContactItem(
-                      //   snap.data?.docs[index]['dish'],
-                      //   snap.data?.docs[index]['isSelected'],
-                      //   snap.data?.docs[index]['docid'],
-                      //   index,
-                      // );
+                            //       CollectionReference _collectionRef =
+                            //       FirebaseFirestore.instance.collection("Menu");
+                            //   _collectionRef.doc(docc).collection('starters').doc(doc).update({
+                            //     "isSelected": true,
+                            //   }).then((value) => print("Updated Successfully"));
+                            //       //print(isSelected);
+                            //       print(snap.data?.docs[index]['docid']);
+                            //     },
+                            //   );
+                        return  ContactItem(
+                        snap.data?.docs[index]['dish'],
+                        snap.data?.docs[index]['isSelected'],
+                        snap.data?.docs[index]['docid'],
+                      );
                          
                       },
                     ),
                   ),
-                  selectedContacts.length > 0 ? Padding(
+                selectedContacts.length > 0 ? Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 25,
                   vertical: 10,
@@ -178,7 +177,7 @@ class _trailState extends State<trail> {
   }
 
   Widget ContactItem(
-      String name, bool isSelected, String docid1,index) {
+      String name, bool isSelected, String docid1) {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: Colors.green[700],
@@ -211,17 +210,17 @@ class _trailState extends State<trail> {
     // }).then((value) => print("Updated Successfully"));
     //     print(isSelected);
         print(docid1);
-        // print(docc);
-        //  isSelected = !isSelected;
-        // //Firebasehelper.updatemenu1(docc,docid,true);
-        //     if (isSelected == false) {
-        //     Firebasehelper.updatemenu1(docc,docid1,true);
-        //     isSelected= true;
-        //   }
-        //   else  if (isSelected == true) {
-        //     Firebasehelper.updatemenu1(docc,docid1,false);
-        //     isSelected= false;
-        //   }
+        if (isSelected == true) {
+            Firebasehelper.updatemenu1(docc,docid1,false);
+            isSelected= false;
+            selectedContacts.add(ContactModel(name, docid, isSelected));
+          }
+          else if (isSelected == false) {
+            Firebasehelper.updatemenu1(docc,docid1,true);
+            isSelected= true;
+            selectedContacts
+               .removeWhere((element) => element.name == itemname);            
+          } 
          //Firebasehelper.updatemenu(docc,docid, true);
         // if (verified == true) {
         //     Firebasehelper.updatemenu(docc,docid, false);
@@ -236,8 +235,8 @@ class _trailState extends State<trail> {
           //   if (verified == false) {
           //   Firebasehelper.updatemenu1(docc,docid, true);
           //   verified= true;
-          //  // selectedContacts
-          //    //   .removeWhere((element) => element.name == itemname);
+           selectedContacts
+               .removeWhere((element) => element.name == itemname);
           // }
         //   print(verified);
         
