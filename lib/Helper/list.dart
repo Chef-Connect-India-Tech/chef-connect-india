@@ -13,6 +13,7 @@ class AwesomeListItem extends StatefulWidget {
   var level;
   var city;
   var profilepic;
+  var rating;
 
   AwesomeListItem(
       {required this.title,
@@ -21,6 +22,7 @@ class AwesomeListItem extends StatefulWidget {
       required this.level,
       required this.experience,
       required this.profilepic,
+      required this.rating,
       required this.city});
 
   @override
@@ -145,6 +147,8 @@ class list_view extends StatefulWidget {
   var experience;
   var speciality;
   var profilepic;
+  var city;
+  var rating;
 
   list_view(
       {required this.chefid,
@@ -152,7 +156,9 @@ class list_view extends StatefulWidget {
       required this.level,
       required this.speciality,
       required this.experience,
-      required this.profilepic});
+      required this.profilepic,
+      required this.rating,
+      required this.city});
 
   @override
   State<list_view> createState() => _list_viewState();
@@ -171,7 +177,16 @@ class _list_viewState extends State<list_view> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => chef_pro(),
+                builder: (context) => new chef_pro(
+                  chefid: widget.chefid,
+                  cheflevel: widget.level,
+                  experience: widget.experience,
+                  cuisine: widget.cusineexpert,
+                  city: widget.city,
+                  profilepic: widget.profilepic,
+                  specialities: widget.speciality,
+                  rating: widget.rating,
+                ),
               ),
             );
             print('onTap Food');
