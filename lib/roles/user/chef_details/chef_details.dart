@@ -1,30 +1,9 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class chef_pro extends StatelessWidget {
-  String chefid;
-  String cheflevel;
-  String experience;
-  String cuisine;
-  String city;
-  String profilepic;
-  String specialities;
-  String rating;
-
-  chef_pro(
-      {Key? key,
-      required this.chefid,
-      required this.cheflevel,
-      required this.experience,
-      required this.cuisine,
-      required this.city,
-      required this.profilepic,
-      required this.rating,
-      required this.specialities})
-      : super(key: key);
+  const chef_pro({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +59,7 @@ class chef_pro extends StatelessWidget {
                                   borderRadius: BorderRadius.all(
                                       Radius.elliptical(55.0, 57.5)),
                                   image: DecorationImage(
-                                    image: NetworkImage('${profilepic}'),
+                                    image: AssetImage('assets/CCI1.png'),
                                     fit: BoxFit.contain,
                                   ),
                                   border: Border.all(
@@ -95,8 +74,7 @@ class chef_pro extends StatelessWidget {
                         Positioned(
                           bottom: 89.0,
                           child: Text(
-                            chefid.toUpperCase(),
-                            textAlign: TextAlign.center,
+                            'Chef ID',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -105,10 +83,10 @@ class chef_pro extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          right: 160.0,
+                          right: 167.0,
                           bottom: 55.0,
                           child: Text(
-                            '${city}',
+                            'City',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -120,7 +98,7 @@ class chef_pro extends StatelessWidget {
                           left: 61.0,
                           bottom: 19.0,
                           child: Text(
-                            'level: ${cheflevel}',
+                            'Level',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -132,7 +110,7 @@ class chef_pro extends StatelessWidget {
                           right: 52.0,
                           bottom: 19.0,
                           child: Text(
-                            'rating: ${rating}',
+                            'Rating',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -180,23 +158,23 @@ class chef_pro extends StatelessWidget {
                         ),
                         Positioned(
                           top: 20,
-                          left: 15,
+                          left: 35,
                           child: Text(
-                            'exp: ${experience}',
+                            'Experience',
                             style: GoogleFonts.roboto(
-                              fontSize: 18.0,
+                              fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
                               // fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
                         Positioned(
-                          left: 15,
+                          left: 35,
                           top: 60.0,
                           child: Text(
-                            '${cuisine}',
+                            'Cusine Expert',
                             style: GoogleFonts.roboto(
-                              fontSize: 14.0,
+                              fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
                               // fontWeight: FontWeight.w700,
                             ),
@@ -214,7 +192,7 @@ class chef_pro extends StatelessWidget {
             Align(
               alignment: Alignment(0.0, 0.0),
               child: Text(
-                'spec: ${specialities}',
+                'Specialities',
                 style: GoogleFonts.roboto(
                   fontSize: 20.0,
                   color: const Color(0xFF4A4B4D),
