@@ -1,164 +1,159 @@
-// ignore_for_file: unused_local_variable
-
-import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
-import 'package:chef_connect_india/main.dart';
-import 'package:chef_connect_india/roles/user/user_home.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chef_connect_india/Helper/dimensions.dart';
+import 'package:chef_connect_india/Main%20Screen/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 
-class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+// String? finalPhone;
 
+var vpH, vpW;
+
+class ChefConnectMain extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  State<ChefConnectMain> createState() => ChefConnectMainState();
 }
 
-class _HomeState extends State<Home> {
-  // String uid = "";
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     drawer: NavBar(),
-  //     appBar: AppBar(
-  //       backgroundColor: Colors.indigo[900],
-  //       title: const Text('Home'),
-  //     ),
-  //     body: Center(
-  //       child: Center(
-  //         child: Column(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: [
-  //             Text(
-  //               "Chef Connect",
-  //               style: TextStyle(
-  //                 color: Colors.indigo[900],
-  //                 fontSize: 50,
-  //               ),
-  //             ),
-  //             Text(
-  //               "city: ${widget.city}",
-  //               style: TextStyle(
-  //                 color: Colors.indigo[900],
-  //                 fontSize: 30,
-  //               ),
-  //             ),
-  //             Text(
-  //               "hire mode: ${widget.hiremode}",
-  //               style: TextStyle(
-  //                 color: Colors.indigo[900],
-  //                 fontSize: 30,
-  //               ),
-  //             ),
-  //             Row(
-  //               mainAxisAlignment: MainAxisAlignment.center,
-  //               children: [
-  //                 const Text(
-  //                   "Logout",
-  //                   style: TextStyle(
-  //                     color: Colors.red,
-  //                     fontSize: 30,
-  //                   ),
-  //                 ),
-  //                 IconButton(
-  //                   icon: Icon(Icons.logout),
-  //                   onPressed: () async {
-  //                     await FirebaseAuth.instance.signOut();
-  //                     Navigator.pushReplacement(
-  //                       context,
-  //                       MaterialPageRoute(
-  //                         builder: (context) => USer_login(),
-  //                       ),
-  //                     );
-  //                   },
-  //                 ),
-  //               ],
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+class ChefConnectMainState extends State<ChefConnectMain> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData && snapshot.data != null) {
-            // UserHelper.saveUser(snapshot.data);
-            return StreamBuilder<DocumentSnapshot>(
-              stream: getNames(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot> snapshot) {
-                if (snapshot.hasData && snapshot.data != null) {
-                  final userDoc = snapshot.data;
-                  final user = userDoc!.data();
-                  if (userDoc['role'] == 'admin') {
-                    return chef_dashboard();
-                    // }
-                    // else if (userDoc['role'] == 'manager') {
-                    //   return Manager_Home();
-                  } else {
-                    return user_home();
-                  }
-                } else {
-                  return Material(
-                    child: Center(
-                      child: CircularProgressIndicator(),
+    vpH = getViewportHeight(context);
+    vpW = getViewportWidth(context);
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              Image.asset(
+                "assets/CCI.jpg",
+                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
+                scale: 1,
+              ),
+              SafeArea(
+                child: Center(
+                  child: GlassmorphicContainer(
+                    width: 330,
+                    height: 620,
+                    borderRadius: 10,
+                    blur: 0.1,
+                    alignment: Alignment.bottomCenter,
+                    border: 0,
+                    linearGradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFFffffff).withOpacity(0.0),
+                        Color(0xFFFFFFFF).withOpacity(0.0),
+                      ],
+                      stops: [
+                        0.1,
+                        1,
+                      ],
                     ),
-                  );
-                }
-              },
-            );
-          }
-          return ChefConnectMain();
-        });
-  }
-}
-
-class ButtonWidget extends StatelessWidget {
-  final IconData icon;
-  final String text;
-  final VoidCallback onClicked;
-
-  const ButtonWidget({
-    Key? key,
-    required this.icon,
-    required this.text,
-    required this.onClicked,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size.fromHeight(50),
-        ),
-        child: buildContent(),
-        onPressed: onClicked,
-      );
-
-  Widget buildContent() => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 28),
-          SizedBox(width: 16),
-          Text(
-            text,
-            style: TextStyle(fontSize: 22, color: Colors.white),
+                    borderGradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFFffffff).withOpacity(1.0),
+                        Color((0xFFFFFFFF)).withOpacity(1.0),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        CircleAvatar(
+                          backgroundColor: Color(0xFF092349),
+                          radius: 100,
+                          child: Image.asset('assets/CCI1.png'),
+                        ),
+                        SizedBox(
+                          height: 240,
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 280,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                // side: BorderSide(
+                                //   color: Colors.b,
+                                //   width: 3,
+                                // ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              primary: Colors.white,
+                              onPrimary: Color.fromARGB(255, 18, 68, 138),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      LoginScreen(ischef: false),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Sign in as Customer',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 280,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                // side: BorderSide(
+                                //   color: Colors.blueGrey,
+                                //   width: 3,
+                                // ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              primary: Colors.white,
+                              onPrimary: Color.fromARGB(255, 18, 68, 138),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(
+                                    ischef: true,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Sign in as Chef',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      );
-}
-
-getNames() async {
-  QuerySnapshot users =
-      await FirebaseFirestore.instance.collection("users").get();
-  QuerySnapshot chefs =
-      await FirebaseFirestore.instance.collection("chefs").get();
-  List<DocumentSnapshot> list1 = users.docs;
-  list1.addAll(chefs.docs);
-  print(
-      "----------------------------------list of users: ${list1}--------------------------------------------------------------");
-  return list1;
+        ),
+      ),
+    );
+  }
 }

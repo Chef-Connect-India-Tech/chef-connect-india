@@ -4,8 +4,8 @@ import 'package:chef_connect_india/roles/chef/chef_registration_2.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 
 class chef_registration_one extends StatefulWidget {
-  final String phonenumber;
-  chef_registration_one({required this.phonenumber});
+  // final String phonenumber;
+  // chef_registration_one({required this.phonenumber});
 
   @override
   State<chef_registration_one> createState() => _chef_registration_oneState();
@@ -425,8 +425,6 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                                     lastname:
                                                         lastNameEditingController
                                                             .text,
-                                                    phonenumber:
-                                                        widget.phonenumber,
                                                     workexperience:
                                                         workExperienceEditingController
                                                             .text,

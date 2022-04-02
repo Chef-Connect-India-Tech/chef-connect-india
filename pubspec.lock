@@ -244,6 +244,55 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  flutter_secure_storage:
+    dependency: "direct main"
+    description:
+      name: flutter_secure_storage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.2"
+  flutter_secure_storage_linux:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
+  flutter_secure_storage_macos:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
+  flutter_secure_storage_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  flutter_secure_storage_web:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
+  flutter_secure_storage_windows:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
+  flutter_spinkit:
+    dependency: "direct main"
+    description:
+      name: flutter_spinkit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -401,6 +450,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  otp_text_field:
+    dependency: "direct main"
+    description:
+      name: otp_text_field
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
   paginate_firestore:
     dependency: "direct main"
     description:

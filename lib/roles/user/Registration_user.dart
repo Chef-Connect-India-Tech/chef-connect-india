@@ -10,11 +10,11 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Registration_user extends StatefulWidget {
-  late String phonenumber;
+  // late String phonenumber;
 
-  Registration_user({
-    required this.phonenumber,
-  });
+  // Registration_user({
+  //   // required this.phonenumber,
+  // });
 
   @override
   State<Registration_user> createState() => _Registration_userState();
@@ -417,7 +417,7 @@ class _Registration_userState extends State<Registration_user> {
     userModel.email = emailEditingController.text;
     userModel.firstname = firstNameEditingController.text;
     userModel.lastname = lastNameEditingController.text;
-    userModel.mobile1 = widget.phonenumber;
+    userModel.mobile1 = user.phoneNumber;
     userModel.profilepic =
         'http://chefconnect.co.in/assets/images/logo_chef.png';
     userModel.role = 'user';

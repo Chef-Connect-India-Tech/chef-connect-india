@@ -90,10 +90,8 @@ class _chef_loginState extends State<chef_login> {
         isLoading = false;
       });
       if (authCredential.user != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => chef_registration_one(phonenumber: a)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => chef_registration_one()));
       }
     } on FirebaseException catch (e) {
       setState(() {

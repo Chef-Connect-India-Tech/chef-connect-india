@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/user/Registration_user.dart';
@@ -68,10 +68,8 @@ class _USer_loginState extends State<USer_login> {
         isLoading = false;
       });
       if (authCredential.user != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Registration_user(phonenumber: a)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Registration_user()));
       }
     } on FirebaseException catch (e) {
       setState(() {

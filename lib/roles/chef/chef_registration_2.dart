@@ -11,14 +11,14 @@ import 'package:multiselect_formfield/multiselect_formfield.dart';
 class chef_registration_two extends StatefulWidget {
   final String firstname;
   final String lastname;
-  final String phonenumber;
+  // final String phonenumber;
   final String workexperience;
   final String worklocation;
   final String currentlocation;
   chef_registration_two(
       {required this.firstname,
       required this.lastname,
-      required this.phonenumber,
+      // required this.phonenumber,
       required this.workexperience,
       required this.worklocation,
       required this.currentlocation});
@@ -561,7 +561,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     // chefModel.email = emailEditingController.text;
     chefModel.firstname = widget.firstname;
     chefModel.lastname = widget.lastname;
-    chefModel.mobile1 = widget.phonenumber;
+    chefModel.mobile1 = user.phoneNumber;
     chefModel.experience = widget.workexperience;
     chefModel.address = widget.currentlocation;
     chefModel.city = widget.worklocation;

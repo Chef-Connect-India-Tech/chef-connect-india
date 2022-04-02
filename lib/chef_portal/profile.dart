@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:chef_connect_india/Helper/model.dart';
 import 'package:chef_connect_india/Helper/utils.dart';
+import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/chef_portal/menus/customised.dart';
 import 'package:chef_connect_india/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class chef_profile extends StatefulWidget {
   const chef_profile({Key? key}) : super(key: key);
@@ -40,6 +42,11 @@ class _chef_profileState extends State<chef_profile> {
         .child(FirebaseAuth.instance.currentUser!.uid);
     await ref.putFile(image!);
     downloadURL = await ref.getDownloadURL();
+    Alert(
+      context: context,
+      title: "Profile Pic",
+      desc: "Profile pic will be update soon",
+    ).show();
     if (downloadURL != null) {
       Firebasehelper.updatepic(
           FirebaseAuth.instance.currentUser!.uid, downloadURL);
