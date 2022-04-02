@@ -8,23 +8,13 @@ class trail extends StatefulWidget {
 }
 
 class _trailState extends State<trail> {
-  List<ContactModel> contacts = [
-    ContactModel("Zaman", "0778979454", false),
-    ContactModel("Naim", "0766223795", false),
-    ContactModel("Sardar", "0749112016", false),
-    ContactModel("Baqer", "0775286570", false),
-    ContactModel("Yasin", "0744795640", false),
-    ContactModel("Hurmat", "0707404370", false),
-    ContactModel("M.Ali", "0772680138", false),
-  ];
-
   // ignore: deprecated_member_use
-  List<ContactModel> selectedContacts =[];
+  List<ContactModel> selectedContacts = [];
   var verified;
-  var  itemname;
-  late String docid='SNSMHDIjfLNoAgBPtKcY';
+  var itemname;
+  late String docid = 'SNSMHDIjfLNoAgBPtKcY';
   var variety;
- var docc='pDSWbcECuimgt7HS6Xi6';
+  var docc = 'pDSWbcECuimgt7HS6Xi6';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +23,12 @@ class _trailState extends State<trail> {
         centerTitle: true,
         backgroundColor: Colors.green[700],
       ),
-     body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('Menu').doc(docc).collection('starters').snapshots(),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('Menu')
+            .doc(docc)
+            .collection('starters')
+            .snapshots(),
         builder: (context, snap) {
           if (!snap.hasData) {
             return Center(
@@ -46,84 +40,85 @@ class _trailState extends State<trail> {
                 child: Column(
                   children: [
                     Expanded(
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: snap.data?.docs.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        verified=snap.data?.docs[index]['isSelected'];
-                        itemname=snap.data?.docs[index]['dish'];
-                        //docid=snap.data?.docs[index]['docid'];
-                            // return ListTile(
-                            //     leading: CircleAvatar(
-                            //       backgroundColor: Colors.green[700],
-                            //       child: Icon(
-                            //         Icons.person_outline_outlined,
-                            //         color: Colors.white,
-                            //       ),
-                            //     ),
-                            //     title: Text(
-                            //       snap.data?.docs[index]['dish'],
-                            //       style: TextStyle(
-                            //         fontWeight: FontWeight.w500,
-                            //       ),
-                            //     ),
-                                
-                            //     trailing: snap.data?.docs[index]['isSelected']
-                            //         ? Icon(
-                            //             Icons.check_circle,
-                            //             color: Colors.green[700],
-                            //           )
-                            //         : Icon(
-                            //             Icons.check_circle_outline,
-                            //             color: Colors.grey,
-                            //           ),
-                            //     onTap: () {
-                            //       var doc=snap.data?.docs[index]['docid'];
-                            //       print(doc);
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snap.data?.docs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          verified = snap.data?.docs[index]['isSelected'];
+                          itemname = snap.data?.docs[index]['dish'];
+                          //docid=snap.data?.docs[index]['docid'];
+                          // return ListTile(
+                          //     leading: CircleAvatar(
+                          //       backgroundColor: Colors.green[700],
+                          //       child: Icon(
+                          //         Icons.person_outline_outlined,
+                          //         color: Colors.white,
+                          //       ),
+                          //     ),
+                          //     title: Text(
+                          //       snap.data?.docs[index]['dish'],
+                          //       style: TextStyle(
+                          //         fontWeight: FontWeight.w500,
+                          //       ),
+                          //     ),
 
-                            //       CollectionReference _collectionRef =
-                            //       FirebaseFirestore.instance.collection("Menu");
-                            //   _collectionRef.doc(docc).collection('starters').doc(doc).update({
-                            //     "isSelected": true,
-                            //   }).then((value) => print("Updated Successfully"));
-                            //       //print(isSelected);
-                            //       print(snap.data?.docs[index]['docid']);
-                            //     },
-                            //   );
-                        return  ContactItem(
-                        snap.data?.docs[index]['dish'],
-                        snap.data?.docs[index]['isSelected'],
-                        snap.data?.docs[index]['docid'],
-                      );
-                         
-                      },
-                    ),
-                  ),
-                selectedContacts.length > 0 ? Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 10,
-                ),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: RaisedButton(
-                    color: Colors.green[700],
-                    child: Text(
-                      "Delete (${selectedContacts.length})",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+                          //     trailing: snap.data?.docs[index]['isSelected']
+                          //         ? Icon(
+                          //             Icons.check_circle,
+                          //             color: Colors.green[700],
+                          //           )
+                          //         : Icon(
+                          //             Icons.check_circle_outline,
+                          //             color: Colors.grey,
+                          //           ),
+                          //     onTap: () {
+                          //       var doc=snap.data?.docs[index]['docid'];
+                          //       print(doc);
+
+                          //       CollectionReference _collectionRef =
+                          //       FirebaseFirestore.instance.collection("Menu");
+                          //   _collectionRef.doc(docc).collection('starters').doc(doc).update({
+                          //     "isSelected": true,
+                          //   }).then((value) => print("Updated Successfully"));
+                          //       //print(isSelected);
+                          //       print(snap.data?.docs[index]['docid']);
+                          //     },
+                          //   );
+                          return ContactItem(
+                            snap.data?.docs[index]['dish'],
+                            snap.data?.docs[index]['isSelected'],
+                            snap.data?.docs[index]['docid'],
+                          );
+                        },
                       ),
                     ),
-                    onPressed: () {
-                      print("Delete List Lenght: ${selectedContacts.length}");
-                    },
-                  ),
-                ),
-              ): Container(),
+                    selectedContacts.length > 0
+                        ? Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 25,
+                              vertical: 10,
+                            ),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: RaisedButton(
+                                color: Colors.green[700],
+                                child: Text(
+                                  "Delete (${selectedContacts.length})",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  print(
+                                      "Delete List Lenght: ${selectedContacts.length}");
+                                },
+                              ),
+                            ),
+                          )
+                        : Container(),
                   ],
-                  
                 ),
               ),
             );
@@ -176,8 +171,7 @@ class _trailState extends State<trail> {
     // );
   }
 
-  Widget ContactItem(
-      String name, bool isSelected, String docid1) {
+  Widget ContactItem(String name, bool isSelected, String docid1) {
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: Colors.green[700],
@@ -192,7 +186,6 @@ class _trailState extends State<trail> {
           fontWeight: FontWeight.w500,
         ),
       ),
-      
       trailing: isSelected
           ? Icon(
               Icons.check_circle,
@@ -203,25 +196,23 @@ class _trailState extends State<trail> {
               color: Colors.grey,
             ),
       onTap: () {
-    //     CollectionReference _collectionRef =
-    //     FirebaseFirestore.instance.collection("Menu");
-    // _collectionRef.doc(docc).collection('starters').doc(docid1).update({
-    //   "isSelected": true,
-    // }).then((value) => print("Updated Successfully"));
-    //     print(isSelected);
+        //     CollectionReference _collectionRef =
+        //     FirebaseFirestore.instance.collection("Menu");
+        // _collectionRef.doc(docc).collection('starters').doc(docid1).update({
+        //   "isSelected": true,
+        // }).then((value) => print("Updated Successfully"));
+        //     print(isSelected);
         print(docid1);
         if (isSelected == true) {
-            Firebasehelper.updatemenu1(docc,docid1,false);
-            isSelected= false;
-            selectedContacts.add(ContactModel(name, docid, isSelected));
-          }
-          else if (isSelected == false) {
-            Firebasehelper.updatemenu1(docc,docid1,true);
-            isSelected= true;
-            selectedContacts
-               .removeWhere((element) => element.name == itemname);            
-          } 
-         //Firebasehelper.updatemenu(docc,docid, true);
+          Firebasehelper.updatemenu1(docc, docid1, false);
+          isSelected = false;
+          selectedContacts.add(ContactModel(name, docid, isSelected));
+        } else if (isSelected == false) {
+          Firebasehelper.updatemenu1(docc, docid1, true);
+          isSelected = true;
+          selectedContacts.removeWhere((element) => element.name == itemname);
+        }
+        //Firebasehelper.updatemenu(docc,docid, true);
         // if (verified == true) {
         //     Firebasehelper.updatemenu(docc,docid, false);
         //     verified=false;
@@ -232,15 +223,13 @@ class _trailState extends State<trail> {
         // //     //selectedContacts.add(ContactModel(name, phoneNumber, true));
         // //   }
         //   else
-          //   if (verified == false) {
-          //   Firebasehelper.updatemenu1(docc,docid, true);
-          //   verified= true;
-           selectedContacts
-               .removeWhere((element) => element.name == itemname);
-          // }
+        //   if (verified == false) {
+        //   Firebasehelper.updatemenu1(docc,docid, true);
+        //   verified= true;
+        selectedContacts.removeWhere((element) => element.name == itemname);
+        // }
         //   print(verified);
-        
-         
+
         // setState(() {
         //   verified != (verified) as String;
         //   print(verified);
@@ -257,11 +246,10 @@ class _trailState extends State<trail> {
     );
   }
 }
-class ContactModel{
 
+class ContactModel {
   String name, phoneNumber;
   bool isSelected;
 
   ContactModel(this.name, this.phoneNumber, this.isSelected);
-
 }

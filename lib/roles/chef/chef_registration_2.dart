@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field, deprecated_member_use
 
 import 'package:chef_connect_india/roles/chef/Booking.dart';
+import 'package:chef_connect_india/roles/chef/multiselect.dart/multiselectdropdown_screen.dart';
 import 'package:chef_connect_india/roles/chef/trail.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,12 +26,32 @@ class chef_registration_two extends StatefulWidget {
       required this.workexperience,
       required this.worklocation,
       required this.currentlocation});
+  final _fireStore = FirebaseFirestore.instance;
 
   @override
   State<chef_registration_two> createState() => _chef_registration_twoState();
 }
 
 class _chef_registration_twoState extends State<chef_registration_two> {
+  var favoriteMovies1 = [];
+  bool isSelected = false;
+
+  Future<void> getData() async {
+    var docc = 'pDSWbcECuimgt7HS6Xi6';
+    // Get docs from collection reference
+    FirebaseFirestore.instance
+        .collection('Menu')
+        .doc(docc)
+        .collection("starters")
+        .get()
+        .then((snapshot) => {
+              snapshot.docs.forEach((doc) {
+                favoriteMovies1.add(doc['dish']);
+              })
+            });
+    print(favoriteMovies1);
+  }
+
   List<Movie> favoriteMovies = [
     Movie('Harry Potter'),
     Movie('Spider Man'),
@@ -38,7 +59,6 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     Movie('Transformers'),
     Movie('The Last Witch Hunters')
   ];
-  
   final _auth = FirebaseAuth.instance;
 
   // string for displaying the error Message
@@ -395,13 +415,26 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                             ),
                             ElevatedButton(
                               onPressed: () {
+                                //openDialog();
+                                //getData();
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => trail(),
+                                //   ),
+                                // );
                                 Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>trail(),
-                ),
-              );}, child: null,),
-                             
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MyHomePage1(
+                                      title: 'multi select',
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: null,
+                            ),
+
                             SizedBox(
                               height: 10,
                             ),
@@ -546,7 +579,9 @@ class _chef_registration_twoState extends State<chef_registration_two> {
         MaterialPageRoute(builder: (context) => Chef_dashboard()),
         (route) => false);
   }
+
   void openDialog() {
+    print(favoriteMovies1);
     showDialog(
         context: context,
         builder: (ctx) {
@@ -556,59 +591,77 @@ class _chef_registration_twoState extends State<chef_registration_two> {
             content: Container(
                 width: 300,
                 height: 400,
-                child: MultiSelectionExample(favoriteMovies)),
+                child: MultiSelectionExample(favoriteMovies1, isSelected)),
           );
         });
   }
 }
+
 class MultiSelectionExample extends StatefulWidget {
-  List<Movie> favoriteMovies;
+  // var favoriteMovies1 = [];
+  // Future<void> getData() async {
+  //   // Get docs from collection reference
+  //   FirebaseFirestore.instance
+  //       .collection('Menu')
+  //       .doc()
+  //       .collection("starters")
+  //       .get()
+  //       .then((snapshot) => {
+  //             snapshot.docs.forEach((doc) {
+  //               favoriteMovies1.add(doc['dish']);
+  //             })
+  //           });
+  // }
 
-  MultiSelectionExample(this.favoriteMovies);
+  var favoriteMovies1;
+  var isSelected = false;
 
+  MultiSelectionExample(this.favoriteMovies1, this.isSelected);
   @override
   _MultiSelectionExampleState createState() => _MultiSelectionExampleState();
 }
 
 class _MultiSelectionExampleState extends State<MultiSelectionExample> {
-
-
   @override
   Widget build(BuildContext context) {
+    bool isSelected = false;
+    print(widget.favoriteMovies1);
     return ListView.builder(
       itemBuilder: (ctx, index) {
         return GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
-            widget.favoriteMovies[index].isSelected = !widget.favoriteMovies[index].isSelected;
+            widget.favoriteMovies1[index].isSelected =
+                !widget.favoriteMovies1[index].isSelected;
             setState(() {});
           },
           child: Container(
-            color: widget.favoriteMovies[index].isSelected
+            color: widget.favoriteMovies1[index].isSelected
                 ? Colors.green[100]
                 : null,
             child: Row(
               children: <Widget>[
                 Checkbox(
-                    value: widget.favoriteMovies[index].isSelected,
-                     onChanged: (s) {
-                       widget.favoriteMovies[index].isSelected = !widget.favoriteMovies[index].isSelected;
+                    value: widget.favoriteMovies1[index].isSelected,
+                    onChanged: (s) {
+                      widget.favoriteMovies1[index].isSelected =
+                          !widget.favoriteMovies1[index].isSelected;
                       setState(() {});
                     }),
-                Text(widget.favoriteMovies[index].movieName)
+                Text(widget.favoriteMovies1[index].movieName)
               ],
             ),
           ),
         );
       },
-      itemCount: widget.favoriteMovies.length,
+      itemCount: widget.favoriteMovies1.length,
     );
   }
 }
 
-class Movie{
+class Movie {
   Movie(this.movieName);
 
   String movieName;
-  bool isSelected=false;
+  bool isSelected = false;
 }
