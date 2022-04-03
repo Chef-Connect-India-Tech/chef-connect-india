@@ -274,9 +274,6 @@ class _Select_ModeState extends State<Select_Mode> {
                           ))
                         ]),
                     SizedBox(
-                      height: 60,
-                    ),
-                    SizedBox(
                       height: 50,
                       width: 250,
                       child: ElevatedButton(

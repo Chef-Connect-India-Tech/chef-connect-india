@@ -114,6 +114,9 @@ class ChefModel {
   String? aadhar;
   String? pan;
   String? verified;
+  String? startersselectedlist;
+  String? MaincourseSelectedlist;
+  String? DesertsSelectedlist;
 
   ChefModel(
       {this.uid,
@@ -147,43 +150,50 @@ class ChefModel {
       this.poi,
       this.verified,
       this.aadhar,
-      this.pan});
+      this.pan,
+      this.startersselectedlist,
+      this.MaincourseSelectedlist,
+      this.DesertsSelectedlist});
 
   // receiving data from server
   factory ChefModel.fromMap(map) {
     return ChefModel(
-        uid: map['uid'],
-        chefid: map['chefid'],
-        email: map['email'],
-        firstname: map['firstname'],
-        lastname: map['lastname'],
-        dob: map['dob'],
-        city: map['city'],
-        role: map['role'],
-        profilepic: map['profilepic'],
-        country: map['country'],
-        pincode: map['pincode'],
-        mobile1: map['mobile1'],
-        mobile2: map['mobile2'],
-        workpreference: map['workpreference'],
-        dutystatus: map['dutystatus'],
-        currentsalary: map['currentsalary'],
-        expectedsalary: map['expectedsalary'],
-        cheffees: map['cheffees'],
-        experience: map['experience'],
-        cuisineexpert: map['cuisineexpert'],
-        specialities: map['specialities'],
-        menuimages: map['menuimages'],
-        rating: map['rating'],
-        education: map['education'],
-        languages: map['languages'],
-        level: map['level'],
-        professionallevel: map['professionallevel'],
-        address: map['address'],
-        poi: map['proof of identity'],
-        aadhar: map['aadhar'],
-        pan: map['professionallevel'],
-        verified: map['verified']);
+      uid: map['uid'],
+      chefid: map['chefid'],
+      email: map['email'],
+      firstname: map['firstname'],
+      lastname: map['lastname'],
+      dob: map['dob'],
+      city: map['city'],
+      role: map['role'],
+      profilepic: map['profilepic'],
+      country: map['country'],
+      pincode: map['pincode'],
+      mobile1: map['mobile1'],
+      mobile2: map['mobile2'],
+      workpreference: map['workpreference'],
+      dutystatus: map['dutystatus'],
+      currentsalary: map['currentsalary'],
+      expectedsalary: map['expectedsalary'],
+      cheffees: map['cheffees'],
+      experience: map['experience'],
+      cuisineexpert: map['cuisineexpert'],
+      specialities: map['specialities'],
+      menuimages: map['menuimages'],
+      rating: map['rating'],
+      education: map['education'],
+      languages: map['languages'],
+      level: map['level'],
+      professionallevel: map['professionallevel'],
+      address: map['address'],
+      poi: map['proof of identity'],
+      aadhar: map['aadhar'],
+      pan: map['professionallevel'],
+      verified: map['verified'],
+      startersselectedlist: map['startersselectedlist'],
+      MaincourseSelectedlist: map['MaincourseSelectedlist'],
+      DesertsSelectedlist: map['DesertsSelectedlist'],
+    );
   }
   // sending data to our server
   Map<String, dynamic> toMap() {
@@ -217,31 +227,45 @@ class ChefModel {
       'aadhar': aadhar,
       'poi': poi,
       'pan': pan,
-      'verified': verified
+      'verified': verified,
+      'startersselectedlist': startersselectedlist,
+      'MaincourseSelectedlist': MaincourseSelectedlist,
+      'DesertsSelectedlist': DesertsSelectedlist
     };
   }
-  
 }
+
 class Firebasehelper {
-  static void updatemsg(appointid,status) async{
+  static void updatemsg(appointid, status) async {
     CollectionReference appointmentdatbase =
-    FirebaseFirestore.instance.collection("chefs");
-    var result = await appointmentdatbase.doc(appointid).update({"firstname":status});
-  }
-  static void updatepic(appointid,status) async{
-    CollectionReference appointmentdatbase =
-    FirebaseFirestore.instance.collection("chefs");
-    var result = await appointmentdatbase.doc(appointid).update({"profilepic":status});
-  }
-  static void updatemenu(uid,doc,status) async{
-    CollectionReference appointmentdatbase =
-    FirebaseFirestore.instance.collection("Menu").doc(uid).collection('starters');
-    var result = await appointmentdatbase.doc(doc).update({"starters.isSelected": status});
-  }
-  static void updatemenu1(uid,docid1,statu) async{
-    CollectionReference appointmentdatbase =
-    FirebaseFirestore.instance.collection("Menu").doc(uid).collection('starters');
-    var result = await appointmentdatbase.doc(docid1).update({"isSelected": statu});
+        FirebaseFirestore.instance.collection("chefs");
+    var result =
+        await appointmentdatbase.doc(appointid).update({"firstname": status});
   }
 
+  static void updatepic(appointid, status) async {
+    CollectionReference appointmentdatbase =
+        FirebaseFirestore.instance.collection("chefs");
+    var result =
+        await appointmentdatbase.doc(appointid).update({"profilepic": status});
+  }
+
+  static void updatemenu(uid, doc, status) async {
+    CollectionReference appointmentdatbase = FirebaseFirestore.instance
+        .collection("Menu")
+        .doc(uid)
+        .collection('starters');
+    var result = await appointmentdatbase
+        .doc(doc)
+        .update({"starters.isSelected": status});
+  }
+
+  static void updatemenu1(uid, docid1, statu) async {
+    CollectionReference appointmentdatbase = FirebaseFirestore.instance
+        .collection("Menu")
+        .doc(uid)
+        .collection('starters');
+    var result =
+        await appointmentdatbase.doc(docid1).update({"isSelected": statu});
+  }
 }
