@@ -1,6 +1,7 @@
 // ignore_for_file: unused_field, deprecated_member_use
 
 import 'package:chef_connect_india/roles/chef/Booking.dart';
+import 'package:chef_connect_india/roles/chef/multiselect.dart/menu.dart';
 import 'package:chef_connect_india/roles/chef/multiselect.dart/multiselectdropdown_screen.dart';
 import 'package:chef_connect_india/roles/chef/trail.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,21 +36,21 @@ class chef_registration_two extends StatefulWidget {
 class _chef_registration_twoState extends State<chef_registration_two> {
   var favoriteMovies1 = [];
   bool isSelected = false;
-
+  List favoriteMovies2 = [];
   Future<void> getData() async {
-    var docc = 'pDSWbcECuimgt7HS6Xi6';
+    var docc = 'lHNpuzpJuz8CdzthmrBP';
     // Get docs from collection reference
     FirebaseFirestore.instance
-        .collection('Menu')
+        .collection('menu')
         .doc(docc)
         .collection("starters")
         .get()
         .then((snapshot) => {
               snapshot.docs.forEach((doc) {
-                favoriteMovies1.add(doc['dish']);
+                favoriteMovies2.add(doc['dish']);
               })
             });
-    print(favoriteMovies1);
+    print(favoriteMovies2);
   }
 
   List<Movie> favoriteMovies = [
@@ -416,21 +417,21 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                             ElevatedButton(
                               onPressed: () {
                                 //openDialog();
-                                //getData();
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => trail(),
-                                //   ),
-                                // );
+                                getData();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MyHomePage1(
-                                      title: 'multi select',
-                                    ),
+                                    builder: (context) => predefinedmenu(),
                                   ),
                                 );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => MyHomePage1(
+                                //       title: 'multi select',
+                                //     ),
+                                //   ),
+                                // );
                               },
                               child: null,
                             ),
