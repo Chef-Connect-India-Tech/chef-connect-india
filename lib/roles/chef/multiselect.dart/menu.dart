@@ -27,6 +27,17 @@ class _predefinedmenuState extends State<predefinedmenu> {
     print(favoriteMovies1);
   }
 
+  Future<void> _pushdata() async {
+    FirebaseFirestore.instance
+        .collection('menuu')
+        .doc()
+        .collection('starters')
+        .doc()
+        .set({
+      'selected list': selectedReportList.join(" , "),
+    }, SetOptions(merge: true));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,7 +147,9 @@ class _predefinedmenuState extends State<predefinedmenu> {
                           SizedBox(
                             width: 12,
                           ),
+
                           // Text(data['address'])
+                          // Text(FirebaseAuth.instance.currentUser!.uid)
                         ],
                       ),
                     ],
@@ -257,9 +270,11 @@ class _predefinedmenuState extends State<predefinedmenu> {
             ),
             actions: <Widget>[
               FlatButton(
-                child: Text("Select"),
-                onPressed: () => Navigator.of(context).pop(),
-              )
+                  child: Text("Select"),
+                  onPressed: () {
+                    _pushdata();
+                    Navigator.of(context).pop();
+                  })
             ],
           );
         });
@@ -279,7 +294,7 @@ class MultiSelectChip extends StatefulWidget {
 class _MultiSelectChipState extends State<MultiSelectChip> {
   // String selectedChoice = "";
   List<String> selectedChoices = [];
-
+  List<Widget> choices1 = [];
   _buildChoiceList() {
     List<Widget> choices = [];
 
@@ -300,12 +315,13 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
         ),
       ));
     });
-
     return choices;
   }
 
   @override
   Widget build(BuildContext context) {
+    print('========================');
+    print(_buildChoiceList().toString());
     return Wrap(
       children: _buildChoiceList(),
     );
