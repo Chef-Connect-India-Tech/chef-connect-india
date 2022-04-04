@@ -44,6 +44,8 @@ class _user_homeState extends State<user_home> {
   @override
   void initState() {
     fetchCarouselImages();
+    _myCusine = [];
+    _myCusineResult = '';
     super.initState();
   }
 
@@ -72,12 +74,12 @@ class _user_homeState extends State<user_home> {
   late String _myCusineResult;
   // final formKey = new GlobalKey<FormState>();
 
-  @override
-  void initState1() {
-    super.initState();
-    _myCusine = [];
-    _myCusineResult = '';
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _myCusine = [];
+  //   _myCusineResult = '';
+  // }
 
   @override
   Widget build(BuildContext context) {

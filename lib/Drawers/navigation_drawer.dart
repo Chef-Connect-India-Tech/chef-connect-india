@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:chef_connect_india/Main%20Screen/home.dart';
-import 'package:chef_connect_india/main.dart';
+// import 'package:chef_connect_india/main.dart';
 import 'package:chef_connect_india/roles/user/select_mode.dart';
 import 'package:chef_connect_india/roles/user/user_home.dart';
 import 'package:chef_connect_india/roles/user/user_profile.dart';
@@ -44,9 +44,7 @@ class NavBar extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: NetworkImage(
-                      'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg')),
+                  fit: BoxFit.fill, image: AssetImage('assets/profile-bg.jpg')),
             ),
           ),
           ListTile(
@@ -68,7 +66,7 @@ class NavBar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.person),
-            title: Text('Location and Hire Mode'),
+            title: Text('Location'),
             onTap: () {
               Navigator.push(
                 context,
@@ -78,6 +76,18 @@ class NavBar extends StatelessWidget {
               );
             },
           ),
+          // ListTile(
+          //   leading: Icon(Icons.person),
+          //   title: Text('Hire Mode'),
+          //   onTap: () {
+          //     // Navigator.push(
+          //     //   context,
+          //     //   MaterialPageRoute(
+          //     //     builder: (context) => Select_Mode(),
+          //     //   ),
+          //     // );
+          //   },
+          // ),
           Divider(
             thickness: 2,
           ),
