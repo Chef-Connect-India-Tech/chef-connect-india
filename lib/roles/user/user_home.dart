@@ -204,7 +204,7 @@ class _user_homeState extends State<user_home> {
                                         children: [
                                           TextFormField(
                                             decoration: InputDecoration(
-                                              fillColor: Colors.grey.shade200,
+                                              fillColor: Colors.white70,
                                               filled: true,
                                               hintText: 'Enter Address',
                                               hintStyle: TextStyle(
@@ -213,6 +213,28 @@ class _user_homeState extends State<user_home> {
                                               border: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        10.0),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -221,14 +243,14 @@ class _user_homeState extends State<user_home> {
                                           ),
                                           DropdownButtonFormField<String>(
                                             decoration: InputDecoration(
-                                              labelText: 'Select Gender',
+                                              labelText: 'Select Chef Gender',
                                               labelStyle: TextStyle(
                                                   fontSize: 15,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                               prefixIcon: Icon(Icons.person),
-                                              fillColor: Colors.grey.shade200,
-                                              hintText: 'Select Gender',
+                                              fillColor: Colors.white70,
+                                              hintText: 'Select Chef Gender',
                                               hintStyle: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 15),
@@ -291,7 +313,7 @@ class _user_homeState extends State<user_home> {
                                                   fontWeight: FontWeight.bold),
                                               prefixIcon:
                                                   Icon(Icons.leaderboard),
-                                              fillColor: Colors.grey.shade200,
+                                              fillColor: Colors.white70,
                                               // hintText: 'Select Current Salary',
                                               hintStyle: TextStyle(
                                                   color: Colors.black,
@@ -348,14 +370,13 @@ class _user_homeState extends State<user_home> {
                                           ),
                                           DropdownButtonFormField<String>(
                                             decoration: InputDecoration(
-                                              labelText:
-                                                  'Current Salary Per Month',
+                                              labelText: 'budget for chef',
                                               labelStyle: TextStyle(
                                                   fontSize: 15,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                               prefixIcon: Icon(Icons.money),
-                                              fillColor: Colors.grey.shade200,
+                                              fillColor: Colors.white70,
                                               // hintText: 'Select Current Salary',
                                               hintStyle: TextStyle(
                                                   color: Colors.black,
@@ -496,16 +517,25 @@ class _user_homeState extends State<user_home> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
+                                    title: Text(
+                                      'Query For Kitchen Professional',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                     backgroundColor: Colors.white,
                                     content: SingleChildScrollView(
                                       child: Column(
+                                        mainAxisSize: MainAxisSize.min,
                                         children: [
                                           SizedBox(
                                             height: 10,
                                           ),
                                           TextFormField(
                                             decoration: InputDecoration(
-                                              fillColor: Colors.grey.shade200,
+                                              fillColor: Colors.white70,
                                               filled: true,
                                               hintText: 'Enter Hotel name',
                                               hintStyle: TextStyle(
@@ -529,7 +559,7 @@ class _user_homeState extends State<user_home> {
                                                   fontWeight: FontWeight.bold),
                                               prefixIcon:
                                                   Icon(Icons.leaderboard),
-                                              fillColor: Colors.grey.shade200,
+                                              fillColor: Colors.white70,
                                               // hintText: 'Select Current Salary',
                                               hintStyle: TextStyle(
                                                   color: Colors.black,
@@ -582,7 +612,7 @@ class _user_homeState extends State<user_home> {
                                             },
                                           ),
                                           SizedBox(
-                                            height: 60,
+                                            height: 10,
                                           ),
                                           MultiSelectFormField(
                                             border: OutlineInputBorder(
@@ -661,18 +691,17 @@ class _user_homeState extends State<user_home> {
                                             },
                                           ),
                                           SizedBox(
-                                            height: 50,
+                                            height: 10,
                                           ),
                                           DropdownButtonFormField<String>(
                                             decoration: InputDecoration(
-                                              labelText:
-                                                  'Current Salary Per Month',
+                                              labelText: 'salary budget',
                                               labelStyle: TextStyle(
                                                   fontSize: 15,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                               prefixIcon: Icon(Icons.money),
-                                              fillColor: Colors.grey.shade200,
+                                              fillColor: Colors.white70,
                                               // hintText: 'Select Current Salary',
                                               hintStyle: TextStyle(
                                                   color: Colors.black,
@@ -729,23 +758,39 @@ class _user_homeState extends State<user_home> {
                                     ),
                                     actions: [
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           SizedBox(
-                                            width: 40,
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              'Cancel',
+                                            height: 45,
+                                            width: 100,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: Text(
+                                                'Cancel',
+                                              ),
                                             ),
                                           ),
                                           SizedBox(
-                                            width: 50,
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              'Submit',
+                                            height: 45,
+                                            width: 100,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: Text(
+                                                'Submit',
+                                              ),
                                             ),
                                           )
                                         ],
