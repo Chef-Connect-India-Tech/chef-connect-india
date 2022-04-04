@@ -522,8 +522,6 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
 
   @override
   Widget build(BuildContext context) {
-    print('========================');
-    print(_buildChoiceList().toString());
     return Wrap(
       children: _buildChoiceList(),
     );

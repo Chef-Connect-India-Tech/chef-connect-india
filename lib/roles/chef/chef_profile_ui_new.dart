@@ -1,4 +1,6 @@
+import 'package:chef_connect_india/roles/chef/addmenu.dart';
 import 'package:chef_connect_india/roles/chef/multiselect.dart/menu.dart';
+import 'package:chef_connect_india/roles/chef/multiselect.dart/trailmultiselect.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -109,6 +111,56 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
                       ),
                       SizedBox(
                         height: 15,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            'Menu',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 148,
+                          ),
+                          InkWell(
+                            onTap: ()
+                                // async
+                                {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => predefinedmenu(),
+                                ),
+                              );
+                              // await openDialog(data);
+                            },
+                            child: Icon(
+                              Icons.edit,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: ()
+                                // async
+                                {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => addmenu(),
+                                ),
+                              );
+                              // await openDialog(data);
+                            },
+                            child: Icon(
+                              Icons.add,
+                            ),
+                          ),
+                        ],
                       ),
                       Row(
                         children: [
@@ -582,40 +634,6 @@ class _Chef_profile_uiState extends State<Chef_profile_ui> {
                           )),
                       SizedBox(
                         height: 30,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text(
-                            'Menu',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 148,
-                          ),
-                          InkWell(
-                            onTap: ()
-                                // async
-                                {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => predefinedmenu(),
-                                ),
-                              );
-                              // await openDialog(data);
-                            },
-                            child: Icon(
-                              Icons.edit,
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
