@@ -1,10 +1,12 @@
 import 'dart:developer';
+import 'package:chef_connect_india/Helper/dimensions.dart';
 import 'package:chef_connect_india/Main%20Screen/otp_screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:park_place/screens/otpScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 bool role = false;
+var vpH, vpW;
 
 class LoginScreen extends StatefulWidget {
   static String? phone;
@@ -55,67 +57,80 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.grey.withOpacity(.2),
-      body: SafeArea(
-        child: Scaffold(
-          backgroundColor:
-              widget.isowner ? Colors.blue[200] : Colors.purple[300],
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 50,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Welcome.",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        child: Text(
-                          "Enter your phone number to continue...",
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
+    vpH = getViewportHeight(context);
+    vpW = getViewportWidth(context);
+    return SafeArea(
+      child: Scaffold(
+          // resizeToAvoidBottomInset: false,
+          // backgroundColor: Colors.grey.withOpacity(.2),
+          body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: Stack(children: [
+          Image.asset(
+            "assets/CCI.jpg",
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+            scale: 1,
+          ),
+          SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // SizedBox(
+                    //   height: 30,
+                    // ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Welcome.",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                backgroundColor: Colors.black.withOpacity(.4)),
                           ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            child: Text(
+                              "Enter your phone number to continue...",
+                              style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  backgroundColor:
+                                      Colors.black.withOpacity(.7)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 50.0),
+                      child: Center(
+                        child: CircleAvatar(
+                          backgroundColor: Color(0xFF092349),
+                          radius: 100,
+                          child: Image.asset('assets/CCI1.png'),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 50.0),
-                  child: Center(
-                    child: Container(
-                      height: 200,
-                      width: 200,
-                      child: widget.isowner
-                          ? Image.asset("assets/CCI1.png")
-                          : Image.asset("assets/CCI1.png"),
                     ),
-                  ),
+                    _formModule(),
+                  ],
                 ),
-                _formModule(),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        ]),
+      )),
     );
   }
 
@@ -132,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
-                  color: Colors.white.withOpacity(.1),
+                  color: Colors.black.withOpacity(.4),
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
@@ -159,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: TextFormField(
                             maxLength: 10,
                             textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.phone,
+                            keyboardType: TextInputType.number,
                             style: TextStyle(
                               color: Colors.white,
                             ),
@@ -169,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               border: InputBorder.none,
                               hintText: 'Phone Number',
                               hintStyle: TextStyle(
-                                color: Colors.white60.withOpacity(.35),
+                                color: Colors.white60.withOpacity(.5),
                               ),
                             ),
                             obscureText: false,
@@ -178,6 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               setState(() {
                                 LoginScreen.phone = val;
                               });
+                              return null;
                             },
                           ),
                         ),

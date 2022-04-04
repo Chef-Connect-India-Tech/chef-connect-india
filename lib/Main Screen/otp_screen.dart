@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:chef_connect_india/Helper/dimensions.dart';
 import 'package:chef_connect_india/Main%20Screen/login_screen.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 bool owner = false;
+var vpH, vpW;
 
 class OTPScreen extends StatefulWidget {
   final phone = LoginScreen.phone;
@@ -188,66 +190,86 @@ class _OTPScreenState extends State<OTPScreen> {
 
   @override
   Widget build(BuildContext context) {
+    vpH = getViewportHeight(context);
+    vpW = getViewportWidth(context);
     return WillPopScope(
       onWillPop: () {
         showSnackBar('You cannot go back at this stage ', Colors.grey[600]!);
         return Future.value(false);
       },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: owner ? Colors.blue[200] : Colors.purple[300],
-        body: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: !codeSent
-                ? Center(
-                    child: SpinKitFadingCircle(
-                      color: Colors.white60,
-                      size: 30,
-                    ),
-                  )
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 50,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        child: Column(
+      child: SafeArea(
+        child: Scaffold(
+            // resizeToAvoidBottomInset: false,
+            // backgroundColor: owner ? Colors.blue[200] : Colors.purple[300],
+            body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              Image.asset(
+                "assets/CCI.jpg",
+                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
+                scale: 1,
+              ),
+              SafeArea(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: !codeSent
+                      ? Center(
+                          child: SpinKitFadingCircle(
+                            color: Colors.white,
+                            size: 60,
+                          ),
+                        )
+                      : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "OTP sent.",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
                             SizedBox(
-                              height: 10,
+                              height: 50,
                             ),
-                            Container(
-                              child: Text(
-                                "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
-                                style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "OTP sent.",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                        backgroundColor:
+                                            Colors.black.withOpacity(.4)),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
+                                      style: TextStyle(
+                                          color: Colors.white70,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.normal,
+                                          backgroundColor:
+                                              Colors.black.withOpacity(.7)),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
+                            _formModule(),
                           ],
                         ),
-                      ),
-                      _formModule(),
-                    ],
-                  ),
+                ),
+              ),
+            ],
           ),
-        ),
+        )),
       ),
     );
   }
@@ -265,7 +287,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
-                  color: Colors.white.withOpacity(.1),
+                  color: Colors.black.withOpacity(.4),
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
@@ -301,7 +323,7 @@ class _OTPScreenState extends State<OTPScreen> {
                               border: InputBorder.none,
                               hintText: 'Enter OTP',
                               hintStyle: TextStyle(
-                                color: Colors.white60.withOpacity(.35),
+                                color: Colors.white60.withOpacity(.5),
                               ),
                             ),
                             obscureText: false,
