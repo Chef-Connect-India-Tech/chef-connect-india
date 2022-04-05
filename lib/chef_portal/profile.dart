@@ -1019,7 +1019,7 @@ class _chef_profileState extends State<chef_profile> {
                           );
                         },
                         child: Icon(
-                          Icons.edit,
+                          Icons.add,
                         ),
                       ),
                     ],
@@ -1053,7 +1053,7 @@ class _chef_profileState extends State<chef_profile> {
                           );
                         },
                         child: Icon(
-                          Icons.edit,
+                          Icons.add,
                         ),
                       ),
                     ],
