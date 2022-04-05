@@ -6,6 +6,7 @@ import 'package:chef_connect_india/Helper/model.dart';
 import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/chef_portal/menus/customised.dart';
+import 'package:chef_connect_india/chef_portal/menus/predefined.dart';
 import 'package:chef_connect_india/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -1015,6 +1016,40 @@ class _chef_profileState extends State<chef_profile> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => custom_menu(),
+                            ),
+                          );
+                        },
+                        child: Icon(
+                          Icons.edit,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Text(
+                        'Menu',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 240,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => predefined(),
                             ),
                           );
                         },
