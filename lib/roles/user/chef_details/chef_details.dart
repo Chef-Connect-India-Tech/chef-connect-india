@@ -29,7 +29,7 @@ class chef_pro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
+      //drawer: NavBar(),
       appBar: AppBar(title: Text('Chef Details')),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
