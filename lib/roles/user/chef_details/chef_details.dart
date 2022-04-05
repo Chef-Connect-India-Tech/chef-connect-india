@@ -3,7 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class chef_pro extends StatelessWidget {
-  const chef_pro({Key? key}) : super(key: key);
+  const chef_pro(
+      {Key? key,
+      chefid,
+      cheflevel,
+      experience,
+      cuisine,
+      profilepic,
+      specialities,
+      city,
+      rating})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
