@@ -42,16 +42,16 @@ class _Select_ModeState extends State<Select_Mode> {
       index: 1,
       icon: Icon(Icons.person),
     ),
-    ChefList(
-      chef: 'Private Chef',
-      index: 2,
-      icon: Icon(Icons.person),
-    ),
-    ChefList(
-      chef: 'Kitchen Professional',
-      index: 3,
-      icon: Icon(Icons.person),
-    ),
+    // ChefList(
+    //   chef: 'Private Chef',
+    //   index: 2,
+    //   icon: Icon(Icons.person),
+    // ),
+    // ChefList(
+    //   chef: 'Kitchen Professional',
+    //   index: 3,
+    //   icon: Icon(Icons.person),
+    // ),
   ];
   List<CityList> cityList = [
     CityList(

@@ -44,6 +44,8 @@ class _user_homeState extends State<user_home> {
   @override
   void initState() {
     fetchCarouselImages();
+    _myCusine = [];
+    _myCusineResult = '';
     super.initState();
   }
 
@@ -72,12 +74,12 @@ class _user_homeState extends State<user_home> {
   late String _myCusineResult;
   // final formKey = new GlobalKey<FormState>();
 
-  @override
-  void initState1() {
-    super.initState();
-    _myCusine = [];
-    _myCusineResult = '';
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _myCusine = [];
+  //   _myCusineResult = '';
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -180,236 +182,292 @@ class _user_homeState extends State<user_home> {
                           child: InkWell(
                             onTap: () {
                               showDialog(
+                                useSafeArea: true,
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
+                                    title: Text(
+                                      'Query for private chef',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
                                     backgroundColor: Colors.white,
-                                    content: Column(
-                                      children: [
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Address',
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: 'Select Gender',
-                                            labelStyle: TextStyle(
-                                                fontSize: 15,
+                                    content: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          TextFormField(
+                                            decoration: InputDecoration(
+                                              fillColor: Colors.white70,
+                                              filled: true,
+                                              hintText: 'Enter Address',
+                                              hintStyle: TextStyle(
                                                 color: Colors.black,
-                                                fontWeight: FontWeight.bold),
-                                            prefixIcon: Icon(Icons.person),
-                                            fillColor: Colors.grey.shade200,
-                                            hintText: 'Select Gender',
-                                            hintStyle: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 15),
-                                            filled: true,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
                                               ),
-                                            ),
-                                            focusedBorder:
-                                                new OutlineInputBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      10.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
                                               ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
+                                              focusedBorder:
+                                                  new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        10.0),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                          autofocus: false,
-                                          value: locValue,
-                                          isExpanded: true,
-                                          iconSize: 25,
-                                          icon: Icon(Icons.arrow_drop_down,
-                                              color: Colors.black),
-                                          items: SelectGender.map(buildMenuItem)
-                                              .toList(),
-                                          onChanged: (Gvalue) => setState(() {
-                                            this.locValue = Gvalue;
-                                            GenderEditingController.text =
-                                                Gvalue!;
-                                          }),
-                                          onSaved: (Gvalue) {
-                                            GenderEditingController.text =
-                                                Gvalue!;
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 55,
-                                        ),
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: ' category of chef',
-                                            labelStyle: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
-                                            prefixIcon: Icon(Icons.leaderboard),
-                                            fillColor: Colors.grey.shade200,
-                                            // hintText: 'Select Current Salary',
-                                            hintStyle: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 15),
-                                            filled: true,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            focusedBorder:
-                                                new OutlineInputBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      10.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                          autofocus: false,
-                                          value: chefvalue,
-                                          isExpanded: true,
-                                          iconSize: 25,
-                                          icon: Icon(Icons.arrow_drop_down,
-                                              color: Colors.black),
-                                          items: categoryofchef
-                                              .map(buildMenuItem)
-                                              .toList(),
-                                          onChanged: (Cvalue) => setState(() {
-                                            this.chefvalue = Cvalue;
-                                            categoryofchefEditingController
-                                                .text = Cvalue!;
-                                          }),
-                                          onSaved: (Cvalue) {
-                                            categoryofchefEditingController
-                                                .text = Cvalue!;
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 70,
-                                        ),
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText:
-                                                'Current Salary Per Month',
-                                            labelStyle: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
-                                            prefixIcon: Icon(Icons.money),
-                                            fillColor: Colors.grey.shade200,
-                                            // hintText: 'Select Current Salary',
-                                            hintStyle: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 15),
-                                            filled: true,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: 'Select Chef Gender',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                              prefixIcon: Icon(Icons.person),
+                                              fillColor: Colors.white70,
+                                              hintText: 'Select Chef Gender',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                              filled: true,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        10.0),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
                                               ),
                                             ),
-                                            focusedBorder:
-                                                new OutlineInputBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      10.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
+                                            autofocus: false,
+                                            value: locValue,
+                                            isExpanded: true,
+                                            iconSize: 25,
+                                            icon: Icon(Icons.arrow_drop_down,
+                                                color: Colors.black),
+                                            items:
+                                                SelectGender.map(buildMenuItem)
+                                                    .toList(),
+                                            onChanged: (Gvalue) => setState(() {
+                                              this.locValue = Gvalue;
+                                              GenderEditingController.text =
+                                                  Gvalue!;
+                                            }),
+                                            onSaved: (Gvalue) {
+                                              GenderEditingController.text =
+                                                  Gvalue!;
+                                            },
                                           ),
-                                          autofocus: false,
-                                          value: salaryValue,
-                                          isExpanded: true,
-                                          iconSize: 25,
-                                          icon: Icon(Icons.arrow_drop_down,
-                                              color: Colors.black),
-                                          items: salary
-                                              .map(buildMenuItem)
-                                              .toList(),
-                                          onChanged: (svalue) => setState(() {
-                                            this.salaryValue = svalue;
-                                            salaryEditingController.text =
-                                                svalue!;
-                                          }),
-                                          onSaved: (lvalue) {
-                                            salaryEditingController.text =
-                                                lvalue!;
-                                          },
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: ' category of chef',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                              prefixIcon:
+                                                  Icon(Icons.leaderboard),
+                                              fillColor: Colors.white70,
+                                              // hintText: 'Select Current Salary',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                              filled: true,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        10.0),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            autofocus: false,
+                                            value: chefvalue,
+                                            isExpanded: true,
+                                            iconSize: 25,
+                                            icon: Icon(Icons.arrow_drop_down,
+                                                color: Colors.black),
+                                            items: categoryofchef
+                                                .map(buildMenuItem)
+                                                .toList(),
+                                            onChanged: (Cvalue) => setState(() {
+                                              this.chefvalue = Cvalue;
+                                              categoryofchefEditingController
+                                                  .text = Cvalue!;
+                                            }),
+                                            onSaved: (Cvalue) {
+                                              categoryofchefEditingController
+                                                  .text = Cvalue!;
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: 'budget for chef',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                              prefixIcon: Icon(Icons.money),
+                                              fillColor: Colors.white70,
+                                              // hintText: 'Select Current Salary',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                              filled: true,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        10.0),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            autofocus: false,
+                                            value: salaryValue,
+                                            isExpanded: true,
+                                            iconSize: 25,
+                                            icon: Icon(Icons.arrow_drop_down,
+                                                color: Colors.black),
+                                            items: salary
+                                                .map(buildMenuItem)
+                                                .toList(),
+                                            onChanged: (svalue) => setState(() {
+                                              this.salaryValue = svalue;
+                                              salaryEditingController.text =
+                                                  svalue!;
+                                            }),
+                                            onSaved: (lvalue) {
+                                              salaryEditingController.text =
+                                                  lvalue!;
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     actions: [
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           SizedBox(
-                                            width: 40,
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              'Cancel',
+                                            height: 45,
+                                            width: 100,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: Text(
+                                                'Cancel',
+                                              ),
                                             ),
                                           ),
                                           SizedBox(
-                                            width: 50,
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              'Submit',
+                                            height: 45,
+                                            width: 100,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: Text(
+                                                'Submit',
+                                              ),
                                             ),
                                           )
                                         ],
@@ -461,259 +519,280 @@ class _user_homeState extends State<user_home> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
+                                    title: Text(
+                                      'Query For Kitchen Professional',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                     backgroundColor: Colors.white,
-                                    content: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        TextFormField(
-                                          decoration: InputDecoration(
-                                            fillColor: Colors.grey.shade200,
-                                            filled: true,
-                                            hintText: 'Enter Hotel name',
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
+                                    content: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          TextFormField(
+                                            decoration: InputDecoration(
+                                              fillColor: Colors.white70,
+                                              filled: true,
+                                              hintText: 'Enter Hotel name',
+                                              hintStyle: TextStyle(
+                                                color: Colors.black,
+                                              ),
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
                                             ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: ' category of chef',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                              prefixIcon:
+                                                  Icon(Icons.leaderboard),
+                                              fillColor: Colors.white70,
+                                              // hintText: 'Select Current Salary',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                              filled: true,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        10.0),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            autofocus: false,
+                                            value: chefvalue,
+                                            isExpanded: true,
+                                            iconSize: 25,
+                                            icon: Icon(Icons.arrow_drop_down,
+                                                color: Colors.black),
+                                            items: categoryofchef
+                                                .map(buildMenuItem)
+                                                .toList(),
+                                            onChanged: (Cvalue) => setState(() {
+                                              this.chefvalue = Cvalue;
+                                              categoryofchefEditingController
+                                                  .text = Cvalue!;
+                                            }),
+                                            onSaved: (Cvalue) {
+                                              categoryofchefEditingController
+                                                  .text = Cvalue!;
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          MultiSelectFormField(
                                             border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.white,
+                                                width: 2,
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText: ' category of chef',
-                                            labelStyle: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black,
+                                            autovalidate:
+                                                AutovalidateMode.disabled,
+                                            chipBackGroundColor: Colors.blue,
+                                            chipLabelStyle: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
+                                            dialogTextStyle: TextStyle(
                                                 fontWeight: FontWeight.bold),
-                                            prefixIcon: Icon(Icons.leaderboard),
-                                            fillColor: Colors.grey.shade200,
-                                            // hintText: 'Select Current Salary',
-                                            hintStyle: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 15),
-                                            filled: true,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
+                                            checkBoxActiveColor: Colors.blue,
+                                            checkBoxCheckColor: Colors.white,
+                                            dialogShapeBorder:
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10.0))),
+                                            title: Text(
+                                              "Cusine Expert",
+                                              style: TextStyle(fontSize: 16),
                                             ),
-                                            focusedBorder:
-                                                new OutlineInputBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      10.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.length == 0) {
+                                                return 'Please select one or more options';
+                                              }
+                                              return null;
+                                            },
+                                            dataSource: [
+                                              {
+                                                "display": "Indian",
+                                                "value": "Indian",
+                                              },
+                                              {
+                                                "display": "Chinese",
+                                                "value": "Chinese",
+                                              },
+                                              {
+                                                "display": "Italian",
+                                                "value": "Italian",
+                                              },
+                                              {
+                                                "display": "Sushi",
+                                                "value": "Sushi",
+                                              },
+                                              {
+                                                "display": "Mexican",
+                                                "value": "Mexican",
+                                              },
+                                              {
+                                                "display": "Multi Cuisine",
+                                                "value": "Multi Cuisine",
+                                              },
+                                            ],
+                                            textField: 'display',
+                                            valueField: 'value',
+                                            okButtonLabel: 'OK',
+                                            cancelButtonLabel: 'CANCEL',
+                                            hintWidget: Text('Select Cusine'),
+                                            initialValue: _myCusine,
+                                            onSaved: (value) {
+                                              if (value == null) return;
+                                              setState(() {
+                                                // cusineEditingController.text = value!;
+                                                _myCusine = value;
+                                              });
+                                            },
                                           ),
-                                          autofocus: false,
-                                          value: chefvalue,
-                                          isExpanded: true,
-                                          iconSize: 25,
-                                          icon: Icon(Icons.arrow_drop_down,
-                                              color: Colors.black),
-                                          items: categoryofchef
-                                              .map(buildMenuItem)
-                                              .toList(),
-                                          onChanged: (Cvalue) => setState(() {
-                                            this.chefvalue = Cvalue;
-                                            categoryofchefEditingController
-                                                .text = Cvalue!;
-                                          }),
-                                          onSaved: (Cvalue) {
-                                            categoryofchefEditingController
-                                                .text = Cvalue!;
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 60,
-                                        ),
-                                        MultiSelectFormField(
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
+                                          SizedBox(
+                                            height: 10,
                                           ),
-                                          autovalidate:
-                                              AutovalidateMode.disabled,
-                                          chipBackGroundColor: Colors.blue,
-                                          chipLabelStyle: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                          dialogTextStyle: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                          checkBoxActiveColor: Colors.blue,
-                                          checkBoxCheckColor: Colors.white,
-                                          dialogShapeBorder:
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(
-                                                              10.0))),
-                                          title: Text(
-                                            "Cusine Expert",
-                                            style: TextStyle(fontSize: 16),
-                                          ),
-                                          validator: (value) {
-                                            if (value == null ||
-                                                value.length == 0) {
-                                              return 'Please select one or more options';
-                                            }
-                                            return null;
-                                          },
-                                          dataSource: [
-                                            {
-                                              "display": "Indian",
-                                              "value": "Indian",
-                                            },
-                                            {
-                                              "display": "Chinese",
-                                              "value": "Chinese",
-                                            },
-                                            {
-                                              "display": "Italian",
-                                              "value": "Italian",
-                                            },
-                                            {
-                                              "display": "Sushi",
-                                              "value": "Sushi",
-                                            },
-                                            {
-                                              "display": "Mexican",
-                                              "value": "Mexican",
-                                            },
-                                            {
-                                              "display": "Multi Cuisine",
-                                              "value": "Multi Cuisine",
-                                            },
-                                          ],
-                                          textField: 'display',
-                                          valueField: 'value',
-                                          okButtonLabel: 'OK',
-                                          cancelButtonLabel: 'CANCEL',
-                                          hintWidget: Text('Select Cusine'),
-                                          initialValue: _myCusine,
-                                          onSaved: (value) {
-                                            if (value == null) return;
-                                            setState(() {
-                                              // cusineEditingController.text = value!;
-                                              _myCusine = value;
-                                            });
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 50,
-                                        ),
-                                        DropdownButtonFormField<String>(
-                                          decoration: InputDecoration(
-                                            labelText:
-                                                'Current Salary Per Month',
-                                            labelStyle: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
-                                            prefixIcon: Icon(Icons.money),
-                                            fillColor: Colors.grey.shade200,
-                                            // hintText: 'Select Current Salary',
-                                            hintStyle: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 15),
-                                            filled: true,
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
+                                          DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                              labelText: 'salary budget',
+                                              labelStyle: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                              prefixIcon: Icon(Icons.money),
+                                              fillColor: Colors.white70,
+                                              // hintText: 'Select Current Salary',
+                                              hintStyle: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                              filled: true,
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  new OutlineInputBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        10.0),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                borderSide: BorderSide(
+                                                  color: Colors.black,
+                                                  width: 1,
+                                                ),
                                               ),
                                             ),
-                                            focusedBorder:
-                                                new OutlineInputBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      10.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
+                                            autofocus: false,
+                                            value: salaryValue,
+                                            isExpanded: true,
+                                            iconSize: 25,
+                                            icon: Icon(Icons.arrow_drop_down,
+                                                color: Colors.black),
+                                            items: salary
+                                                .map(buildMenuItem)
+                                                .toList(),
+                                            onChanged: (svalue) => setState(() {
+                                              this.salaryValue = svalue;
+                                              salaryEditingController.text =
+                                                  svalue!;
+                                            }),
+                                            onSaved: (lvalue) {
+                                              salaryEditingController.text =
+                                                  lvalue!;
+                                            },
                                           ),
-                                          autofocus: false,
-                                          value: salaryValue,
-                                          isExpanded: true,
-                                          iconSize: 25,
-                                          icon: Icon(Icons.arrow_drop_down,
-                                              color: Colors.black),
-                                          items: salary
-                                              .map(buildMenuItem)
-                                              .toList(),
-                                          onChanged: (svalue) => setState(() {
-                                            this.salaryValue = svalue;
-                                            salaryEditingController.text =
-                                                svalue!;
-                                          }),
-                                          onSaved: (lvalue) {
-                                            salaryEditingController.text =
-                                                lvalue!;
-                                          },
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                     actions: [
                                       Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           SizedBox(
-                                            width: 40,
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              'Cancel',
+                                            height: 45,
+                                            width: 100,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: Text(
+                                                'Cancel',
+                                              ),
                                             ),
                                           ),
                                           SizedBox(
-                                            width: 50,
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              'Submit',
+                                            height: 45,
+                                            width: 100,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                              ),
+                                              onPressed: () {},
+                                              child: Text(
+                                                'Submit',
+                                              ),
                                             ),
                                           )
                                         ],

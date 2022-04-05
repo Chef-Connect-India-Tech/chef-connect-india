@@ -92,8 +92,9 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      LoginScreen(ischef: false),
+                                  builder: (context) => LoginScreen(
+                                    isowner: false,
+                                  ),
                                 ),
                               );
                             },
@@ -130,7 +131,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => LoginScreen(
-                                    ischef: true,
+                                    isowner: true,
                                   ),
                                 ),
                               );
