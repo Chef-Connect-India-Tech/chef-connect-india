@@ -79,12 +79,12 @@ class _addmenuState extends State<addmenu> {
     // a list of selectable items
     // these items can be hard-coded or dynamically fetched from a database/API
     final List<String> _items = [
-      'Flutter',
-      'Node.js',
-      'React Native',
-      'Java',
-      'Docker',
-      'MySQL'
+      'Chicken Lollipop',
+      'Chicken 65',
+      'Mutton soup',
+      'Fish fry',
+      'prawns',
+      'Mutton pieces'
     ];
 
     final List<String>? results = await showDialog(
@@ -106,12 +106,12 @@ class _addmenuState extends State<addmenu> {
     // a list of selectable items
     // these items can be hard-coded or dynamically fetched from a database/API
     final List<String> _items1 = [
-      'Flutter',
-      'Node.js',
-      'React Native',
-      'Java',
-      'Docker',
-      'MySQL'
+      'Chicken Biriyani',
+      'Mutton Biriyani',
+      'Paneer Biriyani',
+      'Veg Biriyani',
+      'Chicken Boneless Biriyani',
+      'Mutton Boneless Biriyani',
     ];
 
     final List<String>? results1 = await showDialog(
@@ -133,12 +133,12 @@ class _addmenuState extends State<addmenu> {
     // a list of selectable items
     // these items can be hard-coded or dynamically fetched from a database/API
     final List<String> _items2 = [
-      'Flutter',
-      'Node.js',
-      'React Native',
-      'Java',
-      'Docker',
-      'MySQL'
+      'Apple Pie',
+      'lmond Malai Kulfi',
+      'Cheesecake',
+      'Cupcakes',
+      'Brownies',
+      'Ice cream'
     ];
 
     final List<String>? results2 = await showDialog(
@@ -388,7 +388,10 @@ class _addmenuState extends State<addmenu> {
 
   Future<void> _createAppointment() async {
     var len = ((_selectedItems + _selectedItems1 + _selectedItems2).length);
-    if (len == 0 || len > 8) {
+    var menulength = ((_menunameController.text).length);
+    if (menulength == 0 || menulength < 4) {
+      Fluttertoast.showToast(msg: "Menu name must be 3 characters");
+    } else if (len == 0 || len > 7) {
       Fluttertoast.showToast(
           msg: "items can't be more than 7 or equal to Zero");
     } else {
