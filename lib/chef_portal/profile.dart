@@ -7,7 +7,6 @@ import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/chef_portal/menus/customised.dart';
 import 'package:chef_connect_india/chef_portal/menus/predefined.dart';
-import 'package:chef_connect_india/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -1015,12 +1014,12 @@ class _chef_profileState extends State<chef_profile> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => custom_menu(),
+                              builder: (context) => customised(),
                             ),
                           );
                         },
                         child: Icon(
-                          Icons.edit,
+                          Icons.add,
                         ),
                       ),
                     ],
@@ -1054,7 +1053,7 @@ class _chef_profileState extends State<chef_profile> {
                           );
                         },
                         child: Icon(
-                          Icons.edit,
+                          Icons.add,
                         ),
                       ),
                     ],

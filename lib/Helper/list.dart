@@ -145,6 +145,8 @@ class list_view extends StatefulWidget {
   var experience;
   var speciality;
   var profilepic;
+  var rating;
+  var city;
 
   list_view(
       {required this.chefid,
@@ -152,7 +154,9 @@ class list_view extends StatefulWidget {
       required this.level,
       required this.speciality,
       required this.experience,
-      required this.profilepic});
+      required this.profilepic,
+      required this.rating,
+      required this.city});
 
   @override
   State<list_view> createState() => _list_viewState();
@@ -171,7 +175,16 @@ class _list_viewState extends State<list_view> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => chef_pro(),
+                builder: (context) => chef_pro(
+                  chefid: widget.chefid,
+                  cheflevel: widget.level,
+                  experience: widget.experience,
+                  cuisine: widget.cusineexpert,
+                  city: widget.city,
+                  profilepic: widget.profilepic,
+                  specialities: widget.speciality,
+                  rating: widget.rating,
+                ),
               ),
             );
             print('onTap Food');
@@ -232,14 +245,14 @@ class _list_viewState extends State<list_view> {
                               height: 1.11,
                             ),
                           ),
-                          Text(
-                            'spc: ${widget.speciality}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 15.0,
-                              color: const Color(0xFFB6B7B7),
-                              height: 1.11,
-                            ),
-                          ),
+                          // Text(
+                          //   'spc: ${widget.speciality}',
+                          //   style: GoogleFonts.roboto(
+                          //     fontSize: 15.0,
+                          //     color: const Color(0xFFB6B7B7),
+                          //     height: 1.11,
+                          //   ),
+                          // ),
                           Text(
                             'exp: ${widget.experience}',
                             style: GoogleFonts.roboto(

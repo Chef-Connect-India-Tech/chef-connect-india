@@ -36,12 +36,15 @@ class _view_moreState extends State<view_more> {
             //              name:  data!['firstname']),
             //            )),
             child: list_view(
-                chefid: dataa!['chefid'],
-                cusineexpert: dataa['cuisineexpert'].toString(),
-                level: dataa['professionallevel'].toString(),
-                speciality: dataa['specialities'].toString(),
-                experience: dataa['experience'].toString(),
-                profilepic: dataa['profilepic']),
+              chefid: dataa!['chefid'],
+              cusineexpert: dataa['cuisineexpert'].toString(),
+              level: dataa['professionallevel'].toString(),
+              speciality: dataa['specialities'].toString(),
+              experience: dataa['experience'].toString(),
+              profilepic: dataa['profilepic'],
+              city: dataa['city'].toString(),
+              rating: dataa['rating'].toString(),
+            ),
             // ListTile(
 
             //   leading: const CircleAvatar(child: Icon(Icons.person)),
