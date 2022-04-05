@@ -71,7 +71,7 @@ class NavBar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Select_Mode(),
+                  builder: (context) => Select_mode_new(),
                 ),
               );
             },

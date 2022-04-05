@@ -448,7 +448,9 @@ class _user_homeState extends State<user_home> {
                                                       BorderRadius.circular(10),
                                                 ),
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
                                               child: Text(
                                                 'Cancel',
                                               ),
@@ -464,7 +466,9 @@ class _user_homeState extends State<user_home> {
                                                       BorderRadius.circular(10),
                                                 ),
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
                                               child: Text(
                                                 'Submit',
                                               ),
@@ -773,7 +777,9 @@ class _user_homeState extends State<user_home> {
                                                       BorderRadius.circular(10),
                                                 ),
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
                                               child: Text(
                                                 'Cancel',
                                               ),
@@ -789,7 +795,9 @@ class _user_homeState extends State<user_home> {
                                                       BorderRadius.circular(10),
                                                 ),
                                               ),
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
                                               child: Text(
                                                 'Submit',
                                               ),

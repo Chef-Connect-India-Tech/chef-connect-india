@@ -431,7 +431,7 @@ class _Registration_userState extends State<Registration_user> {
       prefs.setString('uid', user.uid);
       Navigator.pushAndRemoveUntil(
           (context),
-          MaterialPageRoute(builder: (context) => Select_Mode()),
+          MaterialPageRoute(builder: (context) => Select_mode_new()),
           (route) => false);
     });
     Fluttertoast.showToast(msg: "Account created successfully :) ");

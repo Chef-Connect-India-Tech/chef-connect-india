@@ -225,45 +225,48 @@ class _OTPScreenState extends State<OTPScreen> {
                             size: 60,
                           ),
                         )
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 50,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "OTP sent.",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 40,
-                                        fontWeight: FontWeight.bold,
-                                        backgroundColor:
-                                            Colors.black.withOpacity(.4)),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
-                                      style: TextStyle(
-                                          color: Colors.white70,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.normal,
-                                          backgroundColor:
-                                              Colors.black.withOpacity(.7)),
-                                    ),
-                                  ),
-                                ],
+                      : SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 50,
                               ),
-                            ),
-                            _formModule(),
-                          ],
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "OTP sent.",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 40,
+                                          fontWeight: FontWeight.bold,
+                                          backgroundColor:
+                                              Colors.black.withOpacity(.4)),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      child: Text(
+                                        "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
+                                        style: TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.normal,
+                                            backgroundColor:
+                                                Colors.black.withOpacity(.7)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              _formModule(),
+                            ],
+                          ),
                         ),
                 ),
               ),
