@@ -245,14 +245,14 @@ class _list_viewState extends State<list_view> {
                               height: 1.11,
                             ),
                           ),
-                          Text(
-                            'spc: ${widget.speciality}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 15.0,
-                              color: const Color(0xFFB6B7B7),
-                              height: 1.11,
-                            ),
-                          ),
+                          // Text(
+                          //   'spc: ${widget.speciality}',
+                          //   style: GoogleFonts.roboto(
+                          //     fontSize: 15.0,
+                          //     color: const Color(0xFFB6B7B7),
+                          //     height: 1.11,
+                          //   ),
+                          // ),
                           Text(
                             'exp: ${widget.experience}',
                             style: GoogleFonts.roboto(
