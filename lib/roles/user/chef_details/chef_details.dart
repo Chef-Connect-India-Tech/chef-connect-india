@@ -28,6 +28,8 @@ class chef_pro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String cuisine_exp =
+        cuisine.replaceAll(new RegExp(r"\p{P}", unicode: true), "");
     return Scaffold(
       //drawer: NavBar(),
       appBar: AppBar(title: Text('Chef Details')),
@@ -193,7 +195,7 @@ class chef_pro extends StatelessWidget {
                           left: 15,
                           top: 60.0,
                           child: Text(
-                            '$cuisine',
+                            '$cuisine_exp',
                             style: GoogleFonts.roboto(
                               fontSize: 14.0,
                               color: const Color(0xFF4A4B4D),
