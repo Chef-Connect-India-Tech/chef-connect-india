@@ -217,165 +217,171 @@ class _predefinedState extends State<predefined> {
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   padding: EdgeInsets.only(top: 0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        autofocus: false,
-                        controller: _menunameController,
-                        keyboardType: TextInputType.name,
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            //allow upper and lower case alphabets and space
-                            return "Enter Correct Menu name";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onSaved: (value) {
-                          _menunameController.text = value!;
-                        },
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          fillColor: Colors.white60,
-                          hintText: 'Enter Menu Name',
-                          hintStyle:
-                              TextStyle(color: Colors.black38, fontSize: 15),
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color: Colors.white60,
-                              width: 2,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                              width: 2,
-                            ),
-                          ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 15,
                         ),
-                      ),
-
-                      ElevatedButton(
-                        autofocus: true,
-                        // style: ElevatedButton.styleFrom(
-                        //   elevation: 2,
-                        //   primary: Colors.indigo,
-                        //   onPrimary: Colors.indigo,
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(32.0),
-                        //   ),
-                        // ),
-                        // child: const Text(
-                        //   'Enter Starters',
-                        //   style: TextStyle(
-                        //     color: Colors.blue,
-                        //   ),
-                        // ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Enter Starters',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
+                        TextFormField(
+                          autofocus: false,
+                          controller: _menunameController,
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                              //allow upper and lower case alphabets and space
+                              return "Enter Correct Menu name";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onSaved: (value) {
+                            _menunameController.text = value!;
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white70,
+                            hintText: 'Enter Menu Name',
+                            hintStyle:
+                                TextStyle(color: Colors.black38, fontSize: 15),
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                                width: 1,
                               ),
                             ),
-                            Icon(
-                              Icons.arrow_downward,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-
-                        onPressed: _showMultiSelect,
-                      ),
-                      Wrap(
-                        children: _selectedItems
-                            .map((e) => Chip(
-                                  label: Text(e),
-                                ))
-                            .toList(),
-                      ),
-                      ElevatedButton(
-                        child: const Text('Enter MainCourse'),
-                        onPressed: _showMultiSelect1,
-                      ),
-                      Wrap(
-                        children: _selectedItems1
-                            .map((e) => Chip(
-                                  label: Text(e),
-                                ))
-                            .toList(),
-                      ),
-                      ElevatedButton(
-                        child: const Text('Enter Desserts'),
-                        onPressed: _showMultiSelect2,
-                      ),
-                      Wrap(
-                        children: _selectedItems2
-                            .map((e) => Chip(
-                                  label: Text(e),
-                                ))
-                            .toList(),
-                      ),
-                      // MultiSelectDialogField(
-                      //   items: _animals
-                      //       .map((e) => MultiSelectItem(e, e.name))
-                      //       .toList(),
-                      //   listType: MultiSelectListType.CHIP,
-                      //   onConfirm: (values) {
-                      //     _selectedAnimals = values;
-                      //   },
-                      // ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            elevation: 2,
-                            primary: Colors.indigo,
-                            onPrimary: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32.0),
+                            focusedBorder: new OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
                             ),
-                          ),
-                          onPressed: () {
-                            _createAppointment();
-                            print(_menunameController.text);
-                          },
-                          child: Text(
-                            "Register",
-                            style: GoogleFonts.lato(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                    ],
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 150,
+                          width: 400,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: InkWell(
+                            onTap: _showMultiSelect,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Enter Starters',
+                                  ),
+                                  Wrap(
+                                    children: _selectedItems
+                                        .map((e) => Chip(
+                                              label: Text(e),
+                                            ))
+                                        .toList(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 150,
+                          width: 400,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(
+                              10,
+                            ),
+                          ),
+                          child: InkWell(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Text('Enter main course'),
+                                  Wrap(
+                                    children: _selectedItems1
+                                        .map((e) => Chip(
+                                              label: Text(e),
+                                            ))
+                                        .toList(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            onTap: _showMultiSelect1,
+                          ),
+                        ),
+                        ElevatedButton(
+                          child: const Text('Enter Desserts'),
+                          onPressed: _showMultiSelect2,
+                        ),
+                        Wrap(
+                          children: _selectedItems2
+                              .map((e) => Chip(
+                                    label: Text(e),
+                                  ))
+                              .toList(),
+                        ),
+                        // MultiSelectDialogField(
+                        //   items: _animals
+                        //       .map((e) => MultiSelectItem(e, e.name))
+                        //       .toList(),
+                        //   listType: MultiSelectListType.CHIP,
+                        //   onConfirm: (values) {
+                        //     _selectedAnimals = values;
+                        //   },
+                        // ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 350,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                              ),
+                            ),
+                            onPressed: () {
+                              _createAppointment();
+                              print(_menunameController.text);
+                            },
+                            child: Text(
+                              'Register',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
