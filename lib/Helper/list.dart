@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, unused_local_variable
 
 import 'package:chef_connect_india/roles/user/chef_details/chef_details.dart';
 import 'package:flutter/material.dart';
@@ -165,6 +165,8 @@ class list_view extends StatefulWidget {
 class _list_viewState extends State<list_view> {
   @override
   Widget build(BuildContext context) {
+    String cuisine_exp =
+        widget.cusineexpert.replaceAll(new RegExp(r"\p{P}", unicode: true), "");
     return Align(
       // padding: const EdgeInsets.all(4.0),
       alignment: Alignment(0.03, -0.77),
@@ -230,7 +232,7 @@ class _list_viewState extends State<list_view> {
                             ),
                           ),
                           Text(
-                            'ce: ${widget.cusineexpert}',
+                            'ce: ${cuisine_exp}',
                             style: GoogleFonts.roboto(
                               fontSize: 15.0,
                               color: const Color(0xFFB6B7B7),

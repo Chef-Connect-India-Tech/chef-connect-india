@@ -65,7 +65,6 @@ class _MyAppState extends State<MyApp> {
           //   // '/detailsScreen': (context) => DetailsScreen(),
           //   // '/mainPage': (context) => ChefConnectMain(),
           // },
-          // home: OTPScreen(),
           home: snapshot.connectionState != ConnectionState.done
               ? Loading()
               : StreamBuilder(
