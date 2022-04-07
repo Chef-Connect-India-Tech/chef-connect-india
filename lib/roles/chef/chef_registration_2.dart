@@ -1,25 +1,24 @@
-// ignore_for_file: unused_field
-
+// ignore_for_file: unused_field, deprecated_member_use
+import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:glass_morphism/Helper/model.dart';
-import 'package:glass_morphism/roles/chef/chef_dashboard.dart';
+import 'package:chef_connect_india/Helper/model.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 class chef_registration_two extends StatefulWidget {
   final String firstname;
   final String lastname;
-  final String phonenumber;
+  // final String phonenumber;
   final String workexperience;
   final String worklocation;
   final String currentlocation;
   chef_registration_two(
       {required this.firstname,
       required this.lastname,
-      required this.phonenumber,
+      // required this.phonenumber,
       required this.workexperience,
       required this.worklocation,
       required this.currentlocation});
@@ -36,11 +35,12 @@ class _chef_registration_twoState extends State<chef_registration_two> {
 
   final formGlobalKey = GlobalKey<FormState>();
   final salaryEditingController = new TextEditingController();
-  final cusineEditingController = new TextEditingController();
+  // final cusineEditingController = new TextEditingController();
   // final workTypeEditingController = new TextEditingController();
   final timeEditingController = new TextEditingController();
+  final cheffeesEditingController = new TextEditingController();
   // final workType = ['Party Chef', 'Kitchen Professional', 'Private Chef'];
-  final time = ['Full Time', 'Part Time', 'Both'];
+  final time = ['Full Time', 'Part Time', 'Full Time or Part Time'];
   // String? cheftypeValue;
   String? timeValue;
   // final worklocation = ['Jaipur', 'Bangalore'];
@@ -64,15 +64,15 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     _myCusineResult = '';
   }
 
-  _saveForm() {
-    var form = formGlobalKey.currentState!;
-    if (form.validate()) {
-      form.save();
-      setState(() {
-        _myCusineResult = _myCusine.toString();
-      });
-    }
-  }
+  // _saveForm() {
+  //   var form = formGlobalKey.currentState!;
+  //   if (form.validate()) {
+  //     form.save();
+  //     setState(() {
+  //       _myCusineResult = _myCusine.toString();
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                   child: Center(
                     child: GlassmorphicContainer(
                       width: 330,
-                      height: 640,
+                      height: 750,
                       borderRadius: 10,
                       blur: 0.1,
                       alignment: Alignment.bottomCenter,
@@ -259,7 +259,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                             ),
                             DropdownButtonFormField<String>(
                               decoration: InputDecoration(
-                                labelText: 'Salary Per Month',
+                                labelText: 'Current Salary Per Month',
                                 labelStyle: TextStyle(
                                     fontSize: 15,
                                     color: Colors.black,
@@ -316,6 +316,60 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                             SizedBox(
                               height: 10,
                             ),
+                            TextFormField(
+                              autofocus: false,
+                              controller: cheffeesEditingController,
+                              keyboardType: TextInputType.number,
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                  return "Enter Correct Rate";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              onSaved: (value) {
+                                cheffeesEditingController.text = value!;
+                              },
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                labelText: 'Rate Per Plate',
+                                labelStyle: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                                prefixIcon: Icon(Icons.attach_money),
+                                fillColor: Colors.white60,
+                                // hintText: 'First Name',
+                                hintStyle: TextStyle(
+                                    color: Colors.black, fontSize: 15),
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.white60,
+                                    width: 2,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
                             MultiSelectFormField(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -367,6 +421,10 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                   "display": "Mexican",
                                   "value": "Mexican",
                                 },
+                                {
+                                  "display": "Multi Cuisine",
+                                  "value": "Multi Cuisine",
+                                },
                               ],
                               textField: 'display',
                               valueField: 'value',
@@ -377,8 +435,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                               onSaved: (value) {
                                 if (value == null) return;
                                 setState(() {
-                                  cusineEditingController.text =
-                                      value!.toString();
+                                  // cusineEditingController.text = value!;
                                   _myCusine = value;
                                 });
                               },
@@ -492,24 +549,28 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     // calling our firestore
     // calling our user model
     // sedning these values
-
+    var name = '${widget.firstname} ${widget.lastname}';
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
+    user!.updateProfile(displayName: name);
 
     ChefModel chefModel = ChefModel();
 
     // writing all the values
-    chefModel.uid = user!.uid;
+    chefModel.uid = user.uid;
     // chefModel.email = emailEditingController.text;
     chefModel.firstname = widget.firstname;
     chefModel.lastname = widget.lastname;
-    chefModel.mobile1 = widget.phonenumber;
+    chefModel.mobile1 = user.phoneNumber;
     chefModel.experience = widget.workexperience;
     chefModel.address = widget.currentlocation;
     chefModel.city = widget.worklocation;
     chefModel.currentsalary = salaryEditingController.text;
-    chefModel.cuisineexpert = cusineEditingController.text;
+    chefModel.cheffees = cheffeesEditingController.text;
+    // chefModel.cuisineexpert = cusineEditingController.text;
+    chefModel.cuisineexpert = _myCusine;
     chefModel.workpreference = timeEditingController.text;
+    chefModel.dutystatus = true;
     chefModel.role = 'chef';
     chefModel.profilepic =
         'http://chefconnect.co.in/assets/images/logo_chef.png';

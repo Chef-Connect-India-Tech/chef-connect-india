@@ -1,11 +1,12 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/Main%20Screen/Registration_user.dart';
+import 'package:chef_connect_india/roles/user/Registration_user.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // import 'package:pin_code_fields/pin_code_fields.dart';
 enum MobileVerificationState { SHOW_MOBILE_FORM_STATE, SHOW_OTP_FORMS_STATE }
@@ -67,10 +68,8 @@ class _USer_loginState extends State<USer_login> {
         isLoading = false;
       });
       if (authCredential.user != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Registration_user(phonenumber: a)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => Registration_user()));
       }
     } on FirebaseException catch (e) {
       setState(() {
@@ -100,7 +99,7 @@ class _USer_loginState extends State<USer_login> {
               initialSelection: 'IN',
               favorite: ['+91', 'IN'],
               // optional. Shows only country name and flag
-              showCountryOnly: false,
+              showCountryOnly: true,
               // optional. Shows only country name and flag when popup is closed.
               showOnlyCountryWhenClosed: false,
               // optional. aligns the flag and the Text left
@@ -229,8 +228,8 @@ class _USer_loginState extends State<USer_login> {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Color(0xFFffffff).withOpacity(0.5),
-                            Color(0xFFFFFFFF).withOpacity(0.5),
+                            Color(0xFFffffff).withOpacity(0.0),
+                            Color(0xFFFFFFFF).withOpacity(0.0),
                           ],
                           stops: [
                             0.1,
@@ -240,8 +239,8 @@ class _USer_loginState extends State<USer_login> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Color(0xFFffffff).withOpacity(1.0),
-                          Color((0xFFFFFFFF)).withOpacity(1.0),
+                          Color(0xFFffffff).withOpacity(0.0),
+                          Color((0xFFFFFFFF)).withOpacity(0.0),
                         ],
                       ),
                       child: Column(
@@ -267,7 +266,7 @@ class _USer_loginState extends State<USer_login> {
                               controller: _phoneController,
                               keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
-                                fillColor: Colors.white60,
+                                fillColor: Colors.white,
                                 hintText: 'Phone Number',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 15),
@@ -369,7 +368,7 @@ class _USer_loginState extends State<USer_login> {
                                 Expanded(
                                   child: Container(
                                     height: 1.5,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     margin:
                                         EdgeInsets.symmetric(horizontal: 12),
                                   ),
@@ -377,12 +376,12 @@ class _USer_loginState extends State<USer_login> {
                                 Text(
                                   "Enter 6 digit OTP",
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
+                                      fontSize: 16, color: Colors.white),
                                 ),
                                 Expanded(
                                   child: Container(
                                     height: 1.5,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     margin:
                                         EdgeInsets.symmetric(horizontal: 12),
                                   ),
@@ -399,9 +398,13 @@ class _USer_loginState extends State<USer_login> {
                               controller: _otpController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                fillColor: Colors.white54,
+                                fillColor: Colors.white,
                                 filled: true,
                                 hintText: "Enter OTP",
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  color: Colors.black,
+                                ),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.white,
@@ -437,18 +440,22 @@ class _USer_loginState extends State<USer_login> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  primary: Colors.white54,
+                                  primary: Colors.white,
                                   side: BorderSide(
                                     color: Colors.white70,
                                     width: 2,
                                   )),
-                              onPressed: () {
+                              onPressed: () async {
                                 PhoneAuthCredential phoneAuthCredential =
                                     PhoneAuthProvider.credential(
                                         verificationId: verificationId,
                                         smsCode: _otpController.text);
                                 signInWithPhoneAuthCredential(
                                     phoneAuthCredential);
+                                final SharedPreferences sharedPreferences =
+                                    await SharedPreferences.getInstance();
+                                sharedPreferences.setString(
+                                    'mobile1', phoneNumber);
                               },
                               child: Text(
                                 'Validate OTP',

@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/roles/chef/chef_registration_1.dart';
+import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -90,10 +90,8 @@ class _chef_loginState extends State<chef_login> {
         isLoading = false;
       });
       if (authCredential.user != null) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => chef_registration_one(phonenumber: a)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => chef_registration_one()));
       }
     } on FirebaseException catch (e) {
       setState(() {

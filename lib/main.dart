@@ -1,169 +1,132 @@
+import 'dart:async';
+import 'dart:developer';
+import 'package:chef_connect_india/Helper/utils.dart';
+import 'package:chef_connect_india/Main%20Screen/home.dart';
+import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
+import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
+import 'package:chef_connect_india/roles/user/Registration_user.dart';
+import 'package:chef_connect_india/roles/user/user_home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:glass_morphism/Main%20Screen/User_login.dart';
-import 'package:glass_morphism/roles/chef/chef_login.dart';
-import 'package:glass_morphism/roles/chef/chef_registration_1.dart';
-import 'package:glass_morphism/roles/user/user_home.dart';
-// import 'package:glass_morphism/Main%20Screen/select_mode.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+//   var uid = prefs.getString('uid');
+//   runApp(MaterialApp(
+//     debugShowCheckedModeBanner: false,
+//     home: uid == null ? ChefConnectMain() : user_home(),
+//   ));
+// }b
+
+Future<void> main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+bool chef = false;
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Chef Connect India',
-      home: ChefConnectMain(),
-      // home: chef_registration_one(phonenumber: '+917337504725'),
-    );
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    checkRole();
+    super.initState();
   }
-}
 
-class ChefConnectMain extends StatefulWidget {
-  @override
-  State<ChefConnectMain> createState() => ChefConnectMainState();
-}
+  Future<void> checkRole() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    chef = (pref.getBool('chefRole') ?? false);
+  }
 
-class ChefConnectMainState extends State<ChefConnectMain> {
-  @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: Stack(
-          children: [
-            Image.asset(
-              "assets/CCI.jpg",
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-              scale: 1,
-            ),
-            SafeArea(
-              child: Center(
-                child: GlassmorphicContainer(
-                  width: 330,
-                  height: 620,
-                  borderRadius: 10,
-                  blur: 0.1,
-                  alignment: Alignment.bottomCenter,
-                  border: 0,
-                  linearGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color(0xFFffffff).withOpacity(0.5),
-                        Color(0xFFFFFFFF).withOpacity(0.5),
-                      ],
-                      stops: [
-                        0.1,
-                        1,
-                      ]),
-                  borderGradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFFffffff).withOpacity(1.0),
-                      Color((0xFFFFFFFF)).withOpacity(1.0),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 60,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: Color(0xFF092349),
-                        radius: 100,
-                        child: Image.asset('assets/CCI1.png'),
-                      ),
-                      SizedBox(
-                        height: 120,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        width: 280,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                color: Colors.white,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            primary: Colors.white54,
-                            onPrimary: Color.fromARGB(255, 18, 68, 138),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => USer_login(),
-                              ),
-                            );
+    final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Chef Connect',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          // routes: {
+          //   // '/detailsScreen': (context) => DetailsScreen(),
+          //   // '/mainPage': (context) => ChefConnectMain(),
+          // },
+          home: snapshot.connectionState != ConnectionState.done
+              ? Loading()
+              : StreamBuilder(
+                  stream: FirebaseAuth.instance.authStateChanges(),
+                  builder: (context, userSnapshot) {
+                    if (userSnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      log('Loading');
+                      return Loading();
+                    } else if (chef) {
+                      if (userSnapshot.data != null) {
+                        log('Logged in');
+                        return StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection("chefs")
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .snapshots(),
+                          builder: (context, snapShot) {
+                            if (snapShot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Loading();
+                            } else {
+                              if (snapShot.hasData) {
+                                return chef_dashboard();
+                                // }
+                              }
+                              log('Has no data');
+                              return chef_registration_one();
+                            }
                           },
-                          child: Text(
-                            'Sign in as User',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        width: 280,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                color: Colors.white,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            primary: Colors.white54,
-                            onPrimary: Color.fromARGB(255, 18, 68, 138),
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => chef_login(),
-                              ),
-                            );
+                        );
+                      }
+                    } else if (!chef) {
+                      if (userSnapshot.data != null) {
+                        log('Logged in');
+                        return StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection("users")
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .snapshots(),
+                          builder: (context, snapShot) {
+                            if (snapShot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Loading();
+                            } else {
+                              if (snapShot.hasData) {
+                                return user_home();
+                                // }
+                              }
+                              log('Has no data');
+                              return Registration_user();
+                            }
                           },
-                          child: Text(
-                            'Sign in as Chef',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                        );
+                      }
+                    }
+                    log('UserSnapshot = null');
+                    return ChefConnectMain();
+                  },
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
+        );
+      },
     );
   }
 }
