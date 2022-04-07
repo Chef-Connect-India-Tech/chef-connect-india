@@ -1,9 +1,7 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
-import 'package:chef_connect_india/roles/user/chef_details/menu/customiseduser.dart';
-import 'package:chef_connect_india/roles/user/chef_details/menu/menu.dart';
-import 'package:chef_connect_india/roles/user/chef_details/menu/predefineduser.dart';
+import 'package:chef_connect_india/user_portal/chef_details/menu/customiseduser.dart';
+import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

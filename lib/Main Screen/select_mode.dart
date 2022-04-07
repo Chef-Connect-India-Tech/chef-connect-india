@@ -1,4 +1,4 @@
-import 'package:chef_connect_india/roles/user/user_home.dart';
+import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:flutter/material.dart';
 
 class Select_mode_new extends StatefulWidget {
@@ -45,7 +45,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -116,28 +116,28 @@ class _Select_mode_newState extends State<Select_mode_new> {
                           ),
                         ],
                       ),
+                      // SizedBox(
+                      //   height: 15,
+                      // ),
+                      // Text(
+                      //   'Select Chef Mode',
+                      //   style: TextStyle(
+                      //     fontFamily: 'Roboto',
+                      //     fontWeight: FontWeight.w600,
+                      //     color: Colors.white,
+                      //     backgroundColor: Colors.black.withOpacity(0.5),
+                      //     fontSize: 30,
+                      //   ),
+                      // ),
                       SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        'Select Chef Mode',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                          backgroundColor: Colors.black.withOpacity(0.5),
-                          fontSize: 30,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
+                        height: 60,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            height: 200,
-                            width: 300,
+                            height: 150,
+                            width: 200,
                             decoration: BoxDecoration(
                               color: Colors.white70,
                               borderRadius: BorderRadius.circular(10),
@@ -148,26 +148,34 @@ class _Select_mode_newState extends State<Select_mode_new> {
                                   SizedBox(
                                     height: 10,
                                   ),
+                                  Image.asset(
+                                    'assets/chefcap.png',
+                                    height: 50,
+                                    width: 100,
+                                    scale: 1,
+                                    fit: BoxFit.fitHeight,
+                                  ),
                                   Text(
                                     'Party Chef',
                                     style: TextStyle(
                                       fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 20,
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.person,
-                                    size: 30,
-                                  ),
+                                  // Icon(
+                                  //   Icons.person,
+                                  //   size: 30,
+                                  // ),
                                   SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                    ' Special occasions\n should be savoured \n Book a party chef with\n Chef Connect India ',
+                                    'For your Parties or House Events',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w500,
                                       fontSize: 18,
                                     ),
                                   ),
@@ -190,29 +198,39 @@ class _Select_mode_newState extends State<Select_mode_new> {
                         ],
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 50,
                       ),
                       SizedBox(
                         height: 50,
-                        width: 330,
+                        width: 250,
                         child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white.withOpacity(
-                                0.5,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            onPressed: () {
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => user_home(),
-                                  ),
-                                  (route) => false);
-                            },
-                            child: Text('Proceed')),
+                            primary: Color.fromARGB(255, 218, 218, 218),
+                            side: BorderSide(
+                              color: Colors.white70,
+                              width: 2.5,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => user_home(),
+                                ),
+                                (route) => false);
+                          },
+                          child: Text(
+                            'Proceed',
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: Color.fromARGB(255, 18, 68, 138)),
+                          ),
+                        ),
                       )
                     ],
                   ),

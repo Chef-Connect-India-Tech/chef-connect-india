@@ -573,7 +573,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     chefModel.dutystatus = true;
     chefModel.role = 'chef';
     chefModel.profilepic =
-        'http://chefconnect.co.in/assets/images/logo_chef.png';
+        'https://firebasestorage.googleapis.com/v0/b/chef-connect-testing.appspot.com/o/chef.png?alt=media&token=e3f9953c-b26c-4128-80c5-a6d3d97ccd1b';
 
     await firebaseFirestore
         .collection("chefs")

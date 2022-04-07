@@ -355,14 +355,15 @@ class _Registration_userState extends State<Registration_user> {
                                 width: 200,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      primary: Colors.white,
-                                      side: BorderSide(
-                                        color: Colors.white70,
-                                        width: 2,
-                                      )),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    primary: Colors.white,
+                                    side: BorderSide(
+                                      color: Colors.white70,
+                                      width: 2,
+                                    ),
+                                  ),
                                   onPressed: () {
                                     //
                                     if (formGlobalKey.currentState!

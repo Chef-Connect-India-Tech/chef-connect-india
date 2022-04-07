@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable, unused_local_variable
 
-import 'package:chef_connect_india/roles/user/chef_details/chef_details.dart';
+import 'package:chef_connect_india/user_portal/chef_details/chef_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';

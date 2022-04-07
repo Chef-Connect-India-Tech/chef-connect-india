@@ -1,7 +1,7 @@
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
-import 'package:chef_connect_india/onboarding_Screen/form_page.dart';
-import 'package:chef_connect_india/roles/user/chef_details/View_more.dart';
+// import 'package:chef_connect_india/onboarding_Screen/form_page.dart';
+import 'package:chef_connect_india/user_portal/chef_details/View_more.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
