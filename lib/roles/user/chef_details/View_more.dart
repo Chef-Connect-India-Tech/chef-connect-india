@@ -44,6 +44,7 @@ class _view_moreState extends State<view_more> {
               profilepic: dataa['profilepic'],
               city: dataa['city'].toString(),
               rating: dataa['rating'].toString(),
+              uid: dataa['uid'].toString(),
             ),
             // ListTile(
 

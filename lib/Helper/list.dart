@@ -147,16 +147,19 @@ class list_view extends StatefulWidget {
   var profilepic;
   var rating;
   var city;
+  var uid;
 
-  list_view(
-      {required this.chefid,
-      required this.cusineexpert,
-      required this.level,
-      required this.speciality,
-      required this.experience,
-      required this.profilepic,
-      required this.rating,
-      required this.city});
+  list_view({
+    required this.chefid,
+    required this.cusineexpert,
+    required this.level,
+    required this.speciality,
+    required this.experience,
+    required this.profilepic,
+    required this.rating,
+    required this.city,
+    required this.uid,
+  });
 
   @override
   State<list_view> createState() => _list_viewState();
@@ -178,6 +181,7 @@ class _list_viewState extends State<list_view> {
               context,
               MaterialPageRoute(
                 builder: (context) => chef_pro(
+                  cid: widget.uid,
                   chefid: widget.chefid,
                   cheflevel: widget.level,
                   experience: widget.experience,
@@ -189,7 +193,7 @@ class _list_viewState extends State<list_view> {
                 ),
               ),
             );
-            print('onTap Food');
+            //print('onTap Food');
           },
           child: SizedBox(
             width: 360.0,

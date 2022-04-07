@@ -1,6 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
+import 'package:chef_connect_india/roles/user/chef_details/menu/customiseduser.dart';
+import 'package:chef_connect_india/roles/user/chef_details/menu/menu.dart';
+import 'package:chef_connect_india/roles/user/chef_details/menu/predefineduser.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,18 +16,20 @@ class chef_pro extends StatelessWidget {
   String profilepic;
   String specialities;
   String rating;
+  String cid;
 
-  chef_pro(
-      {Key? key,
-      required this.chefid,
-      required this.cheflevel,
-      required this.experience,
-      required this.cuisine,
-      required this.city,
-      required this.profilepic,
-      required this.rating,
-      required this.specialities})
-      : super(key: key);
+  chef_pro({
+    Key? key,
+    required this.chefid,
+    required this.cheflevel,
+    required this.experience,
+    required this.cuisine,
+    required this.city,
+    required this.profilepic,
+    required this.rating,
+    required this.specialities,
+    required this.cid,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +102,7 @@ class chef_pro extends StatelessWidget {
                         Positioned(
                           bottom: 89.0,
                           child: Text(
-                            '${chefid}',
+                            'username: ${chefid}',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -594,7 +599,15 @@ class chef_pro extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        print(cid);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MenuTab(
+                                      cid: cid,
+                                    )));
+                      },
                       child: Text(
                         'Pre-Defined\nMenu',
                         style: TextStyle(
@@ -617,7 +630,12 @@ class chef_pro extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => customiseduser()));
+                      },
                       child: Text(
                         'Customized\nMenu',
                         textAlign: TextAlign.center,

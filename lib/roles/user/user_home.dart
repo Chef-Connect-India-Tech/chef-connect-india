@@ -939,15 +939,15 @@ class _user_homeState extends State<user_home> {
                     //   color: Color(0xFFEF7A85),
                     // );
                     return new list_view(
-                      chefid: document['chefid'],
-                      cusineexpert: document['cuisineexpert'].toString(),
-                      level: document['professionallevel'].toString(),
-                      speciality: document['specialities'].toString(),
-                      experience: document['experience'].toString(),
-                      profilepic: document['profilepic'],
-                      city: document['city'].toString(),
-                      rating: document['rating'].toString(),
-                    );
+                        chefid: document['chefid'],
+                        cusineexpert: document['cuisineexpert'].toString(),
+                        level: document['professionallevel'].toString(),
+                        speciality: document['specialities'].toString(),
+                        experience: document['experience'].toString(),
+                        profilepic: document['profilepic'],
+                        city: document['city'].toString(),
+                        rating: document['rating'].toString(),
+                        uid: document['uid']);
                   }).toList(),
                 );
               },
