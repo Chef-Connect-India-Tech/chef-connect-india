@@ -632,7 +632,9 @@ class chef_pro extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => customiseduser()));
+                                builder: (context) => MenuTab(
+                                      cid: cid,
+                                    )));
                       },
                       child: Text(
                         'Customized\nMenu',

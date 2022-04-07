@@ -88,7 +88,7 @@ class _customisedState extends State<customised> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'ADD MENU',
+          'ADD CUSTOMISED MENU',
           style: GoogleFonts.lato(
             color: Colors.black,
             fontSize: 20,
@@ -222,7 +222,7 @@ class _customisedState extends State<customised> {
         .collection('Menu')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set({
-      'dishes': _selectedItems,
+      'customised menu': _selectedItems,
     }, SetOptions(merge: true));
     Fluttertoast.showToast(msg: "Successfully added");
   }
