@@ -189,7 +189,7 @@ class _customisedState extends State<customised> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          onPressed: _createAppointment,
+                          onPressed: savedata,
                           child: Text(
                             'Upload',
                             style: TextStyle(
@@ -214,7 +214,7 @@ class _customisedState extends State<customised> {
     );
   }
 
-  Future<void> _createAppointment() async {
+  Future<void> savedata() async {
     var len = ((_selectedItems).length);
     //var menulength = ((_menunameController.text).length);
 
@@ -223,6 +223,7 @@ class _customisedState extends State<customised> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set({
       'customised menu': _selectedItems,
+      'cid': FirebaseAuth.instance.currentUser!.uid,
     }, SetOptions(merge: true));
     Fluttertoast.showToast(msg: "Successfully added");
   }

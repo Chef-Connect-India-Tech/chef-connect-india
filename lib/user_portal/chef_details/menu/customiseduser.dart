@@ -43,6 +43,8 @@ class _customiseduserState extends State<customiseduser> {
       query: FirebaseFirestore.instance
           .collection('Menu')
           .where("cid", isEqualTo: widget.cid),
+      // .doc(widget.cid)
+      // .collection('customised menu'),
       // to fetch real-time datar
       isLive: true,
     );
@@ -112,7 +114,7 @@ class _listcustomisedState extends State<listcustomised> {
                             ),
                           ),
                           Text(
-                            'starters: ${widget.dishes}',
+                            '${widget.dishes}',
                             style: GoogleFonts.roboto(
                               fontSize: 15.0,
                               color: const Color(0xFFB6B7B7),
