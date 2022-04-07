@@ -2,7 +2,7 @@
 
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 // import 'package:chef_connect_india/main.dart';
-import 'package:chef_connect_india/roles/user/select_mode.dart';
+import 'package:chef_connect_india/Main%20Screen/select_mode.dart';
 import 'package:chef_connect_india/roles/user/user_home.dart';
 import 'package:chef_connect_india/roles/user/user_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
