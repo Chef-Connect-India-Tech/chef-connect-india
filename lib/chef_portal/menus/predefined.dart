@@ -14,6 +14,9 @@ class predefined extends StatefulWidget {
 }
 
 class _predefinedState extends State<predefined> {
+  var name;
+  var name1;
+  var name2;
   var a = FirebaseAuth.instance.currentUser!.uid;
   List starterslist = [];
   List maincourselist = [];
@@ -78,14 +81,15 @@ class _predefinedState extends State<predefined> {
   void _showMultiSelect() async {
     // a list of selectable items
     // these items can be hard-coded or dynamically fetched from a database/API
-    final List<String> _items = [
-      'Chicken Lollipop',
-      'Chicken 65',
-      'Mutton soup',
-      'Fish fry',
-      'prawns',
-      'Mutton pieces'
-    ];
+    var a = 'j1YKrWBIXKjSWizr0Qe0';
+    var collection = FirebaseFirestore.instance.collection('menu');
+    var docSnapshot = await collection.doc(a).get();
+    if (docSnapshot.exists) {
+      Map<String, dynamic> data = docSnapshot.data()!;
+      name = data['starters'];
+      print(name);
+    }
+    List<String> _items = name.cast<String>();
 
     final List<String>? results = await showDialog(
       context: context,
@@ -105,14 +109,15 @@ class _predefinedState extends State<predefined> {
   void _showMultiSelect1() async {
     // a list of selectable items
     // these items can be hard-coded or dynamically fetched from a database/API
-    final List<String> _items1 = [
-      'Chicken Biriyani',
-      'Mutton Biriyani',
-      'Paneer Biriyani',
-      'Veg Biriyani',
-      'Chicken Boneless Biriyani',
-      'Mutton Boneless Biriyani',
-    ];
+    var a = 'j1YKrWBIXKjSWizr0Qe0';
+    var collection = FirebaseFirestore.instance.collection('menu');
+    var docSnapshot = await collection.doc(a).get();
+    if (docSnapshot.exists) {
+      Map<String, dynamic> data = docSnapshot.data()!;
+      name1 = data['main course'];
+      print(name1);
+    }
+    List<String> _items1 = name1.cast<String>();
 
     final List<String>? results1 = await showDialog(
       context: context,
@@ -132,14 +137,15 @@ class _predefinedState extends State<predefined> {
   void _showMultiSelect2() async {
     // a list of selectable items
     // these items can be hard-coded or dynamically fetched from a database/API
-    final List<String> _items2 = [
-      'Apple Pie',
-      'lmond Malai Kulfi',
-      'Cheesecake',
-      'Cupcakes',
-      'Brownies',
-      'Ice cream'
-    ];
+    var a = 'j1YKrWBIXKjSWizr0Qe0';
+    var collection = FirebaseFirestore.instance.collection('menu');
+    var docSnapshot = await collection.doc(a).get();
+    if (docSnapshot.exists) {
+      Map<String, dynamic> data = docSnapshot.data()!;
+      name2 = data['desserts'];
+      print(name2);
+    }
+    List<String> _items2 = name2.cast<String>();
 
     final List<String>? results2 = await showDialog(
       context: context,
