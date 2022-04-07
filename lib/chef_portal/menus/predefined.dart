@@ -272,6 +272,36 @@ class _predefinedState extends State<predefined> {
                         SizedBox(
                           height: 10,
                         ),
+                        Row(
+                          children: [
+                            Text(
+                              'Enter Starters',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            CircleAvatar(
+                              radius: 15,
+                              backgroundColor: Colors.grey.shade200,
+                              child: InkWell(
+                                onTap: _showMultiSelect,
+                                child: Icon(
+                                  Icons.add,
+                                  size: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           height: 150,
                           width: 400,
@@ -280,13 +310,9 @@ class _predefinedState extends State<predefined> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: InkWell(
-                            onTap: _showMultiSelect,
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  Text(
-                                    'Enter Starters',
-                                  ),
                                   Wrap(
                                     children: _selectedItems
                                         .map((e) => Chip(
@@ -298,6 +324,36 @@ class _predefinedState extends State<predefined> {
                               ),
                             ),
                           ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Enter Main Course',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            CircleAvatar(
+                              radius: 15,
+                              backgroundColor: Colors.grey.shade200,
+                              child: InkWell(
+                                onTap: _showMultiSelect1,
+                                child: Icon(
+                                  Icons.add,
+                                  size: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(
                           height: 10,
@@ -315,7 +371,6 @@ class _predefinedState extends State<predefined> {
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  Text('Enter main course'),
                                   Wrap(
                                     children: _selectedItems1
                                         .map((e) => Chip(
@@ -326,29 +381,64 @@ class _predefinedState extends State<predefined> {
                                 ],
                               ),
                             ),
-                            onTap: _showMultiSelect1,
                           ),
                         ),
-                        ElevatedButton(
-                          child: const Text('Enter Desserts'),
-                          onPressed: _showMultiSelect2,
+                        SizedBox(
+                          height: 10,
                         ),
-                        Wrap(
-                          children: _selectedItems2
-                              .map((e) => Chip(
-                                    label: Text(e),
-                                  ))
-                              .toList(),
+                        Row(
+                          children: [
+                            Text(
+                              'Enter Desert',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            CircleAvatar(
+                              radius: 15,
+                              backgroundColor: Colors.grey.shade200,
+                              child: InkWell(
+                                onTap: _showMultiSelect2,
+                                child: Icon(
+                                  Icons.add,
+                                  size: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        // MultiSelectDialogField(
-                        //   items: _animals
-                        //       .map((e) => MultiSelectItem(e, e.name))
-                        //       .toList(),
-                        //   listType: MultiSelectListType.CHIP,
-                        //   onConfirm: (values) {
-                        //     _selectedAnimals = values;
-                        //   },
-                        // ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 150,
+                          width: 400,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.shade100,
+                          ),
+                          child: InkWell(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Wrap(
+                                    children: _selectedItems2
+                                        .map((e) => Chip(
+                                              label: Text(e),
+                                            ))
+                                        .toList(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           height: 20,
                         ),
@@ -357,6 +447,7 @@ class _predefinedState extends State<predefined> {
                           width: 350,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              primary: Colors.indigo,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
                                   10,
@@ -510,17 +601,25 @@ class _MultiSelectState extends State<MultiSelect> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       title: const Text('Select Topics'),
       content: SingleChildScrollView(
-        child: ListBody(
-          children: widget.items
-              .map((item) => CheckboxListTile(
-                    value: _selectedItems.contains(item),
-                    title: Text(item),
-                    controlAffinity: ListTileControlAffinity.leading,
-                    onChanged: (isChecked) => _itemChange(item, isChecked!),
-                  ))
-              .toList(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListBody(
+              children: widget.items
+                  .map((item) => CheckboxListTile(
+                        value: _selectedItems.contains(item),
+                        title: Text(item),
+                        controlAffinity: ListTileControlAffinity.leading,
+                        onChanged: (isChecked) => _itemChange(item, isChecked!),
+                      ))
+                  .toList(),
+            ),
+          ],
         ),
       ),
       actions: [
@@ -529,6 +628,11 @@ class _MultiSelectState extends State<MultiSelect> {
           onPressed: _cancel,
         ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
           child: const Text('Submit'),
           onPressed: _submit,
         ),

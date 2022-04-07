@@ -123,59 +123,79 @@ class _customisedState extends State<customised> {
                       SizedBox(
                         height: 15,
                       ),
-                      ElevatedButton(
-                        autofocus: true,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Enter Dishes',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
+                      Row(
+                        children: [
+                          Text(
+                            'Enter Dishes',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.grey.shade200,
+                            child: InkWell(
+                              onTap: _showMultiSelect,
+                              child: Icon(
+                                Icons.add,
+                                size: 18,
+                                color: Colors.black,
                               ),
                             ),
-                            Icon(
-                              Icons.arrow_downward,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                        onPressed: _showMultiSelect,
+                          ),
+                        ],
                       ),
-                      Wrap(
-                        children: _selectedItems
-                            .map((e) => Chip(
-                                  label: Text(e),
-                                ))
-                            .toList(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 150,
+                        width: 400,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.shade200,
+                        ),
+                        child: InkWell(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Wrap(
+                                  children: _selectedItems
+                                      .map((e) => Chip(
+                                            label: Text(e),
+                                          ))
+                                      .toList(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
+                      SizedBox(
                         height: 50,
-                        width: MediaQuery.of(context).size.width,
+                        width: 360,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            elevation: 2,
                             primary: Colors.indigo,
-                            onPrimary: Colors.black,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32.0),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          onPressed: () {
-                            _createAppointment();
-                            // print(_menunameController.text);
-                          },
+                          onPressed: _createAppointment,
                           child: Text(
-                            "Upload",
-                            style: GoogleFonts.lato(
-                              color: Colors.white,
+                            'Upload',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
