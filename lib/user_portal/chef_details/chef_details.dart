@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:chef_connect_india/user_portal/chef_details/menu/customiseduser.dart';
+// import 'package:chef_connect_india/user_portal/chef_details/menu/customiseduser.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -100,7 +100,7 @@ class chef_pro extends StatelessWidget {
                         Positioned(
                           bottom: 89.0,
                           child: Text(
-                            'username: ${chefid}',
+                            '${chefid}',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -109,7 +109,7 @@ class chef_pro extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          right: 167.0,
+                          right: 160.0,
                           bottom: 55.0,
                           child: Text(
                             '$city',

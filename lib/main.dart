@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> checkRole() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    chef = (pref.getBool('chefRole') ?? false);
+    chef = (pref.getBool('chefRole') ?? true);
   }
 
   Widget build(BuildContext context) {

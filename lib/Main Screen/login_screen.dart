@@ -34,9 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
   void fetchRole() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     if (widget.isowner) {
-      await pref.setBool('ownerRole', true);
+      await pref.setBool('chefRole', true);
     } else {
-      await pref.setBool('ownerRole', false);
+      await pref.setBool('chefRole', false);
     }
   }
 
