@@ -88,7 +88,7 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
           Expanded(
             child: TabBarView(controller: _tabController, children: [
               predefineduser(cid: widget.cid),
-              customiseduser(),
+              customiseduser(cid: widget.cid),
             ]),
           )
         ],

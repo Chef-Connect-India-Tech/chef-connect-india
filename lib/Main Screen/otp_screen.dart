@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:chef_connect_india/Helper/dimensions.dart';
+import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/Main%20Screen/login_screen.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
@@ -44,7 +45,7 @@ class _OTPScreenState extends State<OTPScreen> {
 
   Future<void> checkRole() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    owner = (pref.getBool('ownerRole') ?? false);
+    owner = (pref.getBool('chefRole') ?? false);
   }
 
   _phoneVerified() async {
@@ -136,6 +137,12 @@ class _OTPScreenState extends State<OTPScreen> {
       verificationFailed: (FirebaseAuthException e) {
         log(e.message!);
         showSnackBar('Something went wrong !', Colors.red);
+        Navigator.pushAndRemoveUntil(
+            context,
+            new MaterialPageRoute(
+              builder: (context) => ChefConnectMain(),
+            ),
+            ((route) => false));
         // Navigator.pushReplacementNamed(context, '/loginScreen');
       },
       codeSent: (String? verficationID, int? resendToken) {
@@ -146,6 +153,7 @@ class _OTPScreenState extends State<OTPScreen> {
       },
       codeAutoRetrievalTimeout: (String verificationID) {
         showSnackBar('OTP verification timed out !', Colors.red);
+
         // Navigator.pushReplacementNamed(context, '/loginScreen');
       },
       timeout: Duration(seconds: 60),
