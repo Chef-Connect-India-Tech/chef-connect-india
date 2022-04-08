@@ -87,7 +87,7 @@ class _listpredefinedState extends State<listpredefined> {
                   right: 10.0,
                   child: Container(
                     alignment: Alignment(0.2, 0.0),
-                    width: 320.0,
+                    width: 345.0,
                     height: 158.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.horizontal(
@@ -103,55 +103,64 @@ class _listpredefinedState extends State<listpredefined> {
                         ),
                       ],
                     ),
-                    child: SizedBox(
-                      width: 150.0,
-                      height: 142.0,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "${widget.menuname}'s menu",
-                            style: GoogleFonts.roboto(
-                              fontSize: 20.0,
-                              color: const Color(0xFF4A4B4D),
-                              fontWeight: FontWeight.w700,
-                            ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey.shade100,
+                          radius: 50,
+                        ),
+                        SizedBox(
+                          width: 150.0,
+                          height: 142.0,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                "${widget.menuname}'s menu",
+                                style: GoogleFonts.roboto(
+                                  fontSize: 20.0,
+                                  color: const Color(0xFF4A4B4D),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Text(
+                                'starters: ${widget.starters}',
+                                style: GoogleFonts.roboto(
+                                  fontSize: 15.0,
+                                  color: const Color(0xFFB6B7B7),
+                                  height: 1.11,
+                                ),
+                              ),
+                              Text(
+                                'maincourse: ${widget.maincourse}',
+                                style: GoogleFonts.roboto(
+                                  fontSize: 15.0,
+                                  color: const Color(0xFFB6B7B7),
+                                  height: 1.11,
+                                ),
+                              ),
+                              Text(
+                                'desserts: ${widget.desserts}',
+                                style: GoogleFonts.roboto(
+                                  fontSize: 15.0,
+                                  color: const Color(0xFFB6B7B7),
+                                  height: 1.11,
+                                ),
+                              ),
+                              // Text(
+                              //   'spc: ${widget.speciality}',
+                              //   style: GoogleFonts.roboto(
+                              //     fontSize: 15.0,
+                              //     color: const Color(0xFFB6B7B7),
+                              //     height: 1.11,
+                              //   ),
+                              // ),
+                            ],
                           ),
-                          Text(
-                            'starters: ${widget.starters}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 15.0,
-                              color: const Color(0xFFB6B7B7),
-                              height: 1.11,
-                            ),
-                          ),
-                          Text(
-                            'maincourse: ${widget.maincourse}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 15.0,
-                              color: const Color(0xFFB6B7B7),
-                              height: 1.11,
-                            ),
-                          ),
-                          Text(
-                            'desserts: ${widget.desserts}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 15.0,
-                              color: const Color(0xFFB6B7B7),
-                              height: 1.11,
-                            ),
-                          ),
-                          // Text(
-                          //   'spc: ${widget.speciality}',
-                          //   style: GoogleFonts.roboto(
-                          //     fontSize: 15.0,
-                          //     color: const Color(0xFFB6B7B7),
-                          //     height: 1.11,
-                          //   ),
-                          // ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

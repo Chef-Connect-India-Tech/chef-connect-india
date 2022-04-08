@@ -34,7 +34,7 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color(0xff7a54ff),
+        backgroundColor: Colors.indigo,
         title: Text('Menu', style: TextStyle(color: Colors.white)),
         elevation: 0.0,
         titleSpacing: 10.0,
@@ -49,29 +49,41 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
       body: Column(
         children: [
           new Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(1 - .0),
             child: new Text(''),
           ),
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.grey[300]),
-            child: TabBar(
-                isScrollable: true,
-                indicatorPadding: EdgeInsets.all(5),
-                labelColor: Colors.white,
-                unselectedLabelColor: colorstheme,
-                labelStyle: TextStyle(fontSize: 20),
-                labelPadding:
-                    EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
-                indicator: BoxDecoration(
-                    color: colorstheme,
-                    borderRadius: BorderRadius.circular(20)),
-                controller: _tabController,
-                tabs: [
-                  Text('Pre-defined menu'),
-                  Text('customised menu'),
-                ]),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: 400,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[300],
+              ),
+              child: TabBar(
+                  isScrollable: true,
+                  indicatorPadding: EdgeInsets.all(5),
+                  labelColor: Colors.white,
+                  unselectedLabelColor: colorstheme,
+                  labelStyle: TextStyle(fontSize: 20),
+                  labelPadding:
+                      EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+                  indicator: BoxDecoration(
+                    color: Colors.indigo.shade500,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  controller: _tabController,
+                  tabs: [
+                    Text(
+                      'Pre-defined menu',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    Text('customised menu'),
+                  ]),
+            ),
           ),
           Expanded(
             child: TabBarView(controller: _tabController, children: [
