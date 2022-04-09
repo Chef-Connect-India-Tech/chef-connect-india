@@ -36,17 +36,18 @@ class _chef_profileState extends State<chef_profile> {
         image = File(pick.path);
       } else {}
     });
+    Alert(
+      context: context,
+      title: "Profile Pic",
+      desc: "Profile pic will be update soon",
+    ).show();
     Reference ref = FirebaseStorage.instance
         .ref()
         .child("chef-profile")
         .child(FirebaseAuth.instance.currentUser!.uid);
     await ref.putFile(image!);
     downloadURL = await ref.getDownloadURL();
-    Alert(
-      context: context,
-      title: "Profile Pic",
-      desc: "Profile pic will be update soon",
-    ).show();
+
     if (downloadURL != null) {
       Firebasehelper.updatepic(
           FirebaseAuth.instance.currentUser!.uid, downloadURL);
@@ -56,12 +57,32 @@ class _chef_profileState extends State<chef_profile> {
   // var date = DateTime.now();
   DateTime dateTime = DateTime.now();
   late String date;
+
+  //personal details controller
   TextEditingController? _firstnameController;
   TextEditingController? _lastnameController;
   TextEditingController? _phoneController;
   TextEditingController? _phone2Controller;
   TextEditingController? _emailController;
   TextEditingController? _dobController;
+
+  //current location details controller
+  TextEditingController? _currentcity;
+  TextEditingController? _currentcountry;
+  TextEditingController? _currentcitypincode;
+
+  //work location details controller
+  TextEditingController? _workexperience;
+  TextEditingController? _workpreference;
+  TextEditingController? _workcity;
+  TextEditingController? _cheffees;
+  TextEditingController? _salaryrange;
+  TextEditingController? _cuisineexpert;
+  TextEditingController? _specialities;
+
+  //extra details controller
+  TextEditingController? _education;
+  TextEditingController? _certifications;
 
   // Future pickDate(BuildContext context) async {
   //   final initialDate = DateTime.now();
@@ -200,7 +221,7 @@ class _chef_profileState extends State<chef_profile> {
 
   void submit() {
     Navigator.of(context).pop();
-    updateData();
+    updatePersonalData();
   }
 
   void cancel() {
@@ -208,7 +229,7 @@ class _chef_profileState extends State<chef_profile> {
     // updateData();
   }
 
-  updateData() {
+  updatePersonalData() {
     // var current_user_uid = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection("chefs");
@@ -221,6 +242,278 @@ class _chef_profileState extends State<chef_profile> {
       'dob': date,
       'username':
           '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
+    }).then((value) => print("Updated Successfully"));
+  }
+
+  Future<String?> open_curloc_Dialog(data) => showDialog<String>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Current Location Data'),
+          content: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.name,
+                    controller: _currentcity =
+                        TextEditingController(text: data['address']),
+                    autofocus: true,
+                    decoration:
+                        InputDecoration(hintText: 'Enter your Current City'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.name,
+                    controller: _currentcountry =
+                        TextEditingController(text: data['country']),
+                    autofocus: true,
+                    decoration: InputDecoration(hintText: 'Enter your Country'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    // style: TextStyle(color: Colors.black),
+                    // readOnly: true,
+                    // enabled: false,
+                    keyboardType: TextInputType.name,
+                    controller: _currentcitypincode =
+                        TextEditingController(text: data['pincode']),
+                    autofocus: true,
+                    decoration: InputDecoration(
+                        hintText: 'Enter your Current Area Pincode'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: cancel,
+              child: Text('Cancel'),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            TextButton(
+              onPressed: submit_curr,
+              child: Text('Update'),
+            ),
+          ],
+        ),
+      );
+
+  void submit_curr() {
+    Navigator.of(context).pop();
+    updateCurLocData();
+  }
+
+  updateCurLocData() {
+    // var current_user_uid = FirebaseAuth.instance.currentUser!.uid;
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("chefs");
+    return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+      "city": _currentcity!.text,
+      'country': _currentcountry!.text,
+      "pincode": _currentcitypincode!.text,
+    }).then((value) => print("Updated Successfully"));
+  }
+
+  final salary = [
+    'under 10,000',
+    '10,000 - 20,000',
+    '20,000 - 40,000',
+    'above 40,000'
+  ];
+  String? _salaryRange;
+
+  DropdownMenuItem<String> buildMenuItem(String salary) => DropdownMenuItem(
+        value: salary,
+        child: Text(
+          salary,
+          style: TextStyle(fontSize: 18),
+        ),
+      );
+
+  Future<String?> open_work_Dialog(data) => showDialog<String>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Work Data'),
+          content: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.name,
+                    controller: _workexperience =
+                        TextEditingController(text: data['experience']),
+                    autofocus: true,
+                    decoration:
+                        InputDecoration(hintText: 'Enter your Experience'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.name,
+                    controller: _workpreference =
+                        TextEditingController(text: data['workpreference']),
+                    autofocus: true,
+                    decoration:
+                        InputDecoration(hintText: 'Enter your Work Preference'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.name,
+                    controller: _cheffees =
+                        TextEditingController(text: data['cheffees']),
+                    autofocus: true,
+                    decoration: InputDecoration(hintText: 'Enter Cost Per Day'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.name,
+                    controller: _cheffees =
+                        TextEditingController(text: data['city']),
+                    autofocus: true,
+                    decoration: InputDecoration(hintText: 'Enter Work City'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  // TextField(
+                  //   keyboardType: TextInputType.name,
+                  //   controller: _cheffees =
+                  //       TextEditingController(text: data['cheffees']),
+                  //   autofocus: true,
+                  //   decoration: InputDecoration(hintText: 'Enter Cost Per Day'),
+                  // ),
+                  DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      labelText: 'Current Salary Per Month',
+                      labelStyle: TextStyle(
+                          fontSize: 15,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                      prefixIcon: Icon(Icons.money),
+                      fillColor: Colors.white60,
+                      // hintText: 'Select Current Salary',
+                      hintStyle: TextStyle(color: Colors.black, fontSize: 15),
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 2,
+                        ),
+                      ),
+                      focusedBorder: new OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                        borderSide: BorderSide(
+                          color: Colors.white60,
+                          width: 2,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    autofocus: false,
+                    value: _salaryRange,
+                    isExpanded: true,
+                    iconSize: 25,
+                    icon: Icon(Icons.arrow_drop_down, color: Colors.black),
+                    items: salary.map(buildMenuItem).toList(),
+                    onChanged: (svalue) => setState(() {
+                      this._salaryRange = svalue;
+                      _salaryrange!.text = svalue!;
+                    }),
+                    onSaved: (lvalue) {
+                      _salaryrange!.text = lvalue!;
+                    },
+                    validator: (lvalue) {
+                      if (lvalue == null) {
+                        return "Select your Salary per Month";
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    onTap: () => Utils.showSheet(
+                      context,
+                      child: buildDatePicker(),
+                      onClicked: () {
+                        final date_value =
+                            DateFormat('dd/MM/yyyy').format(dateTime);
+                        // Utils.showSnackBar(context, 'Selected "$date_value"');
+                        date = date_value;
+                        Navigator.of(context).pop();
+                        // Navigator.pop(context);
+                      },
+                    ),
+                    controller: _dobController =
+                        TextEditingController(text: data['dob']),
+                    readOnly: true,
+                    autofocus: true,
+                    decoration:
+                        InputDecoration(hintText: 'Click to Enter your DOB'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: _emailController =
+                        TextEditingController(text: data['email']),
+                    autofocus: true,
+                    decoration: InputDecoration(hintText: 'Enter your email'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: cancel,
+              child: Text('Cancel'),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            TextButton(
+              onPressed: submit_work,
+              child: Text('Update'),
+            ),
+          ],
+        ),
+      );
+
+  void submit_work() {
+    Navigator.of(context).pop();
+    updateworkData();
+  }
+
+  updateworkData() {
+    // var current_user_uid = FirebaseAuth.instance.currentUser!.uid;
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("chefs");
+    return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+      "city": _currentcity!.text,
+      'country': _currentcountry!.text,
+      "pincode": _currentcitypincode!.text,
     }).then((value) => print("Updated Successfully"));
   }
 
@@ -633,7 +926,9 @@ class _chef_profileState extends State<chef_profile> {
                         width: 160,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () async {
+                          open_curloc_Dialog(data);
+                        },
                         child: Icon(
                           Icons.edit,
                         ),
@@ -811,7 +1106,7 @@ class _chef_profileState extends State<chef_profile> {
                       children: [
                         SizedBox(
                           width: 370.0,
-                          height: 140.0,
+                          height: 200.0,
                           child: Stack(
                             alignment: Alignment.topCenter,
                             children: <Widget>[
@@ -819,7 +1114,7 @@ class _chef_profileState extends State<chef_profile> {
                                 top: 0,
                                 child: Container(
                                   width: 370.0,
-                                  height: 140,
+                                  height: 200,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
                                     color: Colors.white,
@@ -899,7 +1194,71 @@ class _chef_profileState extends State<chef_profile> {
                               ),
                               Positioned(
                                 left: 10,
-                                top: 93.0,
+                                top: 90.0,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Cost Per Day',
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 18.0,
+                                        color: const Color(0xFF4A4B4D),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 70,
+                                    ),
+                                    Text(
+                                      (() {
+                                        if (data['cheffees'] == null) {
+                                          return "please add...";
+                                        }
+                                        return data['cheffees'];
+                                      })(),
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 15.0,
+                                        color: const Color(0xFF4A4B4D),
+                                        // fontWeight: FontWeight.w700,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                left: 10,
+                                bottom: 55.0,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Salary Range',
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 18.0,
+                                        color: const Color(0xFF4A4B4D),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 70,
+                                    ),
+                                    Text(
+                                      (() {
+                                        if (data['currentsalary'] == null) {
+                                          return "please add...";
+                                        }
+                                        return data['currentsalary'];
+                                      })(),
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 15.0,
+                                        color: const Color(0xFF4A4B4D),
+                                        // fontWeight: FontWeight.w700,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                left: 10,
+                                bottom: 20.0,
                                 child: Row(
                                   children: [
                                     Text(
@@ -911,7 +1270,7 @@ class _chef_profileState extends State<chef_profile> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 140,
+                                      width: 145,
                                     ),
                                     Text(
                                       (() {

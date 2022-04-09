@@ -2,6 +2,9 @@
 
 // import 'package:chef_connect_india/user_portal/chef_details/menu/customiseduser.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
+import 'package:chef_connect_india/user_portal/user_checkout.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -648,6 +651,59 @@ class chef_pro extends StatelessWidget {
                     ),
                   )
                 ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment(0.0, 0.0),
+              child: SizedBox(
+                height: 50,
+                width: 160,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onPressed: () {
+                    // FirebaseFirestore.instance
+                    //     .collection("bookings")
+                    //     .doc()
+                    //     .set(
+                    //   {
+                    //     "bookingId": (this will be the menu ID),
+                    //     "chefId": chefid,
+                    //     "customerId": FirebaseAuth.instance.currentUser!.uid,
+                    //     "location": location,
+                    //     "bookingSlot": [Dinner ,Lunch, Breakfast],
+                    //     "totalCost": (total cost of booking),
+                    //     "date-time": (date and time picker),
+                    //     "address": (Should use geolocator for this),
+                    //     "numberOfPlates": 1,
+                    //     "status": Submitted(by default),
+                    //   },
+                    // );
+                    // RoutingPage.goTonext(
+                    //   context: context,
+                    //   navigateTo: CartPage(),
+                    // );
+                    // print(cid);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => user_checkout()));
+                  },
+                  child: Text(
+                    'Book Chef',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 18,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ),
             )
           ],

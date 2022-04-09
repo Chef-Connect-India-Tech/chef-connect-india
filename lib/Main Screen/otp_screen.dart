@@ -57,24 +57,16 @@ class _OTPScreenState extends State<OTPScreen> {
           .then(
         (value) {
           if (value.exists) {
-            // Navigator.pushReplacementNamed(context,'/ownerHomePage');
-            Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (context) => chef_dashboard(),
-              ),
-            );
+            Navigator.pushAndRemoveUntil(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) => chef_dashboard(),
+                ),
+                ((route) => false));
           } else {
             FirebaseFirestore.instance.collection("chefs").doc(
                   FirebaseAuth.instance.currentUser!.uid,
                 );
-            //     .update(
-            //   {
-            //     // 'fullName': 'Name',
-            //     'mobile1': '+91' + LoginScreen.phone!,
-            //   },
-            // );
-            // Navigator.pushReplacementNamed(context, '/detailsScreen');
             Navigator.pushAndRemoveUntil(
                 context,
                 new MaterialPageRoute(
@@ -92,23 +84,16 @@ class _OTPScreenState extends State<OTPScreen> {
           .then(
         (value) {
           if (value.exists) {
-            // Navigator.pushReplacementNamed(context,'/location_page');
-            Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (context) => user_home(),
-              ),
-            );
+            Navigator.pushAndRemoveUntil(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) => user_home(),
+                ),
+                ((route) => false));
           } else {
             FirebaseFirestore.instance.collection("users").doc(
                   FirebaseAuth.instance.currentUser!.uid,
                 );
-            //     .update(
-            //   {
-            //     'mobile1': '+91' + LoginScreen.phone!,
-            //   },
-            // );
-            // Navigator.pushReplacementNamed(context, '/parkvehicleDetailPage');
             Navigator.pushAndRemoveUntil(
                 context,
                 new MaterialPageRoute(
@@ -200,88 +185,81 @@ class _OTPScreenState extends State<OTPScreen> {
   Widget build(BuildContext context) {
     vpH = getViewportHeight(context);
     vpW = getViewportWidth(context);
-    return WillPopScope(
-      onWillPop: () {
-        showSnackBar('You cannot go back at this stage ', Colors.grey[600]!);
-        return Future.value(false);
-      },
-      child: SafeArea(
-        child: Scaffold(
-            // resizeToAvoidBottomInset: false,
-            // backgroundColor: owner ? Colors.blue[200] : Colors.purple[300],
-            body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              Image.asset(
-                "assets/CCI.jpg",
-                fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
-                scale: 1,
-              ),
-              SafeArea(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: !codeSent
-                      ? Center(
-                          child: SpinKitFadingCircle(
-                            color: Colors.white,
-                            size: 60,
-                          ),
-                        )
-                      : SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 50,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "OTP sent.",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 40,
-                                          fontWeight: FontWeight.bold,
-                                          backgroundColor:
-                                              Colors.black.withOpacity(.4)),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Container(
-                                      child: Text(
-                                        "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
-                                        style: TextStyle(
-                                            color: Colors.white70,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.normal,
-                                            backgroundColor:
-                                                Colors.black.withOpacity(.7)),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              _formModule(),
-                            ],
-                          ),
-                        ),
+    return SafeArea(
+      child: Scaffold(
+          // resizeToAvoidBottomInset: false,
+          // backgroundColor: owner ? Colors.blue[200] : Colors.purple[300],
+          body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: Stack(
+          children: [
+            Image.asset(
+              "assets/CCI.jpg",
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+              scale: 1,
+            ),
+            SafeArea(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
                 ),
+                child: !codeSent
+                    ? Center(
+                        child: SpinKitFadingCircle(
+                          color: Colors.white,
+                          size: 60,
+                        ),
+                      )
+                    : SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "OTP sent.",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                        backgroundColor:
+                                            Colors.black.withOpacity(.4)),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
+                                      style: TextStyle(
+                                          color: Colors.white70,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.normal,
+                                          backgroundColor:
+                                              Colors.black.withOpacity(.7)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            _formModule(),
+                          ],
+                        ),
+                      ),
               ),
-            ],
-          ),
-        )),
-      ),
+            ),
+          ],
+        ),
+      )),
     );
   }
 

@@ -3,6 +3,7 @@
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 // import 'package:chef_connect_india/main.dart';
 import 'package:chef_connect_india/Main%20Screen/select_mode.dart';
+import 'package:chef_connect_india/user_portal/user_bookings.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:chef_connect_india/user_portal/user_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -62,7 +63,14 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text('My Bookings'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => user_bookings(),
+                ),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.person),

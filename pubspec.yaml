@@ -40,6 +40,7 @@ dependencies:
   provider: ^6.0.2
   rflutter_alert: ^2.0.4
   shared_preferences: ^2.0.13
+  custom_radio_grouped_button: any
 
 dev_dependencies:
   flutter_lints: ^1.0.0
