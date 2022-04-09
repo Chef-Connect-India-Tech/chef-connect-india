@@ -43,7 +43,7 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back_ios, color: Colors.white),
+          child: Icon(Icons.arrow_back, color: Colors.white),
         ),
       ),
       body: Column(
