@@ -103,11 +103,12 @@ class _Registration_userState extends State<Registration_user> {
                                 controller: firstNameEditingController,
                                 keyboardType: TextInputType.name,
                                 validator: (value) {
-                                  if (value!.isEmpty ||
-                                      !RegExp(r'^[a-z A-Z]+$')
-                                          .hasMatch(value)) {
+                                  if (value!.isEmpty) {
+                                    return "First Name cannot be empty";
+                                  } else if (!RegExp(r'^[a-z A-Z]+$')
+                                      .hasMatch(value)) {
                                     //allow upper and lower case alphabets and space
-                                    return "Enter Correct First Name";
+                                    return "Space not allowed in First Name";
                                   } else {
                                     return null;
                                   }
@@ -153,16 +154,16 @@ class _Registration_userState extends State<Registration_user> {
                                 autofocus: false,
                                 controller: lastNameEditingController,
                                 keyboardType: TextInputType.name,
-                                validator: (value) {
-                                  if (value!.isEmpty ||
-                                      !RegExp(r'^[a-z A-Z]+$')
-                                          .hasMatch(value)) {
-                                    //allow upper and lower case alphabets and space
-                                    return "Enter Correct Last Name";
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                // validator: (value) {
+                                //   if (value!.isEmpty ||
+                                //       RegExp(r'^[a-z A-Z]+$')
+                                //           .hasMatch(value)) {
+                                //     //allow upper and lower case alphabets and space
+                                //     return "Enter Correct Last Name";
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
                                 onSaved: (value) {
                                   lastNameEditingController.text = value!;
                                 },

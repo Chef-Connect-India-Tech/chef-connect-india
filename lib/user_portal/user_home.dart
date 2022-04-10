@@ -95,7 +95,7 @@ class _user_homeState extends State<user_home> {
             child: Container(
           child: Column(children: [
             SizedBox(
-              height: 20,
+              height: 8,
             ),
             Container(
               height: 300,
@@ -876,8 +876,11 @@ class _user_homeState extends State<user_home> {
               height: 20,
             ),
             Row(children: [
+              SizedBox(
+                width: 10,
+              ),
               Text(
-                " Top Chefs",
+                "Available Chefs",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.indigo[900],
@@ -902,7 +905,10 @@ class _user_homeState extends State<user_home> {
                     ),
                   );
                 },
-              )
+              ),
+              SizedBox(
+                width: 10,
+              ),
             ]),
             StreamBuilder(
               stream: FirebaseFirestore.instance
@@ -944,6 +950,7 @@ class _user_homeState extends State<user_home> {
                         profilepic: document['profilepic'],
                         city: document['city'].toString(),
                         rating: document['rating'].toString(),
+                        currentsalary: document['currentsalary'].toString(),
                         uid: document['uid']);
                   }).toList(),
                 );
