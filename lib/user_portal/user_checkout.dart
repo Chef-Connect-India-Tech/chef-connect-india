@@ -160,7 +160,7 @@ class _user_checkoutState extends State<user_checkout> {
                     ),
                     Container(
                       width: width - 20,
-                      height: 120,
+                      height: 150,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.black,

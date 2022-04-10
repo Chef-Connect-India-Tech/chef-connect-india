@@ -9,6 +9,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 enum City { Jaipur, Banglore }
 
+// enum Location1 {
+//   banglore,
+// }
+
 class Select_mode_new extends StatefulWidget {
   Select_mode_new({Key? key}) : super(key: key);
 
