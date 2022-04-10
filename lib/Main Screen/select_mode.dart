@@ -1,6 +1,10 @@
 import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:flutter/material.dart';
 
+// enum Location1 {
+//   banglore,
+// }
+
 class Select_mode_new extends StatefulWidget {
   Select_mode_new({Key? key}) : super(key: key);
 
@@ -9,6 +13,8 @@ class Select_mode_new extends StatefulWidget {
 }
 
 class _Select_mode_newState extends State<Select_mode_new> {
+  String selected = "banglore";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -50,67 +56,87 @@ class _Select_mode_newState extends State<Select_mode_new> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            height: 150,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white38,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Jaipur',
-                                    style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
+                          GestureDetector(
+                            onTap: (() {
+                              setState(
+                                () {
+                                  selected = "jaipur";
+                                },
+                              );
+                            }),
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: selected == "jaipur"
+                                    ? Colors.white
+                                    : Colors.grey,
+                              ),
+                              child: InkWell(
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
                                     ),
-                                  ),
-                                  Image.asset(
-                                    'assets/jaipur_1.png',
-                                    height: 119,
-                                    width: 150,
-                                    scale: 1,
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ],
+                                    Text(
+                                      'Jaipur',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                      'assets/jaipur_1.png',
+                                      height: 119,
+                                      width: 150,
+                                      scale: 1,
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                          Container(
-                            height: 150,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              color: Colors.white70,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: InkWell(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Banglore',
-                                    style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
+                          GestureDetector(
+                            onTap: (() => setState(
+                                  () {
+                                    selected == "banglore";
+                                  },
+                                )),
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                color: selected == "banglore"
+                                    ? Colors.white
+                                    : Colors.grey,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
                                     ),
-                                  ),
-                                  Image.asset(
-                                    'assets/banglore_1.png',
-                                    height: 119,
-                                    width: 160,
-                                    scale: 1,
-                                    fit: BoxFit.fitHeight,
-                                  )
-                                ],
+                                    Text(
+                                      'Banglore',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                      'assets/banglore_1.png',
+                                      height: 119,
+                                      width: 160,
+                                      scale: 1,
+                                      fit: BoxFit.fitHeight,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
