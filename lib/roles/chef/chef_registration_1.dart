@@ -152,16 +152,16 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 autofocus: false,
                                 controller: lastNameEditingController,
                                 keyboardType: TextInputType.name,
-                                validator: (value) {
-                                  if (value!.isEmpty ||
-                                      !RegExp(r'^[a-z A-Z]+$')
-                                          .hasMatch(value)) {
-                                    //allow upper and lower case alphabets and space
-                                    return "Enter Correct Last Name";
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                // validator: (value) {
+                                //   if (value!.isEmpty ||
+                                //       RegExp(r'^[a-z A-Z]+$')
+                                //           .hasMatch(value)) {
+                                //     //allow upper and lower case alphabets and space
+                                //     return "Enter Correct Last Name";
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
                                 onSaved: (value) {
                                   lastNameEditingController.text = value!;
                                 },
@@ -230,7 +230,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                       fontWeight: FontWeight.bold),
                                   prefixIcon: Icon(Icons.history_outlined),
                                   fillColor: Colors.white60,
-                                  hintText: 'Work Experience',
+                                  hintText: 'Ex: 11',
                                   hintStyle: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                   filled: true,

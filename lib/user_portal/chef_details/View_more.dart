@@ -20,7 +20,8 @@ class _view_moreState extends State<view_more> {
         toolbarHeight: 70, // default is 56
         // toolbarOpacity: 0.5,
         elevation: 50.0,
-        title: Text('Chef Connect India'),
+        centerTitle: true,
+        title: Text('Chef Connect India - Chefs'),
       ),
       body: PaginateFirestore(
         itemBuilderType: PaginateBuilderType.listView,
@@ -30,29 +31,28 @@ class _view_moreState extends State<view_more> {
         scrollDirection: Axis.vertical,
         itemBuilder: (context, documentSnapshots, index) {
           final dataa = documentSnapshots[index].data() as Map?;
-          return GestureDetector(
-            //  onTap: ()=> Navigator.push(context,
-            //            MaterialPageRoute(builder: (_)=> Chef_profile_ui(
-            //              name:  data!['firstname']),
-            //            )),
-            child: list_view(
-              chefid: dataa!['chefid'],
-              cusineexpert: dataa['cuisineexpert'].toString(),
-              level: dataa['professionallevel'].toString(),
-              speciality: dataa['specialities'].toString(),
-              experience: dataa['experience'].toString(),
-              profilepic: dataa['profilepic'],
-              city: dataa['city'].toString(),
-              rating: dataa['rating'].toString(),
-              uid: dataa['uid'].toString(),
-            ),
-            // ListTile(
+          return SafeArea(
+            child: GestureDetector(
+              child: list_view(
+                chefid: dataa!['chefid'],
+                cusineexpert: dataa['cuisineexpert'].toString(),
+                level: dataa['professionallevel'].toString(),
+                speciality: dataa['specialities'].toString(),
+                experience: dataa['experience'].toString(),
+                profilepic: dataa['profilepic'],
+                city: dataa['city'].toString(),
+                rating: dataa['rating'].toString(),
+                uid: dataa['uid'].toString(),
+                currentsalary: dataa['currentsalary'].toString(),
+              ),
+              // ListTile(
 
-            //   leading: const CircleAvatar(child: Icon(Icons.person)),
-            //   title:
-            //       dataa == null ? const Text('Error in data') : Text(dataa['firstname']),
-            //   subtitle: Text(documentSnapshots[index].id),
-            // ),
+              //   leading: const CircleAvatar(child: Icon(Icons.person)),
+              //   title:
+              //       dataa == null ? const Text('Error in data') : Text(dataa['firstname']),
+              //   subtitle: Text(documentSnapshots[index].id),
+              // ),
+            ),
           );
         },
         // orderBy is compulsory to enable pagination

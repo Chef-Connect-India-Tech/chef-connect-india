@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 
 class MenuTab extends StatefulWidget {
   late String cid;
-  MenuTab({required this.cid});
+  late List customisedmenu;
+  MenuTab({required this.cid, required this.customisedmenu});
   // const MenuTab({
   //   Key? key,
   //   required String cid,
@@ -21,16 +22,22 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
   final colorstheme = Color(0xff4b4b87);
 
   late TabController _tabController;
+  List pp = [];
 
   @override
   void initState() {
     _tabController = new TabController(length: 2, vsync: this, initialIndex: 0)
       ..addListener(() {});
     super.initState();
+    pp = widget.customisedmenu;
   }
 
   @override
   Widget build(BuildContext context) {
+    List<String> _items = pp.cast<String>();
+
+    print('menupage-------------------------------k');
+    print(pp);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -88,7 +95,10 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
           Expanded(
             child: TabBarView(controller: _tabController, children: [
               predefineduser(cid: widget.cid),
-              customiseduser(cid: widget.cid),
+              customiseduser(
+                cid: widget.cid,
+                items: widget.customisedmenu,
+              ),
             ]),
           )
         ],

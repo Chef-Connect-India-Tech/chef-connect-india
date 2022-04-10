@@ -4,7 +4,6 @@
 import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
 import 'package:chef_connect_india/user_portal/user_checkout.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,6 +33,22 @@ class chef_pro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("cid");
+    print(cid);
+    var name;
+    List _items = [];
+    void _showMultiSelect() async {
+      var a = 'KyU6Vt8hEIckIxKz60Si';
+      var collection = FirebaseFirestore.instance.collection('dish');
+      var docSnapshot = await collection.doc(a).get();
+      if (docSnapshot.exists) {
+        Map<String, dynamic> data = docSnapshot.data()!;
+        name = data['dishes'];
+        print(name);
+      }
+      List<String> _items = name.cast<String>();
+    }
+
     String cuisine_exp =
         cuisine.replaceAll(new RegExp(r"\p{P}", unicode: true), "");
     return Scaffold(
@@ -600,12 +615,25 @@ class chef_pro extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
+                        var a = 'KyU6Vt8hEIckIxKz60Si';
+                        var collection =
+                            FirebaseFirestore.instance.collection('Menu');
+                        var docSnapshot = await collection.doc(cid).get();
+                        if (docSnapshot.exists) {
+                          Map<String, dynamic> data = docSnapshot.data()!;
+                          name = data['customised menu'];
+                          print(name);
+                        }
+                        List<String> _items = name.cast<String>();
                         print(cid);
+                        print('bookpage');
+                        print(_items);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => MenuTab(
+                                      customisedmenu: _items,
                                       cid: cid,
                                     )));
                       },
@@ -636,6 +664,7 @@ class chef_pro extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => MenuTab(
+                                      customisedmenu: _items,
                                       cid: cid,
                                     )));
                       },

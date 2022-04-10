@@ -1,5 +1,13 @@
+// ignore_for_file: override_on_non_overriding_member
+
+import 'package:chef_connect_india/Helper/model.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+enum City { Jaipur, Banglore }
 
 // enum Location1 {
 //   banglore,
@@ -13,8 +21,7 @@ class Select_mode_new extends StatefulWidget {
 }
 
 class _Select_mode_newState extends State<Select_mode_new> {
-  String selected = "banglore";
-
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,108 +60,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
                       SizedBox(
                         height: 30,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: (() {
-                              setState(
-                                () {
-                                  selected = "jaipur";
-                                },
-                              );
-                            }),
-                            child: Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: selected == "jaipur"
-                                    ? Colors.white
-                                    : Colors.grey,
-                              ),
-                              child: InkWell(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      'Jaipur',
-                                      style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    Image.asset(
-                                      'assets/jaipur_1.png',
-                                      height: 119,
-                                      width: 150,
-                                      scale: 1,
-                                      fit: BoxFit.fitWidth,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: (() => setState(
-                                  () {
-                                    selected == "banglore";
-                                  },
-                                )),
-                            child: Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                color: selected == "banglore"
-                                    ? Colors.white
-                                    : Colors.grey,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: InkWell(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      'Banglore',
-                                      style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Image.asset(
-                                      'assets/banglore_1.png',
-                                      height: 119,
-                                      width: 160,
-                                      scale: 1,
-                                      fit: BoxFit.fitHeight,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      // SizedBox(
-                      //   height: 15,
-                      // ),
-                      // Text(
-                      //   'Select Chef Mode',
-                      //   style: TextStyle(
-                      //     fontFamily: 'Roboto',
-                      //     fontWeight: FontWeight.w600,
-                      //     color: Colors.white,
-                      //     backgroundColor: Colors.black.withOpacity(0.5),
-                      //     fontSize: 30,
-                      //   ),
-                      // ),
+                      _buildCitySelection(context),
                       SizedBox(
                         height: 60,
                       ),
@@ -209,18 +115,6 @@ class _Select_mode_newState extends State<Select_mode_new> {
                               ),
                             ),
                           ),
-                          // Text(
-                          //   'Special occasions \nshould be savoured \n Book a party chef\n with Chef Connect India ',
-                          //   style: TextStyle(
-                          //     fontFamily: 'Roboto',
-                          //     fontSize: 15,
-                          //     backgroundColor: Colors.black.withOpacity(
-                          //       0.5,
-                          //     ),
-                          //     color: Colors.white,
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          // )
                         ],
                       ),
                       SizedBox(
@@ -241,12 +135,34 @@ class _Select_mode_newState extends State<Select_mode_new> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => user_home(),
-                                ),
-                                (route) => false);
+                            if (selectedCity == null) {
+                              Fluttertoast.showToast(
+                                  msg: "Please Select a City to Proceed",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.SNACKBAR,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg:
+                                      "Selected City: ${selectedCity.toString().split('.')[1]}",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.SNACKBAR,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                              postDetailsToFirestore();
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => user_home(),
+                                  ),
+                                  (route) => false);
+                            }
+                            // print(selectedCity.toString().split('.')[1]);
                           },
                           child: Text(
                             'Proceed',
@@ -267,5 +183,139 @@ class _Select_mode_newState extends State<Select_mode_new> {
         ),
       ),
     );
+  }
+
+  // City? selectedCity = City.Banglore;
+  City? selectedCity = null;
+
+  @override
+  Widget _buildCitySelection(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          //color: Colors.grey,
+          height: 150,
+          // width: 150,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedCity = City.Jaipur;
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: selectedCity == City.Jaipur
+                        ? Colors.white70
+                        : Colors.white38,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  // height: 200,
+                  // width: 150,
+                  child: Container(
+                      child: _buildAwesome(
+                          context,
+                          'assets/jaipur_1.png',
+                          "Jaipur",
+                          selectedCity == City.Jaipur
+                              ? Colors.green
+                              : Colors.white,
+                          selectedCity == City.Jaipur)),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedCity = City.Banglore;
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: selectedCity == City.Banglore
+                        ? Colors.white70
+                        : Colors.white38,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Container(
+                      child: _buildAwesome(
+                          context,
+                          'assets/banglore_1.png',
+                          "Banglore",
+                          selectedCity == City.Banglore
+                              ? Colors.green
+                              : Colors.white,
+                          selectedCity == City.Banglore)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget _buildAwesome(BuildContext context, String image, String label,
+      Color col, bool selected) {
+    return Container(
+      height: 150,
+      width: 160,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 7.0,
+          ),
+          Text(
+            label,
+            style: TextStyle(
+                fontSize: 18,
+                color: col,
+                fontWeight: selected ? FontWeight.bold : FontWeight.w400),
+          ),
+          SizedBox(
+            height: 3.0,
+          ),
+          Image.asset(
+            image,
+            height: 119,
+            width: 160,
+            scale: 1,
+            fit: BoxFit.cover,
+          )
+          // Image(
+          //   height: 120,
+          //   width: 160,
+          //   fit: BoxFit.fitWidth,
+          //   image: AssetImage(image),
+
+          // ),
+        ],
+      ),
+    );
+  }
+
+  postDetailsToFirestore() async {
+    // calling our firestore
+    // calling our user model
+    // sedning these values
+    User? user = _auth.currentUser;
+
+    UserModel userModel = UserModel();
+
+    // writing all the values
+    userModel.uid = user!.uid;
+    userModel.selectedLocation = selectedCity.toString().split('.')[1];
+    userModel.hiremode = 'Party Chef';
+
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("users");
+    return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+      'selectedLocation': userModel.selectedLocation,
+      'hiremode': userModel.hiremode
+    }).then((value) => user_home());
   }
 }

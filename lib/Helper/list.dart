@@ -148,6 +148,7 @@ class list_view extends StatefulWidget {
   var rating;
   var city;
   var uid;
+  var currentsalary;
 
   list_view({
     required this.chefid,
@@ -159,6 +160,7 @@ class list_view extends StatefulWidget {
     required this.rating,
     required this.city,
     required this.uid,
+    required this.currentsalary,
   });
 
   @override
@@ -175,149 +177,160 @@ class _list_viewState extends State<list_view> {
       alignment: Alignment(0.03, -0.77),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => chef_pro(
-                  cid: widget.uid,
-                  chefid: widget.chefid,
-                  cheflevel: widget.level,
-                  experience: widget.experience,
-                  cuisine: widget.cusineexpert,
-                  city: widget.city,
-                  profilepic: widget.profilepic,
-                  specialities: widget.speciality,
-                  rating: widget.rating,
+        child: Expanded(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => chef_pro(
+                    cid: widget.uid,
+                    chefid: widget.chefid,
+                    cheflevel: widget.level,
+                    experience: widget.experience,
+                    cuisine: widget.cusineexpert,
+                    city: widget.city,
+                    profilepic: widget.profilepic,
+                    specialities: widget.speciality,
+                    rating: widget.rating,
+                  ),
                 ),
-              ),
-            );
-            //print('onTap Food');
-          },
-          child: SizedBox(
-            width: 360.0,
-            height: 158.0,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  right: 10.0,
-                  child: Container(
-                    alignment: Alignment(0.2, 0.0),
-                    width: 320.0,
-                    height: 158.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(30.0),
-                        right: Radius.circular(10.0),
-                      ),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.16),
-                          offset: Offset(0, 3.0),
-                          blurRadius: 12.0,
+              );
+              //print('onTap Food');
+            },
+            child: SizedBox(
+              width: 360.0,
+              height: 158.0,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    right: 10.0,
+                    child: Container(
+                      alignment: Alignment(0.2, 0.0),
+                      width: 320.0,
+                      height: 158.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.horizontal(
+                          left: Radius.circular(30.0),
+                          right: Radius.circular(10.0),
                         ),
-                      ],
-                    ),
-                    child: SizedBox(
-                      width: 150.0,
-                      height: 142.0,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'id: ${widget.chefid}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 20.0,
-                              color: const Color(0xFF4A4B4D),
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Text(
-                            'ce: ${cuisine_exp}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 15.0,
-                              color: const Color(0xFFB6B7B7),
-                              height: 1.11,
-                            ),
-                          ),
-                          Text(
-                            'lev: ${widget.level}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 15.0,
-                              color: const Color(0xFFB6B7B7),
-                              height: 1.11,
-                            ),
-                          ),
-                          // Text(
-                          //   'spc: ${widget.speciality}',
-                          //   style: GoogleFonts.roboto(
-                          //     fontSize: 15.0,
-                          //     color: const Color(0xFFB6B7B7),
-                          //     height: 1.11,
-                          //   ),
-                          // ),
-                          Text(
-                            'exp: ${widget.experience}',
-                            style: GoogleFonts.roboto(
-                              fontSize: 15.0,
-                              color: const Color(0xFFB6B7B7),
-                              height: 1.11,
-                            ),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 12.0,
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  right: 0,
-                  bottom: 61.0,
-                  child: Container(
-                    alignment: Alignment(0.04, -0.04),
-                    width: 33.0,
-                    height: 33.0,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.16),
-                          offset: Offset(0, 3.0),
-                          blurRadius: 6.0,
+                      child: SizedBox(
+                        width: 150.0,
+                        height: 142.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'id: ${widget.chefid}',
+                              style: GoogleFonts.roboto(
+                                fontSize: 20.0,
+                                color: const Color(0xFF4A4B4D),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+
+                            Text(
+                              'ce: ${cuisine_exp}',
+                              style: GoogleFonts.roboto(
+                                fontSize: 15.0,
+                                color: const Color(0xFFB6B7B7),
+                                height: 1.11,
+                              ),
+                            ),
+                            Divider(
+                              height: 1,
+                              thickness: 0.5,
+                            ),
+                            Text(
+                              'Expected Sal: ${widget.currentsalary}',
+                              style: GoogleFonts.roboto(
+                                fontSize: 15.0,
+                                color: const Color(0xFFB6B7B7),
+                                height: 1.11,
+                              ),
+                            ),
+                            Divider(
+                              height: 1,
+                              thickness: 0.5,
+                            ),
+                            // Text(
+                            //   'spc: ${widget.speciality}',
+                            //   style: GoogleFonts.roboto(
+                            //     fontSize: 15.0,
+                            //     color: const Color(0xFFB6B7B7),
+                            //     height: 1.11,
+                            //   ),
+                            // ),
+                            Text(
+                              'exp: ${widget.experience}',
+                              style: GoogleFonts.roboto(
+                                fontSize: 15.0,
+                                color: const Color(0xFFB6B7B7),
+                                height: 1.11,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: SvgPicture.string(
-                      // Group 6835
-                      '<svg viewBox="0.0 0.0 5.69 11.38" ><path  d="M 0 0 L 5.691650390625 5.691650390625" fill="none" stroke="#fc6011" stroke-width="2" stroke-miterlimit="4" stroke-linecap="round" /><path transform="translate(0.0, 5.69)" d="M 5.691650390625 0 L 0 5.691650390625" fill="none" stroke="#fc6011" stroke-width="2" stroke-miterlimit="4" stroke-linecap="round" /></svg>',
-                      width: 5.69,
-                      height: 11.38,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 21.0,
-                  child: Container(
-                    width: 110.0,
-                    height: 115.0,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 3.0,
-                        color: Colors.indigoAccent,
-                      ),
-                      borderRadius:
-                          BorderRadius.all(Radius.elliptical(55.0, 57.5)),
-                      image: DecorationImage(
-                        image: NetworkImage(widget.profilepic),
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Positioned(
+                    right: 0,
+                    bottom: 61.0,
+                    child: Container(
+                      alignment: Alignment(0.04, -0.04),
+                      width: 33.0,
+                      height: 33.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                      child: SvgPicture.string(
+                        // Group 6835
+                        '<svg viewBox="0.0 0.0 5.69 11.38" ><path  d="M 0 0 L 5.691650390625 5.691650390625" fill="none" stroke="#fc6011" stroke-width="2" stroke-miterlimit="4" stroke-linecap="round" /><path transform="translate(0.0, 5.69)" d="M 5.691650390625 0 L 0 5.691650390625" fill="none" stroke="#fc6011" stroke-width="2" stroke-miterlimit="4" stroke-linecap="round" /></svg>',
+                        width: 5.69,
+                        height: 11.38,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 21.0,
+                    child: Container(
+                      width: 110.0,
+                      height: 115.0,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 3.0,
+                          color: Colors.indigoAccent,
+                        ),
+                        borderRadius:
+                            BorderRadius.all(Radius.elliptical(55.0, 57.5)),
+                        image: DecorationImage(
+                          image: NetworkImage(widget.profilepic),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
