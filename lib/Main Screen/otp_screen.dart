@@ -3,6 +3,7 @@ import 'package:chef_connect_india/Helper/dimensions.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/Main%20Screen/login_screen.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
+import 'package:chef_connect_india/onboarding_Screen/onboarding_screen.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
 import 'package:chef_connect_india/roles/user/Registration_user.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
@@ -97,7 +98,7 @@ class _OTPScreenState extends State<OTPScreen> {
             Navigator.pushAndRemoveUntil(
                 context,
                 new MaterialPageRoute(
-                  builder: (context) => Registration_user(),
+                  builder: (context) => Onboarding_screen(),
                 ),
                 ((route) => false));
           }

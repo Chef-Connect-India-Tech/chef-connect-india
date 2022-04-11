@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'onboarding_Screen/onboarding_screen.dart';
+
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
@@ -104,7 +106,7 @@ class _MyAppState extends State<MyApp> {
                                 // }
                               }
                               log('Has no data');
-                              return Registration_user();
+                              return Onboarding_screen();
                             }
                           },
                         );

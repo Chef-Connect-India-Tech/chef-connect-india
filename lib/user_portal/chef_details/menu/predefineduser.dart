@@ -13,41 +13,68 @@ class predefineduser extends StatefulWidget {
 class _predefineduserState extends State<predefineduser> {
   @override
   Widget build(BuildContext context) {
-    return PaginateFirestore(
-      itemBuilderType: PaginateBuilderType.listView,
-      physics: BouncingScrollPhysics(),
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(0.0),
-      scrollDirection: Axis.vertical,
-      itemBuilder: (context, documentSnapshots, index) {
-        final dataa = documentSnapshots[index].data() as Map?;
-        return GestureDetector(
-          //  onTap: ()=> Navigator.push(context,
-          //            MaterialPageRoute(builder: (_)=> Chef_profile_ui(
-          //              name:  data!['firstname']),
-          //            )),
-          child: listpredefined(
-            desserts: dataa!['desserts'],
-            maincourse: dataa['main course'],
-            starters: dataa['starters'],
-            menuname: dataa['menu name'],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            PaginateFirestore(
+              itemBuilderType: PaginateBuilderType.listView,
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(0.0),
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, documentSnapshots, index) {
+                final dataa = documentSnapshots[index].data() as Map?;
+                return GestureDetector(
+                  //  onTap: ()=> Navigator.push(context,
+                  //            MaterialPageRoute(builder: (_)=> Chef_profile_ui(
+                  //              name:  data!['firstname']),
+                  //            )),
+                  child: listpredefined(
+                    desserts: dataa!['desserts'],
+                    maincourse: dataa['main course'],
+                    starters: dataa['starters'],
+                    menuname: dataa['menu name'],
+                  ),
+                );
+              },
+              // orderBy is compulsory to enable pagination
+              query: FirebaseFirestore.instance
+                  .collection('Menu')
+                  .doc(widget.cid)
+                  .collection('menu'),
+              // to fetch real-time data
+              isLive: true,
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(30, 0, 30, 15),
+        child: GestureDetector(
+          child: SizedBox(
+            height: 40,
+            width: MediaQuery.of(context).size.width - 100,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.indigo,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+              onPressed: () {},
+              child: Text(
+                'Book A  Chef',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
           ),
-          // ListTile(
-
-          //   leading: const CircleAvatar(child: Icon(Icons.person)),
-          //   title:
-          //       dataa == null ? const Text('Error in data') : Text(dataa['firstname']),
-          //   subtitle: Text(documentSnapshots[index].id),
-          // ),
-        );
-      },
-      // orderBy is compulsory to enable pagination
-      query: FirebaseFirestore.instance
-          .collection('Menu')
-          .doc(widget.cid)
-          .collection('menu'),
-      // to fetch real-time data
-      isLive: true,
+        ),
+      ),
     );
   }
 }

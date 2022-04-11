@@ -34,10 +34,7 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    List<String> _items = pp.cast<String>();
-
-    print('menupage-------------------------------k');
-    print(pp);
+    // List<String> _items = pp.cast<String>();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -104,32 +101,6 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: BottomAppBar(
-              child: SizedBox(
-                height: 40,
-                width: 350,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.indigo,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    'Book A  Chef',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

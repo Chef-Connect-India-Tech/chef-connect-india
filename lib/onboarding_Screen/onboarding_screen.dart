@@ -1,5 +1,6 @@
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/main.dart';
+import 'package:chef_connect_india/roles/user/Registration_user.dart';
 import 'package:flutter/material.dart';
 import 'form_page.dart';
 import 'package:onboarding/onboarding.dart';
@@ -154,7 +155,12 @@ Hire kitchen professionals with the help of Chef Connect India
       color: defaultSkipButtonColor,
       child: InkWell(
         borderRadius: defaultSkipButtonBorderRadius,
-        onTap: () {},
+        onTap: () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => Registration_user()),
+              (route) => false);
+        },
         child: const Padding(
           padding: defaultSkipButtonPadding,
           child: Text(
@@ -176,14 +182,14 @@ Hire kitchen professionals with the help of Chef Connect India
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => ChefConnectMain(),
+                builder: (context) => Registration_user(),
               ),
               (route) => false);
         },
         child: const Padding(
           padding: defaultProceedButtonPadding,
           child: Text(
-            'Sign up',
+            'Register',
             style: defaultProceedButtonTextStyle,
           ),
         ),

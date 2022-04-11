@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, unused_element, unused_local_variable
 
 // import 'package:chef_connect_india/user_portal/chef_details/menu/customiseduser.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class chef_pro extends StatelessWidget {
+class chef_pro extends StatefulWidget {
   String chefid;
   String cheflevel;
   String experience;
@@ -32,25 +32,19 @@ class chef_pro extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<chef_pro> createState() => _chef_proState();
+}
+
+class _chef_proState extends State<chef_pro> {
+  @override
   Widget build(BuildContext context) {
     print("cid");
-    print(cid);
+    print(widget.cid);
     var name;
     List _items = [];
-    void _showMultiSelect() async {
-      var a = 'KyU6Vt8hEIckIxKz60Si';
-      var collection = FirebaseFirestore.instance.collection('dish');
-      var docSnapshot = await collection.doc(a).get();
-      if (docSnapshot.exists) {
-        Map<String, dynamic> data = docSnapshot.data()!;
-        name = data['dishes'];
-        print(name);
-      }
-      List<String> _items = name.cast<String>();
-    }
 
     String cuisine_exp =
-        cuisine.replaceAll(new RegExp(r"\p{P}", unicode: true), "");
+        widget.cuisine.replaceAll(new RegExp(r"\p{P}", unicode: true), "");
     return Scaffold(
       //drawer: NavBar(),
       appBar: AppBar(title: Text('Chef Details')),
@@ -103,7 +97,7 @@ class chef_pro extends StatelessWidget {
                                   borderRadius: BorderRadius.all(
                                       Radius.elliptical(55.0, 57.5)),
                                   image: DecorationImage(
-                                    image: NetworkImage('${profilepic}'),
+                                    image: NetworkImage('${widget.profilepic}'),
                                     fit: BoxFit.contain,
                                   ),
                                   border: Border.all(
@@ -118,7 +112,7 @@ class chef_pro extends StatelessWidget {
                         Positioned(
                           bottom: 89.0,
                           child: Text(
-                            '${chefid}',
+                            '${widget.chefid}',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -130,7 +124,7 @@ class chef_pro extends StatelessWidget {
                           right: 160.0,
                           bottom: 55.0,
                           child: Text(
-                            '$city',
+                            '${widget.city}',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -142,7 +136,7 @@ class chef_pro extends StatelessWidget {
                           left: 61.0,
                           bottom: 19.0,
                           child: Text(
-                            'level: $cheflevel',
+                            'level: ${widget.cheflevel}',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -154,7 +148,7 @@ class chef_pro extends StatelessWidget {
                           right: 52.0,
                           bottom: 19.0,
                           child: Text(
-                            'rating: $rating',
+                            'rating: ${widget.rating}',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -204,7 +198,7 @@ class chef_pro extends StatelessWidget {
                           top: 20,
                           left: 15,
                           child: Text(
-                            'Exp: $experience',
+                            'Exp: ${widget.experience}',
                             style: GoogleFonts.roboto(
                               fontSize: 20.0,
                               color: const Color(0xFF4A4B4D),
@@ -236,7 +230,7 @@ class chef_pro extends StatelessWidget {
             Align(
               alignment: Alignment(0.0, 0.0),
               child: Text(
-                'spec: $specialities',
+                'spec: ${widget.specialities}',
                 style: GoogleFonts.roboto(
                   fontSize: 20.0,
                   color: const Color(0xFF4A4B4D),
@@ -250,63 +244,6 @@ class chef_pro extends StatelessWidget {
             // ),
             Align(
               alignment: Alignment(0.0, 0.0),
-              // child: Stack(
-              //   alignment: Alignment.topCenter,
-              //   children: [
-              //     SizedBox(
-              //       width: 370.0,
-              //       height: 235.0,
-              //       child: Stack(
-              //         alignment: Alignment.topCenter,
-              //         children: <Widget>[
-
-              // Positioned(
-              //   top: 0,
-              //   child: Container(
-              //     width: 370.0,
-              //     height: 100,
-              //     decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(20.0),
-              //       color: Colors.white,
-              //       boxShadow: [
-              //         BoxShadow(
-              //           color: Colors.black.withOpacity(0.16),
-              //           offset: Offset(0, 3.0),
-              //           blurRadius: 12.0,
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              // Positioned(
-              //   top: 20,
-              //   left: 35,
-              //   child: Text(
-              //     'Chef ID',
-              //     style: GoogleFonts.roboto(
-              //       fontSize: 20.0,
-              //       color: const Color(0xFF4A4B4D),
-              //       fontWeight: FontWeight.w700,
-              //     ),
-              //   ),
-              // ),
-              // Positioned(
-              //   left: 35,
-              //   top: 60.0,
-              //   child: Text(
-              //     'City',
-              //     style: GoogleFonts.roboto(
-              //       fontSize: 20.0,
-              //       color: const Color(0xFF4A4B4D),
-              //       fontWeight: FontWeight.w700,
-              //     ),
-              //   ),
-              // ),
-              //   ],
-              // ),
-              // ),
-              // ],
-              // ),
               child: Container(
                 height: 160,
                 child: ListView(
@@ -607,8 +544,8 @@ class chef_pro extends StatelessWidget {
                     width: 10,
                   ),
                   SizedBox(
-                    height: 100,
-                    width: 160,
+                    height: 50,
+                    width: 200,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -616,29 +553,28 @@ class chef_pro extends StatelessWidget {
                         ),
                       ),
                       onPressed: () async {
-                        var a = 'KyU6Vt8hEIckIxKz60Si';
                         var collection =
                             FirebaseFirestore.instance.collection('Menu');
-                        var docSnapshot = await collection.doc(cid).get();
+                        var docSnapshot =
+                            await collection.doc(widget.cid).get();
                         if (docSnapshot.exists) {
                           Map<String, dynamic> data = docSnapshot.data()!;
                           name = data['customised menu'];
                           print(name);
                         }
                         List<String> _items = name.cast<String>();
-                        print(cid);
-                        print('bookpage');
-                        print(_items);
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MenuTab(
-                                      customisedmenu: _items,
-                                      cid: cid,
-                                    )));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MenuTab(
+                              customisedmenu: _items,
+                              cid: widget.cid,
+                            ),
+                          ),
+                        );
                       },
                       child: Text(
-                        'Pre-Defined\nMenu',
+                        'Select Menu',
                         style: TextStyle(
                           fontFamily: 'Roboto',
                           fontSize: 18,
@@ -647,94 +583,104 @@ class chef_pro extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  SizedBox(
-                    height: 100,
-                    width: 160,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MenuTab(
-                                      customisedmenu: _items,
-                                      cid: cid,
-                                    )));
-                      },
-                      child: Text(
-                        'Customized\nMenu',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  )
+                  // SizedBox(
+                  //   width: 20,
+                  // ),
+                  // SizedBox(
+                  //   height: 100,
+                  //   width: 160,
+                  //   child: ElevatedButton(
+                  //     style: ElevatedButton.styleFrom(
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(10),
+                  //       ),
+                  //     ),
+                  //     onPressed: () async {
+                  //       var collection =
+                  //           FirebaseFirestore.instance.collection('Menu');
+                  //       var docSnapshot =
+                  //           await collection.doc(widget.cid).get();
+                  //       if (docSnapshot.exists) {
+                  //         Map<String, dynamic> data = docSnapshot.data()!;
+                  //         name = data['customised menu'];
+                  //         print(name);
+                  //       }
+                  //       List<String> _items = name.cast<String>();
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (context) => MenuTab(
+                  //                     customisedmenu: _items,
+                  //                     cid: widget.cid,
+                  //                   )));
+                  //     },
+                  //     child: Text(
+                  //       'Customized\nMenu',
+                  //       textAlign: TextAlign.center,
+                  //       style: TextStyle(
+                  //         fontFamily: 'Roboto',
+                  //         fontSize: 18,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Align(
-              alignment: Alignment(0.0, 0.0),
-              child: SizedBox(
-                height: 50,
-                width: 160,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  onPressed: () {
-                    // FirebaseFirestore.instance
-                    //     .collection("bookings")
-                    //     .doc()
-                    //     .set(
-                    //   {
-                    //     "bookingId": (this will be the menu ID),
-                    //     "chefId": chefid,
-                    //     "customerId": FirebaseAuth.instance.currentUser!.uid,
-                    //     "location": location,
-                    //     "bookingSlot": [Dinner ,Lunch, Breakfast],
-                    //     "totalCost": (total cost of booking),
-                    //     "date-time": (date and time picker),
-                    //     "address": (Should use geolocator for this),
-                    //     "numberOfPlates": 1,
-                    //     "status": Submitted(by default),
-                    //   },
-                    // );
-                    // RoutingPage.goTonext(
-                    //   context: context,
-                    //   navigateTo: CartPage(),
-                    // );
-                    // print(cid);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => user_checkout()));
-                  },
-                  child: Text(
-                    'Book Chef',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 18,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            )
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Align(
+            //   alignment: Alignment(0.0, 0.0),
+            //   child: SizedBox(
+            //     height: 50,
+            //     width: 160,
+            //     child: ElevatedButton(
+            //       style: ElevatedButton.styleFrom(
+            //         shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(10),
+            //         ),
+            //       ),
+            //       onPressed: () {
+            // FirebaseFirestore.instance
+            //     .collection("bookings")
+            //     .doc()
+            //     .set(
+            //   {
+            //     "bookingId": (this will be the menu ID),
+            //     "chefId": chefid,
+            //     "customerId": FirebaseAuth.instance.currentUser!.uid,
+            //     "location": location,
+            //     "bookingSlot": [Dinner ,Lunch, Breakfast],
+            //     "totalCost": (total cost of booking),
+            //     "date-time": (date and time picker),
+            //     "address": (Should use geolocator for this),
+            //     "numberOfPlates": 1,
+            //     "status": Submitted(by default),
+            //   },
+            // );
+            // RoutingPage.goTonext(
+            //   context: context,
+            //   navigateTo: CartPage(),
+            // );
+            // print(cid);
+            //         Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //                 builder: (context) => user_checkout()));
+            //       },
+            //       child: Text(
+            //         'Book Chef',
+            //         style: TextStyle(
+            //           fontFamily: 'Roboto',
+            //           fontSize: 18,
+            //         ),
+            //         textAlign: TextAlign.center,
+            //       ),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),

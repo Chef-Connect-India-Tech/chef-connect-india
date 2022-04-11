@@ -61,13 +61,6 @@ class _view_moreState extends State<view_more> {
                 uid: dataa['uid'].toString(),
                 currentsalary: dataa['currentsalary'].toString(),
               ),
-              // ListTile(
-
-              //   leading: const CircleAvatar(child: Icon(Icons.person)),
-              //   title:
-              //       dataa == null ? const Text('Error in data') : Text(dataa['firstname']),
-              //   subtitle: Text(documentSnapshots[index].id),
-              // ),
             ),
           );
         },
