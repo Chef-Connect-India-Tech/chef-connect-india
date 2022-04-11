@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/user_portal/chef_details/chef_detail.dart';
 import 'package:chef_connect_india/user_portal/chef_details/chef_details.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
@@ -51,7 +52,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => chef_pro(
+                    builder: (context) => chef_detail(
                       cid: widget.uid,
                       chefid: widget.chefid,
                       cheflevel: widget.level,
