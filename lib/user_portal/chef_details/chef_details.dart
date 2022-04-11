@@ -2,7 +2,7 @@
 
 // import 'package:chef_connect_india/user_portal/chef_details/menu/customiseduser.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
-import 'package:chef_connect_india/user_portal/user_checkout.dart';
+// import 'package:chef_connect_india/user_portal/user_checkout.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +15,7 @@ class chef_pro extends StatefulWidget {
   String city;
   String profilepic;
   String specialities;
-  String rating;
+  double rating;
   String cid;
 
   chef_pro({

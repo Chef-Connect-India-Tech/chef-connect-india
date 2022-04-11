@@ -571,9 +571,10 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     chefModel.cuisineexpert = _myCusine;
     chefModel.workpreference = timeEditingController.text;
     chefModel.dutystatus = true;
+    chefModel.rating = 3.9;
     chefModel.role = 'chef';
     chefModel.profilepic =
-        'https://firebasestorage.googleapis.com/v0/b/chef-connect-testing.appspot.com/o/chef.png?alt=media&token=e3f9953c-b26c-4128-80c5-a6d3d97ccd1b';
+        'https://firebasestorage.googleapis.com/v0/b/chef-connect-testing.appspot.com/o/chef-profile%2Ftyt1vei5Zlfdm2miAs90seonQt22?alt=media&token=8fcaf32d-96d0-4afa-a711-d90cf8911c9e';
 
     await firebaseFirestore
         .collection("chefs")

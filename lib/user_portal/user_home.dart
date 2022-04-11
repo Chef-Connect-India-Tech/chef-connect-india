@@ -987,66 +987,66 @@ class _user_homeState extends State<user_home> {
                       ),
                     ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => chef_list_view(
-                                    chefid: '123',
-                                    cusineexpert: 'abc',
-                                    level: 'cbv',
-                                    speciality: 'bbbb',
-                                    experience: 'vbvbv',
-                                    profilepic: 'fgfg',
-                                    rating: 'bala',
-                                    city: 'ishwari',
-                                    uid: 'balaishwari',
-                                    currentsalary: 'both',
-                                  )));
-                    },
-                    child: Text(''),
-                  ),
-
-                  // StreamBuilder(
-                  //   stream: FirebaseFirestore.instance
-                  //       .collection("chefs")
-                  //       .limit(3)
-                  //       // .where('dutystatus', isEqualTo: true)
-                  //       .snapshots(),
-                  //   builder: (BuildContext context,
-                  //       AsyncSnapshot<QuerySnapshot> snapshot) {
-                  //     if (!snapshot.hasData) {
-                  //       return Center(
-                  //         child: CircularProgressIndicator(),
-                  //       );
-                  //     }
-                  //     return ListView(
-                  //       physics: BouncingScrollPhysics(),
-                  //       shrinkWrap: true,
-                  //       padding: const EdgeInsets.all(0.0),
-                  //       scrollDirection: Axis.vertical,
-                  //       primary: true,
-                  //       children: snapshot.data!.docs
-                  //           .map((DocumentSnapshot document) {
-                  //         print(document.data());
-                  //         return new list_view(
-                  //             chefid: document['chefid'],
-                  //             cusineexpert:
-                  //                 document['cuisineexpert'].toString(),
-                  //             level: document['professionallevel'].toString(),
-                  //             speciality: document['specialities'].toString(),
-                  //             experience: document['experience'].toString(),
-                  //             profilepic: document['profilepic'],
-                  //             city: document['city'].toString(),
-                  //             rating: document['rating'].toString(),
-                  //             currentsalary:
-                  //                 document['currentsalary'].toString(),
-                  //             uid: document['uid']);
-                  //       }).toList(),
-                  //     );
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) => chef_list_view(
+                  //                   chefid: '123',
+                  //                   cusineexpert: 'abc',
+                  //                   level: 'cbv',
+                  //                   speciality: 'bbbb',
+                  //                   experience: 'vbvbv',
+                  //                   profilepic: 'fgfg',
+                  //                   rating: 'bala',
+                  //                   city: 'ishwari',
+                  //                   uid: 'balaishwari',
+                  //                   currentsalary: 'both',
+                  //                 )));
                   //   },
+                  //   child: Text(''),
                   // ),
+
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("chefs")
+                        .limit(3)
+                        // .where('dutystatus', isEqualTo: true)
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return ListView(
+                        physics: BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(0.0),
+                        scrollDirection: Axis.vertical,
+                        primary: true,
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          print(document.data());
+                          return new chef_list_view(
+                            chefid: document['chefid'],
+                            cusineexpert: document['cuisineexpert'].toString(),
+                            level: document['professionallevel'].toString(),
+                            speciality: document['specialities'].toString(),
+                            experience: document['experience'].toString(),
+                            profilepic: document['profilepic'],
+                            city: document['city'].toString(),
+                            rating: document['rating'],
+                            currentsalary: document['currentsalary'].toString(),
+                            uid: document['uid'],
+                            costperday: document['cheffees'],
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

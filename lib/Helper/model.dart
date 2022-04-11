@@ -106,7 +106,7 @@ class ChefModel {
   List? cuisineexpert;
   String? specialities;
   String? menuimages;
-  String? rating;
+  double rating;
   String? education;
   String? languages;
   String? level;
@@ -140,7 +140,7 @@ class ChefModel {
       this.cuisineexpert,
       this.specialities,
       this.menuimages,
-      this.rating,
+      this.rating = 3.9,
       this.education,
       this.languages,
       this.level,
