@@ -1,4 +1,5 @@
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
+import 'package:chef_connect_india/Helper/chef_list.dart';
 import 'package:chef_connect_india/Helper/list.dart';
 import 'package:chef_connect_india/user_portal/chef_details/View_more.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -949,80 +950,103 @@ class _user_homeState extends State<user_home> {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Available Chefs",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.indigo[900],
-                        fontSize: 20,
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    Spacer(),
-                    TextButton(
-                      child: Text(
-                        " View More >",
+                      Text(
+                        "Available Chefs",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.indigo[900],
                           fontSize: 20,
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
+                      Spacer(),
+                      TextButton(
+                        child: Text(
+                          " View More >",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.indigo[900],
+                            fontSize: 20,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => view_more(),
+                            ),
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => view_more(),
-                          ),
-                        );
-                      },
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ]),
-                  StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection("chefs")
-                        .limit(3)
-                        // .where('dutystatus', isEqualTo: true)
-                        .snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return ListView(
-                        physics: BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.all(0.0),
-                        scrollDirection: Axis.vertical,
-                        primary: true,
-                        children: snapshot.data!.docs
-                            .map((DocumentSnapshot document) {
-                          print(document.data());
-                          return new list_view(
-                              chefid: document['chefid'],
-                              cusineexpert:
-                                  document['cuisineexpert'].toString(),
-                              level: document['professionallevel'].toString(),
-                              speciality: document['specialities'].toString(),
-                              experience: document['experience'].toString(),
-                              profilepic: document['profilepic'],
-                              city: document['city'].toString(),
-                              rating: document['rating'].toString(),
-                              currentsalary:
-                                  document['currentsalary'].toString(),
-                              uid: document['uid']);
-                        }).toList(),
-                      );
+                              builder: (context) => chef_list_view(
+                                    chefid: '123',
+                                    cusineexpert: 'abc',
+                                    level: 'cbv',
+                                    speciality: 'bbbb',
+                                    experience: 'vbvbv',
+                                    profilepic: 'fgfg',
+                                    rating: 'bala',
+                                    city: 'ishwari',
+                                    uid: 'balaishwari',
+                                    currentsalary: 'both',
+                                  )));
                     },
+                    child: Text(''),
                   ),
+
+                  // StreamBuilder(
+                  //   stream: FirebaseFirestore.instance
+                  //       .collection("chefs")
+                  //       .limit(3)
+                  //       // .where('dutystatus', isEqualTo: true)
+                  //       .snapshots(),
+                  //   builder: (BuildContext context,
+                  //       AsyncSnapshot<QuerySnapshot> snapshot) {
+                  //     if (!snapshot.hasData) {
+                  //       return Center(
+                  //         child: CircularProgressIndicator(),
+                  //       );
+                  //     }
+                  //     return ListView(
+                  //       physics: BouncingScrollPhysics(),
+                  //       shrinkWrap: true,
+                  //       padding: const EdgeInsets.all(0.0),
+                  //       scrollDirection: Axis.vertical,
+                  //       primary: true,
+                  //       children: snapshot.data!.docs
+                  //           .map((DocumentSnapshot document) {
+                  //         print(document.data());
+                  //         return new list_view(
+                  //             chefid: document['chefid'],
+                  //             cusineexpert:
+                  //                 document['cuisineexpert'].toString(),
+                  //             level: document['professionallevel'].toString(),
+                  //             speciality: document['specialities'].toString(),
+                  //             experience: document['experience'].toString(),
+                  //             profilepic: document['profilepic'],
+                  //             city: document['city'].toString(),
+                  //             rating: document['rating'].toString(),
+                  //             currentsalary:
+                  //                 document['currentsalary'].toString(),
+                  //             uid: document['uid']);
+                  //       }).toList(),
+                  //     );
+                  //   },
+                  // ),
                 ],
               ),
             ),

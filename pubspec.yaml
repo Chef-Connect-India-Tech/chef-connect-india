@@ -43,6 +43,7 @@ dependencies:
   custom_radio_grouped_button: any
   flutter_speed_dial: ^5.1.0
   flutter_rating_bar: ^4.0.0
+  smooth_star_rating_nsafe: ^1.0.0+1
 
 dev_dependencies:
   flutter_lints: ^1.0.0
