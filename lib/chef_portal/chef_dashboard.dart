@@ -37,14 +37,14 @@ class _chef_dashboardState extends State<chef_dashboard> {
             icon: Icon(
               Icons.event_note_sharp,
             ),
-            label: 'Booking',
+            label: 'My Booking',
             backgroundColor: Colors.amber,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person_rounded,
             ),
-            label: 'Profile',
+            label: 'My Profile',
             backgroundColor: Colors.deepOrange,
           ),
         ],

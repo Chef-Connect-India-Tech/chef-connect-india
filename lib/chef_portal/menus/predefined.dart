@@ -467,7 +467,7 @@ class _predefinedState extends State<predefined> {
                               print(_menunameController.text);
                             },
                             child: Text(
-                              'Register',
+                              'Add Menu',
                               style: TextStyle(
                                 fontFamily: 'Roboto',
                                 fontSize: 18,
