@@ -149,6 +149,7 @@ class _listpredefinedState extends State<listpredefined> {
                                   height: 1.11,
                                 ),
                               ),
+
                               // Text(
                               //   'spc: ${widget.speciality}',
                               //   style: GoogleFonts.roboto(
@@ -164,15 +165,16 @@ class _listpredefinedState extends State<listpredefined> {
                     ),
                   ),
                 ),
-                Positioned(
-                  right: 0,
-                  bottom: 61.0,
-                  child: Container(
-                    alignment: Alignment(0.04, -0.04),
-                    width: 33.0,
-                    height: 33.0,
-                  ),
-                ),
+
+                // Positioned(
+                //   right: 0,
+                //   bottom: 61.0,
+                //   child: Container(
+                //     alignment: Alignment(0.04, -0.04),
+                //     width: 33.0,
+                //     height: 33.0,
+                //   ),
+                // ),
               ],
             ),
           ),

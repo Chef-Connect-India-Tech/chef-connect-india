@@ -12,77 +12,196 @@ class chef_bookings extends StatefulWidget {
 }
 
 class _chef_bookingsState extends State<chef_bookings> {
+  bool checking = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 150,
-          ),
-          StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection("bookings")
-                .where('chefId',
-                    isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-                .snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (!snapshot.hasData) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              return ListView(
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(0.0),
-                scrollDirection: Axis.vertical,
-                primary: true,
-                children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                  return new booking_list_view(
-                    chefid: document['chefId'].toString(),
-                    address: document['address'].toString(),
-                    bookingId: document['appointmentId'],
-                    bookingSlot: document['bookingSlot'].toString(),
-                    cost: document['cost'].toString(),
-                    customerId: document['customerId'].toString(),
-                    date: document['date-time'].toString(),
-                    location: document['location'].toString(),
-                    numberOfPlates: document['numberOfPlates'].toString(),
-                    status: document['status'].toString(),
-                    time: document['date-time'].toString(),
-                  );
-                }).toList(),
-              );
-            },
-          ),
-          Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.purple.shade600,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        actions: [
+          Switch(
+              activeColor: Colors.white,
+              value: checking,
+              onChanged: (value) {
+                setState(() {
+                  checking = value;
+                });
+              })
+        ],
+        title: Text(' Chef Bookings'),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 30,
                 ),
-              ),
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.pushAndRemoveUntil(
-                    (context),
-                    MaterialPageRoute(builder: (context) => ChefConnectMain()),
-                    (route) => false);
-              },
-              child: Text(
-                'Log Out',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("bookings")
+                      .where('chefId',
+                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return Container(
+                      height: 200,
+                      width: 350,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 12.0,
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'Booking Id',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                'Location:',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                'Banglore',
+                              ),
+                              Text(
+                                'Booking Slot:',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                'Slot ',
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Date:',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                '20-04-2022',
+                              ),
+                              Text(
+                                'Time:',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                '11:20pm',
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Cost:',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                '3000',
+                              ),
+                              Text(
+                                'No of Plates:',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                '10 Plus',
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-              ),
+                // Center(
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       primary: Colors.purple.shade600,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(10),
+                //       ),
+                //     ),
+                //     onPressed: () async {
+                //       await FirebaseAuth.instance.signOut();
+                //       Navigator.pushAndRemoveUntil(
+                //           (context),
+                //           MaterialPageRoute(builder: (context) => ChefConnectMain()),
+                //           (route) => false);
+                //     },
+                //     child: Text(
+                //       'Log Out',
+                //       style: TextStyle(
+                //         fontFamily: 'Roboto',
+                //         fontSize: 16,
+                //         fontWeight: FontWeight.w600,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

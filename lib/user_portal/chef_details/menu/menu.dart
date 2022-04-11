@@ -93,13 +93,42 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
             ),
           ),
           Expanded(
-            child: TabBarView(controller: _tabController, children: [
-              predefineduser(cid: widget.cid),
-              customiseduser(
-                cid: widget.cid,
-                items: widget.customisedmenu,
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                predefineduser(cid: widget.cid),
+                customiseduser(
+                  cid: widget.cid,
+                  items: widget.customisedmenu,
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: BottomAppBar(
+              child: SizedBox(
+                height: 40,
+                width: 350,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.indigo,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: Text(
+                    'Book A  Chef',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
-            ]),
+            ),
           )
         ],
       ),
