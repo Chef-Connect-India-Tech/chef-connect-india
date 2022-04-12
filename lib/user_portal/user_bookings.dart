@@ -55,7 +55,7 @@ class _user_bookingsState extends State<user_bookings> {
                     cusineexpert: document['chefId'].toString(),
                     level: document['customerId'].toString(),
                     speciality: document['date-time'].toString(),
-                    experience: document['status'].toString(),
+                    experience: document['experience'],
                     profilepic: document['numberOfPlates'].toString(),
                     city: document['location'].toString(),
                     rating: document['status'].toString(),

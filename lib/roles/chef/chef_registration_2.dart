@@ -12,7 +12,7 @@ class chef_registration_two extends StatefulWidget {
   final String firstname;
   final String lastname;
   // final String phonenumber;
-  final String workexperience;
+  final int workexperience;
   final String worklocation;
   final String currentlocation;
   chef_registration_two(

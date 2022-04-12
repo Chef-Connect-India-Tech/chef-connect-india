@@ -19,6 +19,19 @@ class _chef_bookingsState extends State<chef_bookings> {
       appBar: AppBar(
         centerTitle: true,
         actions: [
+          IconButton(
+              icon: Icon(
+                Icons.sort_sharp,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChefConnectMain(),
+                  ),
+                );
+              }),
           Switch(
               activeColor: Colors.white,
               value: checking,

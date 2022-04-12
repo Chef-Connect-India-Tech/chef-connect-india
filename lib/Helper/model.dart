@@ -102,7 +102,7 @@ class ChefModel {
   String? currentsalary;
   String? expectedsalary;
   String? cheffees;
-  String? experience;
+  int? experience;
   List? cuisineexpert;
   String? specialities;
   String? menuimages;

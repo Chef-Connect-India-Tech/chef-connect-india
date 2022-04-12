@@ -142,7 +142,7 @@ class list_view extends StatefulWidget {
   var chefid;
   var cusineexpert;
   var level;
-  var experience;
+  int experience;
   var speciality;
   var profilepic;
   var rating;

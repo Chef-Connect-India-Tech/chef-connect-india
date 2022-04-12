@@ -85,7 +85,7 @@ class _SearchPageState extends State<SearchPage> {
               cusineexpert: dataa['cuisineexpert'].toString(),
               level: dataa['professionallevel'].toString(),
               speciality: dataa['specialities'].toString(),
-              experience: dataa['experience'].toString(),
+              experience: dataa['experience'],
               profilepic: dataa['profilepic'],
               city: dataa['city'].toString(),
               rating: dataa['rating'].toString(),

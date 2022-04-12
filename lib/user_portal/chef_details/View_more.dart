@@ -55,7 +55,7 @@ class _view_moreState extends State<view_more> {
                 cusineexpert: dataa['cuisineexpert'].toString(),
                 level: dataa['professionallevel'].toString(),
                 speciality: dataa['specialities'].toString(),
-                experience: dataa['experience'].toString(),
+                experience: dataa['experience'],
                 profilepic: dataa['profilepic'],
                 city: dataa['city'].toString(),
                 rating: dataa['rating'].toString(),

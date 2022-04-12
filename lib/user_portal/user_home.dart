@@ -1035,7 +1035,7 @@ class _user_homeState extends State<user_home> {
                             cusineexpert: document['cuisineexpert'].toString(),
                             level: document['level'].toString(),
                             speciality: document['specialities'].toString(),
-                            experience: document['experience'].toString(),
+                            experience: document['experience'],
                             profilepic: document['profilepic'],
                             city: document['city'].toString(),
                             rating: document['rating'],

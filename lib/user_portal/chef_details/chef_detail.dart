@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class chef_detail extends StatefulWidget {
   var chefid;
   var cheflevel;
-  var experience;
+  int experience;
   var cuisine;
   var city;
   var profilepic;

@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 class chef_pro extends StatefulWidget {
   String chefid;
   String cheflevel;
-  String experience;
+  int experience;
   String cuisine;
   String city;
   String profilepic;
