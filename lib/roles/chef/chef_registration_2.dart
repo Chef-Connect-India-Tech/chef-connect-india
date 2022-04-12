@@ -566,7 +566,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     chefModel.address = widget.currentlocation;
     chefModel.city = widget.worklocation;
     chefModel.currentsalary = salaryEditingController.text;
-    chefModel.cheffees = cheffeesEditingController.text;
+    chefModel.cheffees = int.parse(cheffeesEditingController.text);
     // chefModel.cuisineexpert = cusineEditingController.text;
     chefModel.cuisineexpert = _myCusine;
     chefModel.workpreference = timeEditingController.text;

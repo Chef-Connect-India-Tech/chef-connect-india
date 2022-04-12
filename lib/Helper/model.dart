@@ -101,7 +101,7 @@ class ChefModel {
   bool dutystatus;
   String? currentsalary;
   String? expectedsalary;
-  String? cheffees;
+  int? cheffees;
   int? experience;
   List? cuisineexpert;
   String? specialities;

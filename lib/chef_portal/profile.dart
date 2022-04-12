@@ -1213,7 +1213,7 @@ class _chef_profileState extends State<chef_profile> {
                                         if (data['cheffees'] == null) {
                                           return "please add...";
                                         }
-                                        return data['cheffees'];
+                                        return data['cheffees'].toString();
                                       })(),
                                       style: GoogleFonts.roboto(
                                         fontSize: 15.0,
