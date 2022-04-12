@@ -1149,7 +1149,7 @@ class _chef_profileState extends State<chef_profile> {
                                         if (data['experience'] == null) {
                                           return "please add...";
                                         }
-                                        return data['experience'];
+                                        return data['experience'].toString();
                                       })(),
                                       style: GoogleFonts.roboto(
                                         fontSize: 15.0,
