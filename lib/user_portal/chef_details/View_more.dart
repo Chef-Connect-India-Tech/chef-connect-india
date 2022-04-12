@@ -1,4 +1,5 @@
 import 'package:chef_connect_india/Helper/list.dart';
+import 'package:chef_connect_india/user_portal/chef_details/filterpage.dart';
 import 'package:chef_connect_india/user_portal/chef_details/searchchef.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
@@ -33,7 +34,7 @@ class _view_moreState extends State<view_more> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SearchPage(),
+                    builder: (context) => Select_Mode(),
                   ),
                 );
               })

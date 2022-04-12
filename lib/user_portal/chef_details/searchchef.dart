@@ -1,9 +1,13 @@
+import 'package:chef_connect_india/user_portal/chef_details/filterpage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 
+import '../../Helper/list.dart';
+
 class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  var selectedcity;
+  SearchPage({Key? key, required this.selectedcity}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -20,23 +24,45 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        // shadowColor: Colors.deepPurpleAccent,
+        toolbarHeight: 70, // default is 56
+        // toolbarOpacity: 0.5,
+        elevation: 50.0,
+        centerTitle: true,
+        title: Text('Chef Connect India - Chefs'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        title: Card(
-          child: TextField(
-            decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search), hintText: 'Search...'),
-            onChanged: (val) {
-              setState(() {
-                city = val;
-              });
-            },
-          ),
-        ),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(
+                Icons.sort_sharp,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Select_Mode(),
+                  ),
+                );
+              })
+        ],
+        // title: Card(
+        //   child: TextField(
+        //     decoration: InputDecoration(
+        //         prefixIcon: Icon(Icons.search), hintText: 'Search...'),
+        //     onChanged: (val) {
+        //       setState(() {
+        //         city = val;
+        //       });
+        //     },
+        //   ),
+        // ),
       ),
       body: PaginateFirestore(
         itemBuilderType: PaginateBuilderType.listView,
@@ -54,12 +80,17 @@ class _SearchPageState extends State<SearchPage> {
             //   customisedmenu: widget.items,
             //   //cid: dataa['cid'],
             // ),
-            child: ListTile(
-              leading: const CircleAvatar(child: Icon(Icons.person)),
-              title: dataa == null
-                  ? const Text('Error in data')
-                  : Text(dataa['city'].toString()),
-              subtitle: Text(documentSnapshots[index].id),
+            child: list_view(
+              chefid: dataa!['chefid'],
+              cusineexpert: dataa['cuisineexpert'].toString(),
+              level: dataa['professionallevel'].toString(),
+              speciality: dataa['specialities'].toString(),
+              experience: dataa['experience'].toString(),
+              profilepic: dataa['profilepic'],
+              city: dataa['city'].toString(),
+              rating: dataa['rating'].toString(),
+              uid: dataa['uid'].toString(),
+              currentsalary: dataa['currentsalary'].toString(),
             ),
           );
         },
@@ -67,7 +98,7 @@ class _SearchPageState extends State<SearchPage> {
         // orderBy is compulsory to enable pagination
         query: FirebaseFirestore.instance.collection('chefs').where(
               "city",
-              isEqualTo: "Jaipur",
+              isEqualTo: widget.selectedcity,
             ),
         //  .where("cid", isEqualTo: widget.cid),
         // .doc(widget.cid)
