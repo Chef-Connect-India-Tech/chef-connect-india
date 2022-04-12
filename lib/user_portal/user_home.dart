@@ -1184,7 +1184,7 @@ class _user_homeState extends State<user_home> {
                                             );
                                           },
                                           child: Text(
-                                            'Enter your query for kitchen ',
+                                            'Enter your query for kitchen Professional ',
                                           ),
                                         ),
                                       )
