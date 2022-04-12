@@ -3,7 +3,7 @@
   package="com.example.glass_morphism"
 >
    <application
-    android:label="Chef Connect"
+    android:label="Chef Connect India"
     android:name="${applicationName}"
     android:icon="@mipmap/ic_launcher"
   >

@@ -288,14 +288,15 @@ class _Select_ModeState extends State<Select_Mode> {
                         onPressed: () {
                           print('city name is:${cityholder}');
                           print('city name is:${chefholder}');
-                          Navigator.push(
+                          Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => SearchPage(
                                   selectedcity: cityholder,
                                   // hiremode: chefholder, selectedcity: null,
                                 ),
-                              ));
+                              ),
+                              (route) => false);
                         },
                         child: Text(
                           'Apply',
