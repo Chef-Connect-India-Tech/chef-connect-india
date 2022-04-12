@@ -85,41 +85,55 @@ class _LoginScreenState extends State<LoginScreen> {
                     // ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Welcome.",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                                backgroundColor: Colors.black.withOpacity(.4)),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            child: Text(
-                              "Enter your phone number to continue...",
+                      child: Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.isowner
+                                  ? "Boost Your Career"
+                                  : "Hire a Chef",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white,
+                                  fontSize: 45,
+                                  fontWeight: FontWeight.bold,
                                   backgroundColor:
-                                      Colors.black.withOpacity(.7)),
+                                      Colors.black.withOpacity(.4)),
                             ),
-                          ),
-                        ],
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                          ],
+                        ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 50.0),
                       child: Center(
-                        child: CircleAvatar(
-                          backgroundColor: Color(0xFF092349),
-                          radius: 100,
-                          child: Image.asset('assets/CCI1.png'),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Color(0xFF092349),
+                              radius: 100,
+                              child: Image.asset('assets/CCI1.png'),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              widget.isowner
+                                  ? ""
+                                  : "One Stop Solution for all\nYour Culinary Needs",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  backgroundColor:
+                                      Colors.black.withOpacity(.7)),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -136,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _formModule() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(30, 100, 30, 0),
+      padding: const EdgeInsets.fromLTRB(30, 70, 30, 0),
       child: Form(
         key: _formkey,
         child: Stack(
@@ -154,10 +168,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Chef Connect",
+                          "Enter Phone Number",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

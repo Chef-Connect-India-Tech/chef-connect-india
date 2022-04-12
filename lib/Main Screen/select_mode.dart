@@ -195,7 +195,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
       children: [
         Container(
           //color: Colors.grey,
-          height: 150,
+          height: 160,
           // width: 150,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -208,6 +208,9 @@ class _Select_mode_newState extends State<Select_mode_new> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
+                    border: selectedCity == City.Jaipur
+                        ? Border.all(color: Colors.deepPurple, width: 4)
+                        : Border.all(color: Colors.grey.shade300),
                     color: selectedCity == City.Jaipur
                         ? Colors.white70
                         : Colors.white38,
@@ -221,7 +224,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
                           'assets/jaipur_1.png',
                           "Jaipur",
                           selectedCity == City.Jaipur
-                              ? Colors.green
+                              ? Colors.black
                               : Colors.white,
                           selectedCity == City.Jaipur)),
                 ),
@@ -234,6 +237,9 @@ class _Select_mode_newState extends State<Select_mode_new> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
+                    border: selectedCity == City.Banglore
+                        ? Border.all(color: Colors.deepPurple, width: 4)
+                        : Border.all(color: Colors.grey.shade300),
                     color: selectedCity == City.Banglore
                         ? Colors.white70
                         : Colors.white38,
@@ -245,7 +251,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
                           'assets/banglore_1.png',
                           "Banglore",
                           selectedCity == City.Banglore
-                              ? Colors.green
+                              ? Colors.black
                               : Colors.white,
                           selectedCity == City.Banglore)),
                 ),
@@ -261,6 +267,11 @@ class _Select_mode_newState extends State<Select_mode_new> {
   Widget _buildAwesome(BuildContext context, String image, String label,
       Color col, bool selected) {
     return Container(
+      // decoration: BoxDecoration(
+      //   border: selected
+      //       ? Border.all(color: Colors.indigo, width: 1.5)
+      //       : Border.all(color: Colors.grey.shade300),
+      // ),
       height: 150,
       width: 160,
       child: Column(
@@ -286,13 +297,6 @@ class _Select_mode_newState extends State<Select_mode_new> {
             scale: 1,
             fit: BoxFit.cover,
           )
-          // Image(
-          //   height: 120,
-          //   width: 160,
-          //   fit: BoxFit.fitWidth,
-          //   image: AssetImage(image),
-
-          // ),
         ],
       ),
     );

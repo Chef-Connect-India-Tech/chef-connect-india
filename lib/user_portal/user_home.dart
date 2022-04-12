@@ -127,8 +127,6 @@ class _user_homeState extends State<user_home> {
           overlayOpacity: 0.4,
           spacing: 10,
           spaceBetweenChildren: 10,
-          // onOpen: () => showToast('Opened..'),
-          // onClose: () => showToast('Closed..'),
           closeManually: true,
           openCloseDial: isDialOpen,
           children: [
@@ -1233,27 +1231,6 @@ class _user_homeState extends State<user_home> {
                       ),
                     ],
                   ),
-                  // ElevatedButton(
-                  //   onPressed: () {
-                  //     Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(
-                  //             builder: (context) => chef_list_view(
-                  //                   chefid: '123',
-                  //                   cusineexpert: 'abc',
-                  //                   level: 'cbv',
-                  //                   speciality: 'bbbb',
-                  //                   experience: 'vbvbv',
-                  //                   profilepic: 'fgfg',
-                  //                   rating: 'bala',
-                  //                   city: 'ishwari',
-                  //                   uid: 'balaishwari',
-                  //                   currentsalary: 'both',
-                  //                 )));
-                  //   },
-                  //   child: Text(''),
-                  // ),
-
                   StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection("chefs")

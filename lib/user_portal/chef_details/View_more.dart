@@ -26,18 +26,19 @@ class _view_moreState extends State<view_more> {
         title: Text('Chef Connect India - Chefs'),
         actions: <Widget>[
           IconButton(
-              icon: Icon(
-                Icons.sort_sharp,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Select_Mode(),
-                  ),
-                );
-              })
+            icon: Icon(
+              Icons.sort_sharp,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Select_Mode(),
+                ),
+              );
+            },
+          ),
         ],
       ),
       body: PaginateFirestore(
