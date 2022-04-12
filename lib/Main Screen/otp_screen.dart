@@ -5,7 +5,7 @@ import 'package:chef_connect_india/Main%20Screen/login_screen.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:chef_connect_india/onboarding_Screen/onboarding_screen.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
-import 'package:chef_connect_india/roles/user/Registration_user.dart';
+// import 'package:chef_connect_india/roles/user/Registration_user.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -275,7 +275,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                         'Entered Phone Number Wrong ?',
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.bold,
                                           // backgroundColor:
                                           //     Colors.black.withOpacity(.7),
@@ -303,7 +303,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                           'Click Here',
                                           style: TextStyle(
                                             color: Colors.redAccent,
-                                            fontSize: 18,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                             // backgroundColor:
                                             //     Colors.black.withOpacity(.7),
@@ -320,7 +320,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                         'Resend OTP',
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.bold,
                                           // backgroundColor:
                                           //     Colors.black.withOpacity(.7),
@@ -341,7 +341,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                           'Click Here',
                                           style: TextStyle(
                                             color: Colors.redAccent,
-                                            fontSize: 18,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                             // backgroundColor:
                                             //     Colors.black.withOpacity(.7),

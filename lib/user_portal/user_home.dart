@@ -1,6 +1,6 @@
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:chef_connect_india/Helper/chef_list.dart';
-import 'package:chef_connect_india/Helper/list.dart';
+// import 'package:chef_connect_india/Helper/list.dart';
 import 'package:chef_connect_india/user_portal/chef_details/View_more.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -128,7 +128,11 @@ class _user_homeState extends State<user_home> {
           title: Text('Chef Connect India'),
         ),
         floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.menu_close,
+          child: Image(
+            image: AssetImage('assets/socialicons/customer.png'),
+            // height: 200,
+          ),
+          // animatedIcon: AnimatedIcons.menu_close,
           backgroundColor: Colors.black,
           overlayColor: Colors.black,
           overlayOpacity: 0.4,
@@ -138,28 +142,40 @@ class _user_homeState extends State<user_home> {
           openCloseDial: isDialOpen,
           children: [
             SpeedDialChild(
-              child: Icon(Icons.mail),
-              backgroundColor: Colors.red,
+              child: Image(
+                image: AssetImage('assets/socialicons/gmail.png'),
+                height: 35,
+              ),
+              backgroundColor: Colors.transparent,
               label: 'Mail',
               onTap: () => showToast('Selected Mail..'),
             ),
             SpeedDialChild(
-              child: Icon(Icons.copy),
-              backgroundColor: Colors.green,
-              label: 'Copy',
-              onTap: () => showToast('Selected Copy..'),
-            ),
-            SpeedDialChild(
-              child: Icon(Icons.facebook),
-              backgroundColor: Colors.blue,
+              child:
+                  Image(image: AssetImage('assets/socialicons/facebook.png')),
+              // backgroundColor: Colors.blue,
               label: 'Facebook',
               onTap: () => showToast('Selected facebook..'),
             ),
             SpeedDialChild(
-              child: Icon(Icons.whatsapp),
-              backgroundColor: Colors.indigo,
+              child:
+                  Image(image: AssetImage('assets/socialicons/whatsapp.png')),
+              // backgroundColor: Colors.indigo,
               label: 'Whatsapp',
               onTap: () => showToast('Selected whatsapp..'),
+            ),
+            SpeedDialChild(
+              child:
+                  Image(image: AssetImage('assets/socialicons/instagram.png')),
+              // backgroundColor: Colors.indigo,
+              label: 'Instagram',
+              onTap: () => showToast('Selected Instagram..'),
+            ),
+            SpeedDialChild(
+              child: Image(image: AssetImage('assets/socialicons/twitter.png')),
+              // backgroundColor: Colors.indigo,
+              label: 'Twitter',
+              onTap: () => showToast('Selected Twitter..'),
             ),
           ],
         ),
