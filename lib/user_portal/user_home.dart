@@ -1262,7 +1262,7 @@ class _user_homeState extends State<user_home> {
                           print(document.data());
                           return new chef_list_view(
                             chefid: document['chefid'].toString().toLowerCase(),
-                            cusineexpert: document['cuisineexpert'].toString(),
+                            cusineexpert: document['cuisineexpert'],
                             level: document['level'].toString(),
                             speciality: document['specialities'].toString(),
                             experience: document['experience'],

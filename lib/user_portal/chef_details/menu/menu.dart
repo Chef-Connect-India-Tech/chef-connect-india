@@ -37,19 +37,6 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
     // List<String> _items = pp.cast<String>();
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        title: Text('Menu', style: TextStyle(color: Colors.white)),
-        elevation: 0.0,
-        titleSpacing: 10.0,
-        centerTitle: true,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.arrow_back, color: Colors.white),
-        ),
-      ),
       body: Column(
         children: [
           new Padding(

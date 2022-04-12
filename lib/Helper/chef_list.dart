@@ -1,13 +1,14 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:chef_connect_india/user_portal/chef_details/chef_detail.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:chef_connect_india/user_portal/chef_details/chef_details.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 class chef_list_view extends StatefulWidget {
   var chefid;
-  var cusineexpert;
+  List cusineexpert = [];
   var level;
   int experience;
   var speciality;
@@ -37,32 +38,53 @@ class chef_list_view extends StatefulWidget {
 
 class _chef_list_viewState extends State<chef_list_view> {
   var rating = 5.0;
+  var cuisine_name;
+  var customised_items;
 
   @override
   Widget build(BuildContext context) {
     String cuisine_exp =
-        widget.cusineexpert.replaceAll('[', '').replaceAll(']', '');
+        widget.cusineexpert.toString().replaceAll('[', '').replaceAll(']', '');
     return Center(
       child: Column(
         children: [
           Container(
             padding: EdgeInsets.all(5),
             child: InkWell(
-              onTap: () {
+              onTap: () async {
+                var collection = FirebaseFirestore.instance.collection('chefs');
+                var docSnapshot = await collection.doc(widget.uid).get();
+                if (docSnapshot.exists) {
+                  Map<String, dynamic> data = docSnapshot.data()!;
+                  cuisine_name = data['cuisineexpert'];
+                  print(cuisine_name);
+                }
+                List<String> _items = cuisine_name.cast<String>();
+
+                var cust_collection =
+                    FirebaseFirestore.instance.collection('Menu');
+                var cust_docSnapshot =
+                    await cust_collection.doc(widget.uid).get();
+                if (docSnapshot.exists) {
+                  Map<String, dynamic> cust_data = cust_docSnapshot.data()!;
+                  customised_items = cust_data['customised menu'];
+                  // print(name);
+                }
+                List<String> _cust_items = customised_items.cast<String>();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => chef_detail(
-                      cid: widget.uid,
-                      chefid: widget.chefid,
-                      cheflevel: widget.level,
-                      experience: widget.experience,
-                      cuisine: widget.cusineexpert,
-                      city: widget.city,
-                      profilepic: widget.profilepic,
-                      specialities: widget.speciality,
-                      rating: widget.rating,
-                    ),
+                        cid: widget.uid,
+                        chefid: widget.chefid,
+                        cheflevel: widget.level,
+                        experience: widget.experience,
+                        cuisine: _items,
+                        city: widget.city,
+                        profilepic: widget.profilepic,
+                        specialities: widget.speciality,
+                        rating: widget.rating,
+                        customised_menu: _cust_items),
                   ),
                 );
               },
