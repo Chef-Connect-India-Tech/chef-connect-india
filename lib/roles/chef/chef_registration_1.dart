@@ -425,9 +425,9 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                                     lastname:
                                                         lastNameEditingController
                                                             .text,
-                                                    workexperience:
+                                                    workexperience: int.parse(
                                                         workExperienceEditingController
-                                                            .text,
+                                                            .text),
                                                     worklocation:
                                                         worklocationEditingController
                                                             .text,
