@@ -410,7 +410,8 @@ class _Registration_userState extends State<Registration_user> {
 
     user!.updateProfile(
         displayName: name,
-        photoURL: 'http://chefconnect.co.in/assets/images/logo_chef.png');
+        photoURL:
+            'https://firebasestorage.googleapis.com/v0/b/chef-connect-testing.appspot.com/o/chef-profile%2Ftyt1vei5Zlfdm2miAs90seonQt22?alt=media&token=8fcaf32d-96d0-4afa-a711-d90cf8911c9e');
 
     UserModel userModel = UserModel();
 
@@ -421,7 +422,7 @@ class _Registration_userState extends State<Registration_user> {
     userModel.lastname = lastNameEditingController.text;
     userModel.mobile1 = user.phoneNumber;
     userModel.profilepic =
-        'http://chefconnect.co.in/assets/images/logo_chef.png';
+        'https://firebasestorage.googleapis.com/v0/b/chef-connect-testing.appspot.com/o/chef-profile%2Ftyt1vei5Zlfdm2miAs90seonQt22?alt=media&token=8fcaf32d-96d0-4afa-a711-d90cf8911c9e';
     userModel.role = 'user';
 
     await firebaseFirestore

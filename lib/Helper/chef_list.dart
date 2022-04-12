@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:chef_connect_india/user_portal/chef_details/chef_detail.dart';
-import 'package:chef_connect_india/user_portal/chef_details/chef_details.dart';
+// import 'package:chef_connect_india/user_portal/chef_details/chef_details.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 

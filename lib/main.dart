@@ -4,7 +4,7 @@ import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
-import 'package:chef_connect_india/roles/user/Registration_user.dart';
+// import 'package:chef_connect_india/roles/user/Registration_user.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

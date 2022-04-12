@@ -186,7 +186,11 @@ class _OTPScreenState extends State<OTPScreen> {
   Widget build(BuildContext context) {
     vpH = getViewportHeight(context);
     vpW = getViewportWidth(context);
-    return SafeArea(
+    return WillPopScope(
+      onWillPop: () {
+        showSnackBar('You cannot go back at this stage ', Colors.grey[600]!);
+        return Future.value(false);
+      },
       child: Scaffold(
           // resizeToAvoidBottomInset: false,
           // backgroundColor: owner ? Colors.blue[200] : Colors.purple[300],
@@ -253,6 +257,102 @@ class _OTPScreenState extends State<OTPScreen> {
                               ),
                             ),
                             _formModule(),
+                            Container(
+                              margin: EdgeInsets.all(30),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.black.withOpacity(.6),
+                              ),
+                              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Entered Phone Number Wrong ?',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          // backgroundColor:
+                                          //     Colors.black.withOpacity(.7),
+                                        ),
+                                      ),
+                                      TextButton(
+                                        // style: ElevatedButton.styleFrom(
+                                        //   primary: Colors.white,
+                                        //   onPrimary: Colors.black,
+                                        //   padding: EdgeInsets.all(10),
+                                        //   shape: RoundedRectangleBorder(
+                                        //     borderRadius:
+                                        //         BorderRadius.circular(10),
+                                        //   ),
+                                        // ),
+                                        onPressed: () {
+                                          Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ChefConnectMain()),
+                                              (route) => false);
+                                        },
+                                        child: Text(
+                                          'Click Here',
+                                          style: TextStyle(
+                                            color: Colors.redAccent,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            // backgroundColor:
+                                            //     Colors.black.withOpacity(.7),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Resend OTP',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          // backgroundColor:
+                                          //     Colors.black.withOpacity(.7),
+                                        ),
+                                      ),
+                                      TextButton(
+                                        // style: ElevatedButton.styleFrom(
+                                        //   primary: Colors.white,
+                                        //   onPrimary: Colors.black,
+                                        //   padding: EdgeInsets.all(10),
+                                        //   shape: RoundedRectangleBorder(
+                                        //     borderRadius:
+                                        //         BorderRadius.circular(10),
+                                        //   ),
+                                        // ),
+                                        onPressed: () {},
+                                        child: Text(
+                                          'Click Here',
+                                          style: TextStyle(
+                                            color: Colors.redAccent,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            // backgroundColor:
+                                            //     Colors.black.withOpacity(.7),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -284,10 +384,10 @@ class _OTPScreenState extends State<OTPScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Chef Connect",
+                          "Enter OTP",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
