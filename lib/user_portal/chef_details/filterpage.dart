@@ -50,7 +50,7 @@ class _Select_ModeState extends State<Select_Mode> {
   ];
   List<CityList> cityList = [
     CityList(
-      city: 'Banglore',
+      city: 'Bangalore',
       index: 1,
       icon: Icon(Icons.location_city_outlined),
     ),

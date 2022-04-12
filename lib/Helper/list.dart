@@ -192,7 +192,7 @@ class _list_viewState extends State<list_view> {
                     city: widget.city,
                     profilepic: widget.profilepic,
                     specialities: widget.speciality,
-                    rating: widget.rating,
+                    rating: double.parse(widget.rating),
                   ),
                 ),
               );
