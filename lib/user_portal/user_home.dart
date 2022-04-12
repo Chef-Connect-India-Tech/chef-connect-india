@@ -52,23 +52,29 @@ class _user_homeState extends State<user_home> {
   final GenderEditingController = new TextEditingController();
   final categoryofchefEditingController = new TextEditingController();
   final salaryEditingController = new TextEditingController();
+  final LevelEditingController = new TextEditingController();
 
   final SelectGender = ['Male', 'Female'];
   final categoryofchef = [
-    " Trainee  apprentice "
-        "Commi 3"
-        "Commi 2"
-        "Commi 1"
-        "Demi chef de partie "
-        "Chef de partie"
-        "Sr . Chef de partie "
-        "Jr sous chef "
-        "Sous chef "
-        "Sr sous chef  Chef de cuisine"
-        "Executive sous chef "
-        "Executive chef HOD  Unit chef "
-        "Corporate chef multi unit chef "
-        "Director culinary  vice president presiden"
+    "Trainee  apprentice ",
+    "Commi 3",
+    "Commi 2",
+    "Commi 1",
+    "Demi chef de partie ",
+    "Chef de partie",
+    "Sr . Chef de partie ",
+    "Jr sous chef ",
+    "Sous chef ",
+    "Sr sous chef  Chef de cuisine",
+    "Executive sous chef ",
+    "Executive chef HOD  Unit chef ",
+    "Corporate chef multi unit chef ",
+    "Director culinary  vice president presiden",
+  ];
+  final levelofchef = [
+    "Basic",
+    "Intermediate",
+    "Expert",
   ];
   final salary = [
     'under 10,000',
@@ -80,6 +86,7 @@ class _user_homeState extends State<user_home> {
 
   String? locValue;
   String? chefvalue;
+  String? cheflevel;
 
   List? _myCusine;
   late String _myCusineResult;
@@ -329,19 +336,19 @@ class _user_homeState extends State<user_home> {
                                                                 width: 1,
                                                               ),
                                                             ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: 1,
-                                                              ),
-                                                            ),
+                                                            // enabledBorder:
+                                                            //     OutlineInputBorder(
+                                                            //   borderRadius:
+                                                            //       BorderRadius
+                                                            //           .circular(
+                                                            //               10),
+                                                            //   borderSide:
+                                                            //       BorderSide(
+                                                            //     color: Colors
+                                                            //         .black,
+                                                            //     width: 1,
+                                                            //   ),
+                                                            // ),
                                                           ),
                                                         ),
                                                         SizedBox(
@@ -400,19 +407,19 @@ class _user_homeState extends State<user_home> {
                                                                 width: 1,
                                                               ),
                                                             ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: 1,
-                                                              ),
-                                                            ),
+                                                            // enabledBorder:
+                                                            //     OutlineInputBorder(
+                                                            //   borderRadius:
+                                                            //       BorderRadius
+                                                            //           .circular(
+                                                            //               10),
+                                                            //   borderSide:
+                                                            //       BorderSide(
+                                                            //     color: Colors
+                                                            //         .black,
+                                                            //     width: 1,
+                                                            //   ),
+                                                            // ),
                                                           ),
                                                           autofocus: false,
                                                           value: locValue,
@@ -493,22 +500,22 @@ class _user_homeState extends State<user_home> {
                                                                 width: 1,
                                                               ),
                                                             ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: 1,
-                                                              ),
-                                                            ),
+                                                            // enabledBorder:
+                                                            //     OutlineInputBorder(
+                                                            //   borderRadius:
+                                                            //       BorderRadius
+                                                            //           .circular(
+                                                            //               10),
+                                                            //   borderSide:
+                                                            //       BorderSide(
+                                                            //     color: Colors
+                                                            //         .black,
+                                                            //     width: 1,
+                                                            //   ),
+                                                            // ),
                                                           ),
                                                           autofocus: false,
-                                                          value: chefvalue,
+                                                          value: cheflevel,
                                                           isExpanded: true,
                                                           iconSize: 25,
                                                           icon: Icon(
@@ -516,20 +523,20 @@ class _user_homeState extends State<user_home> {
                                                                   .arrow_drop_down,
                                                               color:
                                                                   Colors.black),
-                                                          items: categoryofchef
+                                                          items: levelofchef
                                                               .map(
                                                                   buildMenuItem)
                                                               .toList(),
-                                                          onChanged: (Cvalue) =>
+                                                          onChanged: (Dvalue) =>
                                                               setState(() {
                                                             this.chefvalue =
-                                                                Cvalue;
-                                                            categoryofchefEditingController
-                                                                .text = Cvalue!;
+                                                                Dvalue;
+                                                            LevelEditingController
+                                                                .text = Dvalue!;
                                                           }),
-                                                          onSaved: (Cvalue) {
-                                                            categoryofchefEditingController
-                                                                .text = Cvalue!;
+                                                          onSaved: (Dvalue) {
+                                                            LevelEditingController
+                                                                .text = Dvalue!;
                                                           },
                                                         ),
                                                         SizedBox(
@@ -589,19 +596,19 @@ class _user_homeState extends State<user_home> {
                                                                 width: 1,
                                                               ),
                                                             ),
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: 1,
-                                                              ),
-                                                            ),
+                                                            // enabledBorder:
+                                                            //     OutlineInputBorder(
+                                                            //   borderRadius:
+                                                            //       BorderRadius
+                                                            //           .circular(
+                                                            //               10),
+                                                            //   borderSide:
+                                                            //       BorderSide(
+                                                            //     color: Colors
+                                                            //         .black,
+                                                            //     width: 1,
+                                                            //   ),
+                                                            // ),
                                                           ),
                                                           autofocus: false,
                                                           value: salaryValue,
@@ -915,16 +922,16 @@ class _user_homeState extends State<user_home> {
                                                               .map(
                                                                   buildMenuItem)
                                                               .toList(),
-                                                          onChanged: (Cvalue) =>
+                                                          onChanged: (Evalue) =>
                                                               setState(() {
                                                             this.chefvalue =
-                                                                Cvalue;
+                                                                Evalue;
                                                             categoryofchefEditingController
-                                                                .text = Cvalue!;
+                                                                .text = Evalue!;
                                                           }),
-                                                          onSaved: (Cvalue) {
+                                                          onSaved: (Evalue) {
                                                             categoryofchefEditingController
-                                                                .text = Cvalue!;
+                                                                .text = Evalue!;
                                                           },
                                                         ),
                                                         SizedBox(
@@ -1297,10 +1304,11 @@ class _user_homeState extends State<user_home> {
         ),
       );
 
-  DropdownMenuItem<String> buildMenuItem2(String Salary) => DropdownMenuItem(
-        value: Salary,
+  DropdownMenuItem<String> buildMenuItem3(String levelofchef) =>
+      DropdownMenuItem(
+        value: cheflevel,
         child: Text(
-          Salary,
+          cheflevel!,
           style: TextStyle(fontSize: 18),
         ),
       );
