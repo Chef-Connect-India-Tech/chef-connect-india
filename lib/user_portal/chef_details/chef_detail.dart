@@ -1,15 +1,19 @@
+import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
 class chef_detail extends StatefulWidget {
   var chefid;
   var cheflevel;
   int experience;
-  var cuisine;
+  List cuisine = [];
   var city;
   var profilepic;
   var specialities;
   double rating;
   var cid;
+  List customised_menu;
 
   chef_detail({
     Key? key,
@@ -22,6 +26,7 @@ class chef_detail extends StatefulWidget {
     required this.rating,
     required this.specialities,
     required this.cid,
+    required this.customised_menu,
   }) : super(key: key);
 
   @override
@@ -29,10 +34,12 @@ class chef_detail extends StatefulWidget {
 }
 
 class _chef_detailState extends State<chef_detail> {
+  var cuisine_name;
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-
+    // String cuisine_exp = widget.cuisine.replaceAll('[', '').replaceAll(']', '');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo,
@@ -40,123 +47,258 @@ class _chef_detailState extends State<chef_detail> {
         title: Text(widget.chefid),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 48, left: 20, right: 20),
-                      height: 200,
-                      width: width,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.16),
-                            offset: Offset(0, 3.0),
-                            blurRadius: 12.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 60.0,
-                              backgroundColor: Colors.white,
-                              child: CircleAvatar(
-                                child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  // child: CircleAvatar(
-                                  //     backgroundColor: Colors.grey.shade300,
-                                  //     radius: 18.0,
-                                  //     child: IconButton(
-                                  //         onPressed: () {},
-                                  //         icon: Icon(
-                                  //           Icons.camera_alt,
-                                  //           size: 18,
-                                  //           color: Colors.black,
-                                  //         ))),
-                                ),
-                                radius: 60.0,
-                                backgroundImage: NetworkImage(
-                                  widget.profilepic,
-                                ),
-                              ),
-                            ),
-                            Center(
-                              child: Container(
-                                padding: EdgeInsets.only(top: 12),
-                                child: Text(
-                                  '${widget.chefid}',
-                                  style: TextStyle(
-                                    fontFamily: 'SF Pro',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 24.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Center(
-                              child: Container(
-                                padding: EdgeInsets.only(top: 8),
-                                child: Text(
-                                  '${widget.city}',
-                                  style: TextStyle(
-                                    fontFamily: 'SF Pro',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Center(
-                                  child: Container(
-                                    padding: EdgeInsets.only(top: 16),
-                                    child: Text(
-                                      '${widget.cheflevel}',
-                                      style: TextStyle(
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 20.0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Center(
-                                  child: Container(
-                                    padding: EdgeInsets.only(top: 16),
-                                    child: Text(
-                                      '${widget.rating}',
-                                      style: TextStyle(
-                                        fontFamily: 'SF Pro',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 20.0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+        child: Container(
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 48, left: 20, right: 20),
+                        height: 200,
+                        width: width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.16),
+                              offset: Offset(0, 3.0),
+                              blurRadius: 12.0,
                             ),
                           ],
                         ),
                       ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: SizedBox(
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 60.0,
+                                backgroundColor: Colors.white,
+                                child: CircleAvatar(
+                                  child: Align(
+                                    alignment: Alignment.bottomRight,
+                                  ),
+                                  radius: 60.0,
+                                  backgroundImage: NetworkImage(
+                                    widget.profilepic,
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: Container(
+                                  padding: EdgeInsets.only(top: 12),
+                                  child: Text(
+                                    '${widget.chefid}',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 24.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                child: Container(
+                                  padding: EdgeInsets.only(top: 8),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'City: ',
+                                        style: TextStyle(
+                                          fontFamily: 'SF Pro',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.0,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${widget.city}',
+                                        style: TextStyle(
+                                          fontFamily: 'SF Pro',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 20.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      padding: EdgeInsets.only(top: 16),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Chef Level: ',
+                                            style: TextStyle(
+                                              fontFamily: 'SF Pro',
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20.0,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${widget.cheflevel}',
+                                            style: TextStyle(
+                                              fontFamily: 'SF Pro',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 20.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Container(
+                                      padding: EdgeInsets.only(top: 16),
+                                      child: Row(
+                                        children: [
+                                          SmoothStarRating(
+                                            borderColor: Colors.grey.shade200,
+                                            rating: widget.rating,
+                                            starCount: 1,
+                                            allowHalfRating: false,
+                                            filledIconData: Icons.star,
+                                            color: Color.fromARGB(
+                                                255, 255, 179, 0),
+                                          ),
+                                          Text(
+                                            '${widget.rating}',
+                                            style: TextStyle(
+                                              fontFamily: 'SF Pro',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 20.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+                    height: 180,
+                    width: width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.16),
+                          offset: Offset(0, 3.0),
+                          blurRadius: 12.0,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
+                    child: Column(
+                      children: [
+                        Container(
+                          padding:
+                              EdgeInsets.only(top: 16, left: 16, right: 16),
+                          child: Row(
+                            // mainAxisAlignment:
+                            //     MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Experience: ',
+                                style: TextStyle(
+                                  fontFamily: 'SF Pro',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                              Text(
+                                '${widget.experience}',
+                                style: TextStyle(
+                                  fontFamily: 'SF Pro',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18.0,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding:
+                              EdgeInsets.only(top: 16, left: 16, right: 16),
+                          child: Column(
+                            // mainAxisAlignment:
+                            //     MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Cuisine Expert : ',
+                                    style: TextStyle(
+                                      fontFamily: 'SF Pro',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Wrap(
+                                spacing: 5.0,
+                                children: widget.cuisine
+                                    .map((e) => Chip(
+                                          label: Text(e),
+                                        ))
+                                    .toList(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+                    height: 600,
+                    width: width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.16),
+                          offset: Offset(0, 3.0),
+                          blurRadius: 12.0,
+                        ),
+                      ],
+                    ),
+                    child: MenuTab(
+                      cid: widget.cid,
+                      customisedmenu: widget.customised_menu,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  )
+                ],
+              ),
             ),
           ),
         ),

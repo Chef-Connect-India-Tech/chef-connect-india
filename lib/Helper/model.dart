@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -238,6 +240,22 @@ class Firebasehelper {
   static void updatepic(appointid, status) async {
     CollectionReference appointmentdatbase =
         FirebaseFirestore.instance.collection("chefs");
+    var result =
+        await appointmentdatbase.doc(appointid).update({"profilepic": status});
+  }
+}
+
+class FirebaseUserhelper {
+  static void updatemsg(appointid, status) async {
+    CollectionReference appointmentdatbase =
+        FirebaseFirestore.instance.collection("chefs");
+    var result =
+        await appointmentdatbase.doc(appointid).update({"firstname": status});
+  }
+
+  static void updatepic(appointid, status) async {
+    CollectionReference appointmentdatbase =
+        FirebaseFirestore.instance.collection("users");
     var result =
         await appointmentdatbase.doc(appointid).update({"profilepic": status});
   }
