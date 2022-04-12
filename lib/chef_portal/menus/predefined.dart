@@ -322,6 +322,7 @@ class _predefinedState extends State<predefined> {
                               child: Column(
                                 children: [
                                   Wrap(
+                                    spacing: 5.0,
                                     children: _selectedItems
                                         .map((e) => Chip(
                                               label: Text(e),
@@ -380,6 +381,7 @@ class _predefinedState extends State<predefined> {
                               child: Column(
                                 children: [
                                   Wrap(
+                                    spacing: 5.0,
                                     children: _selectedItems1
                                         .map((e) => Chip(
                                               label: Text(e),
@@ -436,6 +438,7 @@ class _predefinedState extends State<predefined> {
                               child: Column(
                                 children: [
                                   Wrap(
+                                    spacing: 5.0,
                                     children: _selectedItems2
                                         .map((e) => Chip(
                                               label: Text(e),
@@ -687,6 +690,9 @@ class _MultiSelect1State extends State<MultiSelect1> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       title: const Text('Select Topics'),
       content: SingleChildScrollView(
         child: ListBody(
@@ -706,6 +712,11 @@ class _MultiSelect1State extends State<MultiSelect1> {
           onPressed: _cancel,
         ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
           child: const Text('Submit'),
           onPressed: _submit,
         ),
@@ -752,6 +763,9 @@ class _MultiSelect2State extends State<MultiSelect2> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       title: const Text('Select Topics'),
       content: SingleChildScrollView(
         child: ListBody(
@@ -771,6 +785,11 @@ class _MultiSelect2State extends State<MultiSelect2> {
           onPressed: _cancel,
         ),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
           child: const Text('Submit'),
           onPressed: _submit,
         ),
