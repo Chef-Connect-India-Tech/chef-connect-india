@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:async';
 import 'dart:developer';
 import 'package:chef_connect_india/Helper/utils.dart';
@@ -12,11 +14,17 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'onboarding_Screen/onboarding_screen.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
+  FlutterNativeSplash.removeAfter(initialization);
   runApp(MyApp());
+}
+
+Future initialization(BuildContext? context) async {
+  await Future.delayed(Duration(seconds: 2));
 }
 
 bool chef = false;

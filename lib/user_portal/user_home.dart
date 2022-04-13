@@ -120,17 +120,21 @@ class _user_homeState extends State<user_home> {
       child: Scaffold(
         drawer: NavBar(),
         appBar: AppBar(
-          backgroundColor: Colors.indigo,
+          backgroundColor: Color(0xFFF03203C),
           // shadowColor: Colors.deepPurpleAccent,
           toolbarHeight: 70, // default is 56
           // toolbarOpacity: 0.5,
           elevation: 50.0,
-          title: Text('Chef Connect India'),
+          title: Text(
+            'Chef Connect',
+            style: TextStyle(fontSize: 25, fontFamily: 'Montserrat-ExtraBold'),
+          ),
+          centerTitle: true,
         ),
         floatingActionButton: SpeedDial(
           child: Image(
             image: AssetImage('assets/socialicons/customer.png'),
-            // height: 200,
+            height: 100,
           ),
           // animatedIcon: AnimatedIcons.menu_close,
           backgroundColor: Colors.black,
