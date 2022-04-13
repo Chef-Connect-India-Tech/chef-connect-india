@@ -591,7 +591,12 @@ class _user_profileState extends State<user_profile> {
         // toolbarHeight: 70,
         backgroundColor: Colors.indigo,
         centerTitle: true,
-        title: Text('My Profile'),
+        title: Text(
+          'My Profile',
+          style: TextStyle(
+            fontFamily: 'Montserrat',
+          ),
+        ),
         actions: <Widget>[],
       ),
       floatingActionButton: SpeedDial(
@@ -676,7 +681,7 @@ class _user_profileState extends State<user_profile> {
                                       child: Text(
                                         '${data['firstname']} ${data['lastname']}',
                                         style: TextStyle(
-                                          fontFamily: 'SF Pro',
+                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w700,
                                           fontSize: 24.0,
                                         ),
@@ -693,7 +698,7 @@ class _user_profileState extends State<user_profile> {
                                           Text(
                                             'Username:',
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
+                                              fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18.0,
                                             ),
@@ -701,7 +706,7 @@ class _user_profileState extends State<user_profile> {
                                           Text(
                                             '${data['username']}',
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
+                                              fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
                                               fontSize: 18.0,
                                             ),
@@ -720,7 +725,7 @@ class _user_profileState extends State<user_profile> {
                                           Text(
                                             'Mobile:',
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
+                                              fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18.0,
                                             ),
@@ -728,7 +733,7 @@ class _user_profileState extends State<user_profile> {
                                           Text(
                                             ' ${data['mobile1']}',
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
+                                              fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
                                               fontSize: 18.0,
                                             ),
@@ -747,7 +752,7 @@ class _user_profileState extends State<user_profile> {
                                           Text(
                                             'City: ',
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
+                                              fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18.0,
                                             ),
@@ -760,7 +765,7 @@ class _user_profileState extends State<user_profile> {
                                               return data['city'];
                                             })(),
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
+                                              fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
                                               fontSize: 18.0,
                                             ),
@@ -811,7 +816,7 @@ class _user_profileState extends State<user_profile> {
                                   Text(
                                     'Mobile 2 : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0,
                                     ),
@@ -824,7 +829,7 @@ class _user_profileState extends State<user_profile> {
                                       return data['mobile2'];
                                     })(),
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0,
                                     ),
@@ -842,7 +847,7 @@ class _user_profileState extends State<user_profile> {
                                   Text(
                                     'Email : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0,
                                     ),
@@ -856,7 +861,7 @@ class _user_profileState extends State<user_profile> {
                                     })(),
                                     // ' ${data['email']}',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0,
                                     ),
@@ -874,7 +879,7 @@ class _user_profileState extends State<user_profile> {
                                   Text(
                                     'Date of Birth : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0,
                                     ),
@@ -887,7 +892,7 @@ class _user_profileState extends State<user_profile> {
                                       return data['dob'];
                                     })(),
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0,
                                     ),
@@ -933,7 +938,7 @@ class _user_profileState extends State<user_profile> {
                                   Text(
                                     'City : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0,
                                     ),
@@ -946,7 +951,7 @@ class _user_profileState extends State<user_profile> {
                                       return data['city'];
                                     })(),
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0,
                                     ),
@@ -964,7 +969,7 @@ class _user_profileState extends State<user_profile> {
                                   Text(
                                     'Country : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0,
                                     ),
@@ -978,7 +983,7 @@ class _user_profileState extends State<user_profile> {
                                     })(),
                                     // ' ${data['country']}',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0,
                                     ),
@@ -996,7 +1001,7 @@ class _user_profileState extends State<user_profile> {
                                   Text(
                                     'Pincode : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0,
                                     ),
@@ -1010,7 +1015,7 @@ class _user_profileState extends State<user_profile> {
                                     })(),
                                     // ' ${data['pincode']}',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0,
                                     ),
@@ -1049,7 +1054,7 @@ class _user_profileState extends State<user_profile> {
                                   Text(
                                     'Prefered City : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0,
                                     ),
@@ -1063,7 +1068,7 @@ class _user_profileState extends State<user_profile> {
                                     })(),
                                     // ' ${data['selectedLocation']}',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0,
                                     ),
@@ -1081,7 +1086,7 @@ class _user_profileState extends State<user_profile> {
                                   Text(
                                     'Prefered Chef Type : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18.0,
                                     ),
@@ -1095,7 +1100,7 @@ class _user_profileState extends State<user_profile> {
                                     })(),
                                     // ' ${data['hiremode']}',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 18.0,
                                     ),

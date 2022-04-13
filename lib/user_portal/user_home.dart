@@ -120,20 +120,24 @@ class _user_homeState extends State<user_home> {
       child: Scaffold(
         drawer: NavBar(),
         appBar: AppBar(
-          backgroundColor: Color(0xFFF03203C),
+          backgroundColor: Colors.indigo.shade700,
+          // backgroundColor: Color.fromARGB(255, 25, 75, 125),
           // shadowColor: Colors.deepPurpleAccent,
           toolbarHeight: 70, // default is 56
           // toolbarOpacity: 0.5,
           elevation: 50.0,
           title: Text(
             'Chef Connect',
-            style: TextStyle(fontSize: 25, fontFamily: 'Montserrat-ExtraBold'),
+            style: TextStyle(
+              fontSize: 25,
+              fontFamily: 'Montserrat',
+            ),
           ),
           centerTitle: true,
         ),
         floatingActionButton: SpeedDial(
           child: Image(
-            image: AssetImage('assets/socialicons/customer.png'),
+            image: AssetImage('assets/customer-service.png'),
             height: 100,
           ),
           // animatedIcon: AnimatedIcons.menu_close,
@@ -305,7 +309,7 @@ class _user_homeState extends State<user_home> {
                                                       fontFamily: 'Montserrat',
                                                       fontSize: 18,
                                                       fontWeight:
-                                                          FontWeight.w500,
+                                                          FontWeight.bold,
                                                     ),
                                                   ),
                                                   shape: RoundedRectangleBorder(
@@ -333,6 +337,8 @@ class _user_homeState extends State<user_home> {
                                                                 'Enter Address',
                                                             hintStyle:
                                                                 TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
                                                               color:
                                                                   Colors.black,
                                                             ),
@@ -387,6 +393,8 @@ class _user_homeState extends State<user_home> {
                                                             labelText:
                                                                 'Prefered Chef Gender',
                                                             labelStyle: TextStyle(
+                                                                fontFamily:
+                                                                    'Montserrat',
                                                                 fontSize: 14,
                                                                 color: Colors
                                                                     .black,
@@ -403,6 +411,8 @@ class _user_homeState extends State<user_home> {
                                                             hintText:
                                                                 'Prefered Chef Gender',
                                                             hintStyle: TextStyle(
+                                                                fontFamily:
+                                                                    'Montserrat',
                                                                 color: Colors
                                                                     .black,
                                                                 fontSize: 14),
@@ -481,6 +491,8 @@ class _user_homeState extends State<user_home> {
                                                             labelText:
                                                                 ' category of chef',
                                                             labelStyle: TextStyle(
+                                                                fontFamily:
+                                                                    'Montserrat',
                                                                 fontSize: 15,
                                                                 color: Colors
                                                                     .black,
@@ -577,6 +589,8 @@ class _user_homeState extends State<user_home> {
                                                             labelStyle:
                                                                 TextStyle(
                                                               fontSize: 15,
+                                                              fontFamily:
+                                                                  'Montserrat',
                                                               color:
                                                                   Colors.black,
                                                               fontWeight:
@@ -691,6 +705,10 @@ class _user_homeState extends State<user_home> {
                                                             },
                                                             child: Text(
                                                               'Cancel',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -715,6 +733,10 @@ class _user_homeState extends State<user_home> {
                                                             },
                                                             child: Text(
                                                               'Submit',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                              ),
                                                             ),
                                                           ),
                                                         )
@@ -818,6 +840,8 @@ class _user_homeState extends State<user_home> {
                                                                 'Enter Hotel name',
                                                             hintStyle:
                                                                 TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
                                                               color:
                                                                   Colors.black,
                                                             ),
@@ -843,6 +867,8 @@ class _user_homeState extends State<user_home> {
                                                                 'Number of Chefs Required',
                                                             hintStyle:
                                                                 TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
                                                               color:
                                                                   Colors.black,
                                                             ),
@@ -868,6 +894,8 @@ class _user_homeState extends State<user_home> {
                                                                 'Date Required',
                                                             hintStyle:
                                                                 TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
                                                               color:
                                                                   Colors.black,
                                                             ),
@@ -891,6 +919,8 @@ class _user_homeState extends State<user_home> {
                                                                 'Level Of Chef',
                                                             labelStyle:
                                                                 TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
                                                               fontSize: 16,
                                                               color:
                                                                   Colors.black,
@@ -951,16 +981,16 @@ class _user_homeState extends State<user_home> {
                                                               .map(
                                                                   buildMenuItem)
                                                               .toList(),
-                                                          onChanged: (Evalue) =>
+                                                          onChanged: (Gvalue) =>
                                                               setState(() {
                                                             this.chefvalue =
-                                                                Evalue;
+                                                                Gvalue;
                                                             categoryofchefEditingController
-                                                                .text = Evalue!;
+                                                                .text = Gvalue!;
                                                           }),
-                                                          onSaved: (Evalue) {
+                                                          onSaved: (Gvalue) {
                                                             categoryofchefEditingController
-                                                                .text = Evalue!;
+                                                                .text = Gvalue!;
                                                           },
                                                         ),
                                                         SizedBox(
@@ -1010,6 +1040,8 @@ class _user_homeState extends State<user_home> {
                                                           title: Text(
                                                             "Cusine",
                                                             style: TextStyle(
+                                                                fontFamily:
+                                                                    'Montserrat',
                                                                 fontSize: 16),
                                                           ),
                                                           validator: (value) {
@@ -1085,6 +1117,8 @@ class _user_homeState extends State<user_home> {
                                                                 'Budget For Chef Types',
                                                             labelStyle:
                                                                 TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
                                                               fontSize: 14,
                                                               color:
                                                                   Colors.black,
@@ -1178,6 +1212,10 @@ class _user_homeState extends State<user_home> {
                                                             },
                                                             child: Text(
                                                               'Cancel',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -1202,6 +1240,10 @@ class _user_homeState extends State<user_home> {
                                                             },
                                                             child: Text(
                                                               'Submit',
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                              ),
                                                             ),
                                                           ),
                                                         )
@@ -1334,7 +1376,10 @@ class _user_homeState extends State<user_home> {
         value: categoryofchef,
         child: Text(
           categoryofchef,
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(
+            fontSize: 18,
+            fontFamily: 'Montserrat',
+          ),
         ),
       );
 
@@ -1343,7 +1388,10 @@ class _user_homeState extends State<user_home> {
         value: cheflevel,
         child: Text(
           cheflevel!,
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(
+            fontSize: 18,
+            fontFamily: 'Montserrat',
+          ),
         ),
       );
 }

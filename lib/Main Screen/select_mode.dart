@@ -48,7 +48,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
                       Text(
                         'Select City',
                         style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontWeight: FontWeight.w500,
                           fontSize: 30,
                           backgroundColor: Colors.black.withOpacity(
@@ -90,7 +90,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
                                   Text(
                                     'Party Chef',
                                     style: TextStyle(
-                                      fontFamily: 'Roboto',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w800,
                                       fontSize: 20,
                                     ),
@@ -106,7 +106,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
                                     'For your Parties or House Events',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontFamily: 'Roboto',
+                                      fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w500,
                                       fontSize: 18,
                                     ),
@@ -167,7 +167,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
                           child: Text(
                             'Proceed',
                             style: TextStyle(
-                                fontFamily: 'Roboto',
+                                fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                                 color: Color.fromARGB(255, 18, 68, 138)),
@@ -283,6 +283,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
           Text(
             label,
             style: TextStyle(
+                fontFamily: 'Montserrat',
                 fontSize: 18,
                 color: col,
                 fontWeight: selected ? FontWeight.bold : FontWeight.w400),

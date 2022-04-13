@@ -41,7 +41,12 @@ class _chef_bookingsState extends State<chef_bookings> {
                 });
               })
         ],
-        title: Text(' Chef Bookings'),
+        title: Text(
+          ' Chef Bookings',
+          style: TextStyle(
+            fontFamily: 'Montserrat',
+          ),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -86,7 +91,7 @@ class _chef_bookingsState extends State<chef_bookings> {
                           Text(
                             'Booking Id',
                             style: TextStyle(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Montserrat',
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                             ),
@@ -100,7 +105,7 @@ class _chef_bookingsState extends State<chef_bookings> {
                               Text(
                                 'Location:',
                                 style: TextStyle(
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Montserrat',
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -111,7 +116,7 @@ class _chef_bookingsState extends State<chef_bookings> {
                               Text(
                                 'Booking Slot:',
                                 style: TextStyle(
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Montserrat',
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -130,7 +135,7 @@ class _chef_bookingsState extends State<chef_bookings> {
                               Text(
                                 'Date:',
                                 style: TextStyle(
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                 ),
@@ -141,7 +146,7 @@ class _chef_bookingsState extends State<chef_bookings> {
                               Text(
                                 'Time:',
                                 style: TextStyle(
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Montserrat',
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -160,7 +165,7 @@ class _chef_bookingsState extends State<chef_bookings> {
                               Text(
                                 'Cost:',
                                 style: TextStyle(
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Montserrat',
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -171,7 +176,7 @@ class _chef_bookingsState extends State<chef_bookings> {
                               Text(
                                 'No of Plates:',
                                 style: TextStyle(
-                                  fontFamily: 'Roboto',
+                                  fontFamily: 'Montserrat',
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -204,7 +209,7 @@ class _chef_bookingsState extends State<chef_bookings> {
                 //     child: Text(
                 //       'Log Out',
                 //       style: TextStyle(
-                //         fontFamily: 'Roboto',
+                //         fontFamily: 'Montserrat',
                 //         fontSize: 16,
                 //         fontWeight: FontWeight.w600,
                 //       ),

@@ -123,7 +123,12 @@ class _chef_loginState extends State<chef_login> {
               child: TextField(
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(hintText: "Enter Phone Number"),
+                decoration: InputDecoration(
+                  hintText: "Enter Phone Number",
+                  hintStyle: TextStyle(
+                    fontFamily: 'Montserrat',
+                  ),
+                ),
               ),
             ),
           ],
@@ -164,7 +169,13 @@ class _chef_loginState extends State<chef_login> {
                   },
                   codeAutoRetrievalTimeout: (verificationId) async {});
             },
-            child: Text("Send OTP", style: TextStyle(color: Colors.white)),
+            child: Text(
+              "Send OTP",
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Montserrat',
+              ),
+            ),
           ),
         ),
         Spacer(),
@@ -180,6 +191,9 @@ class _chef_loginState extends State<chef_login> {
           controller: _otpController,
           decoration: InputDecoration(
             hintText: "Enter OTP",
+            hintStyle: TextStyle(
+              fontFamily: 'Montserrat',
+            ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -200,7 +214,10 @@ class _chef_loginState extends State<chef_login> {
             },
             child: Text(
               "Verify",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Montserrat',
+              ),
             )),
         Spacer()
       ],
@@ -281,7 +298,9 @@ class _chef_loginState extends State<chef_login> {
                                 fillColor: Colors.white60,
                                 hintText: 'Phone Number',
                                 hintStyle: TextStyle(
-                                    color: Colors.black, fontSize: 15),
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black,
+                                    fontSize: 15),
                                 filled: true,
                                 prefixIcon: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -289,6 +308,7 @@ class _chef_loginState extends State<chef_login> {
                                   child: Text(
                                     " (+91) ",
                                     style: TextStyle(
+                                      fontFamily: 'Montserrat',
                                       color: Colors.black,
                                       fontSize: 15,
                                     ),
@@ -339,6 +359,7 @@ class _chef_loginState extends State<chef_login> {
                                     child: Text(
                                       'Send OTP',
                                       style: TextStyle(
+                                        fontFamily: 'Montserrat',
                                         color: Color.fromARGB(255, 18, 68, 138),
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -388,7 +409,9 @@ class _chef_loginState extends State<chef_login> {
                                 Text(
                                   "Enter 6 digit OTP",
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.black),
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 16,
+                                      color: Colors.black),
                                 ),
                                 Expanded(
                                   child: Container(
@@ -413,6 +436,9 @@ class _chef_loginState extends State<chef_login> {
                                 fillColor: Colors.white54,
                                 filled: true,
                                 hintText: "Enter OTP",
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                ),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Colors.white,
@@ -464,7 +490,7 @@ class _chef_loginState extends State<chef_login> {
                               child: Text(
                                 'Validate OTP',
                                 style: TextStyle(
-                                    fontFamily: 'Roboto',
+                                    fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                     color: Color.fromARGB(255, 18, 68, 138)),

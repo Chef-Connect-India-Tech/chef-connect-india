@@ -15,7 +15,12 @@ class _user_bookingsState extends State<user_bookings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Bookings'),
+        title: Text(
+          'My Bookings',
+          style: TextStyle(
+            fontFamily: 'Montserrat',
+          ),
+        ),
         centerTitle: true,
       ),
       body: SafeArea(

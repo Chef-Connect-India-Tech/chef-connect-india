@@ -396,6 +396,7 @@ class _booking_list_viewState extends State<booking_list_view> {
                           Text(
                             "${widget.bookingId}",
                             style: TextStyle(
+                              fontFamily: 'Montserrat',
                               color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -410,6 +411,7 @@ class _booking_list_viewState extends State<booking_list_view> {
                               Text(
                                 "${widget.status}",
                                 style: TextStyle(
+                                  fontFamily: 'Montserrat',
                                   color: Colors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -422,6 +424,7 @@ class _booking_list_viewState extends State<booking_list_view> {
                                 "${widget.location}",
                                 style: TextStyle(
                                   color: Colors.white,
+                                  fontFamily: 'Montserrat',
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -432,6 +435,7 @@ class _booking_list_viewState extends State<booking_list_view> {
                               Text(
                                 "${widget.cost}",
                                 style: TextStyle(
+                                  fontFamily: 'Montserrat',
                                   color: Colors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,

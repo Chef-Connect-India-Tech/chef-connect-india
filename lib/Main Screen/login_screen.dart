@@ -20,7 +20,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final snackBar = SnackBar(
-    content: Text('Please enter valid phone number'),
+    content: Text(
+      'Please enter valid phone number',
+      style: TextStyle(
+        fontFamily: 'Montserrat',
+      ),
+    ),
     backgroundColor: Colors.red,
     duration: Duration(seconds: 2),
   );
@@ -95,6 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   : "Hire a Chef",
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: 'Montserrat',
                                   color: Colors.white,
                                   fontSize: 45,
                                   fontWeight: FontWeight.bold,
@@ -127,6 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   : "One Stop Solution for all\nYour Culinary Needs",
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: 'Montserrat',
                                   color: Colors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -170,6 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           "Enter Phone Number",
                           style: TextStyle(
+                            fontFamily: 'Montserrat',
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -198,6 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               border: InputBorder.none,
                               hintText: 'Phone Number',
                               hintStyle: TextStyle(
+                                fontFamily: 'Montserrat',
                                 color: Colors.white60.withOpacity(.5),
                               ),
                             ),
@@ -247,6 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       "Send OTP",
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
                         color: Colors.black,
                       ),
                     ),

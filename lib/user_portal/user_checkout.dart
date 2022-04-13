@@ -330,7 +330,10 @@ class _user_checkoutState extends State<user_checkout> {
                             decoration: InputDecoration(
                               counterStyle: TextStyle(color: Colors.white),
                               hintText: 'Address',
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Montserrat',
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10.0),

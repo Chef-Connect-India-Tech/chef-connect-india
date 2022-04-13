@@ -34,7 +34,12 @@ class Utils {
             child,
           ],
           cancelButton: CupertinoActionSheetAction(
-            child: Text('Done'),
+            child: Text(
+              'Done',
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+              ),
+            ),
             onPressed: onClicked,
           ),
         ),

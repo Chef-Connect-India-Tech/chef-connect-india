@@ -66,14 +66,22 @@ class NavBar extends StatelessWidget {
                     ),
                     Text(
                       '${data['username'].toString().toLowerCase()}',
-                      style: TextStyle(fontSize: 28, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                        fontFamily: 'Montserrat',
+                      ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
                     Text(
                       '${data['mobile1']}',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontFamily: 'Montserrat',
+                      ),
                     )
                   ]),
                 ),
@@ -88,7 +96,12 @@ class NavBar extends StatelessWidget {
           children: [
             ListTile(
               leading: Icon(Icons.home_outlined),
-              title: Text('Home'),
+              title: Text(
+                'Home',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
@@ -100,7 +113,12 @@ class NavBar extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.favorite_border),
-              title: Text('My Bookings'),
+              title: Text(
+                'My Bookings',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -112,7 +130,12 @@ class NavBar extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.location_on_outlined),
-              title: Text('Location'),
+              title: Text(
+                'Location',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -138,7 +161,10 @@ class NavBar extends StatelessWidget {
             //   },
             // ),
             ListTile(
-              title: Text('LogOut'),
+              title: Text(
+                'Logout',
+                style: TextStyle(fontFamily: 'Montserrat'),
+              ),
               leading: Icon(Icons.exit_to_app),
               onTap: () async {
                 SharedPreferences prefs = await SharedPreferences.getInstance();

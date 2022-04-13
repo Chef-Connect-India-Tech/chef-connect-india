@@ -27,7 +27,12 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final snackBar = SnackBar(
-    content: Text('Invalid OTP! Try again'),
+    content: Text(
+      'Invalid OTP! Try again',
+      style: TextStyle(
+        fontFamily: 'Montserrat',
+      ),
+    ),
     backgroundColor: Colors.red,
     duration: Duration(seconds: 2),
   );
@@ -233,6 +238,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                   Text(
                                     "OTP sent.",
                                     style: TextStyle(
+                                        fontFamily: 'Montserrat',
                                         color: Colors.white,
                                         fontSize: 40,
                                         fontWeight: FontWeight.bold,
@@ -246,6 +252,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                     child: Text(
                                       "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
                                       style: TextStyle(
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white70,
                                           fontSize: 15,
                                           fontWeight: FontWeight.normal,
@@ -274,6 +281,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                       Text(
                                         'Entered Phone Number Wrong ?',
                                         style: TextStyle(
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white,
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
@@ -302,6 +310,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                         child: Text(
                                           'Click Here',
                                           style: TextStyle(
+                                            fontFamily: 'Montserrat',
                                             color: Colors.redAccent,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
@@ -319,6 +328,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                       Text(
                                         'Resend OTP',
                                         style: TextStyle(
+                                          fontFamily: 'Montserrat',
                                           color: Colors.white,
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,
@@ -340,6 +350,7 @@ class _OTPScreenState extends State<OTPScreen> {
                                         child: Text(
                                           'Click Here',
                                           style: TextStyle(
+                                            fontFamily: 'Montserrat',
                                             color: Colors.redAccent,
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
@@ -386,6 +397,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         Text(
                           "Enter OTP",
                           style: TextStyle(
+                            fontFamily: 'Montserrat',
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -413,6 +425,7 @@ class _OTPScreenState extends State<OTPScreen> {
                               border: InputBorder.none,
                               hintText: 'Enter OTP',
                               hintStyle: TextStyle(
+                                fontFamily: 'Montserrat',
                                 color: Colors.white60.withOpacity(.5),
                               ),
                             ),
@@ -472,6 +485,7 @@ class _OTPScreenState extends State<OTPScreen> {
                             "Log in",
                             style: TextStyle(
                               color: Colors.black,
+                              fontFamily: 'Montserrat',
                             ),
                           ),
                   ),

@@ -128,8 +128,11 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _firstnameController =
                         TextEditingController(text: data['firstname']),
                     autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Enter your First Name'),
+                    decoration: InputDecoration(
+                        hintText: 'Enter your First Name',
+                        hintStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                        )),
                   ),
                   SizedBox(
                     height: 10,
@@ -139,8 +142,11 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _lastnameController =
                         TextEditingController(text: data['lastname']),
                     autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Enter your Last Name'),
+                    decoration: InputDecoration(
+                        hintText: 'Enter your Last Name',
+                        hintStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                        )),
                   ),
                   SizedBox(
                     height: 10,
@@ -152,8 +158,11 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _phoneController =
                         TextEditingController(text: data['mobile1']),
                     autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Enter your Mobile Num 1'),
+                    decoration: InputDecoration(
+                        hintText: 'Enter your Mobile Num 1',
+                        hintStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                        )),
                   ),
                   SizedBox(
                     height: 10,
@@ -163,8 +172,11 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _phone2Controller =
                         TextEditingController(text: data['mobile2']),
                     autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Enter your Mobile Num 2'),
+                    decoration: InputDecoration(
+                        hintText: 'Enter your Mobile Num 2',
+                        hintStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                        )),
                   ),
                   SizedBox(
                     height: 10,
@@ -213,7 +225,12 @@ class _chef_profileState extends State<chef_profile> {
             ),
             TextButton(
               onPressed: submit,
-              child: Text('Update'),
+              child: Text(
+                'Update',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
             ),
           ],
         ),
@@ -258,8 +275,12 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _currentcity =
                         TextEditingController(text: data['address']),
                     autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Enter your Current City'),
+                    decoration: InputDecoration(
+                      hintText: 'Enter your Current City',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -269,7 +290,12 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _currentcountry =
                         TextEditingController(text: data['country']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter your Country'),
+                    decoration: InputDecoration(
+                      hintText: 'Enter your Country',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -283,7 +309,11 @@ class _chef_profileState extends State<chef_profile> {
                         TextEditingController(text: data['pincode']),
                     autofocus: true,
                     decoration: InputDecoration(
-                        hintText: 'Enter your Current Area Pincode'),
+                      hintText: 'Enter your Current Area Pincode',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -292,14 +322,24 @@ class _chef_profileState extends State<chef_profile> {
           actions: [
             TextButton(
               onPressed: cancel,
-              child: Text('Cancel'),
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
             ),
             SizedBox(
               width: 20,
             ),
             TextButton(
               onPressed: submit_curr,
-              child: Text('Update'),
+              child: Text(
+                'Update',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
             ),
           ],
         ),
@@ -340,7 +380,12 @@ class _chef_profileState extends State<chef_profile> {
   Future<String?> open_work_Dialog(data) => showDialog<String>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Work Data'),
+          title: Text(
+            'Work Data',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+            ),
+          ),
           content: SingleChildScrollView(
             child: Container(
               child: Column(
@@ -350,8 +395,12 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _workexperience =
                         TextEditingController(text: data['experience']),
                     autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Enter your Experience'),
+                    decoration: InputDecoration(
+                      hintText: 'Enter your Experience',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -361,8 +410,12 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _workpreference =
                         TextEditingController(text: data['workpreference']),
                     autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Enter your Work Preference'),
+                    decoration: InputDecoration(
+                      hintText: 'Enter your Work Preference',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -372,7 +425,12 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _cheffees =
                         TextEditingController(text: data['cheffees']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter Cost Per Day'),
+                    decoration: InputDecoration(
+                      hintText: 'Enter Cost Per Day',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -382,7 +440,12 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _cheffees =
                         TextEditingController(text: data['city']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter Work City'),
+                    decoration: InputDecoration(
+                      hintText: 'Enter Work City',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -398,6 +461,7 @@ class _chef_profileState extends State<chef_profile> {
                     decoration: InputDecoration(
                       labelText: 'Current Salary Per Month',
                       labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
                           fontSize: 15,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
@@ -468,8 +532,12 @@ class _chef_profileState extends State<chef_profile> {
                         TextEditingController(text: data['dob']),
                     readOnly: true,
                     autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Click to Enter your DOB'),
+                    decoration: InputDecoration(
+                      hintText: 'Click to Enter your DOB',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -479,7 +547,12 @@ class _chef_profileState extends State<chef_profile> {
                     controller: _emailController =
                         TextEditingController(text: data['email']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter your email'),
+                    decoration: InputDecoration(
+                      hintText: 'Enter your email',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -488,7 +561,12 @@ class _chef_profileState extends State<chef_profile> {
           actions: [
             TextButton(
               onPressed: cancel,
-              child: Text('Cancel'),
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
             ),
             SizedBox(
               width: 20,
@@ -615,7 +693,7 @@ class _chef_profileState extends State<chef_profile> {
                                 bottom: 89.0,
                                 child: Text(
                                   data['chefid'],
-                                  style: GoogleFonts.roboto(
+                                  style: TextStyle(
                                     fontSize: 20.0,
                                     color: const Color(0xFF4A4B4D),
                                     fontWeight: FontWeight.w700,
@@ -626,7 +704,7 @@ class _chef_profileState extends State<chef_profile> {
                                 bottom: 55.0,
                                 child: Text(
                                   '${data['firstname']} ${data['lastname']}',
-                                  style: GoogleFonts.roboto(
+                                  style: TextStyle(
                                     fontSize: 20.0,
                                     color: const Color(0xFF4A4B4D),
                                     fontWeight: FontWeight.w700,
@@ -650,7 +728,7 @@ class _chef_profileState extends State<chef_profile> {
                       Text(
                         'Personal Details',
                         style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -707,7 +785,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'First Name',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -723,7 +801,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['firstname'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -739,7 +817,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Lastname',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -755,7 +833,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['lastname'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -771,7 +849,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Mobile 1',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -787,7 +865,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['mobile1'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -803,7 +881,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Mobile 2',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -819,7 +897,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['mobile2'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -835,7 +913,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'DOB',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -851,7 +929,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['dob'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -868,7 +946,7 @@ class _chef_profileState extends State<chef_profile> {
                                     Wrap(children: [
                                       Text(
                                         'Email Id',
-                                        style: GoogleFonts.roboto(
+                                        style: TextStyle(
                                           fontSize: 18.0,
                                           color: const Color(0xFF4A4B4D),
                                           fontWeight: FontWeight.bold,
@@ -889,7 +967,7 @@ class _chef_profileState extends State<chef_profile> {
                                             }
                                             return data['email'];
                                           })(),
-                                          style: GoogleFonts.roboto(
+                                          style: TextStyle(
                                             fontSize: 15.0,
                                             color: const Color(0xFF4A4B4D),
                                             // fontWeight: FontWeight.w700,
@@ -917,7 +995,7 @@ class _chef_profileState extends State<chef_profile> {
                       Text(
                         'Current Location',
                         style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -974,7 +1052,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'City',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -990,7 +1068,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['address'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -1006,7 +1084,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Country',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -1022,7 +1100,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['country'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -1038,7 +1116,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Pincode',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -1054,7 +1132,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['pincode'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -1080,7 +1158,7 @@ class _chef_profileState extends State<chef_profile> {
                       Text(
                         'Work',
                         style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -1135,7 +1213,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Experience',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -1151,7 +1229,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['experience'].toString();
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -1167,7 +1245,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Work Preference',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -1183,7 +1261,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['workpreference'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -1199,7 +1277,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Cost Per Day',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -1215,7 +1293,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['cheffees'].toString();
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -1231,7 +1309,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'Salary Range',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -1247,7 +1325,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['currentsalary'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -1263,7 +1341,7 @@ class _chef_profileState extends State<chef_profile> {
                                   children: [
                                     Text(
                                       'City',
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 18.0,
                                         color: const Color(0xFF4A4B4D),
                                         fontWeight: FontWeight.bold,
@@ -1279,7 +1357,7 @@ class _chef_profileState extends State<chef_profile> {
                                         }
                                         return data['city'];
                                       })(),
-                                      style: GoogleFonts.roboto(
+                                      style: TextStyle(
                                         fontSize: 15.0,
                                         color: const Color(0xFF4A4B4D),
                                         // fontWeight: FontWeight.w700,
@@ -1305,7 +1383,7 @@ class _chef_profileState extends State<chef_profile> {
                   //     Text(
                   //       'Salary',
                   //       style: TextStyle(
-                  //         fontFamily: 'Roboto',
+                  //         fontFamily: 'Montserrat',
                   //         fontSize: 20,
                   //         fontWeight: FontWeight.w500,
                   //       ),
@@ -1332,7 +1410,7 @@ class _chef_profileState extends State<chef_profile> {
                       Text(
                         'Cuisine Expert',
                         style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -1360,7 +1438,7 @@ class _chef_profileState extends State<chef_profile> {
                       Text(
                         'Dishes',
                         style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -1394,7 +1472,7 @@ class _chef_profileState extends State<chef_profile> {
                       Text(
                         'Menu',
                         style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -1441,7 +1519,7 @@ class _chef_profileState extends State<chef_profile> {
                       child: Text(
                         'Log Out',
                         style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
