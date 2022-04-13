@@ -304,7 +304,7 @@ class _user_homeState extends State<user_home> {
                                               builder: (BuildContext context) {
                                                 return AlertDialog(
                                                   title: Text(
-                                                    'Query for private chef',
+                                                    'Query For Private Chef',
                                                     style: TextStyle(
                                                       fontFamily: 'Montserrat',
                                                       fontSize: 18,
@@ -325,7 +325,7 @@ class _user_homeState extends State<user_home> {
                                                           MainAxisAlignment
                                                               .spaceEvenly,
                                                       mainAxisSize:
-                                                          MainAxisSize.min,
+                                                          MainAxisSize.max,
                                                       children: [
                                                         TextFormField(
                                                           decoration:
@@ -395,7 +395,7 @@ class _user_homeState extends State<user_home> {
                                                             labelStyle: TextStyle(
                                                                 fontFamily:
                                                                     'Montserrat',
-                                                                fontSize: 14,
+                                                                fontSize: 13,
                                                                 color: Colors
                                                                     .black,
                                                                 fontWeight:
@@ -748,7 +748,7 @@ class _user_homeState extends State<user_home> {
                                             );
                                           },
                                           child: Text(
-                                            'Enter your query for Private Chef',
+                                            'Query For Private Chef',
                                             style: TextStyle(
                                               fontFamily: 'Montserrat',
                                             ),
@@ -1255,8 +1255,9 @@ class _user_homeState extends State<user_home> {
                                             );
                                           },
                                           child: Text(
-                                            'Enter your query for kitchen Professional ',
+                                            'Query For Kitchen Professional ',
                                             style: TextStyle(
+                                              fontSize: 14,
                                               fontFamily: 'Montserrat',
                                             ),
                                           ),

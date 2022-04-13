@@ -31,7 +31,7 @@ class NavBar extends StatelessWidget {
   }
 
   Widget buildHeader(BuildContext context) => Material(
-        color: Color(0xFFF03203C),
+        color: Colors.indigo.shade700,
         child: StreamBuilder<Object>(
             stream: FirebaseFirestore.instance
                 .collection("users")
