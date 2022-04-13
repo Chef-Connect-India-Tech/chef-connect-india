@@ -513,7 +513,6 @@ class _user_profileState extends State<user_profile> {
       "mobile1": _phoneController!.text,
       "email": _emailController!.text,
       'mobile2': _phone2Controller!.text,
-      'dob': date,
       'city': _cityController!.text,
       'country': _countryController!.text,
       'pincode': _pincodeController!.text,
@@ -589,7 +588,7 @@ class _user_profileState extends State<user_profile> {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 70,
+        // toolbarHeight: 70,
         backgroundColor: Colors.indigo,
         centerTitle: true,
         title: Text('My Profile'),
@@ -781,8 +780,12 @@ class _user_profileState extends State<user_profile> {
                       // ),
 
                       Container(
-                        margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-                        height: 240,
+                        margin: EdgeInsets.only(
+                          top: 20,
+                          left: 20,
+                          right: 20,
+                        ),
+                        height: 260,
                         width: width,
                         decoration: BoxDecoration(
                           color: Colors.white,

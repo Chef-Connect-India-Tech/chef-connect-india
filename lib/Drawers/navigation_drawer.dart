@@ -18,181 +18,141 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection("users")
-              .doc(FirebaseAuth.instance.currentUser!.uid)
-              .snapshots(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            var data = snapshot.data;
-            if (data == null) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            return ListView(
-              // Remove padding
-              padding: EdgeInsets.zero,
-              children: [
-                UserAccountsDrawerHeader(
-                  onDetailsPressed: (() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => user_profile(),
-                      ),
-                    );
-                  }),
-                  accountName: Text(data['username'].toString()),
-                  accountEmail: Text(data['mobile1'].toString()),
-                  currentAccountPicture: CircleAvatar(
-                    child: ClipOval(
-                      child: Image.network(
-                        '${data['profilepic']}',
-                        fit: BoxFit.cover,
-                        width: 90,
-                        height: 90,
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage('assets/profile-bg.jpg')),
-                  ),
-                ),
-                ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text(
-                    'Home Page',
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => user_home(),
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.bookmark_outlined),
-                  title: Text(
-                    'My Bookings',
-                    style: TextStyle(fontFamily: 'Montserrat'),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => user_bookings(),
-                      ),
-                    );
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.location_on),
-                  title: Text(
-                    'Location',
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Select_mode_new(),
-                      ),
-                    );
-                  },
-                ),
-                // ListTile(
-                //   leading: Icon(Icons.person),
-                //   title: Text('Hire Mode'),
-                //   onTap: () {
-                //     // Navigator.push(
-                //     //   context,
-                //     //   MaterialPageRoute(
-                //     //     builder: (context) => Select_Mode(),
-                //     //   ),
-                //     // );
-                //   },
-                // ),
-                Divider(
-                  thickness: 2,
-                ),
-                // ListTile(
-                //   leading: Icon(Icons.person),
-                //   title: Text('FAQ'),
-                //   onTap: () => null,
-                // ),
-                // ListTile(
-                //   leading: Icon(Icons.share),
-                //   title: Text('Share'),
-                //   onTap: () => null,
-                // ),
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text(
-                    'Profile',
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => user_profile(),
-                      ),
-                    );
-                  },
-                ),
-                // Divider(
-                //   thickness: 2,
-                // ),
-                // ListTile(
-                //   leading: Icon(Icons.settings),
-                //   title: Text('Settings'),
-                //   onTap: () => null,
-                // ),
-                // ListTile(
-                //   leading: Icon(Icons.description),
-                //   title: Text('Policies'),
-                //   onTap: () => null,
-                // ),
-                // Divider(
-                //   thickness: 2,
-                // ),
-                ListTile(
-                  title: Text(
-                    'LogOut',
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                  leading: Icon(Icons.exit_to_app),
-                  onTap: () async {
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    prefs.remove('uid');
-                    await FirebaseAuth.instance.signOut().then((_) {
-                      Navigator.pushAndRemoveUntil(
-                          (context),
-                          MaterialPageRoute(
-                              builder: (context) => ChefConnectMain()),
-                          (route) => false);
-                    });
-                  },
-                ),
-              ],
-            );
-          }),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            buildHeader(context),
+            buildMenuItems(context),
+          ],
+        ),
+      ),
     );
   }
+
+  Widget buildHeader(BuildContext context) => Material(
+        color: Color(0xFFF03203C),
+        child: StreamBuilder<Object>(
+            stream: FirebaseFirestore.instance
+                .collection("users")
+                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .snapshots(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              var data = snapshot.data;
+              if (data == null) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => user_profile(),
+                    ),
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.only(
+                      top: 24 + MediaQuery.of(context).padding.top, bottom: 24),
+                  child: Column(children: [
+                    CircleAvatar(
+                      radius: 52,
+                      backgroundImage: NetworkImage(data['profilepic']),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Text(
+                      '${data['username'].toString().toLowerCase()}',
+                      style: TextStyle(fontSize: 28, color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      '${data['mobile1']}',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    )
+                  ]),
+                ),
+              );
+            }),
+      );
+
+  Widget buildMenuItems(BuildContext context) => Container(
+        padding: const EdgeInsets.all(24),
+        child: Wrap(
+          runSpacing: 10,
+          children: [
+            ListTile(
+              leading: Icon(Icons.home_outlined),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => user_home(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.favorite_border),
+              title: Text('My Bookings'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => user_bookings(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.location_on_outlined),
+              title: Text('Location'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Select_mode_new(),
+                  ),
+                );
+              },
+            ),
+            Divider(
+              thickness: 2,
+            ),
+            // ListTile(
+            //   leading: Icon(Icons.person_outline),
+            //   title: Text('Profile'),
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => user_profile(),
+            //       ),
+            //     );
+            //   },
+            // ),
+            ListTile(
+              title: Text('LogOut'),
+              leading: Icon(Icons.exit_to_app),
+              onTap: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.remove('uid');
+                await FirebaseAuth.instance.signOut().then((_) {
+                  Navigator.pushAndRemoveUntil(
+                      (context),
+                      MaterialPageRoute(
+                          builder: (context) => ChefConnectMain()),
+                      (route) => false);
+                });
+              },
+            ),
+          ],
+        ),
+      );
 }
