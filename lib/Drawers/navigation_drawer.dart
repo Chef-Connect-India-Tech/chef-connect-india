@@ -64,7 +64,12 @@ class NavBar extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(Icons.home),
-                  title: Text('Home Page'),
+                  title: Text(
+                    'Home Page',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -76,7 +81,10 @@ class NavBar extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(Icons.bookmark_outlined),
-                  title: Text('My Bookings'),
+                  title: Text(
+                    'My Bookings',
+                    style: TextStyle(fontFamily: 'Montserrat'),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -88,7 +96,12 @@ class NavBar extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(Icons.location_on),
-                  title: Text('Location'),
+                  title: Text(
+                    'Location',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -125,7 +138,12 @@ class NavBar extends StatelessWidget {
                 // ),
                 ListTile(
                   leading: Icon(Icons.person),
-                  title: Text('Profile'),
+                  title: Text(
+                    'Profile',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -152,7 +170,12 @@ class NavBar extends StatelessWidget {
                 //   thickness: 2,
                 // ),
                 ListTile(
-                  title: Text('LogOut'),
+                  title: Text(
+                    'LogOut',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
                   leading: Icon(Icons.exit_to_app),
                   onTap: () async {
                     SharedPreferences prefs =

@@ -14,7 +14,12 @@ class _user_checkoutState extends State<user_checkout> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chef Connect - Booking'),
+        title: Text(
+          'Chef Connect - Booking',
+          style: TextStyle(
+            fontFamily: 'Montserrat',
+          ),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -45,6 +50,7 @@ class _user_checkoutState extends State<user_checkout> {
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
+                                    fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     backgroundColor:
                                         Colors.black.withOpacity(.4)),
@@ -53,6 +59,7 @@ class _user_checkoutState extends State<user_checkout> {
                                 "Chef Id",
                                 style: TextStyle(
                                     color: Colors.white,
+                                    fontFamily: 'Montserrat',
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     backgroundColor:
@@ -71,6 +78,7 @@ class _user_checkoutState extends State<user_checkout> {
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
+                                    fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     backgroundColor:
                                         Colors.black.withOpacity(.4)),
@@ -79,6 +87,7 @@ class _user_checkoutState extends State<user_checkout> {
                                 "Location",
                                 style: TextStyle(
                                     color: Colors.white,
+                                    fontFamily: 'Montserrat',
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     backgroundColor:
@@ -110,6 +119,7 @@ class _user_checkoutState extends State<user_checkout> {
                                 "Select Date: ",
                                 style: TextStyle(
                                     color: Colors.white,
+                                    fontFamily: 'Montserrat',
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     backgroundColor:
@@ -119,6 +129,7 @@ class _user_checkoutState extends State<user_checkout> {
                                 "Chef Id",
                                 style: TextStyle(
                                     color: Colors.white,
+                                    fontFamily: 'Montserrat',
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     backgroundColor:
@@ -136,6 +147,7 @@ class _user_checkoutState extends State<user_checkout> {
                                 "Select Time: ",
                                 style: TextStyle(
                                     color: Colors.white,
+                                    fontFamily: 'Montserrat',
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     backgroundColor:
@@ -145,6 +157,7 @@ class _user_checkoutState extends State<user_checkout> {
                                 "Location",
                                 style: TextStyle(
                                     color: Colors.white,
+                                    fontFamily: 'Montserrat',
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     backgroundColor:
@@ -174,6 +187,7 @@ class _user_checkoutState extends State<user_checkout> {
                             'Select your prefered meal',
                             style: TextStyle(
                               color: Colors.white,
+                              fontFamily: 'Montserrat',
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -237,6 +251,7 @@ class _user_checkoutState extends State<user_checkout> {
                             'Number of Plates',
                             style: TextStyle(
                               color: Colors.white,
+                              fontFamily: 'Montserrat',
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -300,6 +315,7 @@ class _user_checkoutState extends State<user_checkout> {
                             "Full Address",
                             style: TextStyle(
                                 color: Colors.white,
+                                fontFamily: 'Montserrat',
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 backgroundColor: Colors.black.withOpacity(.4)),

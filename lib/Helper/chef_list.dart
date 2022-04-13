@@ -141,6 +141,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                           Text(
                             'Chef Id: ${widget.chefid}',
                             style: TextStyle(
+                              fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
                             ),
@@ -169,6 +170,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                                   '${widget.rating}',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
+                                    fontFamily: 'Montserrat',
                                     fontSize: 16,
                                   ),
                                 ),
@@ -201,6 +203,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                               Text(
                                 'Experince :' + ' ${widget.experience}',
                                 style: TextStyle(
+                                  fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black,
                                   fontSize: 13,
@@ -212,6 +215,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                               Text(
                                 'City :' + ' ${widget.city}',
                                 style: TextStyle(
+                                  fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black,
                                   fontSize: 13,
@@ -222,6 +226,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                           Text(
                             '\u20B9${widget.costperday} per day ',
                             style: TextStyle(
+                              fontFamily: 'Montserrat',
                               fontWeight: FontWeight.normal,
                               color: Colors.grey,
                               fontSize: 13,

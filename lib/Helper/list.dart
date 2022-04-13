@@ -478,6 +478,7 @@ class _booking_list_viewState extends State<booking_list_view> {
                         child: Text(
                           "Cancel",
                           style: TextStyle(
+                            fontFamily: 'Montserrat',
                             color: Colors.black,
                           ),
                         ),
@@ -508,6 +509,7 @@ class _booking_list_viewState extends State<booking_list_view> {
                         child: Text(
                           "Accept",
                           style: TextStyle(
+                            fontFamily: 'Montserrat',
                             color: Colors.black,
                           ),
                         ),

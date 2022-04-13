@@ -125,7 +125,12 @@ class _user_homeState extends State<user_home> {
           toolbarHeight: 70, // default is 56
           // toolbarOpacity: 0.5,
           elevation: 50.0,
-          title: Text('Chef Connect India'),
+          title: Text(
+            'Chef Connect India',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+            ),
+          ),
         ),
         floatingActionButton: SpeedDial(
           animatedIcon: AnimatedIcons.menu_close,
@@ -141,25 +146,33 @@ class _user_homeState extends State<user_home> {
               child: Icon(Icons.mail),
               backgroundColor: Colors.red,
               label: 'Mail',
-              onTap: () => showToast('Selected Mail..'),
+              onTap: () => showToast(
+                'Selected Mail..',
+              ),
             ),
             SpeedDialChild(
               child: Icon(Icons.copy),
               backgroundColor: Colors.green,
               label: 'Copy',
-              onTap: () => showToast('Selected Copy..'),
+              onTap: () => showToast(
+                'Selected Copy..',
+              ),
             ),
             SpeedDialChild(
               child: Icon(Icons.facebook),
               backgroundColor: Colors.blue,
               label: 'Facebook',
-              onTap: () => showToast('Selected facebook..'),
+              onTap: () => showToast(
+                'Selected facebook..',
+              ),
             ),
             SpeedDialChild(
               child: Icon(Icons.whatsapp),
               backgroundColor: Colors.indigo,
               label: 'Whatsapp',
-              onTap: () => showToast('Selected whatsapp..'),
+              onTap: () => showToast(
+                'Selected whatsapp..',
+              ),
             ),
           ],
         ),
@@ -276,7 +289,7 @@ class _user_homeState extends State<user_home> {
                                                   title: Text(
                                                     'Query for private chef',
                                                     style: TextStyle(
-                                                      fontFamily: 'Roboto',
+                                                      fontFamily: 'Montserrat',
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -701,6 +714,9 @@ class _user_homeState extends State<user_home> {
                                           },
                                           child: Text(
                                             'Enter your query for Private Chef',
+                                            style: TextStyle(
+                                              fontFamily: 'Montserrat',
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -763,7 +779,7 @@ class _user_homeState extends State<user_home> {
                                                   title: Text(
                                                     'Query For Kitchen Professional',
                                                     style: TextStyle(
-                                                      fontFamily: 'Roboto',
+                                                      fontFamily: 'Montserrat',
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -1185,6 +1201,9 @@ class _user_homeState extends State<user_home> {
                                           },
                                           child: Text(
                                             'Enter your query for kitchen Professional ',
+                                            style: TextStyle(
+                                              fontFamily: 'Montserrat',
+                                            ),
                                           ),
                                         ),
                                       )
@@ -1209,6 +1228,7 @@ class _user_homeState extends State<user_home> {
                       Text(
                         "Available Chefs",
                         style: TextStyle(
+                          fontFamily: 'Montserrat',
                           fontWeight: FontWeight.bold,
                           color: Colors.indigo[900],
                           fontSize: 20,
@@ -1219,6 +1239,7 @@ class _user_homeState extends State<user_home> {
                         child: Text(
                           " View More >",
                           style: TextStyle(
+                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                             color: Colors.indigo[900],
                             fontSize: 20,

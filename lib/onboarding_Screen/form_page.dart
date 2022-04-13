@@ -271,6 +271,7 @@ class _scrollState extends State<scroll> {
                                           filled: true,
                                           hintText: 'Enter Mail Id',
                                           hintStyle: TextStyle(
+                                            fontFamily: 'Montserrat',
                                             color: Colors.black,
                                           ),
                                           border: OutlineInputBorder(
@@ -288,6 +289,7 @@ class _scrollState extends State<scroll> {
                                           filled: true,
                                           hintText: 'Enter Phone Number',
                                           hintStyle: TextStyle(
+                                            fontFamily: 'Montserrat',
                                             color: Colors.black,
                                           ),
                                           border: OutlineInputBorder(
@@ -305,6 +307,7 @@ class _scrollState extends State<scroll> {
                                           filled: true,
                                           hintText: 'Enter Address',
                                           hintStyle: TextStyle(
+                                            fontFamily: 'Montserrat',
                                             color: Colors.black,
                                           ),
                                           border: OutlineInputBorder(
@@ -324,6 +327,7 @@ class _scrollState extends State<scroll> {
                                           filled: true,
                                           hintText: 'Enter Description',
                                           hintStyle: TextStyle(
+                                            fontFamily: 'Montserrat',
                                             color: Colors.black,
                                           ),
                                           border: OutlineInputBorder(
