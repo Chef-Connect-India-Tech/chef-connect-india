@@ -45,16 +45,32 @@ class _Select_mode_newState extends State<Select_mode_new> {
                       SizedBox(
                         height: 130,
                       ),
-                      Text(
-                        'Select City',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30,
-                          backgroundColor: Colors.black.withOpacity(
-                            0.5,
+                      Container(
+                        margin: EdgeInsets.only(top: 48, left: 20, right: 20),
+                        height: 50,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.black45,
+                          borderRadius: BorderRadius.circular(16.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.16),
+                              offset: Offset(0, 3.0),
+                              blurRadius: 12.0,
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          'Select City',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w900,
+                            fontSize: 35,
+                            // backgroundColor: Colors.black.withOpacity(
+                            //   0.5,
+                            // ),
+                            color: Colors.white,
                           ),
-                          color: Colors.white,
                         ),
                       ),
                       SizedBox(
