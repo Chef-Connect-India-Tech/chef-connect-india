@@ -1,78 +1,34 @@
 {
   "project_info": {
-    "project_number": "757812397676",
-    "project_id": "chef-connect-testing",
-    "storage_bucket": "chef-connect-testing.appspot.com"
+    "project_number": "156557768721",
+    "firebase_url": "https://chefconnect-india-default-rtdb.firebaseio.com",
+    "project_id": "chefconnect-india",
+    "storage_bucket": "chefconnect-india.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:757812397676:android:71a06363a078c38ee2fa49",
+        "mobilesdk_app_id": "1:156557768721:android:ef0e805bae507e9e7799b0",
         "android_client_info": {
           "package_name": "com.chefconnect.app.chef_connect"
         }
       },
       "oauth_client": [
         {
-          "client_id": "757812397676-n3ur88orvbcprodi483lmd5jf4320hbu.apps.googleusercontent.com",
+          "client_id": "156557768721-t5uumi5ta6ukl2ot4if1drm4e70ngjcj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLN_dGhm3SxdMu-rCNCwXjm5EYE4jG-Io"
+          "current_key": "AIzaSyB6DNxxxhfBHXq3fiBH1fqQep886dBUAUg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "757812397676-n3ur88orvbcprodi483lmd5jf4320hbu.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:757812397676:android:75481bc755876917e2fa49",
-        "android_client_info": {
-          "package_name": "com.example.glass_morphism"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "757812397676-5ughhqktbsam3qd06oai0blb72frsiee.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.glass_morphism",
-            "certificate_hash": "e2e60a6c2bccc0997ba7e4f32cbd5d50611cab45"
-          }
-        },
-        {
-          "client_id": "757812397676-jmakgrptsud1ots26mpdfkmaqukrendc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.glass_morphism",
-            "certificate_hash": "10b60ced2710753c2587aa60036d93edc91a294c"
-          }
-        },
-        {
-          "client_id": "757812397676-n3ur88orvbcprodi483lmd5jf4320hbu.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDLN_dGhm3SxdMu-rCNCwXjm5EYE4jG-Io"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "757812397676-n3ur88orvbcprodi483lmd5jf4320hbu.apps.googleusercontent.com",
+              "client_id": "156557768721-t5uumi5ta6ukl2ot4if1drm4e70ngjcj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
