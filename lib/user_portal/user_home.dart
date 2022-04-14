@@ -325,7 +325,7 @@ class _user_homeState extends State<user_home> {
                                                           MainAxisAlignment
                                                               .spaceEvenly,
                                                       mainAxisSize:
-                                                          MainAxisSize.max,
+                                                          MainAxisSize.min,
                                                       children: [
                                                         TextFormField(
                                                           decoration:
