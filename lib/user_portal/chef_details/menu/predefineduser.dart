@@ -11,6 +11,7 @@ class predefineduser extends StatefulWidget {
 }
 
 class _predefineduserState extends State<predefineduser> {
+  List _selectedMenuItems = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,16 +26,39 @@ class _predefineduserState extends State<predefineduser> {
               scrollDirection: Axis.vertical,
               itemBuilder: (context, documentSnapshots, index) {
                 final dataa = documentSnapshots[index].data() as Map?;
-                return GestureDetector(
-                  //  onTap: ()=> Navigator.push(context,
-                  //            MaterialPageRoute(builder: (_)=> Chef_profile_ui(
-                  //              name:  data!['firstname']),
-                  //            )),
-                  child: listpredefined(
-                    desserts: dataa!['desserts'],
-                    maincourse: dataa['main course'],
-                    starters: dataa['starters'],
-                    menuname: dataa['menu name'],
+                return Container(
+                  color: (_selectedMenuItems.contains(index))
+                      ? Colors.blue.withOpacity(0.5)
+                      : Colors.transparent,
+                  child: GestureDetector(
+                    onTap: () {
+                      if (_selectedMenuItems.contains(index)) {
+                        setState(() {
+                          _selectedMenuItems.removeWhere((val) => val == index);
+                        });
+                      }
+                    },
+                    onLongPressCancel: () {
+                      if (_selectedMenuItems.contains(index)) {
+                        setState(() {
+                          _selectedMenuItems.removeWhere((val) => val == index);
+                        });
+                      }
+                    },
+                    onLongPress: () {
+                      if (!_selectedMenuItems.contains(index)) {
+                        setState(() {
+                          _selectedMenuItems.add(index);
+                          _selectedMenuItems.add(dataa!['menu name']);
+                        });
+                      }
+                    },
+                    child: listpredefined(
+                      desserts: dataa!['desserts'],
+                      maincourse: dataa['main course'],
+                      starters: dataa['starters'],
+                      menuname: dataa['menu name'],
+                    ),
                   ),
                 );
               },
@@ -62,7 +86,9 @@ class _predefineduserState extends State<predefineduser> {
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                print('Selected Menu is at Index: ${_selectedMenuItems}');
+              },
               child: Text(
                 'Book A  Chef',
                 style: TextStyle(

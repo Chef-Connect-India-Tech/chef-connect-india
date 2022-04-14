@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:chef_connect_india/Helper/dimensions.dart';
 import 'package:chef_connect_india/Main%20Screen/otp_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:park_place/screens/otpScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -96,16 +97,24 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Text(
                               widget.isowner
-                                  ? "Boost Your Career"
+                                  ? "Boost Your Chef Career"
                                   : "Hire a Chef",
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.white,
-                                  fontSize: 45,
-                                  fontWeight: FontWeight.bold,
-                                  backgroundColor:
-                                      Colors.black.withOpacity(.4)),
+                              style: GoogleFonts.dancingScript(
+                                color: Colors.white,
+                                textStyle:
+                                    Theme.of(context).textTheme.headline4,
+                                fontSize: 50,
+                                fontWeight: FontWeight.w900,
+                                fontStyle: FontStyle.italic,
+                              ),
+                              // style: TextStyle(
+                              //     fontFamily: 'SquarePeg',
+                              //     color: Colors.white,
+                              //     fontSize: 45,
+                              //     fontWeight: FontWeight.bold,
+                              //     backgroundColor:
+                              //         Colors.black.withOpacity(.4)),
                             ),
                             // SizedBox(
                             //   height: 10,
@@ -132,13 +141,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ? ""
                                   : "One Stop Solution for all\nYour Culinary Needs",
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
+                              style: GoogleFonts.caveat(
                                   color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  textStyle:
+                                      Theme.of(context).textTheme.headline4,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w900,
+                                  fontStyle: FontStyle.italic,
                                   backgroundColor:
                                       Colors.black.withOpacity(.7)),
+                              // style: TextStyle(
+                              //     fontFamily: 'Montserrat',
+                              //     color: Colors.white,
+                              //     fontSize: 20,
+                              //     fontWeight: FontWeight.bold,
+                              //     backgroundColor:
+                              //         Colors.black.withOpacity(.7)),
                             ),
                           ],
                         ),
@@ -157,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _formModule() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(30, 70, 30, 0),
+      padding: const EdgeInsets.fromLTRB(30, 50, 30, 0),
       child: Form(
         key: _formkey,
         child: Stack(

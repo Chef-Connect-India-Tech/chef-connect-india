@@ -65,7 +65,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                     FirebaseFirestore.instance.collection('Menu');
                 var cust_docSnapshot =
                     await cust_collection.doc(widget.uid).get();
-                if (docSnapshot.exists) {
+                if (cust_docSnapshot.exists) {
                   Map<String, dynamic> cust_data = cust_docSnapshot.data()!;
                   customised_items = cust_data['customised menu'];
                   // print(name);
@@ -461,14 +461,14 @@ class _chef_grid_viewState extends State<chef_grid_view> {
                             height: 1,
                             thickness: 1,
                           ),
-                          Text(
-                            '${cuisine_exp}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black,
-                              fontSize: 13,
-                            ),
-                          ),
+                          // Text(
+                          //   '${cuisine_exp}',
+                          //   style: TextStyle(
+                          //     fontWeight: FontWeight.normal,
+                          //     color: Colors.black,
+                          //     fontSize: 10,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

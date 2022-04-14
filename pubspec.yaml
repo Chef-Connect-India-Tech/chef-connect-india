@@ -74,6 +74,7 @@ flutter:
   assets:
     - assets/
     - assets/socialicons/
+    - fonts/
 
   fonts:
     - family: Montserrat
@@ -84,6 +85,10 @@ flutter:
           weight: 400
         - asset: fonts/Montserrat-ExtraBold.ttf
           weight: 800
+    - family: SquarePeg
+      fonts:
+        - asset: fonts/SquarePeg-Regular.tff
+          weight: 300
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
