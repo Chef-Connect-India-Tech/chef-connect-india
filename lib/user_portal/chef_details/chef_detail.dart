@@ -1,4 +1,5 @@
 import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
@@ -13,7 +14,6 @@ class chef_detail extends StatefulWidget {
   var specialities;
   double rating;
   var cid;
-  List customised_menu;
 
   chef_detail({
     Key? key,
@@ -26,7 +26,6 @@ class chef_detail extends StatefulWidget {
     required this.rating,
     required this.specialities,
     required this.cid,
-    required this.customised_menu,
   }) : super(key: key);
 
   @override
@@ -35,6 +34,7 @@ class chef_detail extends StatefulWidget {
 
 class _chef_detailState extends State<chef_detail> {
   var cuisine_name;
+  var customised_items;
 
   @override
   Widget build(BuildContext context) {
@@ -274,29 +274,55 @@ class _chef_detailState extends State<chef_detail> {
                       ],
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-                    height: 600,
-                    width: width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.16),
-                          offset: Offset(0, 3.0),
-                          blurRadius: 12.0,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: Card(
+                      elevation: 5,
+                      child: SizedBox(
+                        height: 50,
+                        width: 250,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            primary: Colors.white,
+                            onPrimary: Color.fromARGB(255, 18, 68, 138),
+                          ),
+                          onPressed: () async {
+                            var cust_collection =
+                                FirebaseFirestore.instance.collection('Menu');
+                            var cust_docSnapshot =
+                                await cust_collection.doc(widget.cid).get();
+                            if (cust_docSnapshot.exists) {
+                              Map<String, dynamic> cust_data =
+                                  cust_docSnapshot.data()!;
+                              customised_items = cust_data['customised menu'];
+                              // print(name);
+                            }
+                            List<String> _cust_items =
+                                customised_items.cast<String>();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MenuTab(
+                                      cid: widget.cid,
+                                      customisedmenu: _cust_items)),
+                            );
+                            print("button pressed");
+                          },
+                          child: Text(
+                            'Select Menu',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ],
-                    ),
-                    child: MenuTab(
-                      cid: widget.cid,
-                      customisedmenu: widget.customised_menu,
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 40,
-                  )
                 ],
               ),
             ),

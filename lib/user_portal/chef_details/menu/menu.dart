@@ -9,10 +9,6 @@ class MenuTab extends StatefulWidget {
   late String cid;
   late List customisedmenu;
   MenuTab({required this.cid, required this.customisedmenu});
-  // const MenuTab({
-  //   Key? key,
-  //   required String cid,
-  // }) : super(key: key);
 
   @override
   _TabViewState createState() => _TabViewState();
@@ -36,15 +32,16 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     // List<String> _items = pp.cast<String>();
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Select Menu'),
+        centerTitle: true,
+        backgroundColor: Colors.indigo,
+      ),
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          new Padding(
-            padding: const EdgeInsets.all(1 - .0),
-            child: new Text(''),
-          ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(8.0, 20.0, 8.0, 8.0),
             child: Container(
               width: 400,
               height: 50,

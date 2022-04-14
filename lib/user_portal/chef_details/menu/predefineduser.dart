@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/user_portal/user_checkout.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -35,28 +36,6 @@ class _predefineduserState extends State<predefineduser> {
                       ? Colors.blue.withOpacity(0.5)
                       : Colors.transparent,
                   child: GestureDetector(
-                    // onTap: () {
-                    //   if (_selectedMenuItems.contains(index)) {
-                    //     setState(() {
-                    //       _selectedMenuItems.removeWhere((val) => val == index);
-                    //     });
-                    //   }
-                    // },
-                    // onLongPressCancel: () {
-                    //   if (_selectedMenuItems.contains(index)) {
-                    //     setState(() {
-                    //       _selectedMenuItems.removeWhere((val) => val == index);
-                    //     });
-                    //   }
-                    // },
-                    // onLongPress: () {
-                    //   if (!_selectedMenuItems.contains(index)) {
-                    //     setState(() {
-                    //       _selectedMenuItems.add(index);
-                    //       _selectedMenuItems.add(dataa!['menu name']);
-                    //     });
-                    //   }
-                    // },
                     child: listpredefined(
                       desserts: dataa!['desserts'],
                       maincourse: dataa['main course'],
@@ -77,32 +56,32 @@ class _predefineduserState extends State<predefineduser> {
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 0, 30, 15),
-        child: GestureDetector(
-          child: SizedBox(
-            height: 40,
-            width: MediaQuery.of(context).size.width - 100,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.indigo,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-              onPressed: () {},
-              child: Text(
-                'Book A  Chef',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+      // bottomNavigationBar: Padding(
+      //   padding: const EdgeInsets.fromLTRB(30, 0, 30, 15),
+      //   child: GestureDetector(
+      //     child: SizedBox(
+      //       height: 40,
+      //       width: MediaQuery.of(context).size.width - 100,
+      //       child: ElevatedButton(
+      //         style: ElevatedButton.styleFrom(
+      //           primary: Colors.indigo,
+      //           shape: RoundedRectangleBorder(
+      //             borderRadius: BorderRadius.circular(5),
+      //           ),
+      //         ),
+      //         onPressed: () {},
+      //         child: Text(
+      //           'Book A  Chef',
+      //           style: TextStyle(
+      //             fontFamily: 'Roboto',
+      //             fontSize: 18,
+      //             fontWeight: FontWeight.w600,
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
@@ -247,10 +226,22 @@ class _listpredefinedState extends State<listpredefined> {
                                               backgroundColor: Colors.red,
                                               textColor: Colors.white,
                                               fontSize: 16.0);
-                                          print(widget.menuname);
-                                          print(widget.starters);
-                                          print(widget.desserts);
-                                          print(widget.maincourse);
+                                          // print(widget.menuname);
+                                          // print(widget.starters);
+                                          // print(widget.desserts);
+                                          // print(widget.maincourse);
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  user_checkout(
+                                                      menu: widget.menuname,
+                                                      starters: widget.starters,
+                                                      desserts: widget.desserts,
+                                                      maincourse:
+                                                          widget.maincourse)),
+                                            ),
+                                          );
                                         },
                                         child: Text(
                                           'Select Menu',
@@ -541,6 +532,192 @@ class _listpredefinedState extends State<listpredefined> {
 //             ),
 //           ],
 //         ),
+//       ),
+//     );
+//   }
+// }
+
+// class predefined_menu_list extends StatefulWidget {
+//   late List starters;
+//   late List maincourse;
+//   late List desserts;
+//   late String menuname;
+//   predefined_menu_list({
+//     Key? key,
+//     required this.starters,
+//     required this.maincourse,
+//     required this.desserts,
+//     required this.menuname,
+//   }) : super(key: key);
+
+//   @override
+//   State<predefined_menu_list> createState() => _predefined_menu_listState();
+// }
+
+// class _predefined_menu_listState extends State<predefined_menu_list> {
+//   bool _valu = false;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(10.0),
+//       child: Container(
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(20),
+//           boxShadow: [
+//             BoxShadow(
+//               color: Colors.black.withOpacity(0.3), //Offset
+//               blurRadius: 10.0,
+//               spreadRadius: 2.0,
+//             ), //BoxShadow
+//             BoxShadow(
+//               color: Colors.white,
+//               offset: const Offset(0.0, 0.0),
+//               blurRadius: 0.0,
+//               spreadRadius: 0.0,
+//             ), //BoxShadow
+//           ],
+//         ), //BoxDecoration
+
+//         /** CheckboxListTile Widget **/
+//         child: CheckboxListTile(
+//           title: Container(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Column(
+//                   mainAxisAlignment: MainAxisAlignment.start,
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text(
+//                       'Starters:',
+//                       style: GoogleFonts.roboto(
+//                           fontSize: 18.0,
+//                           color: const Color(0xFF4A4B4D),
+//                           height: 1.11,
+//                           fontWeight: FontWeight.w500),
+//                     ),
+//                     Wrap(
+//                       spacing: 5.0,
+//                       children: widget.starters
+//                           .map(
+//                             (e) => Chip(
+//                               backgroundColor: Colors.orange.shade100,
+//                               label: Text(
+//                                 e.toString().toLowerCase(),
+//                                 style: TextStyle(
+//                                     color: Colors.orange.shade900,
+//                                     fontWeight: FontWeight.bold),
+//                               ),
+//                               shape: RoundedRectangleBorder(
+//                                   borderRadius: BorderRadius.circular(10)),
+//                             ),
+//                           )
+//                           .toList(),
+//                     ),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           ),
+//           subtitle: Container(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text(
+//                       'Maincourse:',
+//                       style: GoogleFonts.roboto(
+//                           fontSize: 18.0,
+//                           color: const Color(0xFF4A4B4D),
+//                           height: 1.11,
+//                           fontWeight: FontWeight.w500),
+//                     ),
+//                     Wrap(
+//                       spacing: 5.0,
+//                       children: widget.maincourse
+//                           .map(
+//                             (e) => Chip(
+//                               backgroundColor: Colors.indigo.shade100,
+//                               label: Text(
+//                                 e.toString().toLowerCase(),
+//                                 style: TextStyle(
+//                                     color: Colors.indigo.shade900,
+//                                     fontWeight: FontWeight.bold),
+//                               ),
+//                               shape: RoundedRectangleBorder(
+//                                   borderRadius: BorderRadius.circular(10)),
+//                             ),
+//                           )
+//                           .toList(),
+//                     ),
+//                   ],
+//                 ),
+//                 Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: [
+//                     Text(
+//                       'Desserts:',
+//                       style: GoogleFonts.roboto(
+//                           fontSize: 18.0,
+//                           color: const Color(0xFF4A4B4D),
+//                           height: 1.11,
+//                           fontWeight: FontWeight.w500),
+//                     ),
+//                     Wrap(
+//                       spacing: 5.0,
+//                       children: widget.desserts
+//                           .map(
+//                             (e) => Chip(
+//                               backgroundColor: Colors.blue.shade100,
+//                               label: Text(
+//                                 e.toString().toLowerCase(),
+//                                 style: TextStyle(
+//                                     color: Colors.blue.shade900,
+//                                     fontWeight: FontWeight.bold),
+//                               ),
+//                               shape: RoundedRectangleBorder(
+//                                   borderRadius: BorderRadius.circular(10)),
+//                             ),
+//                           )
+//                           .toList(),
+//                     ),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           ),
+//           secondary: Container(
+//             width: 80,
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               // crossAxisAlignment: CrossAxisAlignment.center,
+//               children: [
+//                 Text(
+//                   "${widget.menuname}",
+//                   style: GoogleFonts.roboto(
+//                     fontSize: 20.0,
+//                     color: const Color(0xFF4A4B4D),
+//                     fontWeight: FontWeight.w700,
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//           autofocus: false,
+//           isThreeLine: true,
+//           activeColor: Colors.green,
+//           checkColor: Colors.white,
+//           selected: _valu,
+//           value: _valu,
+//           onChanged: (bool? value) {
+//             setState(() {
+
+//               _valu = value!;
+//             });
+//           },
+//         ), //CheckboxListTile
 //       ),
 //     );
 //   }

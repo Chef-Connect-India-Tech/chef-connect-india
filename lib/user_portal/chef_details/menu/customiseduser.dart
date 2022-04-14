@@ -105,12 +105,12 @@ class _customiseduserState extends State<customiseduser> {
                 print(_selectedItems);
                 print('Book A  Chef button pressed');
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => user_checkout()),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: ((context) => user_checkout()),
+                //   ),
+                // );
               },
               child: Text(
                 'Book A  Chef',

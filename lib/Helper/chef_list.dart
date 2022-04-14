@@ -61,30 +61,20 @@ class _chef_list_viewState extends State<chef_list_view> {
                 }
                 List<String> _items = cuisine_name.cast<String>();
 
-                var cust_collection =
-                    FirebaseFirestore.instance.collection('Menu');
-                var cust_docSnapshot =
-                    await cust_collection.doc(widget.uid).get();
-                if (cust_docSnapshot.exists) {
-                  Map<String, dynamic> cust_data = cust_docSnapshot.data()!;
-                  customised_items = cust_data['customised menu'];
-                  // print(name);
-                }
-                List<String> _cust_items = customised_items.cast<String>();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => chef_detail(
-                        cid: widget.uid,
-                        chefid: widget.chefid,
-                        cheflevel: widget.level,
-                        experience: widget.experience,
-                        cuisine: _items,
-                        city: widget.city,
-                        profilepic: widget.profilepic,
-                        specialities: widget.speciality,
-                        rating: widget.rating,
-                        customised_menu: _cust_items),
+                      cid: widget.uid,
+                      chefid: widget.chefid,
+                      cheflevel: widget.level,
+                      experience: widget.experience,
+                      cuisine: _items,
+                      city: widget.city,
+                      profilepic: widget.profilepic,
+                      specialities: widget.speciality,
+                      rating: widget.rating,
+                    ),
                   ),
                 );
               },
@@ -279,7 +269,6 @@ class chef_grid_view extends StatefulWidget {
 class _chef_grid_viewState extends State<chef_grid_view> {
   var rating = 5.0;
   var cuisine_name;
-  var customised_items;
 
   @override
   Widget build(BuildContext context) {
@@ -302,30 +291,30 @@ class _chef_grid_viewState extends State<chef_grid_view> {
                 }
                 List<String> _items = cuisine_name.cast<String>();
 
-                var cust_collection =
-                    FirebaseFirestore.instance.collection('Menu');
-                var cust_docSnapshot =
-                    await cust_collection.doc(widget.uid).get();
-                if (docSnapshot.exists) {
-                  Map<String, dynamic> cust_data = cust_docSnapshot.data()!;
-                  customised_items = cust_data['customised menu'];
-                  // print(name);
-                }
-                List<String> _cust_items = customised_items.cast<String>();
+                // var cust_collection =
+                //     FirebaseFirestore.instance.collection('Menu');
+                // var cust_docSnapshot =
+                //     await cust_collection.doc(widget.uid).get();
+                // if (docSnapshot.exists) {
+                //   Map<String, dynamic> cust_data = cust_docSnapshot.data()!;
+                //   customised_items = cust_data['customised menu'];
+                //   // print(name);
+                // }
+                // List<String> _cust_items = customised_items.cast<String>();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => chef_detail(
-                        cid: widget.uid,
-                        chefid: widget.chefid,
-                        cheflevel: widget.level,
-                        experience: widget.experience,
-                        cuisine: _items,
-                        city: widget.city,
-                        profilepic: widget.profilepic,
-                        specialities: widget.speciality,
-                        rating: widget.rating,
-                        customised_menu: _cust_items),
+                      cid: widget.uid,
+                      chefid: widget.chefid,
+                      cheflevel: widget.level,
+                      experience: widget.experience,
+                      cuisine: _items,
+                      city: widget.city,
+                      profilepic: widget.profilepic,
+                      specialities: widget.speciality,
+                      rating: widget.rating,
+                    ),
                   ),
                 );
               },
