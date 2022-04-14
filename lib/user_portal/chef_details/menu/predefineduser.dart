@@ -1,5 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 
@@ -31,28 +35,28 @@ class _predefineduserState extends State<predefineduser> {
                       ? Colors.blue.withOpacity(0.5)
                       : Colors.transparent,
                   child: GestureDetector(
-                    onTap: () {
-                      if (_selectedMenuItems.contains(index)) {
-                        setState(() {
-                          _selectedMenuItems.removeWhere((val) => val == index);
-                        });
-                      }
-                    },
-                    onLongPressCancel: () {
-                      if (_selectedMenuItems.contains(index)) {
-                        setState(() {
-                          _selectedMenuItems.removeWhere((val) => val == index);
-                        });
-                      }
-                    },
-                    onLongPress: () {
-                      if (!_selectedMenuItems.contains(index)) {
-                        setState(() {
-                          _selectedMenuItems.add(index);
-                          _selectedMenuItems.add(dataa!['menu name']);
-                        });
-                      }
-                    },
+                    // onTap: () {
+                    //   if (_selectedMenuItems.contains(index)) {
+                    //     setState(() {
+                    //       _selectedMenuItems.removeWhere((val) => val == index);
+                    //     });
+                    //   }
+                    // },
+                    // onLongPressCancel: () {
+                    //   if (_selectedMenuItems.contains(index)) {
+                    //     setState(() {
+                    //       _selectedMenuItems.removeWhere((val) => val == index);
+                    //     });
+                    //   }
+                    // },
+                    // onLongPress: () {
+                    //   if (!_selectedMenuItems.contains(index)) {
+                    //     setState(() {
+                    //       _selectedMenuItems.add(index);
+                    //       _selectedMenuItems.add(dataa!['menu name']);
+                    //     });
+                    //   }
+                    // },
                     child: listpredefined(
                       desserts: dataa!['desserts'],
                       maincourse: dataa['main course'],
@@ -86,9 +90,7 @@ class _predefineduserState extends State<predefineduser> {
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              onPressed: () {
-                print('Selected Menu is at Index: ${_selectedMenuItems}');
-              },
+              onPressed: () {},
               child: Text(
                 'Book A  Chef',
                 style: TextStyle(
@@ -124,27 +126,27 @@ class listpredefined extends StatefulWidget {
 class _listpredefinedState extends State<listpredefined> {
   @override
   Widget build(BuildContext context) {
-    return Align(
-      // padding: const EdgeInsets.all(4.0),
-      alignment: Alignment(0.03, -0.77),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: () {},
-          child: SizedBox(
-            width: 360.0,
-            height: 158.0,
-            child: Stack(
-              children: <Widget>[
-                Positioned(
-                  right: 10.0,
+    var scwidth = MediaQuery.of(context).size.width;
+    bool selected = false;
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ExpandableNotifier(
+        child: Column(
+          children: [
+            Expandable(
+              theme: ExpandableThemeData(
+                  inkWellBorderRadius: BorderRadius.circular(50)),
+              collapsed: ExpandableButton(
+                // theme: ExpandableThemeData(iconColor: Colors.blue),
+                child: Card(
+                  elevation: 5,
                   child: Container(
-                    alignment: Alignment(0.2, 0.0),
-                    width: 345.0,
-                    height: 158.0,
+                    padding: const EdgeInsets.only(left: 10.0),
+                    width: scwidth - 90,
+                    height: 100.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(30.0),
+                        left: Radius.circular(10.0),
                         right: Radius.circular(10.0),
                       ),
                       color: Colors.white,
@@ -156,83 +158,390 @@ class _listpredefinedState extends State<listpredefined> {
                         ),
                       ],
                     ),
-                    child: Row(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.grey.shade100,
-                          radius: 50,
-                        ),
-                        SizedBox(
-                          width: 150.0,
-                          height: 142.0,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "${widget.menuname}'s menu",
-                                style: GoogleFonts.roboto(
-                                  fontSize: 20.0,
-                                  color: const Color(0xFF4A4B4D),
-                                  fontWeight: FontWeight.w700,
-                                ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "${widget.menuname}'s menu",
+                              style: GoogleFonts.roboto(
+                                fontSize: 20.0,
+                                color: const Color(0xFF4A4B4D),
+                                fontWeight: FontWeight.w700,
                               ),
-                              Text(
-                                'starters: ${widget.starters}',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 15.0,
-                                  color: const Color(0xFFB6B7B7),
-                                  height: 1.11,
-                                ),
-                              ),
-                              Text(
-                                'maincourse: ${widget.maincourse}',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 15.0,
-                                  color: const Color(0xFFB6B7B7),
-                                  height: 1.11,
-                                ),
-                              ),
-                              Text(
-                                'desserts: ${widget.desserts}',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 15.0,
-                                  color: const Color(0xFFB6B7B7),
-                                  height: 1.11,
-                                ),
-                              ),
-
-                              // Text(
-                              //   'spc: ${widget.speciality}',
-                              //   style: GoogleFonts.roboto(
-                              //     fontSize: 15.0,
-                              //     color: const Color(0xFFB6B7B7),
-                              //     height: 1.11,
-                              //   ),
-                              // ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
                 ),
-
-                // Positioned(
-                //   right: 0,
-                //   bottom: 61.0,
-                //   child: Container(
-                //     alignment: Alignment(0.04, -0.04),
-                //     width: 33.0,
-                //     height: 33.0,
-                //   ),
-                // ),
-              ],
+              ),
+              expanded: Card(
+                elevation: 5,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  width: scwidth - 90,
+                  // height: 100.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.horizontal(
+                      left: Radius.circular(10.0),
+                      right: Radius.circular(10.0),
+                    ),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.1),
+                        offset: Offset(0, 3),
+                        blurRadius: 12.0,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      "${widget.menuname}'s menu",
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 20.0,
+                                        color: const Color(0xFF4A4B4D),
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                      // width: 280,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          primary: Colors.indigo,
+                                          onPrimary:
+                                              Color.fromARGB(255, 18, 68, 138),
+                                        ),
+                                        onPressed: () {
+                                          Fluttertoast.showToast(
+                                              msg:
+                                                  "Selected: ${widget.menuname}'s Menu",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.SNACKBAR,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: Colors.red,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                          print(widget.menuname);
+                                          print(widget.starters);
+                                          print(widget.desserts);
+                                          print(widget.maincourse);
+                                        },
+                                        child: Text(
+                                          'Select Menu',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            // fontFamily: 'Montserrat',
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Starters:',
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 18.0,
+                                        color: const Color(0xFF4A4B4D),
+                                        height: 1.11,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Wrap(
+                                    spacing: 5.0,
+                                    children: widget.starters
+                                        .map(
+                                          (e) => Chip(
+                                            backgroundColor:
+                                                Colors.orange.shade100,
+                                            label: Text(
+                                              e.toString().toLowerCase(),
+                                              style: TextStyle(
+                                                  color: Colors.orange.shade900,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Maincourse:',
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 18.0,
+                                        color: const Color(0xFF4A4B4D),
+                                        height: 1.11,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Wrap(
+                                    spacing: 5.0,
+                                    children: widget.maincourse
+                                        .map(
+                                          (e) => Chip(
+                                            backgroundColor:
+                                                Colors.indigo.shade100,
+                                            label: Text(
+                                              e.toString().toLowerCase(),
+                                              style: TextStyle(
+                                                  color: Colors.indigo.shade900,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Desserts:',
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 18.0,
+                                        color: const Color(0xFF4A4B4D),
+                                        height: 1.11,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Wrap(
+                                    spacing: 5.0,
+                                    children: widget.desserts
+                                        .map(
+                                          (e) => Chip(
+                                            backgroundColor:
+                                                Colors.blue.shade100,
+                                            label: Text(
+                                              e.toString().toLowerCase(),
+                                              style: TextStyle(
+                                                  color: Colors.blue.shade900,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      ExpandableButton(
+                        theme: ExpandableThemeData(iconColor: Colors.blue),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                          child: Text(
+                            'Close',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
   }
 }
+// class _listpredefinedState extends State<listpredefined> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: SizedBox(
+//         width: 360.0,
+//         height: 300.0,
+//         child: Column(
+//           children: <Widget>[
+//             Container(
+//               padding: const EdgeInsets.only(left: 10.0),
+//               width: 345.0,
+//               height: 300.0,
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.horizontal(
+//                   left: Radius.circular(10.0),
+//                   right: Radius.circular(10.0),
+//                 ),
+//                 color: Colors.white,
+//                 boxShadow: [
+//                   BoxShadow(
+//                     color: Colors.black.withOpacity(0.16),
+//                     offset: Offset(0, 3.0),
+//                     blurRadius: 12.0,
+//                   ),
+//                 ],
+//               ),
+//               child: SingleChildScrollView(
+//                 child: Column(
+//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: <Widget>[
+//                     Padding(
+//                       padding: const EdgeInsets.all(15.0),
+//                       child: Row(
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: [
+//                           Text(
+//                             "${widget.menuname}'s menu",
+//                             style: GoogleFonts.roboto(
+//                               fontSize: 20.0,
+//                               color: const Color(0xFF4A4B4D),
+//                               fontWeight: FontWeight.w700,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                     Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         Text(
+//                           'Starters:',
+//                           style: GoogleFonts.roboto(
+//                               fontSize: 18.0,
+//                               color: const Color(0xFF4A4B4D),
+//                               height: 1.11,
+//                               fontWeight: FontWeight.w500),
+//                         ),
+//                         Wrap(
+//                           spacing: 5.0,
+//                           children: widget.starters
+//                               .map(
+//                                 (e) => Chip(
+//                                   backgroundColor: Colors.orange.shade100,
+//                                   label: Text(
+//                                     e.toString().toLowerCase(),
+//                                     style: TextStyle(
+//                                         color: Colors.orange.shade900,
+//                                         fontWeight: FontWeight.bold),
+//                                   ),
+//                                   shape: RoundedRectangleBorder(
+//                                       borderRadius: BorderRadius.circular(10)),
+//                                 ),
+//                               )
+//                               .toList(),
+//                         ),
+//                       ],
+//                     ),
+//                     Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         Text(
+//                           'Maincourse:',
+//                           style: GoogleFonts.roboto(
+//                               fontSize: 18.0,
+//                               color: const Color(0xFF4A4B4D),
+//                               height: 1.11,
+//                               fontWeight: FontWeight.w500),
+//                         ),
+//                         Wrap(
+//                           spacing: 5.0,
+//                           children: widget.maincourse
+//                               .map(
+//                                 (e) => Chip(
+//                                   backgroundColor: Colors.indigo.shade100,
+//                                   label: Text(
+//                                     e.toString().toLowerCase(),
+//                                     style: TextStyle(
+//                                         color: Colors.indigo.shade900,
+//                                         fontWeight: FontWeight.bold),
+//                                   ),
+//                                   shape: RoundedRectangleBorder(
+//                                       borderRadius: BorderRadius.circular(10)),
+//                                 ),
+//                               )
+//                               .toList(),
+//                         ),
+//                       ],
+//                     ),
+//                     Column(
+//                       crossAxisAlignment: CrossAxisAlignment.start,
+//                       children: [
+//                         Text(
+//                           'Desserts:',
+//                           style: GoogleFonts.roboto(
+//                               fontSize: 18.0,
+//                               color: const Color(0xFF4A4B4D),
+//                               height: 1.11,
+//                               fontWeight: FontWeight.w500),
+//                         ),
+//                         Wrap(
+//                           spacing: 5.0,
+//                           children: widget.desserts
+//                               .map(
+//                                 (e) => Chip(
+//                                   backgroundColor: Colors.blue.shade100,
+//                                   label: Text(
+//                                     e.toString().toLowerCase(),
+//                                     style: TextStyle(
+//                                         color: Colors.blue.shade900,
+//                                         fontWeight: FontWeight.bold),
+//                                   ),
+//                                   shape: RoundedRectangleBorder(
+//                                       borderRadius: BorderRadius.circular(10)),
+//                                 ),
+//                               )
+//                               .toList(),
+//                         ),
+//                       ],
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

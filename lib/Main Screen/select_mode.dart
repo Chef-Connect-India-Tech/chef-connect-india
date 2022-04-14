@@ -288,7 +288,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
       //       ? Border.all(color: Colors.indigo, width: 1.5)
       //       : Border.all(color: Colors.grey.shade300),
       // ),
-      height: 150,
+      height: 151,
       width: 160,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
