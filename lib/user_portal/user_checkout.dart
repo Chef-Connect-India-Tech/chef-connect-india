@@ -1,3 +1,4 @@
+import 'package:chef_connect_india/user_portal/sucess_page.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
 
@@ -37,8 +38,16 @@ class _user_checkoutState extends State<user_checkout> {
                       height: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.black,
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 12.0,
+                          ),
+                        ],
                       ),
+
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -48,22 +57,21 @@ class _user_checkoutState extends State<user_checkout> {
                               Text(
                                 "Chef Id: ",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.bold,
-                                    backgroundColor:
-                                        Colors.black.withOpacity(.4)),
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  // backgroundColor: Colors.black.withOpacity(.4),
+                                ),
                               ),
                               Text(
                                 "Chef Id",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    backgroundColor:
-                                        Colors.black.withOpacity(.4)),
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           ),
@@ -76,22 +84,20 @@ class _user_checkoutState extends State<user_checkout> {
                               Text(
                                 "Location: ",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.bold,
-                                    backgroundColor:
-                                        Colors.black.withOpacity(.4)),
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               Text(
                                 "Location",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    backgroundColor:
-                                        Colors.black.withOpacity(.4)),
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           ),
@@ -107,7 +113,14 @@ class _user_checkoutState extends State<user_checkout> {
                       height: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.black,
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 12.0,
+                          ),
+                        ],
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -118,22 +131,20 @@ class _user_checkoutState extends State<user_checkout> {
                               Text(
                                 "Select Date: ",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    backgroundColor:
-                                        Colors.black.withOpacity(.4)),
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               Text(
                                 "Chef Id",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    backgroundColor:
-                                        Colors.black.withOpacity(.4)),
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           ),
@@ -146,22 +157,20 @@ class _user_checkoutState extends State<user_checkout> {
                               Text(
                                 "Select Time: ",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    backgroundColor:
-                                        Colors.black.withOpacity(.4)),
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               Text(
                                 "Location",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    backgroundColor:
-                                        Colors.black.withOpacity(.4)),
+                                  color: Colors.black,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           ),
@@ -176,7 +185,14 @@ class _user_checkoutState extends State<user_checkout> {
                       height: 150,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.black,
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 12.0,
+                          ),
+                        ],
                       ),
                       child: Column(
                         children: <Widget>[
@@ -186,10 +202,10 @@ class _user_checkoutState extends State<user_checkout> {
                           Text(
                             'Select your prefered meal',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontFamily: 'Montserrat',
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(
@@ -240,7 +256,14 @@ class _user_checkoutState extends State<user_checkout> {
                       height: 150,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.black,
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 12.0,
+                          ),
+                        ],
                       ),
                       child: Column(
                         children: <Widget>[
@@ -250,10 +273,10 @@ class _user_checkoutState extends State<user_checkout> {
                           Text(
                             'Number of Plates',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontFamily: 'Montserrat',
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(
@@ -305,7 +328,14 @@ class _user_checkoutState extends State<user_checkout> {
                       height: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.black,
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 12.0,
+                          ),
+                        ],
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -314,49 +344,85 @@ class _user_checkoutState extends State<user_checkout> {
                           Text(
                             "Full Address",
                             style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Montserrat',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                backgroundColor: Colors.black.withOpacity(.4)),
+                              color: Colors.black,
+                              fontFamily: 'Montserrat',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          TextFormField(
-                            style: TextStyle(color: Colors.white),
-                            minLines: 5,
-                            maxLines: 8,
-                            decoration: InputDecoration(
-                              counterStyle: TextStyle(color: Colors.white),
-                              hintText: 'Address',
-                              hintStyle: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Montserrat',
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              focusedBorder: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                borderSide: BorderSide(
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextFormField(
+                              style: TextStyle(color: Colors.black),
+                              minLines: 5,
+                              maxLines: 8,
+                              decoration: InputDecoration(
+                                counterStyle: TextStyle(color: Colors.black),
+                                hintText: 'Address',
+                                hintStyle: TextStyle(
                                   color: Colors.black,
-                                  width: 1,
+                                  fontFamily: 'Montserrat',
                                 ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                  width: 1,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                    width: 1,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey.shade500,
+                                    width: 1,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 45,
+                      width: 300,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Sucess_page(),
+                              ),
+                              (route) => false);
+                        },
+                        child: Text(
+                          'Proceed',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
                     ),
                   ],
                 ),
