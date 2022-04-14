@@ -6,6 +6,7 @@ import 'package:chef_connect_india/Helper/model.dart';
 import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/chef_portal/menus/chefcustomised.dart';
+import 'package:chef_connect_india/chef_portal/viewdishes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -1416,9 +1417,7 @@ class _chef_profileState extends State<chef_profile> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(
-                        width: 160,
-                      ),
+                      Spacer(),
                       InkWell(
                         onTap: () {},
                         child: Icon(
@@ -1444,9 +1443,7 @@ class _chef_profileState extends State<chef_profile> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(
-                        width: 240,
-                      ),
+                      Spacer(),
                       InkWell(
                         onTap: () {
                           Navigator.push(
@@ -1478,9 +1475,7 @@ class _chef_profileState extends State<chef_profile> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(
-                        width: 240,
-                      ),
+                      Spacer(),
                       InkWell(
                         onTap: () {
                           Navigator.push(
@@ -1498,6 +1493,33 @@ class _chef_profileState extends State<chef_profile> {
                   ),
                   SizedBox(
                     height: 15,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Text(
+                        'View Dishes and Menu',
+                        style: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => viewdish(),
+                            ),
+                          );
+                        },
+                        child: Icon(Icons.list),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 50,
