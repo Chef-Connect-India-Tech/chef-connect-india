@@ -46,6 +46,7 @@ dependencies:
   rflutter_alert: ^2.0.4
   shared_preferences: ^2.0.13
   smooth_star_rating_nsafe: ^1.0.0+1
+  expandable: ^5.0.1
   # cached_network_image:
 
 flutter_native_splash:
