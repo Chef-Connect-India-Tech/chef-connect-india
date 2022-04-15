@@ -733,7 +733,7 @@ class _user_checkoutState extends State<user_checkout> {
 
     await firebaseFirestore
         .collection("bookings")
-        .doc()
+        .doc(bookingId)
         .set(bookingModel.toMap());
     Fluttertoast.showToast(msg: "Booking successful:) ");
     Navigator.pushAndRemoveUntil(
