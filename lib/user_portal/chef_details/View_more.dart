@@ -29,7 +29,7 @@ class _view_moreState extends State<view_more> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              Icons.sort_sharp,
+              Icons.filter_list,
               color: Colors.white,
             ),
             onPressed: () {
