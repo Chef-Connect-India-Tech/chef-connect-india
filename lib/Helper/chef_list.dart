@@ -99,8 +99,8 @@ class _chef_list_viewState extends State<chef_list_view> {
                         constraints: new BoxConstraints.expand(
                             height: 200.0, width: 450),
                         alignment: Alignment.bottomLeft,
-                        padding: new EdgeInsets.only(
-                            left: 16.0, bottom: 8.0, top: 8.0),
+                        // padding: new EdgeInsets.only(
+                        //     left: 16.0, bottom: 8.0, top: 8.0),
                         decoration: new BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: [
@@ -114,19 +114,6 @@ class _chef_list_viewState extends State<chef_list_view> {
                             image: new NetworkImage(widget.profilepic),
                             fit: BoxFit.cover,
                           ),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 5.0,
-                                ),
-                              ],
-                            ),
-                          ],
                         ),
                       ),
                     ),

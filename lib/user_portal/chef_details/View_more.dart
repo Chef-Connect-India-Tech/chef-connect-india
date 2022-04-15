@@ -48,9 +48,9 @@ class _view_moreState extends State<view_more> {
         physics: BouncingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 200,
-            childAspectRatio: 1 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20),
+            childAspectRatio: 1 / 1.7,
+            crossAxisSpacing: 6,
+            mainAxisSpacing: 0),
         shrinkWrap: false,
         separator: EmptySeparator(),
         padding: const EdgeInsets.all(0.0),

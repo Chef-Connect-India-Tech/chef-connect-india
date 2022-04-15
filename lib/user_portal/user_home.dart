@@ -1294,7 +1294,7 @@ class _user_homeState extends State<user_home> {
                   StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection("chefs")
-                        .limit(3)
+                        .limit(4)
                         .where('verified', isEqualTo: true)
                         .where('dutystatus', isEqualTo: true)
                         .snapshots(),
@@ -1313,7 +1313,7 @@ class _user_homeState extends State<user_home> {
                         primary: true,
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                             maxCrossAxisExtent: 200,
-                            childAspectRatio: 1 / 2,
+                            childAspectRatio: 1 / 1.7,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 5),
                         children: snapshot.data!.docs
