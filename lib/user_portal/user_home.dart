@@ -1265,7 +1265,7 @@ class _user_homeState extends State<user_home> {
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
                             color: Colors.indigo[900],
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                         Spacer(),
@@ -1276,7 +1276,7 @@ class _user_homeState extends State<user_home> {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               color: Colors.indigo[900],
-                              fontSize: 18,
+                              fontSize: 16,
                             ),
                           ),
                           onPressed: () {
