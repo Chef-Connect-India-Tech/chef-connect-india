@@ -46,6 +46,11 @@ class _view_moreState extends State<view_more> {
       body: PaginateFirestore(
         itemBuilderType: PaginateBuilderType.gridView,
         physics: BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200,
+            childAspectRatio: 1 / 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20),
         shrinkWrap: false,
         separator: EmptySeparator(),
         padding: const EdgeInsets.all(0.0),
@@ -54,7 +59,7 @@ class _view_moreState extends State<view_more> {
           final dataa = documentSnapshots[index].data() as Map?;
           return SafeArea(
             child: GestureDetector(
-              child: chef_grid_view(
+              child: chef_list_view(
                 chefid: dataa!['chefid'],
                 cusineexpert: dataa['cuisineexpert'],
                 level: dataa['professionallevel'].toString(),

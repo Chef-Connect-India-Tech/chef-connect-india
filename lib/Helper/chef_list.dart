@@ -47,10 +47,14 @@ class _chef_list_viewState extends State<chef_list_view> {
   Widget build(BuildContext context) {
     String cuisine_exp =
         widget.cusineexpert.toString().replaceAll('[', '').replaceAll(']', '');
-    return Center(
+    return SafeArea(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
+            width: MediaQuery.of(context).size.width / 2,
+            // height: 400,
             padding: EdgeInsets.all(5),
             child: InkWell(
               onTap: () async {
@@ -136,7 +140,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
-                              fontSize: 18,
+                              fontSize: 16,
                             ),
                           ),
                           Padding(
@@ -144,9 +148,10 @@ class _chef_list_viewState extends State<chef_list_view> {
                             child: Row(
                               children: <Widget>[
                                 SmoothStarRating(
+                                  size: 20,
                                   borderColor: Colors.grey.shade200,
-                                  rating: widget.rating,
-                                  starCount: 5,
+                                  rating: 1,
+                                  starCount: 1,
                                   allowHalfRating: false,
                                   filledIconData: Icons.star,
                                   onRatingChanged: (value) {
@@ -162,9 +167,9 @@ class _chef_list_viewState extends State<chef_list_view> {
                                 Text(
                                   '${widget.rating}',
                                   style: TextStyle(
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w600,
                                     fontFamily: 'Montserrat',
-                                    fontSize: 16,
+                                    fontSize: 15,
                                   ),
                                 ),
                                 SizedBox(
@@ -181,15 +186,15 @@ class _chef_list_viewState extends State<chef_list_view> {
                               ],
                             ),
                           ),
-                          Text(
-                            '${cuisine_exp}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black,
-                              fontSize: 13,
-                            ),
-                          ),
-                          Row(
+                          // Text(
+                          //   '${cuisine_exp}',
+                          //   style: TextStyle(
+                          //     fontWeight: FontWeight.normal,
+                          //     color: Colors.black,
+                          //     fontSize: 13,
+                          //   ),
+                          // ),
+                          Column(
                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -220,8 +225,8 @@ class _chef_list_viewState extends State<chef_list_view> {
                             '\u20B9${widget.costperday} per day ',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.normal,
-                              color: Colors.grey,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
                               fontSize: 13,
                             ),
                           ),

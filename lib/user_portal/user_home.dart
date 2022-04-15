@@ -24,30 +24,9 @@ class user_home extends StatefulWidget {
 }
 
 class _user_homeState extends State<user_home> {
-  List<String> _carouselImages = [];
-  // var _dotPosition = 0;
-  var _firestoreInstance = FirebaseFirestore.instance;
-
-  fetchCarouselImages() async {
-    QuerySnapshot qn =
-        await _firestoreInstance.collection("offers_slider").get();
-    setState(() {
-      for (int i = 0; i < qn.docs.length; i++) {
-        _carouselImages.add(
-          qn.docs[i]["image"],
-        );
-        print(qn.docs[i]["image"]);
-      }
-    });
-
-    return qn.docs;
-  }
-
   @override
   void initState() {
-    fetchCarouselImages();
     _myCusine = [];
-    _myCusineResult = '';
     super.initState();
   }
 
@@ -91,7 +70,6 @@ class _user_homeState extends State<user_home> {
   String? cheflevel;
 
   List? _myCusine;
-  late String _myCusineResult;
   // final formKey = new GlobalKey<FormState>();
 
   // @override
@@ -189,7 +167,6 @@ class _user_homeState extends State<user_home> {
             ),
             SpeedDialChild(
               child: Image(image: AssetImage('assets/socialicons/twitter.png')),
-              // backgroundColor: Colors.indigo,
               label: 'Twitter',
               onTap: () => showToast('Selected Twitter..'),
             ),
@@ -1278,53 +1255,48 @@ class _user_homeState extends State<user_home> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Available Chefs",
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w600,
-                          color: Colors.indigo[900],
-                          fontSize: 20,
-                        ),
-                      ),
-                      Spacer(),
-                      TextButton(
-                        child: Text(
-                          " View More >",
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Available Chefs",
                           style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
                             color: Colors.indigo[900],
-                            fontSize: 20,
+                            fontSize: 18,
                           ),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => view_more(),
+                        Spacer(),
+                        TextButton(
+                          child: Text(
+                            " View More >",
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              color: Colors.indigo[900],
+                              fontSize: 18,
                             ),
-                          );
-                        },
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                    ],
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => view_more(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection("chefs")
                         .limit(3)
-                        // .where('dutystatus', isEqualTo: true)
+                        .where('verified', isEqualTo: true)
+                        .where('dutystatus', isEqualTo: true)
                         .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -1333,12 +1305,17 @@ class _user_homeState extends State<user_home> {
                           child: CircularProgressIndicator(),
                         );
                       }
-                      return ListView(
+                      return GridView(
                         physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         padding: const EdgeInsets.all(0.0),
                         scrollDirection: Axis.vertical,
                         primary: true,
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 1 / 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 5),
                         children: snapshot.data!.docs
                             .map((DocumentSnapshot document) {
                           print(document.data());

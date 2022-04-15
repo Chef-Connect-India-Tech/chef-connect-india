@@ -2,6 +2,7 @@
 
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/user_portal/cust_checkout.dart';
 import 'package:chef_connect_india/user_portal/user_checkout.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -109,15 +110,19 @@ class _customiseduserState extends State<customiseduser> {
                 print(_selectedItems);
                 print('Book A  Chef button pressed');
 
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: ((context) => user_checkout()),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => user_custom_checkout(
+                          chefContact: widget.chefContact,
+                          chefId: widget.chefId,
+                          dishes: _selectedItems,
+                        )),
+                  ),
+                );
               },
               child: Text(
-                'Book A  Chef',
+                'Proceed to Check Out',
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: 18,

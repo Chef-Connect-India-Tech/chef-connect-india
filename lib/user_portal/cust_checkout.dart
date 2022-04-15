@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:chef_connect_india/Helper/models/bookings.dart';
-import 'package:chef_connect_india/Helper/models/user.dart';
 import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:chef_connect_india/user_portal/sucess_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,28 +13,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
-class user_checkout extends StatefulWidget {
-  String menu;
-  List starters;
-  List desserts;
-  List maincourse;
+class user_custom_checkout extends StatefulWidget {
+  List dishes;
   String chefId;
   var chefContact;
-  user_checkout(
+  user_custom_checkout(
       {Key? key,
-      required this.menu,
-      required this.starters,
-      required this.desserts,
-      required this.maincourse,
+      required this.dishes,
       required this.chefId,
       required this.chefContact})
       : super(key: key);
 
   @override
-  State<user_checkout> createState() => _user_checkoutState();
+  State<user_custom_checkout> createState() => _user_custom_checkoutState();
 }
 
-class _user_checkoutState extends State<user_checkout> {
+class _user_custom_checkoutState extends State<user_custom_checkout> {
   late String date = '';
   late String time = '';
   DateTime dateTime = DateTime.now();
@@ -119,44 +112,30 @@ class _user_checkoutState extends State<user_checkout> {
                                   children: <Widget>[
                                     Padding(
                                       padding: const EdgeInsets.all(15.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          // Text(
-                                          //   "Selected ",
-                                          //   style: GoogleFonts.roboto(
-                                          //     fontSize: 20.0,
-                                          //     color: const Color(0xFF4A4B4D),
-                                          //     fontWeight: FontWeight.w700,
-                                          //   ),
-                                          // ),
-                                          Text(
-                                            "'${widget.menu}'s menu'",
-                                            style: GoogleFonts.roboto(
-                                              fontSize: 20.0,
-                                              color: const Color(0xFF4A4B4D),
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
+                                      child: Text(
+                                        "Selected Dishes",
+                                        style: GoogleFonts.roboto(
+                                          fontSize: 20.0,
+                                          color: const Color(0xFF4A4B4D),
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
                                     ),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          'Starters:',
-                                          style: GoogleFonts.roboto(
-                                              fontSize: 18.0,
-                                              color: const Color(0xFF4A4B4D),
-                                              height: 1.11,
-                                              fontWeight: FontWeight.w500),
-                                        ),
+                                        // Text(
+                                        //   'Dishes:',
+                                        //   style: GoogleFonts.roboto(
+                                        //       fontSize: 18.0,
+                                        //       color: const Color(0xFF4A4B4D),
+                                        //       height: 1.11,
+                                        //       fontWeight: FontWeight.w500),
+                                        // ),
                                         Wrap(
                                           spacing: 5.0,
-                                          children: widget.starters
+                                          children: widget.dishes
                                               .map(
                                                 (e) => Chip(
                                                   backgroundColor:
@@ -166,80 +145,6 @@ class _user_checkoutState extends State<user_checkout> {
                                                     style: TextStyle(
                                                         color: Colors
                                                             .orange.shade900,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                                ),
-                                              )
-                                              .toList(),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Maincourse:',
-                                          style: GoogleFonts.roboto(
-                                              fontSize: 18.0,
-                                              color: const Color(0xFF4A4B4D),
-                                              height: 1.11,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        Wrap(
-                                          spacing: 5.0,
-                                          children: widget.maincourse
-                                              .map(
-                                                (e) => Chip(
-                                                  backgroundColor:
-                                                      Colors.indigo.shade100,
-                                                  label: Text(
-                                                    e.toString().toLowerCase(),
-                                                    style: TextStyle(
-                                                        color: Colors
-                                                            .indigo.shade900,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                                ),
-                                              )
-                                              .toList(),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Desserts:',
-                                          style: GoogleFonts.roboto(
-                                              fontSize: 18.0,
-                                              color: const Color(0xFF4A4B4D),
-                                              height: 1.11,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        Wrap(
-                                          spacing: 5.0,
-                                          children: widget.desserts
-                                              .map(
-                                                (e) => Chip(
-                                                  backgroundColor:
-                                                      Colors.blue.shade100,
-                                                  label: Text(
-                                                    e.toString().toLowerCase(),
-                                                    style: TextStyle(
-                                                        color: Colors
-                                                            .blue.shade900,
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
@@ -703,12 +608,9 @@ class _user_checkoutState extends State<user_checkout> {
         .toString()
         .replaceAll('[', '')
         .replaceAll(']', '');
-    var starters =
-        widget.starters.toString().replaceAll('[', '').replaceAll(']', '');
-    var maincourse =
-        widget.maincourse.toString().replaceAll('[', '').replaceAll(']', '');
-    var desserts =
-        widget.desserts.toString().replaceAll('[', '').replaceAll(']', '');
+    var dishes =
+        widget.dishes.toString().replaceAll('[', '').replaceAll(']', '');
+
     var bookingId =
         '${customerId.toString().substring(0, 2).toLowerCase()}${DateFormat('dd/MM/yyyy').format(DateTime.now()).replaceAll('/', '')}${DateFormat.Hms().format(DateTime.now()).replaceAll(':', '')}';
     BookingModel bookingModel = BookingModel();
@@ -721,7 +623,7 @@ class _user_checkoutState extends State<user_checkout> {
     bookingModel.chefId = widget.chefId;
     bookingModel.chefContact = widget.chefContact;
     bookingModel.location = location;
-    bookingModel.selectedMenu = [widget.menu, starters, maincourse, desserts];
+    bookingModel.selectedMenu = [dishes];
     bookingModel.requirementDate = date;
     bookingModel.requirementTime = time;
     bookingModel.bookingSlot = mealslot;
@@ -733,7 +635,7 @@ class _user_checkoutState extends State<user_checkout> {
 
     await firebaseFirestore
         .collection("bookings")
-        .doc(bookingId)
+        .doc()
         .set(bookingModel.toMap());
     Fluttertoast.showToast(msg: "Booking successful:) ");
     Navigator.pushAndRemoveUntil(
