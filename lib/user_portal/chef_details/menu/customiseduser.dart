@@ -11,9 +11,13 @@ import 'package:paginate_firestore/paginate_firestore.dart';
 class customiseduser extends StatefulWidget {
   late String cid;
   late List items;
+  var chefContact;
+  String chefId;
   customiseduser({
     required this.cid,
     required this.items,
+    required this.chefContact,
+    required this.chefId,
   });
   @override
   State<customiseduser> createState() => _customiseduserState();

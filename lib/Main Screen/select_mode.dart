@@ -1,6 +1,6 @@
 // ignore_for_file: override_on_non_overriding_member
 
-import 'package:chef_connect_india/Helper/model.dart';
+import 'package:chef_connect_india/Helper/models/user.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

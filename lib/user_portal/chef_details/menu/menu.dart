@@ -8,7 +8,13 @@ import 'package:flutter/material.dart';
 class MenuTab extends StatefulWidget {
   late String cid;
   late List customisedmenu;
-  MenuTab({required this.cid, required this.customisedmenu});
+  var chefContact;
+  String chefId;
+  MenuTab(
+      {required this.cid,
+      required this.customisedmenu,
+      required this.chefContact,
+      required this.chefId});
 
   @override
   _TabViewState createState() => _TabViewState();
@@ -77,11 +83,15 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
-                predefineduser(cid: widget.cid),
+                predefineduser(
+                    cid: widget.cid,
+                    chefContact: widget.chefContact,
+                    chefId: widget.chefId),
                 customiseduser(
-                  cid: widget.cid,
-                  items: widget.customisedmenu,
-                ),
+                    cid: widget.cid,
+                    items: widget.customisedmenu,
+                    chefId: widget.chefId,
+                    chefContact: widget.chefContact),
               ],
             ),
           ),

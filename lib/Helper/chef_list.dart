@@ -18,6 +18,7 @@ class chef_list_view extends StatefulWidget {
   var uid;
   var currentsalary;
   var costperday;
+  var chefContact;
 
   chef_list_view(
       {required this.chefid,
@@ -30,6 +31,7 @@ class chef_list_view extends StatefulWidget {
       required this.city,
       required this.uid,
       required this.currentsalary,
+      required this.chefContact,
       required this.costperday});
 
   @override
@@ -74,6 +76,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                       profilepic: widget.profilepic,
                       specialities: widget.speciality,
                       rating: widget.rating,
+                      chefContact: widget.chefContact,
                     ),
                   ),
                 );
@@ -248,6 +251,7 @@ class chef_grid_view extends StatefulWidget {
   var uid;
   var currentsalary;
   var costperday;
+  var chefContact;
 
   chef_grid_view(
       {required this.chefid,
@@ -260,6 +264,7 @@ class chef_grid_view extends StatefulWidget {
       required this.city,
       required this.uid,
       required this.currentsalary,
+      required this.chefContact,
       required this.costperday});
 
   @override
@@ -314,6 +319,7 @@ class _chef_grid_viewState extends State<chef_grid_view> {
                       profilepic: widget.profilepic,
                       specialities: widget.speciality,
                       rating: widget.rating,
+                      chefContact: widget.chefContact,
                     ),
                   ),
                 );

@@ -10,7 +10,10 @@ import 'package:paginate_firestore/paginate_firestore.dart';
 
 class predefineduser extends StatefulWidget {
   late String cid;
-  predefineduser({required this.cid});
+  var chefContact;
+  String chefId;
+  predefineduser(
+      {required this.cid, required this.chefContact, required this.chefId});
   @override
   State<predefineduser> createState() => _predefineduserState();
 }
@@ -41,6 +44,8 @@ class _predefineduserState extends State<predefineduser> {
                       maincourse: dataa['main course'],
                       starters: dataa['starters'],
                       menuname: dataa['menu name'],
+                      chefId: widget.chefId,
+                      chefContact: widget.chefContact,
                     ),
                   ),
                 );
@@ -91,11 +96,15 @@ class listpredefined extends StatefulWidget {
   late List maincourse;
   late List desserts;
   late String menuname;
+  String chefId;
+  var chefContact;
   listpredefined({
     required this.starters,
     required this.maincourse,
     required this.desserts,
     required this.menuname,
+    required this.chefId,
+    required this.chefContact,
   });
 
   @override
@@ -235,6 +244,9 @@ class _listpredefinedState extends State<listpredefined> {
                                             MaterialPageRoute(
                                               builder: ((context) =>
                                                   user_checkout(
+                                                      chefId: widget.chefId,
+                                                      chefContact:
+                                                          widget.chefContact,
                                                       menu: widget.menuname,
                                                       starters: widget.starters,
                                                       desserts: widget.desserts,

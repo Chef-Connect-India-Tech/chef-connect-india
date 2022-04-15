@@ -1,10 +1,11 @@
 // ignore_for_file: unused_field, deprecated_member_use
+import 'package:chef_connect_india/Helper/models/chef.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:chef_connect_india/Helper/model.dart';
+import 'package:chef_connect_india/Helper/models/user.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 

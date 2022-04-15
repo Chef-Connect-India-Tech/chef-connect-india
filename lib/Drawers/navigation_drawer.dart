@@ -18,167 +18,166 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            buildHeader(context),
-            buildMenuItems(context),
-          ],
-        ),
-      ),
+      child: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection("users")
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .snapshots(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            var data = snapshot.data;
+            if (data == null) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Material(
+                    color: Colors.indigo.shade700,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => user_profile(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            top: 24 + MediaQuery.of(context).padding.top,
+                            bottom: 24),
+                        child: Column(children: [
+                          CircleAvatar(
+                            radius: 52,
+                            backgroundImage: NetworkImage(data['profilepic']),
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Text(
+                            '${data['username'].toString().toLowerCase()}',
+                            style: TextStyle(
+                              fontSize: 28,
+                              color: Colors.white,
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            '${data['mobile1']}',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontFamily: 'Montserrat',
+                            ),
+                          )
+                        ]),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(24),
+                    child: Wrap(
+                      runSpacing: 10,
+                      children: [
+                        ListTile(
+                          leading: Icon(Icons.home_outlined),
+                          title: Text(
+                            'Home',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => user_home(),
+                              ),
+                            );
+                          },
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.favorite_border),
+                          title: Text(
+                            'My Bookings',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    user_bookings(customerId: data['username']),
+                              ),
+                            );
+                          },
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.location_on_outlined),
+                          title: Text(
+                            'Location',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Select_mode_new(),
+                              ),
+                            );
+                          },
+                        ),
+                        Divider(
+                          thickness: 2,
+                        ),
+                        // ListTile(
+                        //   leading: Icon(Icons.person_outline),
+                        //   title: Text('Profile'),
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //         builder: (context) => user_profile(),
+                        //       ),
+                        //     );
+                        //   },
+                        // ),
+                        ListTile(
+                          title: Text(
+                            'Logout',
+                            style: TextStyle(fontFamily: 'Montserrat'),
+                          ),
+                          leading: Icon(Icons.exit_to_app),
+                          onTap: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.remove('uid');
+                            await FirebaseAuth.instance.signOut().then((_) {
+                              Navigator.pushAndRemoveUntil(
+                                  (context),
+                                  MaterialPageRoute(
+                                      builder: (context) => ChefConnectMain()),
+                                  (route) => false);
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            );
+          }),
     );
   }
-
-  Widget buildHeader(BuildContext context) => Material(
-        color: Colors.indigo.shade700,
-        child: StreamBuilder<Object>(
-            stream: FirebaseFirestore.instance
-                .collection("users")
-                .doc(FirebaseAuth.instance.currentUser!.uid)
-                .snapshots(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              var data = snapshot.data;
-              if (data == null) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              return InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => user_profile(),
-                    ),
-                  );
-                },
-                child: Container(
-                  padding: EdgeInsets.only(
-                      top: 24 + MediaQuery.of(context).padding.top, bottom: 24),
-                  child: Column(children: [
-                    CircleAvatar(
-                      radius: 52,
-                      backgroundImage: NetworkImage(data['profilepic']),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Text(
-                      '${data['username'].toString().toLowerCase()}',
-                      style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.white,
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      '${data['mobile1']}',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontFamily: 'Montserrat',
-                      ),
-                    )
-                  ]),
-                ),
-              );
-            }),
-      );
-
-  Widget buildMenuItems(BuildContext context) => Container(
-        padding: const EdgeInsets.all(24),
-        child: Wrap(
-          runSpacing: 10,
-          children: [
-            ListTile(
-              leading: Icon(Icons.home_outlined),
-              title: Text(
-                'Home',
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => user_home(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.favorite_border),
-              title: Text(
-                'My Bookings',
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => user_bookings(),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.location_on_outlined),
-              title: Text(
-                'Location',
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Select_mode_new(),
-                  ),
-                );
-              },
-            ),
-            Divider(
-              thickness: 2,
-            ),
-            // ListTile(
-            //   leading: Icon(Icons.person_outline),
-            //   title: Text('Profile'),
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => user_profile(),
-            //       ),
-            //     );
-            //   },
-            // ),
-            ListTile(
-              title: Text(
-                'Logout',
-                style: TextStyle(fontFamily: 'Montserrat'),
-              ),
-              leading: Icon(Icons.exit_to_app),
-              onTap: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                prefs.remove('uid');
-                await FirebaseAuth.instance.signOut().then((_) {
-                  Navigator.pushAndRemoveUntil(
-                      (context),
-                      MaterialPageRoute(
-                          builder: (context) => ChefConnectMain()),
-                      (route) => false);
-                });
-              },
-            ),
-          ],
-        ),
-      );
 }

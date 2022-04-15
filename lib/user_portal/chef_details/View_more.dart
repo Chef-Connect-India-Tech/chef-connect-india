@@ -66,6 +66,7 @@ class _view_moreState extends State<view_more> {
                 uid: dataa['uid'].toString(),
                 currentsalary: dataa['currentsalary'].toString(),
                 costperday: dataa['cheffees'],
+                chefContact: dataa['mobile1'],
               ),
             ),
           );

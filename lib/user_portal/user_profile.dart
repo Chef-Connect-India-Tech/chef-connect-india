@@ -469,7 +469,7 @@
 // }
 import 'dart:io';
 
-import 'package:chef_connect_india/Helper/model.dart';
+import 'package:chef_connect_india/Helper/models/user.dart';
 import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
