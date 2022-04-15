@@ -1354,6 +1354,7 @@ class _user_homeState extends State<user_home> {
                             currentsalary: document['currentsalary'].toString(),
                             uid: document['uid'],
                             costperday: document['cheffees'],
+                            chefContact: document['mobile1'],
                           );
                         }).toList(),
                       );

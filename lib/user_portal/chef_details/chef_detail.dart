@@ -14,6 +14,7 @@ class chef_detail extends StatefulWidget {
   var specialities;
   double rating;
   var cid;
+  var chefContact;
 
   chef_detail({
     Key? key,
@@ -26,6 +27,7 @@ class chef_detail extends StatefulWidget {
     required this.rating,
     required this.specialities,
     required this.cid,
+    required this.chefContact,
   }) : super(key: key);
 
   @override
@@ -306,6 +308,8 @@ class _chef_detailState extends State<chef_detail> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => MenuTab(
+                                      chefContact: widget.chefContact,
+                                      chefId: widget.chefid,
                                       cid: widget.cid,
                                       customisedmenu: _cust_items)),
                             );

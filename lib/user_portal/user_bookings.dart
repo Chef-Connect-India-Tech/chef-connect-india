@@ -1,10 +1,10 @@
-import 'package:chef_connect_india/Helper/list.dart';
+import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class user_bookings extends StatefulWidget {
-  const user_bookings({Key? key}) : super(key: key);
+  String customerId;
+  user_bookings({Key? key, required this.customerId}) : super(key: key);
 
   @override
   State<user_bookings> createState() => _user_bookingsState();
@@ -14,6 +14,7 @@ class _user_bookingsState extends State<user_bookings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: Text(
           'My Bookings',
@@ -23,48 +24,42 @@ class _user_bookingsState extends State<user_bookings> {
         ),
         centerTitle: true,
       ),
-      body: Center(child: Text('User Bookings')),
-      // body: SafeArea(
-      //   child: Container(
-      //     child: StreamBuilder(
-      //       stream: FirebaseFirestore.instance
-      //           .collection("bookings")
-      //           .where('customerId',
-      //               isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-      //           .snapshots(),
-      //       builder:
-      //           (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-      //         if (!snapshot.hasData) {
-      //           return Center(
-      //             child: CircularProgressIndicator(),
-      //           );
-      //         }
-      //         return ListView(
-      //           physics: BouncingScrollPhysics(),
-      //           shrinkWrap: true,
-      //           padding: const EdgeInsets.all(0.0),
-      //           scrollDirection: Axis.vertical,
-      //           primary: true,
-      //           children: snapshot.data!.docs.map((DocumentSnapshot document) {
-      //             print(document.data());
-      //             return new list_view(
-      //               chefid: document['appointmentId'],
-      //               cusineexpert: document['chefId'].toString(),
-      //               level: document['customerId'].toString(),
-      //               speciality: document['date-time'].toString(),
-      //               experience: document['experience'],
-      //               profilepic: document['numberOfPlates'].toString(),
-      //               city: document['location'].toString(),
-      //               rating: document['status'].toString(),
-      //               uid: document['uid'],
-      //               currentsalary: document['currentsalary'].toString(),
-      //             );
-      //           }).toList(),
-      //         );
-      //       },
-      //     ),
-      //   ),
-      // ),
+      // body: Center(child: Text('User Bookings')),
+      body: SafeArea(
+        child: Container(
+          child: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection("bookings")
+                .where('customerId', isEqualTo: widget.customerId)
+                .snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: Text('No Bookings Found..'),
+                );
+              }
+              return ListView(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(0.0),
+                scrollDirection: Axis.vertical,
+                primary: true,
+                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  print(document.data());
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: new Container(
+                      color: Colors.green,
+                      height: 50,
+                    ),
+                  );
+                }).toList(),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }

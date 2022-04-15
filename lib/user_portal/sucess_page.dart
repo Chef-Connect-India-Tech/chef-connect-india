@@ -1,9 +1,14 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:chef_connect_india/user_portal/user_bookings.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class Sucess_page extends StatefulWidget {
-  Sucess_page({Key? key}) : super(key: key);
+  String? bookingId;
+  String customerId;
+  Sucess_page({Key? key, required this.bookingId, required this.customerId})
+      : super(key: key);
 
   @override
   State<Sucess_page> createState() => _Sucess_pageState();
@@ -61,7 +66,7 @@ class _Sucess_pageState extends State<Sucess_page> {
                         width: 10,
                       ),
                       Text(
-                        'KL1350',
+                        '${widget.bookingId}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Montserrat',
@@ -74,20 +79,20 @@ class _Sucess_pageState extends State<Sucess_page> {
                 ),
                 Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Need Help?',
-                          style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 5),
+                    //   child: TextButton(
+                    //     onPressed: () {},
+                    //     child: Text(
+                    //       'Need Help?',
+                    //       style: TextStyle(
+                    //         fontFamily: 'Montserrat',
+                    //         fontSize: 16,
+                    //         fontWeight: FontWeight.w600,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: SizedBox(
@@ -106,12 +111,13 @@ class _Sucess_pageState extends State<Sucess_page> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => user_bookings(),
-                              ),
-                            );
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => user_bookings(
+                                          customerId: widget.customerId,
+                                        )),
+                                (route) => false);
                           },
                           child: Text(
                             'My Bookings',
