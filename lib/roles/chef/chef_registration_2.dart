@@ -117,7 +117,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                           //     labelStyle: TextStyle(
                           //         fontSize: 15,
                           //         color: Colors.black,
-                          //         fontWeight: FontWeight.bold),
+                          //         fontWeight: FontWeight.w600),
                           //     prefixIcon: Icon(Icons.settings),
                           //     fillColor: Colors.white60,
                           //     hintText: 'Select Work Type',
@@ -177,7 +177,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                               labelStyle: TextStyle(
                                   fontSize: 15,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.w600),
                               prefixIcon: Icon(Icons.settings),
                               fillColor: Colors.white60,
                               hintText: 'Looking For',
@@ -241,7 +241,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                   fontFamily: 'Montserrat',
                                   fontSize: 15,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.w600),
                               prefixIcon: Icon(Icons.money),
                               fillColor: Colors.white60,
                               // hintText: 'Select Current Salary',
@@ -316,7 +316,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                   fontFamily: 'Montserrat',
                                   fontSize: 15,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.w600),
                               prefixIcon: Icon(Icons.attach_money),
                               fillColor: Colors.white60,
                               // hintText: 'First Name',
@@ -360,10 +360,10 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                             autovalidate: AutovalidateMode.disabled,
                             chipBackGroundColor: Colors.blue,
                             chipLabelStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w600,
                                 color: Colors.white),
                             dialogTextStyle:
-                                TextStyle(fontWeight: FontWeight.bold),
+                                TextStyle(fontWeight: FontWeight.w600),
                             checkBoxActiveColor: Colors.blue,
                             checkBoxCheckColor: Colors.white,
                             dialogShapeBorder: RoundedRectangleBorder(
@@ -483,7 +483,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                               'Register',
                               style: TextStyle(
                                   fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                   color: Color.fromARGB(255, 18, 68, 138)),
                             ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:chef_connect_india/Helper/chef_list.dart';
 // import 'package:chef_connect_india/Helper/list.dart';
@@ -198,11 +200,8 @@ class _user_homeState extends State<user_home> {
             child: Container(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 8,
-                  ),
                   Container(
-                    height: 300,
+                    height: 260,
                     child: ListView(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
@@ -213,14 +212,12 @@ class _user_homeState extends State<user_home> {
                           child: Row(
                             children: [
                               Container(
-                                height: 300,
-                                width: 300,
+                                height: 220,
+                                width: 220,
                                 decoration: BoxDecoration(
                                   // border: Border.all(color: Colors.grey.shade400, width: 5),
                                   borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                      10,
-                                    ),
+                                    Radius.zero,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
@@ -237,8 +234,8 @@ class _user_homeState extends State<user_home> {
                                       // Colors.green,
                                       // Colors.blue,
 
-                                      Colors.purple.shade700,
-                                      Colors.purple.shade600,
+                                      Colors.white,
+                                      Colors.white,
                                     ],
                                   ),
                                 ),
@@ -248,8 +245,8 @@ class _user_homeState extends State<user_home> {
                                     children: [
                                       Image.asset(
                                         'assets/partychef.jpeg',
-                                        height: 300,
-                                        width: 300,
+                                        height: 220,
+                                        width: 220,
                                       ),
                                     ],
                                   ),
@@ -259,8 +256,8 @@ class _user_homeState extends State<user_home> {
                                 width: 10,
                               ),
                               Container(
-                                height: 300,
-                                width: 300,
+                                height: 220,
+                                width: 220,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(
@@ -288,14 +285,18 @@ class _user_homeState extends State<user_home> {
                                       Image.asset(
                                         'assets/Private Chef.png',
                                         fit: BoxFit.fitWidth,
-                                        height: 250,
-                                        width: 400,
+                                        height: 188,
+                                        width: 220,
                                       ),
                                       SizedBox(
-                                        width: 290,
+                                        width: 300,
+                                        height: 32,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            primary: Colors.indigo,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.zero),
+                                            primary: Colors.purple.shade300,
                                           ),
                                           onPressed: () {
                                             showDialog(
@@ -309,7 +310,7 @@ class _user_homeState extends State<user_home> {
                                                       fontFamily: 'Montserrat',
                                                       fontSize: 18,
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                   shape: RoundedRectangleBorder(
@@ -763,8 +764,8 @@ class _user_homeState extends State<user_home> {
                                 width: 10,
                               ),
                               Container(
-                                height: 300,
-                                width: 300,
+                                height: 220,
+                                width: 220,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(
@@ -790,14 +791,18 @@ class _user_homeState extends State<user_home> {
                                     children: [
                                       Image.asset(
                                         'assets/kitchenprofessionals.jpeg',
-                                        height: 250,
-                                        width: 400,
+                                        height: 180,
+                                        width: 230,
                                         fit: BoxFit.fitWidth,
                                       ),
                                       SizedBox(
                                         width: 290,
+                                        height: 38,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.zero,
+                                            ),
                                             primary: Colors.indigo,
                                           ),
                                           onPressed: () {
@@ -817,7 +822,7 @@ class _user_homeState extends State<user_home> {
                                                       fontFamily: 'Montserrat',
                                                       fontSize: 18,
                                                       fontWeight:
-                                                          FontWeight.bold,
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                   backgroundColor: Colors.white,
@@ -1019,14 +1024,14 @@ class _user_homeState extends State<user_home> {
                                                               TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .bold,
+                                                                          .w600,
                                                                   color: Colors
                                                                       .white),
                                                           dialogTextStyle:
                                                               TextStyle(
                                                                   fontWeight:
                                                                       FontWeight
-                                                                          .bold),
+                                                                          .w600),
                                                           checkBoxActiveColor:
                                                               Colors.blue,
                                                           checkBoxCheckColor:
@@ -1257,7 +1262,7 @@ class _user_homeState extends State<user_home> {
                                           child: Text(
                                             'Query For Kitchen Professional ',
                                             style: TextStyle(
-                                              fontSize: 14,
+                                              fontSize: 10,
                                               fontFamily: 'Montserrat',
                                             ),
                                           ),
@@ -1285,7 +1290,7 @@ class _user_homeState extends State<user_home> {
                         "Available Chefs",
                         style: TextStyle(
                           fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           color: Colors.indigo[900],
                           fontSize: 20,
                         ),
@@ -1296,7 +1301,7 @@ class _user_homeState extends State<user_home> {
                           " View More >",
                           style: TextStyle(
                             fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             color: Colors.indigo[900],
                             fontSize: 20,
                           ),

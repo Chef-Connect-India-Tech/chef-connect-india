@@ -76,7 +76,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
@@ -113,7 +113,7 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                             'Sign in as Chef',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                               fontSize: 20,
                             ),
                           ),
