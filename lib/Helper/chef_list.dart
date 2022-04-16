@@ -53,7 +53,7 @@ class _chef_list_viewState extends State<chef_list_view> {
         // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width / 2,
+            width: MediaQuery.of(context).size.width,
             // height: 400,
             padding: EdgeInsets.all(5),
             child: InkWell(

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:chef_connect_india/Helper/chef_list.dart';
 // import 'package:chef_connect_india/Helper/list.dart';
@@ -273,7 +271,7 @@ class _user_homeState extends State<user_home> {
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.zero),
-                                            primary: Colors.purple.shade300,
+                                            primary: Colors.indigo.shade600,
                                           ),
                                           onPressed: () {
                                             showDialog(
@@ -728,6 +726,7 @@ class _user_homeState extends State<user_home> {
                                           child: Text(
                                             'Query For Private Chef',
                                             style: TextStyle(
+                                              fontSize: 12,
                                               fontFamily: 'Montserrat',
                                             ),
                                           ),
@@ -768,13 +767,13 @@ class _user_homeState extends State<user_home> {
                                     children: [
                                       Image.asset(
                                         'assets/kitchenprofessionals.jpeg',
-                                        height: 180,
+                                        height: 188,
                                         width: 230,
                                         fit: BoxFit.fitWidth,
                                       ),
                                       SizedBox(
                                         width: 290,
-                                        height: 38,
+                                        height: 32,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
@@ -1239,7 +1238,7 @@ class _user_homeState extends State<user_home> {
                                           child: Text(
                                             'Query For Kitchen Professional ',
                                             style: TextStyle(
-                                              fontSize: 10,
+                                              fontSize: 12,
                                               fontFamily: 'Montserrat',
                                             ),
                                           ),
@@ -1312,10 +1311,11 @@ class _user_homeState extends State<user_home> {
                         scrollDirection: Axis.vertical,
                         primary: true,
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
-                            childAspectRatio: 1 / 1.7,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 5),
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 1 / 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 0,
+                        ),
                         children: snapshot.data!.docs
                             .map((DocumentSnapshot document) {
                           print(document.data());

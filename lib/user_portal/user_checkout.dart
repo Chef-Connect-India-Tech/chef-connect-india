@@ -36,6 +36,8 @@ class user_checkout extends StatefulWidget {
 }
 
 class _user_checkoutState extends State<user_checkout> {
+  bool ischecked = false;
+  bool ischecked1 = false;
   late String date = '';
   late String time = '';
   DateTime dateTime = DateTime.now();
@@ -70,6 +72,7 @@ class _user_checkoutState extends State<user_checkout> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.indigo,
         title: Text(
           'Chef Connect - Booking',
           style: TextStyle(
@@ -503,13 +506,84 @@ class _user_checkoutState extends State<user_checkout> {
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: Text(
-                                      'Number of Plates',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: 'Montserrat',
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 65),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            'Number of Plates',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: 'Montserrat',
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              left: 10,
+                                            ),
+                                            child: CircleAvatar(
+                                              foregroundColor: Colors.black,
+                                              radius: 14,
+                                              backgroundColor:
+                                                  Colors.grey.shade200,
+                                              child: IconButton(
+                                                onPressed: () {
+                                                  showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        content: Text(
+                                                          'For more than 10 plates a helper will be required and extra charges \n                 will be incured',
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 14.0,
+                                                          ),
+                                                        ),
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                            10,
+                                                          ),
+                                                        ),
+                                                        actions: [
+                                                          Center(
+                                                            child:
+                                                                ElevatedButton(
+                                                              style:
+                                                                  ElevatedButton
+                                                                      .styleFrom(
+                                                                primary: Colors
+                                                                    .indigo,
+                                                              ),
+                                                              onPressed: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
+                                                              child: Text('OK'),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                                icon: Icon(
+                                                  Icons.question_mark,
+                                                  size: 12.5,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -554,9 +628,133 @@ class _user_checkoutState extends State<user_checkout> {
                               ),
                             ),
                           ),
+                          Container(
+                            height: 100,
+                            width: width - 20,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.16),
+                                  offset: Offset(0, 3.0),
+                                  blurRadius: 12.0,
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 20, left: 30),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 50),
+                                        child: Text(
+                                          'With Material',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: 'Montserrat',
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                      Checkbox(
+                                          value: ischecked,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              ischecked = value!;
+                                            });
+                                          }),
+                                      CircleAvatar(
+                                        foregroundColor: Colors.black,
+                                        radius: 14,
+                                        backgroundColor: Colors.grey.shade200,
+                                        child: IconButton(
+                                          onPressed: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  content: Text(
+                                                    'With material it costs extra money',
+                                                    style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 14.0,
+                                                    ),
+                                                  ),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                      10,
+                                                    ),
+                                                  ),
+                                                  actions: [
+                                                    Center(
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary:
+                                                              Colors.indigo,
+                                                        ),
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text('OK'),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                          icon: Icon(
+                                            Icons.question_mark,
+                                            size: 12.5,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, left: 30),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        '',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: 'Montserrat',
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      // Checkbox(
+                                      //     value: ischecked1,
+                                      //     onChanged: (value) {
+                                      //       setState(() {
+                                      //         ischecked1 = value!;
+                                      //       });
+                                      //     }),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                10.0, 5.0, 10.0, 10.0),
+                            padding: const EdgeInsets.only(
+                              top: 10,
+                            ),
                             child: Container(
                               // alignment: Alignment.topLeft,
                               width: width - 20,
@@ -572,6 +770,7 @@ class _user_checkoutState extends State<user_checkout> {
                                   ),
                                 ],
                               ),
+
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 // crossAxisAlignment: CrossAxisAlignment.start,
@@ -637,13 +836,15 @@ class _user_checkoutState extends State<user_checkout> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                10.0, 5.0, 10.0, 10.0),
+                            padding: const EdgeInsets.only(
+                              top: 20,
+                            ),
                             child: SizedBox(
                               height: 45,
                               width: 300,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
+                                  primary: Colors.indigo,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
