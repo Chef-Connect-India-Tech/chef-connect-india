@@ -36,6 +36,11 @@ class user_checkout extends StatefulWidget {
 }
 
 class _user_checkoutState extends State<user_checkout> {
+  final formGlobalKey = GlobalKey<FormState>();
+  final dateController = TextEditingController();
+  final timeController = TextEditingController();
+  final mealController = TextEditingController();
+  final peopleController = TextEditingController();
   bool ischecked = false;
   bool ischecked1 = false;
   late String date = '';
@@ -45,28 +50,38 @@ class _user_checkoutState extends State<user_checkout> {
   late String no_of_plates = '';
   TextEditingController _addressController = TextEditingController();
 
-  Widget buildDatePicker() => SizedBox(
-        height: 180,
-        child: CupertinoDatePicker(
-          minimumYear: 1947,
-          maximumYear: DateTime.now().year,
-          initialDateTime: dateTime,
-          mode: CupertinoDatePickerMode.date,
-          onDateTimeChanged: (dateTime) =>
-              setState(() => this.dateTime = dateTime),
-        ),
-      );
-  Widget buildTimePicker() => SizedBox(
-        height: 180,
-        child: CupertinoDatePicker(
-          // minimumYear: 1947,
-          // maximumYear: DateTime.now().,
-          initialDateTime: dateTime,
-          mode: CupertinoDatePickerMode.time,
-          onDateTimeChanged: (dateTime) =>
-              setState(() => this.dateTime = dateTime),
-        ),
-      );
+  // Widget buildDatePicker() => SizedBox(
+  //       height: 180,
+  //       child: CupertinoDatePicker(
+  //         minimumYear: 1947,
+  //         maximumYear: DateTime.now().year,
+  //         initialDateTime: dateTime,
+  //         mode: CupertinoDatePickerMode.date,
+  //         onDateTimeChanged: (dateTime) =>
+  //             setState(() => this.dateTime = dateTime),
+  //       ),
+  //     );
+  // Widget buildTimePicker() => SizedBox(
+  //       height: 180,
+  //       child: CupertinoDatePicker(
+  //         // minimumYear: 1947,
+  //         // maximumYear: DateTime.now().,
+  //         initialDateTime: dateTime,
+  //         mode: CupertinoDatePickerMode.time,
+  //         onDateTimeChanged: (dateTime) =>
+  //             setState(() => this.dateTime = dateTime),
+  //       ),
+  //     );
+
+  @override
+  void initState() {
+    dateController.text = "";
+    timeController.text = "";
+    super.initState();
+  }
+
+  bool _termsChecked = false;
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -261,12 +276,14 @@ class _user_checkoutState extends State<user_checkout> {
                               ),
                             ),
                           ),
+
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                10.0, 5.0, 10.0, 10.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Container(
+                              padding: EdgeInsets.all(20),
+                              // height: 170,
                               width: width - 20,
-                              height: 100,
+                              // height: 100,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
@@ -278,133 +295,162 @@ class _user_checkoutState extends State<user_checkout> {
                                   ),
                                 ],
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Column(
-                                  // mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text(
-                                          "Select Date: ",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Montserrat',
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
+                              child: Center(
+                                child: Form(
+                                  key: formGlobalKey,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      TextFormField(
+                                        controller: dateController,
+                                        decoration: InputDecoration(
+                                            icon: Icon(Icons.calendar_today),
+                                            labelText: "Select Date"),
+                                        readOnly: true,
+                                        validator: (value) {
+                                          if (dateController.text.isEmpty) {
+                                            return "Please Select Date";
+                                          }
+                                          return null;
+                                        },
+                                        onTap: () async {
+                                          DateTime? pickedDate =
+                                              await showDatePicker(
+                                                  context: context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate: DateTime.now(),
+                                                  lastDate: DateTime(2101));
+
+                                          if (pickedDate != null) {
+                                            print(pickedDate);
+                                            String formattedDate =
+                                                DateFormat('yyyy-MM-dd')
+                                                    .format(pickedDate);
+
+                                            setState(() {
+                                              dateController.text =
+                                                  formattedDate;
+                                            });
+                                          } else {
+                                            Fluttertoast.showToast(
+                                                msg: "Date not Selected",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                gravity: ToastGravity.SNACKBAR,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor:
+                                                    Colors.red.shade300,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+                                          }
+                                        },
+                                      ),
+                                      TextFormField(
+                                        controller: timeController,
+                                        decoration: InputDecoration(
+                                            icon: Icon(Icons.timer),
+                                            labelText: "Select Time"),
+                                        readOnly: true,
+                                        validator: (value) {
+                                          if (timeController.text.isEmpty) {
+                                            return "Please Select Time";
+                                          }
+                                          return null;
+                                        },
+                                        onTap: () async {
+                                          TimeOfDay? pickedTime =
+                                              await showTimePicker(
+                                            initialTime: TimeOfDay.now(),
+                                            context: context,
+                                          );
+
+                                          if (pickedTime != null) {
+                                            print(pickedTime.format(context));
+                                            DateTime parsedTime =
+                                                DateFormat.jm().parse(pickedTime
+                                                    .format(context)
+                                                    .toString());
+                                            String formattedTime =
+                                                DateFormat('HH:mm:ss')
+                                                    .format(parsedTime);
+                                            setState(() {
+                                              timeController.text =
+                                                  formattedTime;
+                                            });
+                                          } else {
+                                            Fluttertoast.showToast(
+                                                msg: "Time not Selected",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                gravity: ToastGravity.SNACKBAR,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor:
+                                                    Colors.red.shade300,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+                                          }
+                                        },
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 15.0),
+                                        child: TextFormField(
+                                          keyboardType:
+                                              TextInputType.streetAddress,
+                                          controller: _addressController,
+                                          validator: (value) {
+                                            if (_addressController
+                                                .text.isEmpty) {
+                                              return "Please Enter your Address";
+                                            }
+                                            return null;
+                                          },
+                                          style: TextStyle(color: Colors.black),
+                                          minLines: 5,
+                                          maxLines: 8,
+                                          onSaved: (value) {
+                                            _addressController.text = value!;
+                                          },
+                                          decoration: InputDecoration(
+                                            counterStyle:
+                                                TextStyle(color: Colors.black),
+                                            hintText: 'Enter Full Address',
+                                            icon: Icon(
+                                                Icons.location_on_outlined),
+                                            hintStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: 'Montserrat',
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                            ),
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.grey.shade500,
+                                                width: 1,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "${date}",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Montserrat',
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 8.0),
-                                          child: CircleAvatar(
-                                              backgroundColor: Colors.black,
-                                              radius: 15,
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  Utils.showSheet(
-                                                    context,
-                                                    child: buildDatePicker(),
-                                                    onClicked: () {
-                                                      final date_value =
-                                                          DateFormat(
-                                                                  'dd/MM/yyyy')
-                                                              .format(dateTime);
-                                                      // Utils.showSnackBar(context, 'Selected "$date_value"');
-                                                      date = date_value;
-                                                      setState(() {
-                                                        date = date_value;
-                                                      });
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      // Navigator.pop(context);
-                                                    },
-                                                  );
-                                                },
-                                                icon: Icon(
-                                                  Icons.edit,
-                                                  size: 15,
-                                                ),
-                                              )),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text(
-                                          "Select Time: ",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Montserrat',
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "${time}",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Montserrat',
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 8.0),
-                                          child: CircleAvatar(
-                                              backgroundColor: Colors.black,
-                                              radius: 15,
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  Utils.showSheet(
-                                                    context,
-                                                    child: buildTimePicker(),
-                                                    onClicked: () {
-                                                      final date_value =
-                                                          DateFormat.Hms()
-                                                              .format(dateTime);
-                                                      // Utils.showSnackBar(context, 'Selected "$date_value"');
-                                                      time = date_value;
-                                                      setState(() {
-                                                        time = date_value;
-                                                      });
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      // Navigator.pop(context);
-                                                    },
-                                                  );
-                                                },
-                                                icon: Icon(
-                                                  Icons.edit,
-                                                  size: 15,
-                                                ),
-                                              )),
-                                        )
-                                      ],
-                                    ),
-                                  ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -413,8 +459,56 @@ class _user_checkoutState extends State<user_checkout> {
                             padding: const EdgeInsets.fromLTRB(
                                 10.0, 5.0, 10.0, 10.0),
                             child: Container(
+                              // padding: EdgeInsets.only(bottom: 15),
                               width: width - 20,
-                              height: 150,
+                              // height: 150,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.16),
+                                    offset: Offset(0, 3.0),
+                                    blurRadius: 12.0,
+                                  ),
+                                ],
+                              ),
+                              child: CheckboxListTile(
+                                activeColor: Colors.green,
+                                title: Text(
+                                  'With Material',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.indigo[900],
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                value: _termsChecked,
+                                onChanged: (bool? value) =>
+                                    setState(() => _termsChecked = value!),
+                                subtitle: !_termsChecked
+                                    ? null
+                                    : Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(12.0, 0, 0, 0),
+                                        child: Text(
+                                          'With Material incures Extra Cost',
+                                          style: TextStyle(
+                                              color: Color(0xFFe53935),
+                                              fontSize: 12),
+                                        ),
+                                      ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                                10.0, 5.0, 10.0, 10.0),
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: 15),
+                              width: width - 20,
+                              // height: 150,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
@@ -436,7 +530,7 @@ class _user_checkoutState extends State<user_checkout> {
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontFamily: 'Montserrat',
-                                      fontSize: 20,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -454,8 +548,7 @@ class _user_checkoutState extends State<user_checkout> {
                                     autoWidth: false,
                                     enableButtonWrap: true,
                                     wrapAlignment: WrapAlignment.center,
-                                    unSelectedColor:
-                                        Theme.of(context).canvasColor,
+                                    unSelectedColor: Colors.white,
                                     buttonLables: [
                                       "Breakfast",
                                       "Lunch",
@@ -472,14 +565,22 @@ class _user_checkoutState extends State<user_checkout> {
                                         // _selected_meal.remove(values);
                                       });
                                     },
-                                    // defaultSelected: ["Breakfast"],
+                                    defaultSelected: ["Breakfast"],
                                     horizontal: false,
                                     width: 120,
                                     // hight: 50,
-                                    selectedColor:
-                                        Theme.of(context).colorScheme.secondary,
-                                    padding: 5,
+                                    selectedColor: Colors.green.shade400,
+                                    selectedBorderColor: Colors.green,
+                                    padding: 2,
                                     enableShape: true,
+                                    customShape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey,
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                    // shapeRadius: 2,
                                   ),
                                 ],
                               ),
@@ -515,7 +616,7 @@ class _user_checkoutState extends State<user_checkout> {
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontFamily: 'Montserrat',
-                                              fontSize: 20,
+                                              fontSize: 18,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -536,7 +637,9 @@ class _user_checkoutState extends State<user_checkout> {
                                                         (BuildContext context) {
                                                       return AlertDialog(
                                                         content: Text(
-                                                          'For more than 10 plates a helper will be required and extra charges \n                 will be incured',
+                                                          'For more than 10 plates a helper will be required and extra charges will be incured',
+                                                          textAlign:
+                                                              TextAlign.center,
                                                           style: TextStyle(
                                                             fontFamily:
                                                                 'Montserrat',
@@ -593,27 +696,27 @@ class _user_checkoutState extends State<user_checkout> {
                                     autoWidth: false,
                                     enableButtonWrap: true,
                                     // absoluteZeroSpacing: true,
-                                    spacing: 5,
+                                    spacing: 2,
                                     wrapAlignment: WrapAlignment.center,
-                                    unSelectedColor:
-                                        Theme.of(context).canvasColor,
+                                    unSelectedColor: Colors.white,
                                     buttonLables: [
-                                      'upto 4',
-                                      '4-6',
-                                      '6-8',
-                                      'more than 10'
+                                      "upto 4",
+                                      "4-6",
+                                      "6-8",
+                                      "more than 10"
                                     ],
                                     buttonValues: [
-                                      'upto 4',
-                                      '4-6',
-                                      '6-8',
-                                      'more than 10'
+                                      "upto 4",
+                                      "4-6",
+                                      "6-8",
+                                      "more than 10"
                                     ],
                                     buttonTextStyle: ButtonTextStyle(
                                         selectedColor: Colors.white,
                                         unSelectedColor: Colors.black,
                                         textStyle: TextStyle(fontSize: 16)),
-                                    padding: 10,
+                                    padding: 2,
+                                    // defaultSelected: ["4-6"],
                                     horizontal: false,
                                     width: 130,
                                     radioButtonValue: (value) {
@@ -621,220 +724,121 @@ class _user_checkoutState extends State<user_checkout> {
                                         no_of_plates = value.toString();
                                       });
                                     },
-                                    selectedColor:
-                                        Theme.of(context).colorScheme.secondary,
+                                    selectedColor: Colors.green,
+                                    selectedBorderColor: Colors.green,
+                                    unSelectedBorderColor: Colors.grey,
+                                    customShape: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey,
+                                        width: 0.5,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                          Container(
-                            height: 100,
-                            width: width - 20,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.16),
-                                  offset: Offset(0, 3.0),
-                                  blurRadius: 12.0,
-                                ),
-                              ],
-                            ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 20, left: 30),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 50),
-                                        child: Text(
-                                          'With Material',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Montserrat',
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                      Checkbox(
-                                          value: ischecked,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              ischecked = value!;
-                                            });
-                                          }),
-                                      CircleAvatar(
-                                        foregroundColor: Colors.black,
-                                        radius: 14,
-                                        backgroundColor: Colors.grey.shade200,
-                                        child: IconButton(
-                                          onPressed: () {
-                                            showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return AlertDialog(
-                                                  content: Text(
-                                                    'With material it costs extra money',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Montserrat',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 14.0,
-                                                    ),
-                                                  ),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                      10,
-                                                    ),
-                                                  ),
-                                                  actions: [
-                                                    Center(
-                                                      child: ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          primary:
-                                                              Colors.indigo,
-                                                        ),
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Text('OK'),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            );
-                                          },
-                                          icon: Icon(
-                                            Icons.question_mark,
-                                            size: 12.5,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, left: 30),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        '',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Montserrat',
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      // Checkbox(
-                                      //     value: ischecked1,
-                                      //     onChanged: (value) {
-                                      //       setState(() {
-                                      //         ischecked1 = value!;
-                                      //       });
-                                      //     }),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 10,
-                            ),
-                            child: Container(
-                              // alignment: Alignment.topLeft,
-                              width: width - 20,
-                              // height: 210,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.16),
-                                    offset: Offset(0, 3.0),
-                                    blurRadius: 12.0,
-                                  ),
-                                ],
-                              ),
 
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                // crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        10.0, 10.0, 10.0, 0),
-                                    child: Text(
-                                      "Full Address",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: 'Montserrat',
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: TextFormField(
-                                      keyboardType: TextInputType.streetAddress,
-                                      controller: _addressController,
-                                      style: TextStyle(color: Colors.black),
-                                      minLines: 5,
-                                      maxLines: 8,
-                                      onSaved: (value) {
-                                        _addressController.text = value!;
-                                      },
-                                      decoration: InputDecoration(
-                                        counterStyle:
-                                            TextStyle(color: Colors.black),
-                                        hintText: 'Address',
-                                        hintStyle: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Montserrat',
-                                        ),
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0),
-                                          ),
-                                        ),
-                                        focusedBorder: new OutlineInputBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(10.0),
-                                          borderSide: BorderSide(
-                                            color: Colors.black,
-                                            width: 1,
-                                          ),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          borderSide: BorderSide(
-                                            color: Colors.grey.shade500,
-                                            width: 1,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          // Container(
+                          //   height: 100,
+                          //   width: width - 20,
+                          //   decoration: BoxDecoration(
+                          //     color: Colors.white,
+                          //     borderRadius: BorderRadius.circular(20),
+                          //     boxShadow: [
+                          //       BoxShadow(
+                          //         color: Colors.black.withOpacity(0.16),
+                          //         offset: Offset(0, 3.0),
+                          //         blurRadius: 12.0,
+                          //       ),
+                          //     ],
+                          //   ),
+                          //   child: Column(
+                          //     children: [
+                          //       Padding(
+                          //         padding:
+                          //             const EdgeInsets.only(top: 20, left: 30),
+                          //         child: Row(
+                          //           children: [
+                          //             Padding(
+                          //               padding:
+                          //                   const EdgeInsets.only(left: 50),
+                          //               child: Text(
+                          //                 'With Material',
+                          //                 style: TextStyle(
+                          //                   color: Colors.black,
+                          //                   fontFamily: 'Montserrat',
+                          //                   fontSize: 18,
+                          //                   fontWeight: FontWeight.w600,
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //             Checkbox(
+                          //                 value: ischecked,
+                          //                 onChanged: (value) {
+                          //                   setState(() {
+                          //                     ischecked = value!;
+                          //                   });
+                          //                 }),
+                          //             CircleAvatar(
+                          //               foregroundColor: Colors.black,
+                          //               radius: 14,
+                          //               backgroundColor: Colors.grey.shade200,
+                          //               child: IconButton(
+                          //                 onPressed: () {
+                          //                   showDialog(
+                          //                     context: context,
+                          //                     builder: (BuildContext context) {
+                          //                       return AlertDialog(
+                          //                         content: Text(
+                          //                           'With material it costs extra money',
+                          //                           style: TextStyle(
+                          //                             fontFamily: 'Montserrat',
+                          //                             fontWeight:
+                          //                                 FontWeight.w600,
+                          //                             fontSize: 14.0,
+                          //                           ),
+                          //                         ),
+                          //                         shape: RoundedRectangleBorder(
+                          //                           borderRadius:
+                          //                               BorderRadius.circular(
+                          //                             10,
+                          //                           ),
+                          //                         ),
+                          //                         actions: [
+                          //                           Center(
+                          //                             child: ElevatedButton(
+                          //                               style: ElevatedButton
+                          //                                   .styleFrom(
+                          //                                 primary:
+                          //                                     Colors.indigo,
+                          //                               ),
+                          //                               onPressed: () {
+                          //                                 Navigator.pop(
+                          //                                     context);
+                          //                               },
+                          //                               child: Text('OK'),
+                          //                             ),
+                          //                           ),
+                          //                         ],
+                          //                       );
+                          //                     },
+                          //                   );
+                          //                 },
+                          //                 icon: Icon(
+                          //                   Icons.question_mark,
+                          //                   size: 12.5,
+                          //                   color: Colors.black,
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                           Padding(
                             padding: const EdgeInsets.only(
                               top: 20,
@@ -856,10 +860,13 @@ class _user_checkoutState extends State<user_checkout> {
                                   //       builder: (context) => Sucess_page(),
                                   //     ),
                                   //     (route) => false);
-                                  postDetailsToFirestore(
-                                      data['username'],
-                                      data['mobile1'],
-                                      data['selectedLocation']);
+                                  if (formGlobalKey.currentState!.validate()) {
+                                    // postDetailsToFirestore();
+                                  }
+                                  // postDetailsToFirestore(
+                                  //     data['username'],
+                                  //     data['mobile1'],
+                                  //     data['selectedLocation']);
                                   print(
                                       '--------------------------------------------------');
                                   print(_addressController.text);
