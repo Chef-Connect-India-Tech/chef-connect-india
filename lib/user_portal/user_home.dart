@@ -997,16 +997,16 @@ class _user_homeState extends State<user_home> {
                                                               .map(
                                                                   buildMenuItem)
                                                               .toList(),
-                                                          onChanged: (Gvalue) =>
+                                                          onChanged: (Evalue) =>
                                                               setState(() {
                                                             this.chefvalue =
-                                                                Gvalue;
+                                                                Evalue;
                                                             categoryofchefEditingController
-                                                                .text = Gvalue!;
+                                                                .text = Evalue!;
                                                           }),
-                                                          onSaved: (Gvalue) {
+                                                          onSaved: (Evalue) {
                                                             categoryofchefEditingController
-                                                                .text = Gvalue!;
+                                                                .text = Evalue!;
                                                           },
                                                         ),
                                                         SizedBox(
@@ -1060,14 +1060,6 @@ class _user_homeState extends State<user_home> {
                                                                     'Montserrat',
                                                                 fontSize: 16),
                                                           ),
-                                                          validator: (value) {
-                                                            if (value == null ||
-                                                                value.length ==
-                                                                    0) {
-                                                              return 'Please select one or more options';
-                                                            }
-                                                            return null;
-                                                          },
                                                           dataSource: [
                                                             {
                                                               "display":
