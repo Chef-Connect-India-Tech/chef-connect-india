@@ -303,62 +303,6 @@ class _user_homeState extends State<user_home> {
                                                       mainAxisSize:
                                                           MainAxisSize.min,
                                                       children: [
-                                                        TextFormField(
-                                                          decoration:
-                                                              InputDecoration(
-                                                            fillColor:
-                                                                Colors.white70,
-                                                            filled: true,
-                                                            hintText:
-                                                                'Enter Address',
-                                                            hintStyle:
-                                                                TextStyle(
-                                                              fontFamily:
-                                                                  'Montserrat',
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: 1,
-                                                              ),
-                                                            ),
-                                                            focusedBorder:
-                                                                new OutlineInputBorder(
-                                                              borderRadius:
-                                                                  new BorderRadius
-                                                                          .circular(
-                                                                      10.0),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: 1,
-                                                              ),
-                                                            ),
-                                                            // enabledBorder:
-                                                            //     OutlineInputBorder(
-                                                            //   borderRadius:
-                                                            //       BorderRadius
-                                                            //           .circular(
-                                                            //               10),
-                                                            //   borderSide:
-                                                            //       BorderSide(
-                                                            //     color: Colors
-                                                            //         .black,
-                                                            //     width: 1,
-                                                            //   ),
-                                                            // ),
-                                                          ),
-                                                        ),
                                                         SizedBox(
                                                           height: 10,
                                                         ),
@@ -376,7 +320,7 @@ class _user_homeState extends State<user_home> {
                                                                     .black,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w600),
+                                                                        .w500),
                                                             prefixIcon: Icon(
                                                               Icons.person,
                                                               color: Colors
@@ -474,7 +418,7 @@ class _user_homeState extends State<user_home> {
                                                                     .black,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w600),
+                                                                        .w500),
                                                             prefixIcon: Icon(
                                                               Icons.leaderboard,
                                                               color: Colors
@@ -571,7 +515,7 @@ class _user_homeState extends State<user_home> {
                                                                   Colors.black,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w600,
+                                                                      .w500,
                                                             ),
                                                             prefixIcon: Icon(
                                                               Icons.money,
@@ -650,6 +594,97 @@ class _user_homeState extends State<user_home> {
                                                             salaryEditingController
                                                                 .text = lvalue!;
                                                           },
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        TextFormField(
+                                                          decoration:
+                                                              InputDecoration(
+                                                            fillColor:
+                                                                Colors.white70,
+                                                            filled: true,
+                                                            hintText:
+                                                                'Date Required',
+                                                            hintStyle:
+                                                                TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                            border:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        TextFormField(
+                                                          minLines: 5,
+                                                          maxLines: 20,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            fillColor:
+                                                                Colors.white70,
+                                                            filled: true,
+                                                            hintText:
+                                                                'Enter Address',
+                                                            hintStyle:
+                                                                TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                            border:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                                width: 1,
+                                                              ),
+                                                            ),
+                                                            focusedBorder:
+                                                                new OutlineInputBorder(
+                                                              borderRadius:
+                                                                  new BorderRadius
+                                                                          .circular(
+                                                                      10.0),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                                width: 1,
+                                                              ),
+                                                            ),
+                                                            // enabledBorder:
+                                                            //     OutlineInputBorder(
+                                                            //   borderRadius:
+                                                            //       BorderRadius
+                                                            //           .circular(
+                                                            //               10),
+                                                            //   borderSide:
+                                                            //       BorderSide(
+                                                            //     color: Colors
+                                                            //         .black,
+                                                            //     width: 1,
+                                                            //   ),
+                                                            // ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
                                                         ),
                                                       ],
                                                     ),
@@ -1162,6 +1197,67 @@ class _user_homeState extends State<user_home> {
                                                             salaryEditingController
                                                                 .text = lvalue!;
                                                           },
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        TextFormField(
+                                                          minLines: 5,
+                                                          maxLines: 20,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            fillColor:
+                                                                Colors.white70,
+                                                            filled: true,
+                                                            hintText:
+                                                                'Enter Address',
+                                                            hintStyle:
+                                                                TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                            border:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                                width: 1,
+                                                              ),
+                                                            ),
+                                                            focusedBorder:
+                                                                new OutlineInputBorder(
+                                                              borderRadius:
+                                                                  new BorderRadius
+                                                                          .circular(
+                                                                      10.0),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                                width: 1,
+                                                              ),
+                                                            ),
+                                                            // enabledBorder:
+                                                            //     OutlineInputBorder(
+                                                            //   borderRadius:
+                                                            //       BorderRadius
+                                                            //           .circular(
+                                                            //               10),
+                                                            //   borderSide:
+                                                            //       BorderSide(
+                                                            //     color: Colors
+                                                            //         .black,
+                                                            //     width: 1,
+                                                            //   ),
+                                                            // ),
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
