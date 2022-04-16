@@ -278,231 +278,6 @@ class _user_checkoutState extends State<user_checkout> {
                           ),
 
                           Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Container(
-                              padding: EdgeInsets.all(20),
-                              // height: 170,
-                              width: width - 20,
-                              // height: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.16),
-                                    offset: Offset(0, 3.0),
-                                    blurRadius: 12.0,
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Form(
-                                  key: formGlobalKey,
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      TextFormField(
-                                        controller: dateController,
-                                        decoration: InputDecoration(
-                                            icon: Icon(Icons.calendar_today),
-                                            labelText: "Select Date"),
-                                        readOnly: true,
-                                        validator: (value) {
-                                          if (dateController.text.isEmpty) {
-                                            return "Please Select Date";
-                                          }
-                                          return null;
-                                        },
-                                        onTap: () async {
-                                          DateTime? pickedDate =
-                                              await showDatePicker(
-                                                  context: context,
-                                                  initialDate: DateTime.now(),
-                                                  firstDate: DateTime.now(),
-                                                  lastDate: DateTime(2101));
-
-                                          if (pickedDate != null) {
-                                            print(pickedDate);
-                                            String formattedDate =
-                                                DateFormat('yyyy-MM-dd')
-                                                    .format(pickedDate);
-
-                                            setState(() {
-                                              dateController.text =
-                                                  formattedDate;
-                                            });
-                                          } else {
-                                            Fluttertoast.showToast(
-                                                msg: "Date not Selected",
-                                                toastLength: Toast.LENGTH_SHORT,
-                                                gravity: ToastGravity.SNACKBAR,
-                                                timeInSecForIosWeb: 1,
-                                                backgroundColor:
-                                                    Colors.red.shade300,
-                                                textColor: Colors.white,
-                                                fontSize: 16.0);
-                                          }
-                                        },
-                                      ),
-                                      TextFormField(
-                                        controller: timeController,
-                                        decoration: InputDecoration(
-                                            icon: Icon(Icons.timer),
-                                            labelText: "Select Time"),
-                                        readOnly: true,
-                                        validator: (value) {
-                                          if (timeController.text.isEmpty) {
-                                            return "Please Select Time";
-                                          }
-                                          return null;
-                                        },
-                                        onTap: () async {
-                                          TimeOfDay? pickedTime =
-                                              await showTimePicker(
-                                            initialTime: TimeOfDay.now(),
-                                            context: context,
-                                          );
-
-                                          if (pickedTime != null) {
-                                            print(pickedTime.format(context));
-                                            DateTime parsedTime =
-                                                DateFormat.jm().parse(pickedTime
-                                                    .format(context)
-                                                    .toString());
-                                            String formattedTime =
-                                                DateFormat('HH:mm:ss')
-                                                    .format(parsedTime);
-                                            setState(() {
-                                              timeController.text =
-                                                  formattedTime;
-                                            });
-                                          } else {
-                                            Fluttertoast.showToast(
-                                                msg: "Time not Selected",
-                                                toastLength: Toast.LENGTH_SHORT,
-                                                gravity: ToastGravity.SNACKBAR,
-                                                timeInSecForIosWeb: 1,
-                                                backgroundColor:
-                                                    Colors.red.shade300,
-                                                textColor: Colors.white,
-                                                fontSize: 16.0);
-                                          }
-                                        },
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 15.0),
-                                        child: TextFormField(
-                                          keyboardType:
-                                              TextInputType.streetAddress,
-                                          controller: _addressController,
-                                          validator: (value) {
-                                            if (_addressController
-                                                .text.isEmpty) {
-                                              return "Please Enter your Address";
-                                            }
-                                            return null;
-                                          },
-                                          style: TextStyle(color: Colors.black),
-                                          minLines: 5,
-                                          maxLines: 8,
-                                          onSaved: (value) {
-                                            _addressController.text = value!;
-                                          },
-                                          decoration: InputDecoration(
-                                            counterStyle:
-                                                TextStyle(color: Colors.black),
-                                            hintText: 'Enter Full Address',
-                                            icon: Icon(
-                                                Icons.location_on_outlined),
-                                            hintStyle: TextStyle(
-                                              color: Colors.black,
-                                              fontFamily: 'Montserrat',
-                                            ),
-                                            border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                            ),
-                                            focusedBorder:
-                                                new OutlineInputBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      10.0),
-                                              borderSide: BorderSide(
-                                                color: Colors.black,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              borderSide: BorderSide(
-                                                color: Colors.grey.shade500,
-                                                width: 1,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                10.0, 5.0, 10.0, 10.0),
-                            child: Container(
-                              // padding: EdgeInsets.only(bottom: 15),
-                              width: width - 20,
-                              // height: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.16),
-                                    offset: Offset(0, 3.0),
-                                    blurRadius: 12.0,
-                                  ),
-                                ],
-                              ),
-                              child: CheckboxListTile(
-                                activeColor: Colors.green,
-                                title: Text(
-                                  'With Material',
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.indigo[900],
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                value: _termsChecked,
-                                onChanged: (bool? value) =>
-                                    setState(() => _termsChecked = value!),
-                                subtitle: !_termsChecked
-                                    ? null
-                                    : Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(12.0, 0, 0, 0),
-                                        child: Text(
-                                          'With Material incures Extra Cost',
-                                          style: TextStyle(
-                                              color: Color(0xFFe53935),
-                                              fontSize: 12),
-                                        ),
-                                      ),
-                              ),
-                            ),
-                          ),
-                          Padding(
                             padding: const EdgeInsets.fromLTRB(
                                 10.0, 5.0, 10.0, 10.0),
                             child: Container(
@@ -736,6 +511,284 @@ class _user_checkoutState extends State<user_checkout> {
                                     ),
                                   ),
                                 ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(
+                              padding: EdgeInsets.all(20),
+                              // height: 170,
+                              width: width - 20,
+                              // height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.16),
+                                    offset: Offset(0, 3.0),
+                                    blurRadius: 12.0,
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Form(
+                                  key: formGlobalKey,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      TextFormField(
+                                        controller: dateController,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                            ),
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.grey.shade500,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            icon: Icon(Icons.calendar_today),
+                                            labelText: "Select Date"),
+                                        readOnly: true,
+                                        validator: (value) {
+                                          if (dateController.text.isEmpty) {
+                                            return "Please Select Date";
+                                          }
+                                          return null;
+                                        },
+                                        onTap: () async {
+                                          DateTime? pickedDate =
+                                              await showDatePicker(
+                                                  context: context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate: DateTime.now(),
+                                                  lastDate: DateTime(2101));
+
+                                          if (pickedDate != null) {
+                                            print(pickedDate);
+                                            String formattedDate =
+                                                DateFormat('yyyy-MM-dd')
+                                                    .format(pickedDate);
+
+                                            setState(() {
+                                              dateController.text =
+                                                  formattedDate;
+                                            });
+                                          } else {
+                                            Fluttertoast.showToast(
+                                                msg: "Date not Selected",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                gravity: ToastGravity.SNACKBAR,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor:
+                                                    Colors.red.shade300,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+                                          }
+                                        },
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 10),
+                                        child: TextFormField(
+                                          controller: timeController,
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                            ),
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.grey.shade500,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            icon: Icon(Icons.timer),
+                                            labelText: "Select Time",
+                                          ),
+                                          readOnly: true,
+                                          validator: (value) {
+                                            if (timeController.text.isEmpty) {
+                                              return "Please Select Time";
+                                            }
+                                            return null;
+                                          },
+                                          onTap: () async {
+                                            TimeOfDay? pickedTime =
+                                                await showTimePicker(
+                                              initialTime: TimeOfDay.now(),
+                                              context: context,
+                                            );
+
+                                            if (pickedTime != null) {
+                                              print(pickedTime.format(context));
+                                              DateTime parsedTime =
+                                                  DateFormat.jm().parse(
+                                                      pickedTime
+                                                          .format(context)
+                                                          .toString());
+                                              String formattedTime =
+                                                  DateFormat('HH:mm:ss')
+                                                      .format(parsedTime);
+                                              setState(() {
+                                                timeController.text =
+                                                    formattedTime;
+                                              });
+                                            } else {
+                                              Fluttertoast.showToast(
+                                                  msg: "Time not Selected",
+                                                  toastLength:
+                                                      Toast.LENGTH_SHORT,
+                                                  gravity:
+                                                      ToastGravity.SNACKBAR,
+                                                  timeInSecForIosWeb: 1,
+                                                  backgroundColor:
+                                                      Colors.red.shade300,
+                                                  textColor: Colors.white,
+                                                  fontSize: 16.0);
+                                            }
+                                          },
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 15.0),
+                                        child: TextFormField(
+                                          keyboardType:
+                                              TextInputType.streetAddress,
+                                          controller: _addressController,
+                                          validator: (value) {
+                                            if (_addressController
+                                                .text.isEmpty) {
+                                              return "Please Enter your Address";
+                                            }
+                                            return null;
+                                          },
+                                          style: TextStyle(color: Colors.black),
+                                          minLines: 5,
+                                          maxLines: 8,
+                                          onSaved: (value) {
+                                            _addressController.text = value!;
+                                          },
+                                          decoration: InputDecoration(
+                                            counterStyle:
+                                                TextStyle(color: Colors.black),
+                                            hintText: 'Enter Full Address',
+                                            icon: Icon(
+                                                Icons.location_on_outlined),
+                                            hintStyle: TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: 'Montserrat',
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                            ),
+                                            focusedBorder:
+                                                new OutlineInputBorder(
+                                              borderRadius:
+                                                  new BorderRadius.circular(
+                                                      10.0),
+                                              borderSide: BorderSide(
+                                                color: Colors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              borderSide: BorderSide(
+                                                color: Colors.grey.shade500,
+                                                width: 1,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                                10.0, 5.0, 10.0, 10.0),
+                            child: Container(
+                              // padding: EdgeInsets.only(bottom: 15),
+                              width: width - 20,
+                              // height: 150,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.16),
+                                    offset: Offset(0, 3.0),
+                                    blurRadius: 12.0,
+                                  ),
+                                ],
+                              ),
+                              child: CheckboxListTile(
+                                activeColor: Colors.green,
+                                title: Text(
+                                  'With Material',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.indigo[900],
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                value: _termsChecked,
+                                onChanged: (bool? value) =>
+                                    setState(() => _termsChecked = value!),
+                                subtitle: !_termsChecked
+                                    ? null
+                                    : Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(12.0, 0, 0, 0),
+                                        child: Text(
+                                          'With Material incures Extra Cost',
+                                          style: TextStyle(
+                                              color: Color(0xFFe53935),
+                                              fontSize: 12),
+                                        ),
+                                      ),
                               ),
                             ),
                           ),
