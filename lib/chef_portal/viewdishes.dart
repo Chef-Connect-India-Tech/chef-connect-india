@@ -88,34 +88,43 @@ class _customisedlistState extends State<customisedlist> {
   Widget build(BuildContext context) {
     List listt = [];
     return Scaffold(
-      body: Scrollbar(
-        isAlwaysShown: true,
-        child: PaginateFirestore(
-          itemBuilderType:
-              PaginateBuilderType.listView, //Change types accordingly
-          itemBuilder: (context, documentSnapshots, index) {
-            final data = documentSnapshots[index].data() as Map?;
-            print('---------');
-            var aa = (data!['cid'].toString());
-            var bb = (FirebaseAuth.instance.currentUser!.uid);
-            if (aa == bb) {
-              print("hi");
-            }
-            return Container(
-              child: Text(data['customised menu'].toString()),
-              // leading: const CircleAvatar(child: Icon(Icons.food_bank)),
-              // title: data == null
-              //     ? const Text('Error in data')
-              //     : Text(data['customised menu'].toString()),
-            );
-          },
-          // orderBy is compulsory to enable pagination
-          query: FirebaseFirestore.instance
-              .collection('Menu')
-              .where("cid", isEqualTo: FirebaseAuth.instance.currentUser!.uid),
-          itemsPerPage: 5,
-          // to fetch real-time data
-          isLive: true,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: [
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("Menu")
+                      .where('cid',
+                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return ListView(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(0.0),
+                      scrollDirection: Axis.vertical,
+                      primary: true,
+                      children:
+                          snapshot.data!.docs.map((DocumentSnapshot document) {
+                        print(document.data());
+                        return Container(
+                            child:
+                                Text(document["customised menu"].toString()));
+                      }).toList(),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -134,30 +143,77 @@ class _predefinedlistState extends State<predefinedlist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Scrollbar(
-        isAlwaysShown: true,
-        child: PaginateFirestore(
-          itemBuilderType:
-              PaginateBuilderType.listView, //Change types accordingly
-          itemBuilder: (context, documentSnapshots, index) {
-            final data = documentSnapshots[index].data() as Map?;
-            return Container(
-              child: listpredefined(
-                desserts: data!['desserts'],
-                maincourse: data['main course'],
-                starters: data['starters'],
-                menuname: data['menu name'],
-              ),
-            );
-          },
-          // orderBy is compulsory to enable pagination
-          query: FirebaseFirestore.instance
-              .collection('Menu')
-              .doc(FirebaseAuth.instance.currentUser!.uid)
-              .collection("menu"),
-          itemsPerPage: 5,
-          // to fetch real-time data
-          isLive: true,
+      body:
+          // Scrollbar(
+          //   isAlwaysShown: true,
+          //   child: PaginateFirestore(
+          //     itemBuilderType:
+          //         PaginateBuilderType.listView, //Change types accordingly
+          //     itemBuilder: (context, documentSnapshots, index) {
+          //       final data = documentSnapshots[index].data() as Map?;
+          //       return Container(
+          //         child: listpredefined(
+          // desserts: data!['desserts'],
+          // maincourse: data['main course'],
+          // starters: data['starters'],
+          // menuname: data['menu name'],
+          //         ),
+          //       );
+          //     },
+          //     // orderBy is compulsory to enable pagination
+          //     query: FirebaseFirestore.instance
+          //         .collection('Menu')
+          //         .doc(FirebaseAuth.instance.currentUser!.uid)
+          //         .collection("menu"),
+          //     itemsPerPage: 5,
+          //     // to fetch real-time data
+          //     isLive: true,
+          //   ),
+          // ),
+          SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: [
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("Menu")
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .collection('menu')
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return ListView(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(0.0),
+                      scrollDirection: Axis.vertical,
+                      primary: true,
+                      children:
+                          snapshot.data!.docs.map((DocumentSnapshot document) {
+                        print(document.data());
+                        return Container(
+                          child: GestureDetector(
+                            child: listpredefined(
+                              desserts: document['desserts'],
+                              maincourse: document['main course'],
+                              starters: document['starters'],
+                              menuname: document['menu name'],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
