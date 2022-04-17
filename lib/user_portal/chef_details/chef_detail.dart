@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
+import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +47,23 @@ class _chef_detailState extends State<chef_detail> {
     var width = MediaQuery.of(context).size.width;
     // String cuisine_exp = widget.cuisine.replaceAll('[', '').replaceAll(']', '');
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => user_home(),
+                  ),
+                  (route) => false);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+            ),
+          )
+        ],
         backgroundColor: Colors.indigo,
         centerTitle: true,
         title: Text(widget.chefid),
