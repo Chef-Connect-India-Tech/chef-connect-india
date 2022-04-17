@@ -1,5 +1,6 @@
 // ignore_for_file: unused_field, deprecated_member_use
 import 'package:chef_connect_india/Helper/models/chef.dart';
+import 'package:chef_connect_india/chef_portal/adddishes.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -312,7 +313,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                             },
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
-                              labelText: 'Rate Per Plate',
+                              labelText: 'Rate Per Day',
                               labelStyle: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontSize: 15,
@@ -566,7 +567,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => chef_dashboard()),
+        MaterialPageRoute(builder: (context) => chef_add_dish()),
         (route) => false);
   }
 }

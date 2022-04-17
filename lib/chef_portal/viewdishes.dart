@@ -94,6 +94,8 @@ class _customisedlistState extends State<customisedlist> {
               PaginateBuilderType.listView, //Change types accordingly
           itemBuilder: (context, documentSnapshots, index) {
             final data = documentSnapshots[index].data() as Map?;
+            print('---------');
+            print(data!['customised menu'].toString());
             return ListTile(
               leading: const CircleAvatar(child: Icon(Icons.food_bank)),
               title: data == null
