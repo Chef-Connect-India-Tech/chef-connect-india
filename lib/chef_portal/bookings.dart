@@ -293,32 +293,6 @@ class _listpredefinedState extends State<listpredefined> {
                         SizedBox(
                           height: 20,
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ElevatedButton(
-                                    onPressed: () {
-                                      showAlertDialog(
-                                          widget.bookingId,
-                                          "Are you sure to accept",
-                                          "Inprogress");
-                                    },
-                                    child: Text("ACCEPT")),
-                                Spacer(),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      showAlertDialog(widget.bookingId,
-                                          "Are you sure to reject", "Cancel");
-                                    },
-                                    child: Text("REJECT")),
-                              ],
-                            ),
-                          ],
-                        ),
                         ExpandableButton(
                           theme: ExpandableThemeData(iconColor: Colors.blue),
                           child: Padding(
@@ -341,45 +315,6 @@ class _listpredefinedState extends State<listpredefined> {
           ],
         ),
       ),
-    );
-  }
-
-  static void bookingupdate(bookingId, msg) async {
-    CollectionReference database =
-        FirebaseFirestore.instance.collection("bookings");
-    var result = await database.doc(bookingId).update({"bookingStatus": msg});
-  }
-
-  void showAlertDialog(bookingId, message1, message2) {
-    // set up the buttons
-    Widget cancelButton = TextButton(
-      child: Text("Cancel"),
-      onPressed: () {},
-    );
-    Widget continueButton = TextButton(
-      child: Text("Continue"),
-      onPressed: () {
-        bookingupdate(widget.bookingId, message2);
-        Fluttertoast.showToast(msg: message2);
-      },
-    );
-
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("AlertDialog"),
-      content: Text(message1),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
     );
   }
 }
