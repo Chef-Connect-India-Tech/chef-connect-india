@@ -1,6 +1,7 @@
 // import 'dart:ffi';
 
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
+import 'package:chef_connect_india/chef_portal/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -291,12 +292,12 @@ class _chef_add_dishState extends State<chef_add_dish> {
                         ),
                         onPressed: () {
                           savedata();
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => chef_dashboard(),
-                              ),
-                              (route) => false);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => chef_dashboard(),
+                            ),
+                          );
                         },
                         child: Text(
                           'Save and Proceed',

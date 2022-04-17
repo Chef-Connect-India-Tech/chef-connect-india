@@ -10,7 +10,7 @@ class viewdish extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        //title: "viewdish Event",
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.indigo),
         home: DefaultTabController(
             length: 2,
