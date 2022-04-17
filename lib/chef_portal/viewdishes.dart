@@ -46,7 +46,7 @@ class viewdish extends StatelessWidget {
                                   Border.all(color: Colors.indigo, width: 1)),
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text("Your Dishes"),
+                            child: Text("My Dishes"),
                           ),
                         ),
                       ),
@@ -58,7 +58,7 @@ class viewdish extends StatelessWidget {
                                   Border.all(color: Colors.indigo, width: 1)),
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text("Your Menu"),
+                            child: Text("My Menu"),
                           ),
                         ),
                       ),
