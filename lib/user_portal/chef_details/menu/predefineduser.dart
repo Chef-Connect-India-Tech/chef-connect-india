@@ -22,6 +22,9 @@ class _predefineduserState extends State<predefineduser> {
   List _selectedMenuItems = [];
   @override
   Widget build(BuildContext context) {
+    print('lol');
+    print(widget.chefId);
+    print(widget.cid);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -45,6 +48,7 @@ class _predefineduserState extends State<predefineduser> {
                       starters: dataa['starters'],
                       menuname: dataa['menu name'],
                       chefId: widget.chefId,
+                      cid: widget.cid,
                       chefContact: widget.chefContact,
                     ),
                   ),
@@ -69,6 +73,7 @@ class listpredefined extends StatefulWidget {
   late List desserts;
   late String menuname;
   String chefId;
+  String cid;
   var chefContact;
   listpredefined({
     required this.starters,
@@ -76,6 +81,7 @@ class listpredefined extends StatefulWidget {
     required this.desserts,
     required this.menuname,
     required this.chefId,
+    required this.cid,
     required this.chefContact,
   });
 
@@ -185,13 +191,58 @@ class _listpredefinedState extends State<listpredefined> {
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20),
-                                      child: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.cancel_outlined,
-                                          color: Colors.red,
+                                    SizedBox(
+                                      height: 30,
+                                      // width: 280,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          primary: Colors.indigo,
+                                          onPrimary:
+                                              Color.fromARGB(255, 18, 68, 138),
+                                        ),
+                                        onPressed: () {
+                                          Fluttertoast.showToast(
+                                              msg:
+                                                  "Selected: ${widget.menuname}'s Menu",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.SNACKBAR,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: Colors.red,
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                          // print(widget.menuname);
+                                          // print(widget.starters);
+                                          // print(widget.desserts);
+                                          // print(widget.maincourse);
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  user_checkout(
+                                                      cid: widget.cid,
+                                                      chefId: widget.chefId,
+                                                      chefContact:
+                                                          widget.chefContact,
+                                                      menu: widget.menuname,
+                                                      starters: widget.starters,
+                                                      desserts: widget.desserts,
+                                                      maincourse:
+                                                          widget.maincourse)),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Select Menu',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            // fontFamily: 'Montserrat',
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     )
@@ -326,12 +377,14 @@ class _listpredefinedState extends State<listpredefined> {
                             context,
                             MaterialPageRoute(
                               builder: ((context) => user_checkout(
-                                  chefId: widget.chefId,
-                                  chefContact: widget.chefContact,
-                                  menu: widget.menuname,
-                                  starters: widget.starters,
-                                  desserts: widget.desserts,
-                                  maincourse: widget.maincourse)),
+                                    chefId: widget.chefId,
+                                    chefContact: widget.chefContact,
+                                    menu: widget.menuname,
+                                    starters: widget.starters,
+                                    desserts: widget.desserts,
+                                    maincourse: widget.maincourse,
+                                    cid: '',
+                                  )),
                             ),
                           );
                         },

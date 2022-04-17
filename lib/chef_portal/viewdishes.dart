@@ -65,7 +65,7 @@ class viewdish extends StatelessWidget {
                     ]),
               ),
               body: TabBarView(children: [
-                customisedlist(),
+                customisedlist(cid: ''),
                 predefinedlist(cid: 'null'),
                 //Icon(Icons.games),w
               ]),
@@ -78,7 +78,8 @@ class viewdish extends StatelessWidget {
 // ignore_for_file: must_be_immutable
 
 class customisedlist extends StatefulWidget {
-  const customisedlist({Key? key}) : super(key: key);
+  late String cid;
+  customisedlist({required this.cid});
   @override
   State<customisedlist> createState() => _customisedlistState();
 }
@@ -95,12 +96,17 @@ class _customisedlistState extends State<customisedlist> {
           itemBuilder: (context, documentSnapshots, index) {
             final data = documentSnapshots[index].data() as Map?;
             print('---------');
-            print(data!['customised menu'].toString());
-            return ListTile(
-              leading: const CircleAvatar(child: Icon(Icons.food_bank)),
-              title: data == null
-                  ? const Text('Error in data')
-                  : Text(data['customised menu'].toString()),
+            var aa = (data!['cid'].toString());
+            var bb = (FirebaseAuth.instance.currentUser!.uid);
+            if (aa == bb) {
+              print("hi");
+            }
+            return Container(
+              child: Text(data['customised menu'].toString()),
+              // leading: const CircleAvatar(child: Icon(Icons.food_bank)),
+              // title: data == null
+              //     ? const Text('Error in data')
+              //     : Text(data['customised menu'].toString()),
             );
           },
           // orderBy is compulsory to enable pagination

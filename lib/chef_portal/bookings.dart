@@ -1,226 +1,366 @@
-import 'package:chef_connect_india/Helper/list.dart';
-import 'package:chef_connect_india/Main%20Screen/home.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:paginate_firestore/paginate_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expandable/expandable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class chef_bookings extends StatefulWidget {
+class chef_bookings extends StatelessWidget {
   const chef_bookings({Key? key}) : super(key: key);
 
-  @override
-  State<chef_bookings> createState() => _chef_bookingsState();
-}
-
-class _chef_bookingsState extends State<chef_bookings> {
-  bool checking = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Firestore pagination example'),
         centerTitle: true,
-        actions: [
-          IconButton(
-              icon: Icon(
-                Icons.sort_sharp,
-                color: Colors.white,
+      ),
+      body: Scrollbar(
+        isAlwaysShown: true,
+        child: PaginateFirestore(
+          // item builder type is compulsory.
+          itemBuilderType:
+              PaginateBuilderType.listView, //Change types accordingly
+          itemBuilder: (context, documentSnapshots, index) {
+            final dataa = documentSnapshots[index].data() as Map?;
+            return Container(
+              child: GestureDetector(
+                child: listpredefined(
+                  bookingId: dataa!['bookingId'],
+                  bookingTime: dataa['bookingTime'],
+                  bookingDate: dataa['bookingDate'],
+                  requirementDate: dataa['bookingDate'],
+                  requirementTime: dataa['requirementTime'],
+                  bookingSlot: dataa['bookingSlot'],
+                  bookingType: dataa['bookingType'],
+                  chefContact: dataa['chefContact'],
+                  chefId: dataa['chefId'],
+                  customerId: dataa['customerId'],
+                  location: dataa['location'],
+                  // preferedBudget: dataa['preferedBudget'],
+                  customerPhone: dataa['customerPhone'],
+                  numberOfPlates: dataa['numberOfPlates'],
+                  selectedMenu: dataa['selectedMenu'],
+                  withMaterial: dataa['withMaterial'],
+                  address: dataa['address'],
+                  bookingStatus: dataa['bookingStatus'],
+                ),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChefConnectMain(),
-                  ),
-                );
-              }),
-          Switch(
-              activeColor: Colors.white,
-              value: checking,
-              onChanged: (value) {
-                setState(() {
-                  checking = value;
-                });
-              })
-        ],
-        title: Text(
-          ' Chef Bookings',
-          style: TextStyle(
-            fontFamily: 'Montserrat',
-          ),
+            );
+          },
+          // orderBy is compulsory to enable pagination
+          query: FirebaseFirestore.instance
+              .collection('bookings')
+              .where("cid", isEqualTo: FirebaseAuth.instance.currentUser!.uid),
+          itemsPerPage: 5,
+          // to fetch real-time data
+          isLive: true,
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 30,
-                ),
-                StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("bookings")
-                      .where('chefId',
-                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-                      .snapshots(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return Container(
-                      height: 200,
-                      width: 350,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.16),
-                            offset: Offset(0, 3.0),
-                            blurRadius: 12.0,
-                          )
-                        ],
+    );
+  }
+}
+
+class listpredefined extends StatefulWidget {
+  late String bookingId;
+  late String bookingTime;
+  late String bookingDate;
+  late String requirementDate;
+  late String requirementTime;
+  late String bookingSlot;
+  late String bookingType;
+  late String chefContact;
+  late String chefId;
+  late String customerId;
+  late String location;
+  //late String preferedBudget;
+  late String customerPhone;
+  late String numberOfPlates;
+  late List selectedMenu;
+  late bool withMaterial;
+  late String address;
+  late String bookingStatus;
+  listpredefined({
+    required this.bookingId,
+    required this.bookingTime,
+    required this.bookingDate,
+    required this.requirementDate,
+    required this.requirementTime,
+    required this.bookingSlot,
+    required this.bookingType,
+    required this.chefContact,
+    required this.chefId,
+    required this.customerId,
+    required this.location,
+    // required this.preferedBudget,
+    required this.customerPhone,
+    required this.numberOfPlates,
+    required this.selectedMenu,
+    required this.withMaterial,
+    required this.address,
+    required this.bookingStatus,
+  });
+
+  @override
+  State<listpredefined> createState() => _listpredefinedState();
+}
+
+class _listpredefinedState extends State<listpredefined> {
+  @override
+  Widget build(BuildContext context) {
+    var scwidth = MediaQuery.of(context).size.width;
+    bool selected = false;
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ExpandableNotifier(
+        child: Column(
+          children: [
+            Expandable(
+              theme: ExpandableThemeData(
+                  inkWellBorderRadius: BorderRadius.circular(50)),
+              collapsed: ExpandableButton(
+                // theme: ExpandableThemeData(iconColor: Colors.blue),
+                child: Card(
+                  elevation: 5,
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    width: scwidth - 90,
+                    height: 100.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.horizontal(
+                        left: Radius.circular(10.0),
+                        right: Radius.circular(10.0),
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'Booking Id',
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.16),
+                          offset: Offset(0, 3.0),
+                          blurRadius: 12.0,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "${widget.bookingId}'s menu",
+                              style: GoogleFonts.roboto(
+                                fontSize: 20.0,
+                                color: const Color(0xFF4A4B4D),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              expanded: Card(
+                elevation: 5,
+                child: Container(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  width: scwidth - 90,
+                  // height: 100.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.horizontal(
+                      left: Radius.circular(10.0),
+                      right: Radius.circular(10.0),
+                    ),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.1),
+                        offset: Offset(0, 3),
+                        blurRadius: 12.0,
+                      ),
+                    ],
+                  ),
+                  child: Column(children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    "${widget.bookingId}'s menu",
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 20.0,
+                                      color: const Color(0xFF4A4B4D),
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'dishes:',
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 18.0,
+                                      color: const Color(0xFF4A4B4D),
+                                      height: 1.11,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Wrap(
+                                  spacing: 5.0,
+                                  children: widget.selectedMenu
+                                      .map(
+                                        (e) => Chip(
+                                          backgroundColor:
+                                              Colors.orange.shade100,
+                                          label: Text(
+                                            e.toString().toLowerCase(),
+                                            style: TextStyle(
+                                                color: Colors.orange.shade900,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () {
+                                      // var url = widget.chefContact;
+                                      // var p = '+919876543210';
+                                      //launch("tel: ${widget.customerPhone}");
+                                      // const phonenumber = '9876543210';
+                                      // const url = 'tel:$phonenumber';
+                                      // if (await canLaunch(url)) {
+                                      //   await launch('9876543210');
+                                      // }
+                                      // //_launchURL(widget.customerPhone);
+                                    },
+                                    child: Text("call customer")),
+                                Spacer(),
+                                ElevatedButton(
+                                    onPressed: () {}, child: Text("call chef")),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () {
+                                      showAlertDialog(
+                                          widget.bookingId,
+                                          "Are you sure to accept",
+                                          "Inprogress");
+                                    },
+                                    child: Text("ACCEPT")),
+                                Spacer(),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      showAlertDialog(widget.bookingId,
+                                          "Are you sure to reject", "Cancel");
+                                    },
+                                    child: Text("REJECT")),
+                              ],
+                            ),
+                          ],
+                        ),
+                        ExpandableButton(
+                          theme: ExpandableThemeData(iconColor: Colors.blue),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                            child: Text(
+                              'Close',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                'Location:',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                'Banglore',
-                              ),
-                              Text(
-                                'Booking Slot:',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                'Slot ',
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                'Date:',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                '20-04-2022',
-                              ),
-                              Text(
-                                'Time:',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                '11:20pm',
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                'Cost:',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                '3000',
-                              ),
-                              Text(
-                                'No of Plates:',
-                                style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                '10 Plus',
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                        ),
+                      ],
+                    ),
+                  ]),
                 ),
-                // Center(
-                //   child: ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //       primary: Colors.purple.shade600,
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(10),
-                //       ),
-                //     ),
-                //     onPressed: () async {
-                //       await FirebaseAuth.instance.signOut();
-                //       Navigator.pushAndRemoveUntil(
-                //           (context),
-                //           MaterialPageRoute(builder: (context) => ChefConnectMain()),
-                //           (route) => false);
-                //     },
-                //     child: Text(
-                //       'Log Out',
-                //       style: TextStyle(
-                //         fontFamily: 'Montserrat',
-                //         fontSize: 16,
-                //         fontWeight: FontWeight.w600,
-                //       ),
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
-          ),
+              ),
+            )
+          ],
         ),
       ),
+    );
+  }
+
+  static void bookingupdate(bookingId, msg) async {
+    CollectionReference database =
+        FirebaseFirestore.instance.collection("bookings");
+    var result = await database.doc(bookingId).update({"bookingStatus": msg});
+  }
+
+  void showAlertDialog(bookingId, message1, message2) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed: () {},
+    );
+    Widget continueButton = TextButton(
+      child: Text("Continue"),
+      onPressed: () {
+        bookingupdate(widget.bookingId, message2);
+        Fluttertoast.showToast(msg: message2);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("AlertDialog"),
+      content: Text(message1),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

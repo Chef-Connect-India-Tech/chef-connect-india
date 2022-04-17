@@ -7,6 +7,7 @@ class BookingModel {
   String? customerId;
   String? customerPhone;
   String? chefId;
+  String? cid;
   String? chefContact;
   String? location;
   List? selectedMenu;
@@ -32,6 +33,7 @@ class BookingModel {
     this.customerId,
     this.customerPhone,
     this.chefId,
+    this.cid,
     this.chefContact,
     this.location,
     this.selectedMenu,
@@ -59,6 +61,7 @@ class BookingModel {
       customerId: map['customerId'],
       customerPhone: map['customerPhone'],
       chefId: map['chefId'],
+      cid: map['cid'],
       chefContact: map['chefContact'],
       location: map['location'],
       selectedMenu: map['selectedMenu'],
@@ -88,6 +91,7 @@ class BookingModel {
       "customerId": customerId,
       "customerPhone": customerPhone,
       "chefId": chefId,
+      "cid": cid,
       "chefContact": chefContact,
       "location": location,
       "selectedMenu": selectedMenu,
