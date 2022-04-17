@@ -1,5 +1,6 @@
 // ignore_for_file: unused_field, deprecated_member_use
 import 'package:chef_connect_india/Helper/models/chef.dart';
+import 'package:chef_connect_india/chef_portal/adddishes.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -99,13 +100,13 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                       child: Form(
                         key: formGlobalKey,
                         child: Column(children: [
-                          SizedBox(
-                            height: 5,
-                          ),
-                          CircleAvatar(
-                            backgroundColor: Color(0xFF092349),
-                            radius: 80,
-                            child: Image.asset('assets/CCI1.png'),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              backgroundColor: Color(0xFF092349),
+                              radius: 80,
+                              child: Image.asset('assets/CCI1.png'),
+                            ),
                           ),
                           // SizedBox(
                           //   height: 20,
@@ -167,324 +168,350 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                           //     workTypeEditingController.text = wvalue!;
                           //   },
                           // ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          DropdownButtonFormField<String>(
-                            decoration: InputDecoration(
-                              labelText: 'Looking For',
-                              labelStyle: TextStyle(
-                                  fontSize: 15,
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                labelText: 'Looking For',
+                                labelStyle: TextStyle(
+                                    backgroundColor: Colors.white,
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
+                                prefixIcon: Icon(Icons.settings),
+                                fillColor: Colors.white,
+                                hintText: 'Looking For',
+                                hintStyle: TextStyle(
+                                  backgroundColor: Colors.white,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w600),
-                              prefixIcon: Icon(Icons.settings),
-                              fillColor: Colors.white60,
-                              hintText: 'Looking For',
-                              hintStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontFamily: 'Montserrat',
-                              ),
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 2,
-                                ),
-                              ),
-                              focusedBorder: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                borderSide: BorderSide(
-                                  color: Colors.white60,
-                                  width: 2,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                            validator: (tvalue) {
-                              if (tvalue == null) {
-                                //allow upper and lower case alphabets and space
-                                return "Select period of work";
-                              }
-                              return null;
-                            },
-                            autofocus: false,
-                            value: timeValue,
-                            isExpanded: true,
-                            iconSize: 25,
-                            icon: Icon(Icons.arrow_drop_down,
-                                color: Colors.black),
-                            items: time.map(buildTimeMenuItem).toList(),
-                            onChanged: (tvalue) => setState(() {
-                              this.timeValue = tvalue;
-                              timeEditingController.text = tvalue!;
-                            }),
-                            onSaved: (tvalue) {
-                              timeEditingController.text = tvalue!;
-                            },
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          DropdownButtonFormField<String>(
-                            decoration: InputDecoration(
-                              labelText: 'Current Salary Per Month',
-                              labelStyle: TextStyle(
+                                  fontSize: 15,
                                   fontFamily: 'Montserrat',
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
-                              prefixIcon: Icon(Icons.money),
-                              fillColor: Colors.white60,
-                              // hintText: 'Select Current Salary',
-                              hintStyle:
-                                  TextStyle(color: Colors.black, fontSize: 15),
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 2,
+                                ),
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
                                 ),
                               ),
-                              focusedBorder: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                borderSide: BorderSide(
-                                  color: Colors.white60,
-                                  width: 2,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                            autofocus: false,
-                            value: salaryValue,
-                            isExpanded: true,
-                            iconSize: 25,
-                            icon: Icon(Icons.arrow_drop_down,
-                                color: Colors.black),
-                            items: salary.map(buildMenuItem).toList(),
-                            onChanged: (svalue) => setState(() {
-                              this.salaryValue = svalue;
-                              salaryEditingController.text = svalue!;
-                            }),
-                            onSaved: (lvalue) {
-                              salaryEditingController.text = lvalue!;
-                            },
-                            validator: (lvalue) {
-                              if (lvalue == null) {
-                                return "Select your Salary per Month";
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            autofocus: false,
-                            controller: cheffeesEditingController,
-                            keyboardType: TextInputType.number,
-                            validator: (value) {
-                              if (value!.isEmpty ||
-                                  !RegExp(r'^[0-9]+$').hasMatch(value)) {
-                                return "Enter Correct Rate";
-                              } else {
-                                return null;
-                              }
-                            },
-                            onSaved: (value) {
-                              cheffeesEditingController.text = value!;
-                            },
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                              labelText: 'Rate Per Plate',
-                              labelStyle: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
-                              prefixIcon: Icon(Icons.attach_money),
-                              fillColor: Colors.white60,
-                              // hintText: 'First Name',
-                              hintStyle:
-                                  TextStyle(color: Colors.black, fontSize: 15),
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 2,
-                                ),
-                              ),
-                              focusedBorder: new OutlineInputBorder(
-                                borderRadius: new BorderRadius.circular(10.0),
-                                borderSide: BorderSide(
-                                  color: Colors.white60,
-                                  width: 2,
-                                ),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          MultiSelectFormField(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                                width: 2,
-                              ),
-                            ),
-                            autovalidate: AutovalidateMode.disabled,
-                            chipBackGroundColor: Colors.blue,
-                            chipLabelStyle: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                            dialogTextStyle:
-                                TextStyle(fontWeight: FontWeight.w600),
-                            checkBoxActiveColor: Colors.blue,
-                            checkBoxCheckColor: Colors.white,
-                            dialogShapeBorder: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12.0))),
-                            title: Text(
-                              "Cusine Expert",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'Montserrat',
-                              ),
-                            ),
-                            validator: (value) {
-                              if (value == null || value.length == 0) {
-                                return 'Please select one or more options';
-                              }
-                              return null;
-                            },
-                            dataSource: [
-                              {
-                                "display": "Indian",
-                                "value": "Indian",
-                              },
-                              {
-                                "display": "Chinese",
-                                "value": "Chinese",
-                              },
-                              {
-                                "display": "Italian",
-                                "value": "Italian",
-                              },
-                              {
-                                "display": "Sushi",
-                                "value": "Sushi",
-                              },
-                              {
-                                "display": "Mexican",
-                                "value": "Mexican",
-                              },
-                              {
-                                "display": "Multi Cuisine",
-                                "value": "Multi Cuisine",
-                              },
-                            ],
-                            textField: 'display',
-                            valueField: 'value',
-                            okButtonLabel: 'OK',
-                            cancelButtonLabel: 'CANCEL',
-                            hintWidget: Text('Select Cusine'),
-                            initialValue: _myCusine,
-                            onSaved: (value) {
-                              if (value == null) return;
-                              setState(() {
-                                // cusineEditingController.text = value!;
-                                _myCusine = value;
-                              });
-                            },
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          ElevatedButton(
-                            onPressed: () async {
-                              if (formGlobalKey.currentState!.validate()) {
-                                //   _saveForm();
-                                //   print(
-                                //       'salary: ${salaryEditingController.text}');
-                                //   print(
-                                //       'cusine: ${cusineEditingController.text}');
-                                //   print(
-                                //       'time: ${timeEditingController.text}');
-                                //   print('fn: ${widget.firstname}');
-                                //   print('ln: ${widget.lastname}');
-                                //   print('phn: ${widget.phonenumber}');
-                                //   print('wrkexp: ${widget.workexperience}');
-                                //   print('wrkloc: ${widget.worklocation}');
-                                //   print('curloc: ${widget.currentlocation}');
-                                // }
-                                try {
-                                  // await _auth
-                                  //     .signInWithPhoneNumber(
-                                  //         widget.phonenumber)
-                                  postDetailsToFirestore().catchError((e) {
-                                    Fluttertoast.showToast(msg: e!.message);
-                                  });
-                                } on FirebaseAuthException catch (error) {
-                                  switch (error.code) {
-                                    case "invalid-phone":
-                                      errorMessage =
-                                          "Your phone number appears to be malformed.";
-                                      break;
-                                    case "user-not-found":
-                                      errorMessage =
-                                          "User with this email doesn't exist.";
-                                      break;
-                                    case "user-disabled":
-                                      errorMessage =
-                                          "User with this email has been disabled.";
-                                      break;
-                                    case "too-many-requests":
-                                      errorMessage = "Too many requests";
-                                      break;
-                                    // case "operation-not-allowed":
-                                    //   errorMessage =
-                                    //       "Signing in with Email and Password is not enabled.";
-                                    //   break;
-                                    default:
-                                      errorMessage =
-                                          "An undefined Error happened.";
-                                  }
-                                  Fluttertoast.showToast(msg: errorMessage!);
-                                  print(error.code);
+                              validator: (tvalue) {
+                                if (tvalue == null) {
+                                  //allow upper and lower case alphabets and space
+                                  return "Select period of work";
                                 }
-                              }
-                            },
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
+                                return null;
+                              },
+                              autofocus: false,
+                              value: timeValue,
+                              isExpanded: true,
+                              iconSize: 25,
+                              icon: Icon(Icons.arrow_drop_down,
+                                  color: Colors.black),
+                              items: time.map(buildTimeMenuItem).toList(),
+                              onChanged: (tvalue) => setState(() {
+                                this.timeValue = tvalue;
+                                timeEditingController.text = tvalue!;
+                              }),
+                              onSaved: (tvalue) {
+                                timeEditingController.text = tvalue!;
+                              },
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                labelText: 'Current Salary Per Month',
+                                labelStyle: TextStyle(
+                                    backgroundColor: Colors.white,
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
+                                prefixIcon: Icon(Icons.money),
+                                fillColor: Colors.white,
+                                // hintText: 'Select Current Salary',
+                                hintStyle: TextStyle(
+                                    color: Colors.black, fontSize: 15),
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                              autofocus: false,
+                              value: salaryValue,
+                              isExpanded: true,
+                              iconSize: 25,
+                              icon: Icon(Icons.arrow_drop_down,
+                                  color: Colors.black),
+                              items: salary.map(buildMenuItem).toList(),
+                              onChanged: (svalue) => setState(() {
+                                this.salaryValue = svalue;
+                                salaryEditingController.text = svalue!;
+                              }),
+                              onSaved: (lvalue) {
+                                salaryEditingController.text = lvalue!;
+                              },
+                              validator: (lvalue) {
+                                if (lvalue == null) {
+                                  return "Select your Salary per Month";
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              autofocus: false,
+                              controller: cheffeesEditingController,
+                              keyboardType: TextInputType.number,
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                  return "Enter Correct Rate";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              onSaved: (value) {
+                                cheffeesEditingController.text = value!;
+                              },
+                              textInputAction: TextInputAction.next,
+                              decoration: InputDecoration(
+                                labelText: 'Rate Per Day',
+                                labelStyle: TextStyle(
+                                    backgroundColor: Colors.white,
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
+                                prefixIcon: Icon(Icons.attach_money),
+                                fillColor: Colors.white,
+                                // hintText: 'First Name',
+                                hintStyle: TextStyle(
+                                    color: Colors.black, fontSize: 15),
+                                filled: true,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                                focusedBorder: new OutlineInputBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 2,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: MultiSelectFormField(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                // borderSide: BorderSide(
+                                //   color: Colors.white,
+                                //   width: 2,
+                                // ),
+                              ),
+                              autovalidate: AutovalidateMode.disabled,
+                              chipBackGroundColor: Colors.grey,
+                              chipLabelStyle: TextStyle(
                                   fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                              dialogTextStyle:
+                                  TextStyle(fontWeight: FontWeight.w600),
+                              checkBoxActiveColor: Colors.blue,
+                              checkBoxCheckColor: Colors.white,
+                              dialogShapeBorder: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(12.0))),
+                              title: Text(
+                                "Cusine Expert",
+                                style: TextStyle(
                                   fontSize: 16,
-                                  color: Color.fromARGB(255, 18, 68, 138)),
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Montserrat',
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.length == 0) {
+                                  return 'Please select one or more options';
+                                }
+                                return null;
+                              },
+                              dataSource: [
+                                {
+                                  "display": "Indian",
+                                  "value": "Indian",
+                                },
+                                {
+                                  "display": "Chinese",
+                                  "value": "Chinese",
+                                },
+                                {
+                                  "display": "Italian",
+                                  "value": "Italian",
+                                },
+                                {
+                                  "display": "Sushi",
+                                  "value": "Sushi",
+                                },
+                                {
+                                  "display": "Mexican",
+                                  "value": "Mexican",
+                                },
+                                {
+                                  "display": "Multi Cuisine",
+                                  "value": "Multi Cuisine",
+                                },
+                              ],
+                              textField: 'display',
+                              valueField: 'value',
+                              okButtonLabel: 'OK',
+                              cancelButtonLabel: 'CANCEL',
+                              hintWidget: Text('Select Cusine'),
+                              initialValue: _myCusine,
+                              onSaved: (value) {
+                                if (value == null) return;
+                                setState(() {
+                                  // cusineEditingController.text = value!;
+                                  _myCusine = value;
+                                });
+                              },
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 20,
+                            ),
+                            child: SizedBox(
+                              height: 45,
+                              width: 200,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.white,
+                                  onPrimary: Colors.indigo,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                      10,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  if (formGlobalKey.currentState!.validate()) {
+                                    //   _saveForm();
+                                    //   print(
+                                    //       'salary: ${salaryEditingController.text}');
+                                    //   print(
+                                    //       'cusine: ${cusineEditingController.text}');
+                                    //   print(
+                                    //       'time: ${timeEditingController.text}');
+                                    //   print('fn: ${widget.firstname}');
+                                    //   print('ln: ${widget.lastname}');
+                                    //   print('phn: ${widget.phonenumber}');
+                                    //   print('wrkexp: ${widget.workexperience}');
+                                    //   print('wrkloc: ${widget.worklocation}');
+                                    //   print('curloc: ${widget.currentlocation}');
+                                    // }
+                                    try {
+                                      // await _auth
+                                      //     .signInWithPhoneNumber(
+                                      //         widget.phonenumber)
+                                      postDetailsToFirestore().catchError((e) {
+                                        Fluttertoast.showToast(msg: e!.message);
+                                      });
+                                    } on FirebaseAuthException catch (error) {
+                                      switch (error.code) {
+                                        case "invalid-phone":
+                                          errorMessage =
+                                              "Your phone number appears to be malformed.";
+                                          break;
+                                        case "user-not-found":
+                                          errorMessage =
+                                              "User with this email doesn't exist.";
+                                          break;
+                                        case "user-disabled":
+                                          errorMessage =
+                                              "User with this email has been disabled.";
+                                          break;
+                                        case "too-many-requests":
+                                          errorMessage = "Too many requests";
+                                          break;
+                                        // case "operation-not-allowed":
+                                        //   errorMessage =
+                                        //       "Signing in with Email and Password is not enabled.";
+                                        //   break;
+                                        default:
+                                          errorMessage =
+                                              "An undefined Error happened.";
+                                      }
+                                      Fluttertoast.showToast(
+                                          msg: errorMessage!);
+                                      print(error.code);
+                                    }
+                                  }
+                                },
+                                child: Text(
+                                  'Register',
+                                  style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                      color: Color.fromARGB(255, 18, 68, 138)),
+                                ),
+                              ),
                             ),
                           )
                         ]),
@@ -564,7 +591,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => chef_dashboard()),
+        MaterialPageRoute(builder: (context) => chef_add_dish()),
         (route) => false);
   }
 }

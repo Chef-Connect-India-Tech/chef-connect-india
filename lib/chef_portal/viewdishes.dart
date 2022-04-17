@@ -17,7 +17,7 @@ class viewdish extends StatelessWidget {
             child: Scaffold(
               appBar: AppBar(
                 title: new Text(
-                  'viewdish ',
+                  'Dishes and Menu ',
                   style: TextStyle(color: Colors.indigo),
                   textAlign: TextAlign.center,
                 ),
@@ -46,7 +46,7 @@ class viewdish extends StatelessWidget {
                                   Border.all(color: Colors.indigo, width: 1)),
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text("customised list"),
+                            child: Text("My Dishes"),
                           ),
                         ),
                       ),
@@ -58,7 +58,7 @@ class viewdish extends StatelessWidget {
                                   Border.all(color: Colors.indigo, width: 1)),
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text("predefined list"),
+                            child: Text("My Menu"),
                           ),
                         ),
                       ),
@@ -94,6 +94,8 @@ class _customisedlistState extends State<customisedlist> {
               PaginateBuilderType.listView, //Change types accordingly
           itemBuilder: (context, documentSnapshots, index) {
             final data = documentSnapshots[index].data() as Map?;
+            print('---------');
+            print(data!['customised menu'].toString());
             return ListTile(
               leading: const CircleAvatar(child: Icon(Icons.food_bank)),
               title: data == null

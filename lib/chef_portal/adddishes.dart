@@ -1,19 +1,20 @@
 // import 'dart:ffi';
 
+import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class chefcustomised extends StatefulWidget {
-  const chefcustomised({Key? key}) : super(key: key);
+class chef_add_dish extends StatefulWidget {
+  const chef_add_dish({Key? key}) : super(key: key);
 
   @override
-  _chefcustomisedState createState() => _chefcustomisedState();
+  _chef_add_dishState createState() => _chef_add_dishState();
 }
 
-class _chefcustomisedState extends State<chefcustomised> {
+class _chef_add_dishState extends State<chef_add_dish> {
   final adddish = new TextEditingController();
   showAlertDialog(BuildContext context) {
     // set up the buttons
@@ -38,7 +39,7 @@ class _chefcustomisedState extends State<chefcustomised> {
           FirebaseFirestore.instance
               .collection("Menu")
               .doc(FirebaseAuth.instance.currentUser!.uid)
-              .update({
+              .set({
             "customised menu": FieldValue.arrayUnion(target_list_2),
           });
           print('------------------------');
@@ -290,7 +291,7 @@ class _chefcustomisedState extends State<chefcustomised> {
                           ),
                           onPressed: savedata,
                           child: Text(
-                            'Upload',
+                            'Save and Proceed',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               fontSize: 18,
@@ -326,8 +327,9 @@ class _chefcustomisedState extends State<chefcustomised> {
       FirebaseFirestore.instance
           .collection('Menu')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .update({
+          .set({
         "customised menu": FieldValue.arrayUnion(_selectedItems),
+        "cid": FirebaseAuth.instance.currentUser!.uid
       });
       SetOptions(merge: true);
       Fluttertoast.showToast(msg: "Successfully added");
