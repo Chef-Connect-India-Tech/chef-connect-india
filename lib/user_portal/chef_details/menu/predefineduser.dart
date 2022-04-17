@@ -177,7 +177,8 @@ class _listpredefinedState extends State<listpredefined> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.all(15.0),
+                                padding:
+                                    const EdgeInsets.only(top: 15, left: 50),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -244,7 +245,7 @@ class _listpredefinedState extends State<listpredefined> {
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    )
                                   ],
                                 ),
                               ),
@@ -351,16 +352,49 @@ class _listpredefinedState extends State<listpredefined> {
                           ),
                         ],
                       ),
-                      ExpandableButton(
-                        theme: ExpandableThemeData(iconColor: Colors.blue),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                          child: Text(
-                            'Close',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          primary: Colors.indigo,
+                          onPrimary: Color.fromARGB(255, 18, 68, 138),
+                        ),
+                        onPressed: () {
+                          Fluttertoast.showToast(
+                              msg: "Selected: ${widget.menuname}'s Menu",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.SNACKBAR,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          // print(widget.menuname);
+                          // print(widget.starters);
+                          // print(widget.desserts);
+                          // print(widget.maincourse);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => user_checkout(
+                                    chefId: widget.chefId,
+                                    chefContact: widget.chefContact,
+                                    menu: widget.menuname,
+                                    starters: widget.starters,
+                                    desserts: widget.desserts,
+                                    maincourse: widget.maincourse,
+                                    cid: '',
+                                  )),
                             ),
+                          );
+                        },
+                        child: Text(
+                          'Select Menu',
+                          style: TextStyle(
+                            color: Colors.white,
+                            // fontFamily: 'Montserrat',
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),

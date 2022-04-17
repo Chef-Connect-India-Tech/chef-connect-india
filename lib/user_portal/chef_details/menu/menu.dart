@@ -1,8 +1,10 @@
 // import 'package:chef_connect_india/chef_portal/menus/predefined.dart';
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/customiseduser.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/predefineduser.dart';
+import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:flutter/material.dart';
 
 class MenuTab extends StatefulWidget {
@@ -38,7 +40,23 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     // List<String> _items = pp.cast<String>();
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => user_home(),
+                  ),
+                  (route) => false);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+            ),
+          )
+        ],
         title: Text('Select Menu'),
         centerTitle: true,
         backgroundColor: Colors.indigo,
