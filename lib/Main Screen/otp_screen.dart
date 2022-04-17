@@ -266,7 +266,7 @@ class _OTPScreenState extends State<OTPScreen> {
                             ),
                             _formModule(),
                             Container(
-                              margin: EdgeInsets.all(30),
+                              margin: EdgeInsets.all(25),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.black.withOpacity(.6),
