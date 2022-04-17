@@ -143,34 +143,7 @@ class _predefinedlistState extends State<predefinedlist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          // Scrollbar(
-          //   isAlwaysShown: true,
-          //   child: PaginateFirestore(
-          //     itemBuilderType:
-          //         PaginateBuilderType.listView, //Change types accordingly
-          //     itemBuilder: (context, documentSnapshots, index) {
-          //       final data = documentSnapshots[index].data() as Map?;
-          //       return Container(
-          //         child: listpredefined(
-          // desserts: data!['desserts'],
-          // maincourse: data['main course'],
-          // starters: data['starters'],
-          // menuname: data['menu name'],
-          //         ),
-          //       );
-          //     },
-          //     // orderBy is compulsory to enable pagination
-          //     query: FirebaseFirestore.instance
-          //         .collection('Menu')
-          //         .doc(FirebaseAuth.instance.currentUser!.uid)
-          //         .collection("menu"),
-          //     itemsPerPage: 5,
-          //     // to fetch real-time data
-          //     isLive: true,
-          //   ),
-          // ),
-          SafeArea(
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             child: Column(

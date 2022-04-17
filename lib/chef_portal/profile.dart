@@ -1399,13 +1399,21 @@ class _chef_profileState extends State<chef_profile> {
                   SizedBox(
                     height: 15,
                   ),
+                  Text(
+                    "cuisineexpert",
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   Row(
                     children: [
                       SizedBox(
                         width: 15,
                       ),
                       Text(
-                        'Cuisine Expert',
+                        data["cuisineexpert"].toString(),
                         style: TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 20,
