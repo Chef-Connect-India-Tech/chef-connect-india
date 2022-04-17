@@ -2,6 +2,7 @@
 
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/user_portal/cust_checkout.dart';
 import 'package:chef_connect_india/user_portal/custom_user_checkout.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,8 @@ class _customiseduserState extends State<customiseduser> {
 
   var a = 'a';
   Widget build(BuildContext context) {
+    print(widget.cid);
+    print(widget.chefId);
     return Scaffold(
       body: SingleChildScrollView(
         child: PaginateFirestore(
@@ -127,6 +130,19 @@ class _customiseduserState extends State<customiseduser> {
                   );
                 }
                 print(_selectedItems);
+                print('Book A  Chef button pressed');
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => user_custom_checkout(
+                          cid: widget.cid,
+                          chefContact: widget.chefContact,
+                          chefId: widget.chefId,
+                          dishes: _selectedItems,
+                        )),
+                  ),
+                );
               },
               child: Text(
                 'Proceed to Check Out',

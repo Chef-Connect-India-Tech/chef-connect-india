@@ -20,6 +20,7 @@ class user_checkout extends StatefulWidget {
   List desserts;
   List maincourse;
   String chefId;
+  String cid;
   var chefContact;
   user_checkout(
       {Key? key,
@@ -28,6 +29,7 @@ class user_checkout extends StatefulWidget {
       required this.desserts,
       required this.maincourse,
       required this.chefId,
+      required this.cid,
       required this.chefContact})
       : super(key: key);
 
@@ -879,6 +881,7 @@ class _user_checkoutState extends State<user_checkout> {
     bookingModel.customerId = customerId;
     bookingModel.customerPhone = customerPhone;
     bookingModel.chefId = widget.chefId;
+    bookingModel.cid = widget.cid;
     bookingModel.chefContact = widget.chefContact;
     bookingModel.location = location;
     bookingModel.selectedMenu = [widget.menu, starters, maincourse, desserts];

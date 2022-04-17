@@ -16,11 +16,13 @@ import 'package:intl/intl.dart';
 class user_custom_checkout extends StatefulWidget {
   List dishes;
   String chefId;
+  String cid;
   var chefContact;
   user_custom_checkout(
       {Key? key,
       required this.dishes,
       required this.chefId,
+      required this.cid,
       required this.chefContact})
       : super(key: key);
 
@@ -60,6 +62,8 @@ class _user_custom_checkoutState extends State<user_custom_checkout> {
       );
   @override
   Widget build(BuildContext context) {
+    print(widget.cid);
+    print(widget.cid);
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
@@ -615,6 +619,7 @@ class _user_custom_checkoutState extends State<user_custom_checkout> {
     bookingModel.customerId = customerId;
     bookingModel.customerPhone = customerPhone;
     bookingModel.chefId = widget.chefId;
+    bookingModel.cid = widget.cid;
     bookingModel.chefContact = widget.chefContact;
     bookingModel.location = location;
     bookingModel.selectedMenu = [dishes];
