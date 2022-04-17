@@ -16,46 +16,65 @@ class chef_bookings extends StatelessWidget {
         title: const Text('Firestore pagination example'),
         centerTitle: true,
       ),
-      body: Scrollbar(
-        isAlwaysShown: true,
-        child: PaginateFirestore(
-          // item builder type is compulsory.
-          itemBuilderType:
-              PaginateBuilderType.listView, //Change types accordingly
-          itemBuilder: (context, documentSnapshots, index) {
-            final dataa = documentSnapshots[index].data() as Map?;
-            return Container(
-              child: GestureDetector(
-                child: listpredefined(
-                  bookingId: dataa!['bookingId'],
-                  bookingTime: dataa['bookingTime'],
-                  bookingDate: dataa['bookingDate'],
-                  requirementDate: dataa['bookingDate'],
-                  requirementTime: dataa['requirementTime'],
-                  bookingSlot: dataa['bookingSlot'],
-                  bookingType: dataa['bookingType'],
-                  chefContact: dataa['chefContact'],
-                  chefId: dataa['chefId'],
-                  customerId: dataa['customerId'],
-                  location: dataa['location'],
-                  // preferedBudget: dataa['preferedBudget'],
-                  customerPhone: dataa['customerPhone'],
-                  numberOfPlates: dataa['numberOfPlates'],
-                  selectedMenu: dataa['selectedMenu'],
-                  withMaterial: dataa['withMaterial'],
-                  address: dataa['address'],
-                  bookingStatus: dataa['bookingStatus'],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: [
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("bookings")
+                      .limit(4)
+                      .where('cid',
+                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return ListView(
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(0.0),
+                      scrollDirection: Axis.vertical,
+                      primary: true,
+                      children:
+                          snapshot.data!.docs.map((DocumentSnapshot document) {
+                        print(document.data());
+                        return Container(
+                          child: GestureDetector(
+                            child: listpredefined(
+                              bookingId: document['bookingId'],
+                              bookingTime: document['bookingTime'],
+                              bookingDate: document['bookingDate'],
+                              requirementDate: document['bookingDate'],
+                              requirementTime: document['requirementTime'],
+                              bookingSlot: document['bookingSlot'],
+                              bookingType: document['bookingType'],
+                              chefContact: document['chefContact'],
+                              chefId: document['chefId'],
+                              customerId: document['customerId'],
+                              location: document['location'],
+                              // preferedBudget: document['preferedBudget'],
+                              customerPhone: document['customerPhone'],
+                              numberOfPlates: document['numberOfPlates'],
+                              selectedMenu: document['selectedMenu'],
+                              withMaterial: document['withMaterial'],
+                              address: document['address'],
+                              bookingStatus: document['bookingStatus'],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  },
                 ),
-              ),
-            );
-          },
-          // orderBy is compulsory to enable pagination
-          query: FirebaseFirestore.instance
-              .collection('bookings')
-              .where("cid", isEqualTo: FirebaseAuth.instance.currentUser!.uid),
-          itemsPerPage: 5,
-          // to fetch real-time data
-          isLive: true,
+              ],
+            ),
+          ),
         ),
       ),
     );
