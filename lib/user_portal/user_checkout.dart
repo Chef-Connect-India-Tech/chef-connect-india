@@ -80,7 +80,7 @@ class _user_checkoutState extends State<user_checkout> {
     super.initState();
   }
 
-  bool withmaterialChecked = false;
+  bool _termsChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -661,7 +661,7 @@ class _user_checkoutState extends State<user_checkout> {
                                                           .format(context)
                                                           .toString());
                                               String formattedTime =
-                                                  DateFormat('HH:mm:ss')
+                                                  DateFormat('HH:mm')
                                                       .format(parsedTime);
                                               setState(() {
                                                 timeController.text =
@@ -774,10 +774,10 @@ class _user_checkoutState extends State<user_checkout> {
                                     fontSize: 16,
                                   ),
                                 ),
-                                value: withmaterialChecked,
-                                onChanged: (bool? value) => setState(
-                                    () => withmaterialChecked = value!),
-                                subtitle: !withmaterialChecked
+                                value: _termsChecked,
+                                onChanged: (bool? value) =>
+                                    setState(() => _termsChecked = value!),
+                                subtitle: !_termsChecked
                                     ? null
                                     : Padding(
                                         padding:
@@ -914,12 +914,12 @@ class _user_checkoutState extends State<user_checkout> {
                                   //     ),
                                   //     (route) => false);
                                   if (formGlobalKey.currentState!.validate()) {
-                                    postDetailsToFirestore(
-                                        data['username'],
-                                        data['mobile1'],
-                                        data['selectedLocation']);
+                                    // postDetailsToFirestore();
                                   }
-
+                                  // postDetailsToFirestore(
+                                  //     data['username'],
+                                  //     data['mobile1'],
+                                  //     data['selectedLocation']);
                                   print(
                                       '--------------------------------------------------');
                                   print(_addressController.text);
@@ -983,14 +983,14 @@ class _user_checkoutState extends State<user_checkout> {
     bookingModel.chefContact = widget.chefContact;
     bookingModel.location = location;
     bookingModel.selectedMenu = [widget.menu, starters, maincourse, desserts];
-    bookingModel.requirementDate = dateController.text;
-    bookingModel.requirementTime = timeController.text;
+    bookingModel.requirementDate = date;
+    bookingModel.requirementTime = time;
     bookingModel.bookingSlot = mealslot;
     bookingModel.numberOfPlates = no_of_plates;
     bookingModel.address = _addressController.text;
-    bookingModel.withMaterial = withmaterialChecked;
+    bookingModel.withMaterial = false;
     bookingModel.bookingId = bookingId;
-    bookingModel.bookingStatus = 'Pending';
+    bookingModel.bookingStatus = 'Submited';
 
     await firebaseFirestore
         .collection("bookings")
