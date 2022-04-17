@@ -599,6 +599,7 @@ class _chef_profileState extends State<chef_profile> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -626,7 +627,7 @@ class _chef_profileState extends State<chef_profile> {
                       alignment: Alignment.topCenter,
                       children: [
                         SizedBox(
-                          width: 370.0,
+                          width: width - 20,
                           height: 235.0,
                           child: Stack(
                             alignment: Alignment.topCenter,
@@ -640,7 +641,7 @@ class _chef_profileState extends State<chef_profile> {
                                     Positioned(
                                       bottom: 0,
                                       child: Container(
-                                        width: 370.0,
+                                        width: width - 20,
                                         height: 160.0,
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -723,10 +724,8 @@ class _chef_profileState extends State<chef_profile> {
                   //   height: 15,
                   // ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 15,
-                      ),
                       Text(
                         'Personal Details',
                         style: TextStyle(
@@ -765,7 +764,7 @@ class _chef_profileState extends State<chef_profile> {
                               Positioned(
                                 top: 0,
                                 child: Container(
-                                  width: 370.0,
+                                  width: width - 20,
                                   height: 250,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
@@ -986,34 +985,30 @@ class _chef_profileState extends State<chef_profile> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Current Location',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Current Location',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 160,
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          open_curloc_Dialog(data);
-                        },
-                        child: Icon(
-                          Icons.edit,
+                        InkWell(
+                          onTap: () async {
+                            open_curloc_Dialog(data);
+                          },
+                          child: Icon(
+                            Icons.edit,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 15,
@@ -1024,7 +1019,7 @@ class _chef_profileState extends State<chef_profile> {
                       alignment: Alignment.topCenter,
                       children: [
                         SizedBox(
-                          width: 370.0,
+                          width: width - 20,
                           height: 140.0,
                           child: Stack(
                             alignment: Alignment.topCenter,
@@ -1032,7 +1027,7 @@ class _chef_profileState extends State<chef_profile> {
                               Positioned(
                                 top: 0,
                                 child: Container(
-                                  width: 370.0,
+                                  width: width - 20,
                                   height: 140,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
@@ -1185,7 +1180,7 @@ class _chef_profileState extends State<chef_profile> {
                       alignment: Alignment.topCenter,
                       children: [
                         SizedBox(
-                          width: 370.0,
+                          width: width - 20,
                           height: 200.0,
                           child: Stack(
                             alignment: Alignment.topCenter,
@@ -1193,7 +1188,7 @@ class _chef_profileState extends State<chef_profile> {
                               Positioned(
                                 top: 0,
                                 child: Container(
-                                  width: 370.0,
+                                  width: width - 20,
                                   height: 200,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
