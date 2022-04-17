@@ -1,8 +1,7 @@
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
-import 'package:chef_connect_india/user_portal/Bookings_status.dart/inprogress.dart';
-import 'package:chef_connect_india/user_portal/Bookings_status.dart/pending.dart';
-import 'package:chef_connect_india/user_portal/Bookings_status.dart/success.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:chef_connect_india/user_portal/Bookings_status/inprogress.dart';
+import 'package:chef_connect_india/user_portal/Bookings_status/pending.dart';
+import 'package:chef_connect_india/user_portal/Bookings_status/success.dart';
 import 'package:flutter/material.dart';
 
 class user_bookings extends StatefulWidget {
@@ -22,59 +21,45 @@ class _user_bookingsState extends State<user_bookings> {
       // body: Center(child: Text('User Bookings')),
       body: SafeArea(
         child: Container(
-          child: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection("bookings")
-                .where('customerId', isEqualTo: widget.customerId)
-                .snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (!snapshot.hasData) {
-                return Center(
-                  child: Text('No Bookings Found..'),
-                );
-              }
-              return DefaultTabController(
-                length: 3,
-                child: Scaffold(
-                  drawer: NavBar(),
-                  appBar: AppBar(
-                    backgroundColor: Colors.indigo,
-                    bottom: const TabBar(
-                      tabs: [
-                        Tab(
-                            text: 'Pending',
-                            icon: Icon(
-                              Icons.pending_actions,
-                              // color: Colors.redAccent,
-                            )),
-                        Tab(
-                            text: 'Inprogress',
-                            icon: Icon(
-                              Icons.pending_outlined,
-                              // color: Colors.orange,
-                            )),
-                        Tab(
-                            text: 'Completed',
-                            icon: Icon(
-                              Icons.done_all,
-                              // color: Colors.green,
-                            )),
-                      ],
-                    ),
-                    centerTitle: true,
-                    title: const Text('My bookings'),
-                  ),
-                  body: TabBarView(
-                    children: [
-                      pending(),
-                      Inprogress(),
-                      success(),
-                    ],
-                  ),
+          child: DefaultTabController(
+            length: 3,
+            child: Scaffold(
+              drawer: NavBar(),
+              appBar: AppBar(
+                backgroundColor: Colors.indigo,
+                bottom: const TabBar(
+                  tabs: [
+                    Tab(
+                        text: 'Pending',
+                        icon: Icon(
+                          Icons.pending_actions,
+                          // color: Colors.redAccent,
+                        )),
+                    Tab(
+                        text: 'In Progress',
+                        icon: Icon(
+                          Icons.pending_outlined,
+                          // color: Colors.orange,
+                        )),
+                    Tab(
+                        text: 'Completed',
+                        icon: Icon(
+                          Icons.done_all,
+                          // color: Colors.green,
+                        )),
+                  ],
                 ),
-              );
-            },
+                centerTitle: true,
+                title: const Text('My Bookings'),
+              ),
+              body: TabBarView(
+                children: [
+                  pending(customerId: widget.customerId),
+                  Inprogress(customerId: widget.customerId),
+                  success(customerId: widget.customerId),
+                ],
+              ),
+            ),
           ),
         ),
       ),

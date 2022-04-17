@@ -5,8 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:chef_connect_india/Helper/models/user.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 class chef_registration_two extends StatefulWidget {

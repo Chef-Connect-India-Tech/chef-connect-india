@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_2.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 
 class chef_registration_one extends StatefulWidget {
   // final String phonenumber;
@@ -298,7 +297,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                             ),
                             DropdownButtonFormField<String>(
                               decoration: InputDecoration(
-                                labelText: 'Work Location',
+                                labelText: 'Prefered Work Location',
                                 labelStyle: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 15,
@@ -306,7 +305,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                     fontWeight: FontWeight.w600),
                                 prefixIcon: Icon(Icons.pin_drop),
                                 fillColor: Colors.white60,
-                                hintText: 'Select Work Location',
+                                hintText: 'Select Prefered Work Location',
                                 hintStyle: TextStyle(
                                     fontFamily: 'Montserrat',
                                     color: Colors.black,

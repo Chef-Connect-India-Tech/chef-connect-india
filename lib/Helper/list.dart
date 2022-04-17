@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable, unused_local_variable
 
-import 'package:chef_connect_india/user_portal/chef_details/chef_details.dart';
+// import 'package:chef_connect_india/user_portal/chef_details/chef_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -180,22 +180,22 @@ class _list_viewState extends State<list_view> {
         child: Expanded(
           child: InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => chef_pro(
-                    cid: widget.uid,
-                    chefid: widget.chefid,
-                    cheflevel: widget.level,
-                    experience: widget.experience,
-                    cuisine: widget.cusineexpert,
-                    city: widget.city,
-                    profilepic: widget.profilepic,
-                    specialities: widget.speciality,
-                    rating: double.parse(widget.rating),
-                  ),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => chef_pro(
+              //       cid: widget.uid,
+              //       chefid: widget.chefid,
+              //       cheflevel: widget.level,
+              //       experience: widget.experience,
+              //       cuisine: widget.cusineexpert,
+              //       city: widget.city,
+              //       profilepic: widget.profilepic,
+              //       specialities: widget.speciality,
+              //       rating: double.parse(widget.rating),
+              //     ),
+              //   ),
+              // );
               //print('onTap Food');
             },
             child: SizedBox(

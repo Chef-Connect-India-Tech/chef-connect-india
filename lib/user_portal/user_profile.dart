@@ -1132,6 +1132,8 @@ class _user_profileState extends State<user_profile> {
         ),
       );
 
+  final formGlobalKey = GlobalKey<FormState>();
+
   Future<String?> openDialog() => showDialog<String>(
         context: context,
         builder: (context) => AlertDialog(
@@ -1150,129 +1152,153 @@ class _user_profileState extends State<user_profile> {
                 }
                 return SingleChildScrollView(
                   child: Container(
-                    child: Column(
-                      children: [
-                        TextField(
-                          controller: _firstnameController =
-                              TextEditingController(text: dataa['firstname']),
-                          autofocus: true,
-                          decoration: InputDecoration(
-                              hintText: 'Enter your First Name'),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: _lastnameController =
-                              TextEditingController(text: dataa['lastname']),
-                          autofocus: true,
-                          decoration:
-                              InputDecoration(hintText: 'Enter your Last Name'),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: _emailController =
-                              TextEditingController(text: dataa['email']),
-                          autofocus: true,
-                          decoration:
-                              InputDecoration(hintText: 'Enter your email'),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          // readOnly: true,
-                          enabled: false,
-                          controller: _phoneController =
-                              TextEditingController(text: dataa['mobile1']),
-                          autofocus: true,
-                          decoration: InputDecoration(
-                              hintText: 'Enter your Mobile Num 1'),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: _phone2Controller =
-                              TextEditingController(text: dataa['mobile2']),
-                          autofocus: true,
-                          decoration: InputDecoration(
-                              hintText: 'Enter your Mobile Num 2'),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        // TextField(
-                        //   onTap: () => Utils.showSheet(
-                        //     context,
-                        //     child: buildDatePicker(),
-                        //     onClicked: () {
-                        //       final date_value =
-                        //           DateFormat('dd/MM/yyyy').format(dateTime);
-                        //       // Utils.showSnackBar(context, 'Selected "$date_value"');
-                        //       date = date_value;
-                        //       Navigator.of(context).pop();
-                        //       // Navigator.pop(context);
-                        //     },
-                        //   ),
-                        //   controller: _dobController =
-                        //       TextEditingController(text: dataa['dob']),
-                        //   readOnly: true,
-                        //   // decoration: InputDecoration(
-                        //   //   labelText: 'Date',
-                        //   // ),
-                        //   autofocus: true,
-                        //   decoration:
-                        //       InputDecoration(hintText: 'Enter your DOB'),
-                        // ),
-                        // SizedBox(
-                        //   height: 10,
-                        // ),
-                        TextField(
-                          controller: _cityController =
-                              TextEditingController(text: dataa['city']),
-                          autofocus: true,
-                          decoration:
-                              InputDecoration(hintText: 'Enter your City'),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: _countryController =
-                              TextEditingController(text: dataa['country']),
-                          autofocus: true,
-                          decoration:
-                              InputDecoration(hintText: 'Enter your Country'),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        TextField(
-                          controller: _pincodeController =
-                              TextEditingController(text: dataa['pincode']),
-                          autofocus: true,
-                          decoration:
-                              InputDecoration(hintText: 'Enter your Pincode'),
-                        ),
-                      ],
+                    child: Form(
+                      key: formGlobalKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            validator: ((value) {
+                              if (value!.isEmpty) {
+                                return 'Firstname should not be empty';
+                              } else if (value.length < 4) {
+                                return 'Firstname length cannot be less than 4';
+                              }
+                              return null;
+                            }),
+                            controller: _firstnameController =
+                                TextEditingController(text: dataa['firstname']),
+                            autofocus: true,
+                            decoration: InputDecoration(
+                                hintText: 'Enter your First Name'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            validator: ((value) {
+                              if (value!.isEmpty) {
+                                return 'Lastname should not be empty';
+                              } else if (value.length < 4) {
+                                return 'Lastname length cannot be less than 4';
+                              }
+                              return null;
+                            }),
+                            controller: _lastnameController =
+                                TextEditingController(text: dataa['lastname']),
+                            autofocus: true,
+                            decoration: InputDecoration(
+                                hintText: 'Enter your Last Name'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            controller: _emailController =
+                                TextEditingController(text: dataa['email']),
+                            autofocus: true,
+                            decoration:
+                                InputDecoration(hintText: 'Enter your email'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            // readOnly: true,
+                            enabled: false,
+                            controller: _phoneController =
+                                TextEditingController(text: dataa['mobile1']),
+                            autofocus: true,
+                            decoration: InputDecoration(
+                                hintText: 'Enter your Mobile Num 1'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            controller: _phone2Controller =
+                                TextEditingController(text: dataa['mobile2']),
+                            autofocus: true,
+                            decoration: InputDecoration(
+                                hintText: 'Enter your Mobile Num 2'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          // TextField(
+                          //   onTap: () => Utils.showSheet(
+                          //     context,
+                          //     child: buildDatePicker(),
+                          //     onClicked: () {
+                          //       final date_value =
+                          //           DateFormat('dd/MM/yyyy').format(dateTime);
+                          //       // Utils.showSnackBar(context, 'Selected "$date_value"');
+                          //       date = date_value;
+                          //       Navigator.of(context).pop();
+                          //       // Navigator.pop(context);
+                          //     },
+                          //   ),
+                          //   controller: _dobController =
+                          //       TextEditingController(text: dataa['dob']),
+                          //   readOnly: true,
+                          //   // decoration: InputDecoration(
+                          //   //   labelText: 'Date',
+                          //   // ),
+                          //   autofocus: true,
+                          //   decoration:
+                          //       InputDecoration(hintText: 'Enter your DOB'),
+                          // ),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          TextFormField(
+                            controller: _cityController =
+                                TextEditingController(text: dataa['city']),
+                            autofocus: true,
+                            decoration:
+                                InputDecoration(hintText: 'Enter your City'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            controller: _countryController =
+                                TextEditingController(text: dataa['country']),
+                            autofocus: true,
+                            decoration:
+                                InputDecoration(hintText: 'Enter your Country'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            controller: _pincodeController =
+                                TextEditingController(text: dataa['pincode']),
+                            autofocus: true,
+                            decoration:
+                                InputDecoration(hintText: 'Enter your Pincode'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
               }),
           actions: [
             TextButton(
-              onPressed: submit,
+              onPressed: () {
+                if (formGlobalKey.currentState!.validate()) {
+                  Navigator.of(context).pop();
+                  updateData();
+                }
+              },
               child: Text('Submit'),
             ),
           ],
         ),
       );
 
-  void submit() {
-    Navigator.of(context).pop();
-    updateData();
-  }
+  // void submit() {
+  //   Navigator.of(context).pop();
+  //   updateData();
+  // }
 }

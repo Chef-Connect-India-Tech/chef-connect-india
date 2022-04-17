@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:chef_connect_india/user_portal/chef_details/menu/menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';

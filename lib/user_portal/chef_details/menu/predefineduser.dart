@@ -50,43 +50,15 @@ class _predefineduserState extends State<predefineduser> {
                   ),
                 );
               },
-              // orderBy is compulsory to enable pagination
               query: FirebaseFirestore.instance
                   .collection('Menu')
                   .doc(widget.cid)
                   .collection('menu'),
-              // to fetch real-time data
               isLive: true,
             ),
           ],
         ),
       ),
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.fromLTRB(30, 0, 30, 15),
-      //   child: GestureDetector(
-      //     child: SizedBox(
-      //       height: 40,
-      //       width: MediaQuery.of(context).size.width - 100,
-      //       child: ElevatedButton(
-      //         style: ElevatedButton.styleFrom(
-      //           primary: Colors.indigo,
-      //           shape: RoundedRectangleBorder(
-      //             borderRadius: BorderRadius.circular(5),
-      //           ),
-      //         ),
-      //         onPressed: () {},
-      //         child: Text(
-      //           'Book A  Chef',
-      //           style: TextStyle(
-      //             fontFamily: 'Roboto',
-      //             fontSize: 18,
-      //             fontWeight: FontWeight.w600,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }
