@@ -196,7 +196,7 @@ class _chefcustomisedState extends State<chefcustomised> {
           backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
-            'ADD CUSTOMISED MENU',
+            'ADD YOUR DISHES',
             style: GoogleFonts.lato(
               color: Colors.black,
               fontSize: 20,

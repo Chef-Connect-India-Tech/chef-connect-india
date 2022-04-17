@@ -17,7 +17,7 @@ class viewdish extends StatelessWidget {
             child: Scaffold(
               appBar: AppBar(
                 title: new Text(
-                  'viewdish ',
+                  'Dishes and Menu ',
                   style: TextStyle(color: Colors.indigo),
                   textAlign: TextAlign.center,
                 ),
@@ -46,7 +46,7 @@ class viewdish extends StatelessWidget {
                                   Border.all(color: Colors.indigo, width: 1)),
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text("customised list"),
+                            child: Text("My Dishes"),
                           ),
                         ),
                       ),
@@ -58,7 +58,7 @@ class viewdish extends StatelessWidget {
                                   Border.all(color: Colors.indigo, width: 1)),
                           child: Align(
                             alignment: Alignment.center,
-                            child: Text("predefined list"),
+                            child: Text("My Menu"),
                           ),
                         ),
                       ),
