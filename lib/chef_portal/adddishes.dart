@@ -39,7 +39,7 @@ class _chef_add_dishState extends State<chef_add_dish> {
           FirebaseFirestore.instance
               .collection("Menu")
               .doc(FirebaseAuth.instance.currentUser!.uid)
-              .update({
+              .set({
             "customised menu": FieldValue.arrayUnion(target_list_2),
           });
           print('------------------------');
@@ -197,7 +197,7 @@ class _chef_add_dishState extends State<chef_add_dish> {
           backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
-            'ADD CUSTOMISED MENU',
+            'ADD YOUR DISHES',
             style: GoogleFonts.lato(
               color: Colors.black,
               fontSize: 20,
@@ -291,7 +291,7 @@ class _chef_add_dishState extends State<chef_add_dish> {
                           ),
                           onPressed: savedata,
                           child: Text(
-                            'Upload',
+                            'Save and Proceed',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               fontSize: 18,
@@ -303,15 +303,6 @@ class _chef_add_dishState extends State<chef_add_dish> {
                       SizedBox(
                         height: 40,
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                                (context),
-                                MaterialPageRoute(
-                                    builder: (context) => chef_dashboard()),
-                                (route) => false);
-                          },
-                          child: Text("Proceed"))
                     ],
                   ),
                 ),
