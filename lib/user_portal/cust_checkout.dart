@@ -554,12 +554,6 @@ class _user_custom_checkoutState extends State<user_custom_checkout> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  // Navigator.pushAndRemoveUntil(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (context) => Sucess_page(),
-                                  //     ),
-                                  //     (route) => false);
                                   postDetailsToFirestore(
                                       data['username'],
                                       data['mobile1'],

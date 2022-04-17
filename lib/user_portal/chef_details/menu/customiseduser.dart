@@ -2,8 +2,7 @@
 
 // ignore_for_file: must_be_immutable
 
-import 'package:chef_connect_india/user_portal/cust_checkout.dart';
-import 'package:chef_connect_india/user_portal/user_checkout.dart';
+import 'package:chef_connect_india/user_portal/custom_user_checkout.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -103,23 +102,31 @@ class _customiseduserState extends State<customiseduser> {
                   Fluttertoast.showToast(msg: "Please select dishes");
                 } else if (len < 7) {
                   Fluttertoast.showToast(msg: "Price is 2500");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => custom_user_checkout(
+                            chefContact: widget.chefContact,
+                            chefId: widget.chefId,
+                            dishes: _selectedItems,
+                          )),
+                    ),
+                  );
                 } else {
                   Fluttertoast.showToast(
                       msg: "Price is ${2500 + (len - 6) * 100}");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => custom_user_checkout(
+                            chefContact: widget.chefContact,
+                            chefId: widget.chefId,
+                            dishes: _selectedItems,
+                          )),
+                    ),
+                  );
                 }
                 print(_selectedItems);
-                print('Book A  Chef button pressed');
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => user_custom_checkout(
-                          chefContact: widget.chefContact,
-                          chefId: widget.chefId,
-                          dishes: _selectedItems,
-                        )),
-                  ),
-                );
               },
               child: Text(
                 'Proceed to Check Out',
