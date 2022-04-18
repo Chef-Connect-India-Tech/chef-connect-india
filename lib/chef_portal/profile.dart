@@ -1642,9 +1642,6 @@ class _MultiSelectState extends State<MultiSelect> {
   }
 
   // this function is called when the Cancel button is pressed
-  void _cancel() {
-    Navigator.pop(context);
-  }
 
 // this function is called when the Submit button is tapped
   void _submit() {
@@ -1673,7 +1670,9 @@ class _MultiSelectState extends State<MultiSelect> {
       actions: [
         TextButton(
           child: const Text('Cancel'),
-          onPressed: _cancel,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         ElevatedButton(
           child: const Text('Submit'),
@@ -1682,6 +1681,7 @@ class _MultiSelectState extends State<MultiSelect> {
                 .collection('chefs')
                 .doc(FirebaseAuth.instance.currentUser!.uid)
                 .update({'cuisineexpert': _selectedcusine});
+            Navigator.pop(context);
           },
         ),
       ],

@@ -222,6 +222,86 @@ class _chefcustomisedState extends State<chefcustomised> {
                       SizedBox(
                         height: 15,
                       ),
+                      TextFormField(
+                        autofocus: false,
+                        controller: adddish,
+                        keyboardType: TextInputType.name,
+                        // validator: (value) {
+                        //   if (value!.isEmpty ||
+                        //       RegExp(r'^[a-z A-Z]+$')
+                        //           .hasMatch(value)) {
+                        //     //allow upper and lower case alphabets and space
+                        //     return "Enter Correct add dish";
+                        //   } else {
+                        //     return null;
+                        //   }
+                        // },
+                        onSaved: (value) {
+                          adddish.text = value!;
+                        },
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          labelText: 'add dish',
+                          labelStyle: TextStyle(
+                              fontSize: 15,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                          prefixIcon: Icon(Icons.food_bank),
+                          fillColor: Colors.white60,
+                          hintText: 'Add Dish',
+                          hintStyle:
+                              TextStyle(color: Colors.black, fontSize: 15),
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                              width: 2,
+                            ),
+                          ),
+                          focusedBorder: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(10.0),
+                            borderSide: BorderSide(
+                              color: Colors.white60,
+                              width: 2,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        child: Text("Continue"),
+                        onPressed: () {
+                          List aa = [adddish.text];
+                          var target_list_2 = List<dynamic>.from(aa);
+                          var len = ((target_list_2).length);
+                          var aaa = (adddish.text).length;
+                          print("le");
+                          print(aaa);
+                          if (aaa == 0) {
+                            Fluttertoast.showToast(msg: "Please Enter Items");
+                          } else {
+                            FirebaseFirestore.instance
+                                .collection("Menu")
+                                .doc(FirebaseAuth.instance.currentUser!.uid)
+                                .update({
+                              "customised menu":
+                                  FieldValue.arrayUnion(target_list_2),
+                            });
+                            print('------------------------');
+                            print(target_list_2);
+                            Fluttertoast.showToast(
+                                msg:
+                                    "successfully ${target_list_2.toString()} added");
+                          }
+                        },
+                      ),
                       Row(
                         children: [
                           Text(
