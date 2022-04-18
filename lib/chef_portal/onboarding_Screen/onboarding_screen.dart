@@ -69,15 +69,6 @@ class _Onboarding_screen_chefState extends State<Onboarding_screen_chef> {
             padding: const EdgeInsets.symmetric(horizontal: 45.0),
             alignment: Alignment.centerLeft,
             child: const Text(
-              'Private chef',
-              style: pageTitleStyle,
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 45.0),
-            alignment: Alignment.centerLeft,
-            child: const Text(
               'Kitchen professional',
               style: pageTitleStyle,
               textAlign: TextAlign.left,

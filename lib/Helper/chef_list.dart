@@ -130,49 +130,49 @@ class _chef_list_viewState extends State<chef_list_view> {
                               fontSize: 16,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 2.0),
-                            child: Row(
-                              children: <Widget>[
-                                SmoothStarRating(
-                                  size: 20,
-                                  borderColor: Colors.grey.shade200,
-                                  rating: 1,
-                                  starCount: 1,
-                                  allowHalfRating: false,
-                                  filledIconData: Icons.star,
-                                  onRatingChanged: (value) {
-                                    setState(() {
-                                      rating = value;
-                                    });
-                                  },
-                                  color: Color(0xFFFF4C4C),
-                                ),
-                                SizedBox(
-                                  width: 3.0,
-                                ),
-                                Text(
-                                  '${widget.rating}',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 15,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 3.0,
-                                ),
-                                // Text(
-                                //   '('total no.of ratings')',
-                                //   style: TextStyle(
-                                //     fontWeight: FontWeight.w600,
-                                //     color: Colors.grey,
-                                //     fontSize: 13,
-                                //   ),
-                                // )
-                              ],
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(top: 2.0),
+                          //   child: Row(
+                          //     children: <Widget>[
+                          //       SmoothStarRating(
+                          //         size: 20,
+                          //         borderColor: Colors.grey.shade200,
+                          //         rating: 1,
+                          //         starCount: 1,
+                          //         allowHalfRating: false,
+                          //         filledIconData: Icons.star,
+                          //         onRatingChanged: (value) {
+                          //           setState(() {
+                          //             rating = value;
+                          //           });
+                          //         },
+                          //         color: Color(0xFFFF4C4C),
+                          //       ),
+                          //       SizedBox(
+                          //         width: 3.0,
+                          //       ),
+                          //       Text(
+                          //         '${widget.rating}',
+                          //         style: TextStyle(
+                          //           fontWeight: FontWeight.w600,
+                          //           fontFamily: 'Montserrat',
+                          //           fontSize: 15,
+                          //         ),
+                          //       ),
+                          //       SizedBox(
+                          //         width: 3.0,
+                          //       ),
+                          //       // Text(
+                          //       //   '('total no.of ratings')',
+                          //       //   style: TextStyle(
+                          //       //     fontWeight: FontWeight.w600,
+                          //       //     color: Colors.grey,
+                          //       //     fontSize: 13,
+                          //       //   ),
+                          //       // )
+                          //     ],
+                          //   ),
+                          // ),
                           // Text(
                           //   '${cuisine_exp}',
                           //   style: TextStyle(

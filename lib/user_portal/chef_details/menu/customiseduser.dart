@@ -135,8 +135,7 @@ class _customiseduserState extends State<customiseduser> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => user_custom_checkout(
-                          cid: widget.cid,
+                    builder: ((context) => custom_user_checkout(
                           chefContact: widget.chefContact,
                           chefId: widget.chefId,
                           dishes: _selectedItems,
