@@ -97,17 +97,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Text(
                               widget.isowner
-                                  ? "Boost Your Chef Career"
+                                  ? "Find your dream jobs with\n chef connect india"
                                   : "Hire a Chef",
                               textAlign: TextAlign.center,
-                              style: GoogleFonts.dancingScript(
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
                                 color: Colors.white,
-                                textStyle:
-                                    Theme.of(context).textTheme.headline4,
-                                fontSize: 50,
-                                fontWeight: FontWeight.w900,
-                                fontStyle: FontStyle.italic,
+                                fontSize: 24,
+                                backgroundColor: Colors.black54,
                               ),
+                              // style: GoogleFonts.dancingScript(
+                              //   color: Colors.white,
+                              //   textStyle:
+                              //       Theme.of(context).textTheme.headline4,
+                              //   fontSize: 28,
+                              //   fontWeight: FontWeight.w900,
+                              //   fontStyle: FontStyle.italic,
+                              // ),
                               // style: TextStyle(
                               //     fontFamily: 'SquarePeg',
                               //     color: Colors.white,

@@ -284,15 +284,18 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.requirementDate}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.requirementDate}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -303,19 +306,22 @@ class _listpredefinedState extends State<listpredefined> {
                               child: Row(
                                 children: [
                                   Text(
-                                    'Requirement Time',
+                                    'Requirement Time:',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.requirementTime}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.requirementTime}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -330,15 +336,21 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.bookingSlot}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Container(
+                                    padding: EdgeInsets.only(left: 10),
+                                    width:
+                                        MediaQuery.of(context).size.width - 300,
+                                    child: Text(
+                                      '${widget.bookingSlot}',
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -353,15 +365,18 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.bookingType}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.bookingType}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -376,15 +391,18 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.customerId}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.customerId}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -399,15 +417,18 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.location}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.location}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -422,15 +443,18 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.numberOfPlates}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.numberOfPlates}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -445,15 +469,18 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.withMaterial}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.withMaterial}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -468,15 +495,18 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.address}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.address}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -491,15 +521,18 @@ class _listpredefinedState extends State<listpredefined> {
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  Text(
-                                    '${widget.bookingStatus}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18.0,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${widget.bookingStatus}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
                                     ),
                                   )
                                 ],

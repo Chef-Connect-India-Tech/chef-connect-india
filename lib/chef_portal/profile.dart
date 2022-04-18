@@ -656,7 +656,7 @@ class _chef_profileState extends State<chef_profile> {
                       alignment: Alignment.topCenter,
                       children: [
                         SizedBox(
-                          width: width - 20,
+                          width: width,
                           height: 235.0,
                           child: Stack(
                             alignment: Alignment.topCenter,
@@ -670,7 +670,7 @@ class _chef_profileState extends State<chef_profile> {
                                     Positioned(
                                       bottom: 0,
                                       child: Container(
-                                        width: width - 20,
+                                        width: width - 50,
                                         height: 160.0,
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -793,7 +793,7 @@ class _chef_profileState extends State<chef_profile> {
                               Positioned(
                                 top: 0,
                                 child: Container(
-                                  width: width - 20,
+                                  width: width - 50,
                                   height: 250,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
@@ -1217,7 +1217,7 @@ class _chef_profileState extends State<chef_profile> {
                               Positioned(
                                 top: 0,
                                 child: Container(
-                                  width: width - 20,
+                                  width: width - 30,
                                   height: 200,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
@@ -1453,7 +1453,7 @@ class _chef_profileState extends State<chef_profile> {
                     ),
                   ),
                   Container(
-                    height: 100,
+                    height: 130,
                     width: width - 20,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),

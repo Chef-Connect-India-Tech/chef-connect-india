@@ -42,10 +42,11 @@ class _Onboarding_screen_chefState extends State<Onboarding_screen_chef> {
                 const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
             alignment: Alignment.centerLeft,
             child: const Text(
-              '''When you have cravings of specific cuisines you don't need to search for multiple restaurants and then worry about the qualityChef connect India gives you the option of Hire a private chef 
--Book according to your budget
--Chef will send you his menu for you to choose your favourites
-- Cleaning will be done by the Chef''',
+              """Book a permanent chef for your home, these will be for full time services
+                -Multiple trial options until satisfaction
+                -Chef as per your requirements 
+                -Proper background check 
+                -2 replacement options given""",
               style: pageInfoStyle,
               textAlign: TextAlign.left,
             ),
@@ -79,11 +80,11 @@ class _Onboarding_screen_chefState extends State<Onboarding_screen_chef> {
                 const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
             alignment: Alignment.centerLeft,
             child: const Text(
-              '''Hiring for skilled chef at your cafe or restaurant ?, Well don't you worry 
-Hire kitchen professionals with the help of Chef Connect India
-- Proper background check of all the chefs provided
-- Budget friendly staff as per your requirement
--3 trial options''',
+              """Hire a chef for your hotel restaurant or pg or any other commercial requirements 
+-3 trial once you buy the services 
+-Yearly replacement services given 
+-Yearly subscription plans available
+-Proper background check done""",
               style: pageInfoStyle,
               textAlign: TextAlign.left,
             ),
@@ -117,12 +118,11 @@ Hire kitchen professionals with the help of Chef Connect India
                 const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
             alignment: Alignment.centerLeft,
             child: const Text(
-              '''Special occasions should be savoured 
-Book a party chef with Chef Connect India 
-We provide 3 trial options (3 chefs of different cuisines).
-Customised menu options,
-Ingredients list is shared on time,
-Chef will clean the kitchen and leave''',
+              """Book a chef for your party or any other occasion  ( 1 day or multiple day services provided ) but specifically for one day orders
+-Customised menu options
+-Ingredients list shared on time
+-Book a chef within your budget
+-Proper background check done""",
               style: pageInfoStyle,
               textAlign: TextAlign.left,
             ),
