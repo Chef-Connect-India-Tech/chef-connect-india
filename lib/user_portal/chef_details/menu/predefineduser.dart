@@ -343,7 +343,7 @@ class _listpredefinedState extends State<listpredefined> {
                                     starters: widget.starters,
                                     desserts: widget.desserts,
                                     maincourse: widget.maincourse,
-                                    cid: '',
+                                    cid: widget.cid,
                                   )),
                             ),
                           );
