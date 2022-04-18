@@ -1,5 +1,6 @@
 // ignore_for_file: unused_element
 
+import 'package:chef_connect_india/chef_portal/viewdishes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -489,6 +490,12 @@ class _predefinedState extends State<predefined> {
                             onPressed: () {
                               _createAppointment();
                               print(_menunameController.text);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => viewdish(),
+                                ),
+                              );
                             },
                             child: Text(
                               'Add Menu',
