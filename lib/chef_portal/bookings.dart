@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
@@ -111,7 +113,7 @@ class listpredefined extends StatefulWidget {
     required this.bookingId,
     required this.bookingTime,
     required this.bookingDate,
-    required this.requirementDate, //
+    required this.requirementDate,
     required this.requirementTime, //
     required this.bookingSlot, //
     required this.bookingType, //
@@ -152,7 +154,7 @@ class _listpredefinedState extends State<listpredefined> {
                   child: Container(
                     padding: const EdgeInsets.only(left: 10.0),
                     width: scwidth - 90,
-                    height: 100.0,
+                    height: 120.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.horizontal(
                         left: Radius.circular(10.0),
@@ -179,7 +181,7 @@ class _listpredefinedState extends State<listpredefined> {
                               style: GoogleFonts.roboto(
                                 fontSize: 20.0,
                                 color: const Color(0xFF4A4B4D),
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
@@ -218,61 +220,290 @@ class _listpredefinedState extends State<listpredefined> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  "${widget.bookingId}'s menu",
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                ExpandableButton(
+                                  child: Icon(
+                                    Icons.cancel_outlined,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ],
+                            ),
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                              padding: const EdgeInsets.only(top: 16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "${widget.bookingId}'s menu",
-                                    style: GoogleFonts.roboto(
-                                      fontSize: 20.0,
-                                      color: const Color(0xFF4A4B4D),
-                                      fontWeight: FontWeight.w700,
+                                    'dishes:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16.0,
                                     ),
                                   ),
-                                  ExpandableButton(
-                                    child: Icon(
-                                      Icons.cancel_outlined,
-                                      color: Colors.red,
-                                    ),
+                                  Wrap(
+                                    spacing: 5.0,
+                                    children: widget.selectedMenu
+                                        .map(
+                                          (e) => Chip(
+                                            backgroundColor:
+                                                Colors.orange.shade100,
+                                            label: Text(
+                                              e.toString().toLowerCase(),
+                                              style: TextStyle(
+                                                  color: Colors.orange.shade900,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          ),
+                                        )
+                                        .toList(),
                                   ),
                                 ],
                               ),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'dishes:',
-                                  style: GoogleFonts.roboto(
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Requirement Date:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 18.0,
-                                      color: const Color(0xFF4A4B4D),
-                                      height: 1.11,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Wrap(
-                                  spacing: 5.0,
-                                  children: widget.selectedMenu
-                                      .map(
-                                        (e) => Chip(
-                                          backgroundColor:
-                                              Colors.orange.shade100,
-                                          label: Text(
-                                            e.toString().toLowerCase(),
-                                            style: TextStyle(
-                                                color: Colors.orange.shade900,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                        ),
-                                      )
-                                      .toList(),
-                                ),
-                              ],
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.requirementDate}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Requirement Time',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.requirementTime}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Booking slot:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.bookingSlot}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Booking Type:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.bookingType}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Customer Id:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.customerId}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Location:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.location}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Number of plates:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.numberOfPlates}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'With Material:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.withMaterial}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Address:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.address}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Booking Status:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${widget.bookingStatus}',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),

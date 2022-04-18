@@ -135,7 +135,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Username',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -152,7 +152,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'First Name',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -169,7 +169,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Last Name',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -186,7 +186,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Email',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -203,7 +203,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Mobile 1',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -220,7 +220,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Mobile 2',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -237,7 +237,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Date of Birth',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -254,7 +254,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'City',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -271,7 +271,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Country',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -288,7 +288,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Pincode',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -305,7 +305,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Selected Location',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -322,7 +322,7 @@
 //                           Expanded(
 //                             child: Text(
 //                               'Hiremode',
-//                               style: TextStyle(fontWeight: FontWeight.bold),
+//                               style: TextStyle(fontWeight: FontWeight.w700),
 //                             ),
 //                           ),
 //                           SizedBox(
@@ -699,7 +699,7 @@ class _user_profileState extends State<user_profile> {
                                             'Username:',
                                             style: TextStyle(
                                               fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.w700,
                                               fontSize: 18.0,
                                             ),
                                           ),
@@ -726,7 +726,7 @@ class _user_profileState extends State<user_profile> {
                                             'Mobile:',
                                             style: TextStyle(
                                               fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.w700,
                                               fontSize: 18.0,
                                             ),
                                           ),
@@ -753,7 +753,7 @@ class _user_profileState extends State<user_profile> {
                                             'City: ',
                                             style: TextStyle(
                                               fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.w700,
                                               fontSize: 18.0,
                                             ),
                                           ),
@@ -817,7 +817,7 @@ class _user_profileState extends State<user_profile> {
                                     'Mobile 2 : ',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -848,7 +848,7 @@ class _user_profileState extends State<user_profile> {
                                     'Email : ',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -880,7 +880,7 @@ class _user_profileState extends State<user_profile> {
                                     'Date of Birth : ',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -939,7 +939,7 @@ class _user_profileState extends State<user_profile> {
                                     'City : ',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -970,7 +970,7 @@ class _user_profileState extends State<user_profile> {
                                     'Country : ',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -1002,7 +1002,7 @@ class _user_profileState extends State<user_profile> {
                                     'Pincode : ',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -1055,7 +1055,7 @@ class _user_profileState extends State<user_profile> {
                                     'Prefered City : ',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -1087,7 +1087,7 @@ class _user_profileState extends State<user_profile> {
                                     'Prefered Chef Type : ',
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18.0,
                                     ),
                                   ),
