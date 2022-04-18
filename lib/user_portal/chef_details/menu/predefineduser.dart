@@ -191,61 +191,21 @@ class _listpredefinedState extends State<listpredefined> {
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 30,
-                                      // width: 280,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          primary: Colors.indigo,
-                                          onPrimary:
-                                              Color.fromARGB(255, 18, 68, 138),
-                                        ),
-                                        onPressed: () {
-                                          Fluttertoast.showToast(
-                                              msg:
-                                                  "Selected: ${widget.menuname}'s Menu",
-                                              toastLength: Toast.LENGTH_SHORT,
-                                              gravity: ToastGravity.SNACKBAR,
-                                              timeInSecForIosWeb: 1,
-                                              backgroundColor: Colors.red,
-                                              textColor: Colors.white,
-                                              fontSize: 16.0);
-                                          // print(widget.menuname);
-                                          // print(widget.starters);
-                                          // print(widget.desserts);
-                                          // print(widget.maincourse);
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: ((context) =>
-                                                  user_checkout(
-                                                      cid: widget.cid,
-                                                      chefId: widget.chefId,
-                                                      chefContact:
-                                                          widget.chefContact,
-                                                      menu: widget.menuname,
-                                                      starters: widget.starters,
-                                                      desserts: widget.desserts,
-                                                      maincourse:
-                                                          widget.maincourse)),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          'Select Menu',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            // fontFamily: 'Montserrat',
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
+                                    ExpandableButton(
+                                      child: Icon(
+                                        Icons.cancel_outlined,
+                                        color: Colors.red,
                                       ),
-                                    )
+                                    ),
+                                    // IconButton(
+                                    //   onPressed: () {
+                                    //     Expandable;
+                                    //   },
+                                    //   icon: Icon(
+                                    //     Icons.cancel_outlined,
+                                    //     color: Colors.red,
+                                    //   ),
+                                    // )
                                   ],
                                 ),
                               ),

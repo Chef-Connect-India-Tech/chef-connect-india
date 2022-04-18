@@ -1399,35 +1399,60 @@ class _chef_profileState extends State<chef_profile> {
                   SizedBox(
                     height: 15,
                   ),
-                  Text(
-                    "cuisineexpert",
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "cuisine expert",
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.edit,
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        data["cuisineexpert"].toString(),
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
+                  Container(
+                    height: 100,
+                    width: width - 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.16),
+                          offset: Offset(0, 3.0),
+                          blurRadius: 12.0,
                         ),
-                      ),
-                      Spacer(),
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.edit,
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: 15,
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 30, left: 20),
+                          child: Text(
+                            data["cuisineexpert"].toString(),
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
 
                   SizedBox(

@@ -13,7 +13,14 @@ class chef_bookings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Firestore pagination example'),
+        title: const Text(
+          'My Bookings',
+          style: TextStyle(
+            fontFamily: 'Montserrat',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -225,6 +232,12 @@ class _listpredefinedState extends State<listpredefined> {
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
+                                  ExpandableButton(
+                                    child: Icon(
+                                      Icons.cancel_outlined,
+                                      color: Colors.red,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -270,41 +283,28 @@ class _listpredefinedState extends State<listpredefined> {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                ElevatedButton(
-                                    onPressed: () {
-                                      // var url = widget.chefContact;
-                                      // var p = '+919876543210';
-                                      //launch("tel: ${widget.customerPhone}");
-                                      // const phonenumber = '9876543210';
-                                      // const url = 'tel:$phonenumber';
-                                      // if (await canLaunch(url)) {
-                                      //   await launch('9876543210');
-                                      // }
-                                      // //_launchURL(widget.customerPhone);
-                                    },
-                                    child: Text("call customer")),
-                                Spacer(),
-                                ElevatedButton(
-                                    onPressed: () {}, child: Text("call chef")),
+                                // ElevatedButton(
+                                //     onPressed: () {
+                                //       // var url = widget.chefContact;
+                                //       // var p = '+919876543210';
+                                //       //launch("tel: ${widget.customerPhone}");
+                                //       // const phonenumber = '9876543210';
+                                //       // const url = 'tel:$phonenumber';
+                                //       // if (await canLaunch(url)) {
+                                //       //   await launch('9876543210');
+                                //       // }
+                                //       // //_launchURL(widget.customerPhone);
+                                //     },
+                                //     child: Text("call customer")),
+                                // Spacer(),
+                                // ElevatedButton(
+                                //     onPressed: () {}, child: Text("call chef")),
                               ],
                             ),
                           ],
                         ),
                         SizedBox(
                           height: 20,
-                        ),
-                        ExpandableButton(
-                          theme: ExpandableThemeData(iconColor: Colors.blue),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
-                            child: Text(
-                              'Close',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     ),
