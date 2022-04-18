@@ -140,8 +140,10 @@ class _view_moreState extends State<view_more> {
           );
         },
         // orderBy is compulsory to enable pagination
-        query:
-            FirebaseFirestore.instance.collection('chefs').orderBy('firstname'),
+        query: FirebaseFirestore.instance
+            .collection('chefs')
+            .orderBy('firstname')
+            .where("verified", isEqualTo: true),
         // to fetch real-time data
         isLive: true,
       ),
