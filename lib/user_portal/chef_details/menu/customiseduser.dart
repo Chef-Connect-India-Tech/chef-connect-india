@@ -6,6 +6,7 @@ import 'package:chef_connect_india/user_portal/cust_checkout.dart';
 import 'package:chef_connect_india/user_portal/custom_user_checkout.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 
@@ -41,10 +42,72 @@ class _customiseduserState extends State<customiseduser> {
 
   var a = 'a';
   Widget build(BuildContext context) {
+    Future showToast(String message) async {
+      await Fluttertoast.cancel();
+
+      Fluttertoast.showToast(msg: message, fontSize: 18);
+    }
+
+    final isDialOpen = ValueNotifier(false);
+
     print(widget.cid);
     print('lol---r');
     print(widget.chefId);
     return Scaffold(
+      floatingActionButton: SpeedDial(
+        child: Image(
+          image: AssetImage('assets/customer-service.png'),
+          height: 100,
+        ),
+        // animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: Colors.black,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.4,
+        spacing: 10,
+        spaceBetweenChildren: 10,
+        closeManually: true,
+        openCloseDial: isDialOpen,
+        children: [
+          SpeedDialChild(
+            child: Image(
+              image: AssetImage('assets/socialicons/gmail.png'),
+              height: 35,
+            ),
+            backgroundColor: Colors.transparent,
+            label: 'Mail',
+            onTap: () => showToast(
+              'Selected Mail..',
+            ),
+          ),
+          SpeedDialChild(
+            child: Image(image: AssetImage('assets/socialicons/facebook.png')),
+            // backgroundColor: Colors.blue,
+            label: 'Facebook',
+            onTap: () => showToast(
+              'Selected facebook..',
+            ),
+          ),
+          SpeedDialChild(
+            child: Image(image: AssetImage('assets/socialicons/whatsapp.png')),
+            // backgroundColor: Colors.indigo,
+            label: 'Whatsapp',
+            onTap: () => showToast(
+              'Selected whatsapp..',
+            ),
+          ),
+          SpeedDialChild(
+            child: Image(image: AssetImage('assets/socialicons/instagram.png')),
+            // backgroundColor: Colors.indigo,
+            label: 'Instagram',
+            onTap: () => showToast('Selected Instagram..'),
+          ),
+          SpeedDialChild(
+            child: Image(image: AssetImage('assets/socialicons/twitter.png')),
+            label: 'Twitter',
+            onTap: () => showToast('Selected Twitter..'),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: PaginateFirestore(
           itemBuilderType: PaginateBuilderType.listView,

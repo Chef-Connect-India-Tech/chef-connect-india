@@ -50,76 +50,76 @@ class _chefcustomisedState extends State<chefcustomised> {
     );
 
     // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("ADD DISH"),
-      actions: [
-        TextFormField(
-          autofocus: false,
-          controller: adddish,
-          keyboardType: TextInputType.name,
-          // validator: (value) {
-          //   if (value!.isEmpty ||
-          //       RegExp(r'^[a-z A-Z]+$')
-          //           .hasMatch(value)) {
-          //     //allow upper and lower case alphabets and space
-          //     return "Enter Correct add dish";
-          //   } else {
-          //     return null;
-          //   }
-          // },
-          onSaved: (value) {
-            adddish.text = value!;
-          },
-          textInputAction: TextInputAction.next,
-          decoration: InputDecoration(
-            labelText: 'add dish',
-            labelStyle: TextStyle(
-                fontSize: 15, color: Colors.black, fontWeight: FontWeight.bold),
-            prefixIcon: Icon(Icons.food_bank),
-            fillColor: Colors.white60,
-            hintText: 'Add Dish',
-            hintStyle: TextStyle(color: Colors.black, fontSize: 15),
-            filled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: Colors.white,
-                width: 2,
-              ),
-            ),
-            focusedBorder: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-              borderSide: BorderSide(
-                color: Colors.white60,
-                width: 2,
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: Colors.white,
-                width: 2,
-              ),
-            ),
-          ),
-        ),
-        Row(
-          children: [
-            cancelButton,
-            Spacer(),
-            continueButton,
-          ],
-        ),
-      ],
-    );
+    // AlertDialog alert = AlertDialog(
+    //   title: Text("ADD DISH"),
+    //   actions: [
+    //     TextFormField(
+    //       autofocus: false,
+    //       controller: adddish,
+    //       keyboardType: TextInputType.name,
+    //       // validator: (value) {
+    //       //   if (value!.isEmpty ||
+    //       //       RegExp(r'^[a-z A-Z]+$')
+    //       //           .hasMatch(value)) {
+    //       //     //allow upper and lower case alphabets and space
+    //       //     return "Enter Correct add dish";
+    //       //   } else {
+    //       //     return null;
+    //       //   }
+    //       // },
+    //       onSaved: (value) {
+    //         adddish.text = value!;
+    //       },
+    //       textInputAction: TextInputAction.next,
+    //       decoration: InputDecoration(
+    //         labelText: 'add dish',
+    //         labelStyle: TextStyle(
+    //             fontSize: 15, color: Colors.black, fontWeight: FontWeight.bold),
+    //         prefixIcon: Icon(Icons.food_bank),
+    //         fillColor: Colors.white60,
+    //         hintText: 'Add Dish',
+    //         hintStyle: TextStyle(color: Colors.black, fontSize: 15),
+    //         filled: true,
+    //         border: OutlineInputBorder(
+    //           borderRadius: BorderRadius.circular(10),
+    //           borderSide: BorderSide(
+    //             color: Colors.white,
+    //             width: 2,
+    //           ),
+    //         ),
+    //         focusedBorder: new OutlineInputBorder(
+    //           borderRadius: new BorderRadius.circular(10.0),
+    //           borderSide: BorderSide(
+    //             color: Colors.white60,
+    //             width: 2,
+    //           ),
+    //         ),
+    //         enabledBorder: OutlineInputBorder(
+    //           borderRadius: BorderRadius.circular(10),
+    //           borderSide: BorderSide(
+    //             color: Colors.white,
+    //             width: 2,
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //     Row(
+    //       children: [
+    //         cancelButton,
+    //         Spacer(),
+    //         continueButton,
+    //       ],
+    //     ),
+    //   ],
+    // );
 
     // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (BuildContext context) {
+    //     return alert;
+    //   },
+    // );
   }
 
   var name;
@@ -190,211 +190,212 @@ class _chefcustomisedState extends State<chefcustomised> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      key: _scaffoldKey,
+      appBar: AppBar(
         backgroundColor: Colors.white,
-        key: _scaffoldKey,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text(
-            'ADD YOUR DISHES',
-            style: GoogleFonts.lato(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          iconTheme: IconThemeData(
+        elevation: 0,
+        title: Text(
+          'ADD YOUR DISHES',
+          style: GoogleFonts.lato(
             color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        body: SingleChildScrollView(
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              //
-              Form(
-                key: _formKey,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  padding: EdgeInsets.only(top: 0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        autofocus: false,
-                        controller: adddish,
-                        keyboardType: TextInputType.name,
-                        // validator: (value) {
-                        //   if (value!.isEmpty ||
-                        //       RegExp(r'^[a-z A-Z]+$')
-                        //           .hasMatch(value)) {
-                        //     //allow upper and lower case alphabets and space
-                        //     return "Enter Correct add dish";
-                        //   } else {
-                        //     return null;
-                        //   }
-                        // },
-                        onSaved: (value) {
-                          adddish.text = value!;
-                        },
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          labelText: 'add dish',
-                          labelStyle: TextStyle(
-                              fontSize: 15,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                          prefixIcon: Icon(Icons.food_bank),
-                          fillColor: Colors.white60,
-                          hintText: 'Add Dish',
-                          hintStyle:
-                              TextStyle(color: Colors.black, fontSize: 15),
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: new OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color: Colors.white60,
-                              width: 2,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        child: Text("Continue"),
-                        onPressed: () {
-                          List aa = [adddish.text];
-                          var target_list_2 = List<dynamic>.from(aa);
-                          var len = ((target_list_2).length);
-                          var aaa = (adddish.text).length;
-                          print("le");
-                          print(aaa);
-                          if (aaa == 0) {
-                            Fluttertoast.showToast(msg: "Please Enter Items");
-                          } else {
-                            FirebaseFirestore.instance
-                                .collection("Menu")
-                                .doc(FirebaseAuth.instance.currentUser!.uid)
-                                .update({
-                              "customised menu":
-                                  FieldValue.arrayUnion(target_list_2),
-                            });
-                            print('------------------------');
-                            print(target_list_2);
-                            Fluttertoast.showToast(
-                                msg:
-                                    "successfully ${target_list_2.toString()} added");
-                          }
-                        },
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Enter Dishes',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          CircleAvatar(
-                            radius: 15,
-                            backgroundColor: Colors.grey.shade200,
-                            child: InkWell(
-                              onTap: _showMultiSelect,
-                              child: Icon(
-                                Icons.add,
-                                size: 18,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 250,
-                        width: 400,
-                        decoration: BoxDecoration(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            //
+            Form(
+              key: _formKey,
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.only(top: 0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 15,
+                    ),
+                    TextFormField(
+                      autofocus: false,
+                      controller: adddish,
+                      keyboardType: TextInputType.name,
+                      // validator: (value) {
+                      //   if (value!.isEmpty ||
+                      //       RegExp(r'^[a-z A-Z]+$')
+                      //           .hasMatch(value)) {
+                      //     //allow upper and lower case alphabets and space
+                      //     return "Enter Correct add dish";
+                      //   } else {
+                      //     return null;
+                      //   }
+                      // },
+                      onSaved: (value) {
+                        adddish.text = value!;
+                      },
+
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        labelText: 'Add dish',
+                        labelStyle: TextStyle(
+                            fontSize: 15,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold),
+                        fillColor: Colors.white60,
+                        hintText: 'Add Dish',
+                        hintStyle:
+                            TextStyle(color: Colors.black45, fontSize: 15),
+                        filled: true,
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade200,
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 2,
+                          ),
                         ),
-                        child: InkWell(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Wrap(
-                                  children: _selectedItems
-                                      .map((e) => Chip(
-                                            label: Text(e),
-                                          ))
-                                      .toList(),
-                                ),
-                              ],
-                            ),
+                        focusedBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(10.0),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 2,
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        width: 360,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.indigo,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                    ),
+                    TextButton(
+                      child: Text("Continue"),
+                      onPressed: () {
+                        List aa = [adddish.text];
+                        var target_list_2 = List<dynamic>.from(aa);
+                        var len = ((target_list_2).length);
+                        var aaa = (adddish.text).length;
+                        print("le");
+                        print(aaa);
+                        if (aaa == 0) {
+                          Fluttertoast.showToast(msg: "Please Enter Items");
+                        } else {
+                          FirebaseFirestore.instance
+                              .collection("Menu")
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .update({
+                            "customised menu":
+                                FieldValue.arrayUnion(target_list_2),
+                          });
+                          print('------------------------');
+                          print(target_list_2);
+                          Fluttertoast.showToast(
+                              msg:
+                                  "successfully ${target_list_2.toString()} added");
+                        }
+                      },
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Enter Dishes',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
                           ),
-                          onPressed: savedata,
-                          child: Text(
-                            'Upload',
-                            style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        CircleAvatar(
+                          radius: 15,
+                          backgroundColor: Colors.grey.shade200,
+                          child: InkWell(
+                            onTap: _showMultiSelect,
+                            child: Icon(
+                              Icons.add,
+                              size: 18,
+                              color: Colors.black,
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 250,
+                      width: 400,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey.shade200,
                       ),
-                      SizedBox(
-                        height: 40,
+                      child: InkWell(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Wrap(
+                                children: _selectedItems
+                                    .map((e) => Chip(
+                                          label: Text(e),
+                                        ))
+                                    .toList(),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      width: 360,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.indigo,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: savedata,
+                        child: Text(
+                          'Upload',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.indigo,
-          foregroundColor: Colors.white,
-          onPressed: () => {showAlertDialog(context)},
-        ));
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   backgroundColor: Colors.indigo,
+      //   foregroundColor: Colors.white,
+      //   onPressed: () => {showAlertDialog(context)},
+      // ),
+    );
   }
 
   Future<void> savedata() async {

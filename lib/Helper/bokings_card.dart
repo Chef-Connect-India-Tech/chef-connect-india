@@ -243,12 +243,17 @@ class _bookings_cardState extends State<bookings_card> {
                               fontSize: 14.0,
                             ),
                           ),
-                          Text(
-                            '${widget.selectedMenu}',
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16.0,
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            width: MediaQuery.of(context).size.width - 200,
+                            child: Text(
+                              '${widget.selectedMenu}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.0,
+                              ),
                             ),
                           )
                         ],
