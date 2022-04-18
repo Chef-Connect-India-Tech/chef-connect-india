@@ -17,11 +17,13 @@ import 'package:intl/intl.dart';
 class custom_user_checkout extends StatefulWidget {
   List dishes;
   String chefId;
+  String cid;
   var chefContact;
   custom_user_checkout(
       {Key? key,
       required this.dishes,
       required this.chefId,
+      required this.cid,
       required this.chefContact})
       : super(key: key);
 

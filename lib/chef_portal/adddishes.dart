@@ -1,7 +1,6 @@
 // import 'dart:ffi';
 
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
-import 'package:chef_connect_india/chef_portal/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -192,140 +191,131 @@ class _chef_add_dishState extends State<chef_add_dish> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      key: _scaffoldKey,
-      appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          'ADD YOUR DISHES',
-          style: GoogleFonts.lato(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            'ADD YOUR DISHES',
+            style: GoogleFonts.lato(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          iconTheme: IconThemeData(
             color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
           ),
         ),
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            //
-            Form(
-              key: _formKey,
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.only(top: 0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Enter Dishes',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        CircleAvatar(
-                          radius: 15,
-                          backgroundColor: Colors.grey.shade200,
-                          child: InkWell(
-                            onTap: _showMultiSelect,
-                            child: Icon(
-                              Icons.add,
-                              size: 18,
-                              color: Colors.black,
+        body: SingleChildScrollView(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              //
+              Form(
+                key: _formKey,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.only(top: 0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Enter Dishes',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: 250,
-                      width: 400,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.shade200,
-                      ),
-                      child: InkWell(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Wrap(
-                                children: _selectedItems
-                                    .map((e) => Chip(
-                                          label: Text(e),
-                                        ))
-                                    .toList(),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.grey.shade200,
+                            child: InkWell(
+                              onTap: _showMultiSelect,
+                              child: Icon(
+                                Icons.add,
+                                size: 18,
+                                color: Colors.black,
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      height: 50,
-                      width: 360,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.indigo,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        onPressed: () {
-                          savedata();
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => chef_dashboard(),
                             ),
-                          );
-                        },
-                        child: Text(
-                          'Save and Proceed',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 250,
+                        width: 400,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.shade200,
+                        ),
+                        child: InkWell(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Wrap(
+                                  children: _selectedItems
+                                      .map((e) => Chip(
+                                            label: Text(e),
+                                          ))
+                                      .toList(),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                  ],
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 50,
+                        width: 360,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.indigo,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onPressed: savedata,
+                          child: Text(
+                            'Save and Proceed',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
-        onPressed: () => {showAlertDialog(context)},
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+          onPressed: () => {showAlertDialog(context)},
+        ));
   }
 
   Future<void> savedata() async {
@@ -343,6 +333,12 @@ class _chef_add_dishState extends State<chef_add_dish> {
       });
       SetOptions(merge: true);
       Fluttertoast.showToast(msg: "Successfully added");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => chef_dashboard(),
+        ),
+      );
     }
   }
 }
