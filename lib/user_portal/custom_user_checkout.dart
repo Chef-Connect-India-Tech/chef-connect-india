@@ -81,6 +81,8 @@ class _custom_user_checkoutState extends State<custom_user_checkout> {
 
   @override
   Widget build(BuildContext context) {
+    print("error");
+    print(widget.cid);
     Future showToast(String message) async {
       await Fluttertoast.cancel();
 
@@ -860,6 +862,7 @@ class _custom_user_checkoutState extends State<custom_user_checkout> {
     bookingModel.customerId = customerId;
     bookingModel.customerPhone = customerPhone;
     bookingModel.chefId = widget.chefId;
+    bookingModel.cid = widget.cid;
     bookingModel.chefContact = widget.chefContact;
     bookingModel.location = location;
     bookingModel.selectedMenu = [dishes];
