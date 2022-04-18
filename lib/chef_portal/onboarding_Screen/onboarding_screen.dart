@@ -25,45 +25,6 @@ class _Onboarding_screen_chefState extends State<Onboarding_screen_chef> {
               vertical: 45.0,
             ),
             child: Image.asset(
-              'assets/partychef.jpeg',
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 45.0),
-            alignment: Alignment.centerLeft,
-            child: const Text(
-              'Party chef',
-              style: pageTitleStyle,
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-            alignment: Alignment.centerLeft,
-            child: const Text(
-              '''Special occasions should be savoured 
-Book a party chef with Chef Connect India 
-We provide 3 trial options (3 chefs of different cuisines).
-Customised menu options,
-Ingredients list is shared on time,
-Chef will clean the kitchen and leave''',
-              style: pageInfoStyle,
-              textAlign: TextAlign.left,
-            ),
-          ),
-        ],
-      ),
-    ),
-    PageModel(
-      widget: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 45.0,
-            ),
-            child: Image.asset(
               'assets/Private Chef.png',
             ),
           ),
@@ -108,6 +69,15 @@ Chef will clean the kitchen and leave''',
             padding: const EdgeInsets.symmetric(horizontal: 45.0),
             alignment: Alignment.centerLeft,
             child: const Text(
+              'Private chef',
+              style: pageTitleStyle,
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 45.0),
+            alignment: Alignment.centerLeft,
+            child: const Text(
               'Kitchen professional',
               style: pageTitleStyle,
               textAlign: TextAlign.left,
@@ -123,6 +93,45 @@ Hire kitchen professionals with the help of Chef Connect India
 - Proper background check of all the chefs provided
 - Budget friendly staff as per your requirement
 -3 trial options''',
+              style: pageInfoStyle,
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ],
+      ),
+    ),
+    PageModel(
+      widget: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 45.0,
+            ),
+            child: Image.asset(
+              'assets/partychef.jpeg',
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 45.0),
+            alignment: Alignment.centerLeft,
+            child: const Text(
+              'Party chef',
+              style: pageTitleStyle,
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Container(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
+            alignment: Alignment.centerLeft,
+            child: const Text(
+              '''Special occasions should be savoured 
+Book a party chef with Chef Connect India 
+We provide 3 trial options (3 chefs of different cuisines).
+Customised menu options,
+Ingredients list is shared on time,
+Chef will clean the kitchen and leave''',
               style: pageInfoStyle,
               textAlign: TextAlign.left,
             ),
