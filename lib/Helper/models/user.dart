@@ -112,4 +112,11 @@ class FirebaseUserhelper {
     var result =
         await appointmentdatbase.doc(appointid).update({"profilepic": status});
   }
+
+  static void lol(appointid, status) async {
+    CollectionReference appointmentdatbase =
+        FirebaseFirestore.instance.collection("users");
+    var result =
+        await appointmentdatbase.doc(appointid).update({"profilepic": status});
+  }
 }

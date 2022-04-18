@@ -415,6 +415,10 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                   "display": "Multi Cuisine",
                                   "value": "Multi Cuisine",
                                 },
+                                {
+                                  "display": "Continental",
+                                  "value": "Continental",
+                                },
                               ],
                               textField: 'display',
                               valueField: 'value',
