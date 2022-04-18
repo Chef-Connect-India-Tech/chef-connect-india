@@ -51,6 +51,7 @@ dependencies:
   flutter_form_builder: ^7.1.1
   date_time_picker: ^2.1.0
   url_launcher: 
+  url_launcher_web: ^2.0.9
  
   # cached_network_image:
 

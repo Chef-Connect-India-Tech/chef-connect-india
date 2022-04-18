@@ -3,6 +3,7 @@
 import 'package:chef_connect_india/user_portal/user_bookings.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Sucess_page extends StatefulWidget {
   String? bookingId;
@@ -79,20 +80,23 @@ class _Sucess_pageState extends State<Sucess_page> {
                 ),
                 Column(
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 5),
-                    //   child: TextButton(
-                    //     onPressed: () {},
-                    //     child: Text(
-                    //       'Need Help?',
-                    //       style: TextStyle(
-                    //         fontFamily: 'Montserrat',
-                    //         fontSize: 16,
-                    //         fontWeight: FontWeight.w600,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: TextButton(
+                        onPressed: () {
+                          var a = "+91 73530 64599";
+                          launch("tel: ${a}");
+                        },
+                        child: Text(
+                          'For queries you can contact us',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: SizedBox(
