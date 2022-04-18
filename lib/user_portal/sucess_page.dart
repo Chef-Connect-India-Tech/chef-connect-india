@@ -38,18 +38,23 @@ class _Sucess_pageState extends State<Sucess_page> {
                 SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(35.0),
-                  child: Text(
-                    'Your booking with our chef is successful. One of Our Executive will come in contact with you soon.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 5),
+                //   child: TextButton(
+                //     onPressed: () {
+                //       var a = "+91 73530 64599";
+                //       launch("tel: ${a}");
+                //     },
+                //     child: Text(
+                //       'For queries you can contact us',
+                //       style: TextStyle(
+                //         fontFamily: 'Montserrat',
+                //         fontSize: 16,
+                //         fontWeight: FontWeight.w600,
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Row(

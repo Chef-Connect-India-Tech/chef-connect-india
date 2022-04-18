@@ -620,36 +620,60 @@ class _user_homeState extends State<user_home> {
                                                           height: 10,
                                                         ),
                                                         TextFormField(
-                                                          readOnly: true,
-                                                          controller: dateCtl,
                                                           decoration:
                                                               InputDecoration(
-                                                            labelText: 'Date',
+                                                            fillColor:
+                                                                Colors.white70,
+                                                            filled: true,
+                                                            hintText:
+                                                                'Enter Date',
+                                                            hintStyle:
+                                                                TextStyle(
+                                                              fontFamily:
+                                                                  'Montserrat',
+                                                              color:
+                                                                  Colors.black,
+                                                            ),
+                                                            border:
+                                                                OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                                width: 1,
+                                                              ),
+                                                            ),
+                                                            focusedBorder:
+                                                                new OutlineInputBorder(
+                                                              borderRadius:
+                                                                  new BorderRadius
+                                                                          .circular(
+                                                                      10.0),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .black,
+                                                                width: 1,
+                                                              ),
+                                                            ),
+                                                            // enabledBorder:
+                                                            //     OutlineInputBorder(
+                                                            //   borderRadius:
+                                                            //       BorderRadius
+                                                            //           .circular(
+                                                            //               10),
+                                                            //   borderSide:
+                                                            //       BorderSide(
+                                                            //     color: Colors
+                                                            //         .black,
+                                                            //     width: 1,
+                                                            //   ),
+                                                            // ),
                                                           ),
-                                                          // onTap: () async {
-                                                          //   await showDatePicker(
-                                                          //     context: context,
-                                                          //     initialDate:
-                                                          //         DateTime
-                                                          //             .now(),
-                                                          //     firstDate:
-                                                          //         DateTime(
-                                                          //             1947),
-                                                          //     lastDate:
-                                                          //         DateTime(
-                                                          //             2400),
-                                                          //   ).then(
-                                                          //       (selectedDate) {
-                                                          //     if (selectedDate !=
-                                                          //         null) {
-                                                          //       dateCtl
-                                                          //           .text = DateFormat(
-                                                          //               'yyyy-MM-dd')
-                                                          //           .format(
-                                                          //               selectedDate);
-                                                          //     }
-                                                          //   });
-                                                          // },
                                                         ),
                                                         SizedBox(
                                                           height: 10,
@@ -1355,7 +1379,7 @@ class _user_homeState extends State<user_home> {
                                           child: Text(
                                             'Query For Kitchen Professional ',
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 11,
                                               fontFamily: 'Montserrat',
                                             ),
                                           ),
@@ -1429,7 +1453,7 @@ class _user_homeState extends State<user_home> {
                         primary: true,
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 200,
-                          childAspectRatio: 1 / 2,
+                          childAspectRatio: 1 / 75,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 0,
                         ),

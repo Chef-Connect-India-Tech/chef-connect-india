@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class customiseduser extends StatefulWidget {
   late String cid;
@@ -80,32 +81,45 @@ class _customiseduserState extends State<customiseduser> {
             ),
           ),
           SpeedDialChild(
-            child: Image(image: AssetImage('assets/socialicons/facebook.png')),
-            // backgroundColor: Colors.blue,
-            label: 'Facebook',
-            onTap: () => showToast(
-              'Selected facebook..',
-            ),
-          ),
+              child: Image(
+                image: AssetImage('assets/socialicons/gmail.png'),
+                height: 35,
+              ),
+              backgroundColor: Colors.transparent,
+              label: 'Mail',
+              onTap: () {
+                launch('mailto:chefconnectindia@gmail.com');
+              }),
+          // SpeedDialChild(
+          //     child:
+          //         Image(image: AssetImage('assets/socialicons/facebook.png')),
+          //     // backgroundColor: Colors.blue,
+          //     label: 'Facebook',
+          //     onTap: () => () {
+          //           launch("https://www.facebook.com/Chef-Connect");
+          //         }),
           SpeedDialChild(
-            child: Image(image: AssetImage('assets/socialicons/whatsapp.png')),
-            // backgroundColor: Colors.indigo,
-            label: 'Whatsapp',
-            onTap: () => showToast(
-              'Selected whatsapp..',
-            ),
-          ),
+              child:
+                  Image(image: AssetImage('assets/socialicons/whatsapp.png')),
+              // backgroundColor: Colors.indigo,
+              label: 'Whatsapp',
+              onTap: () {
+                launch("https://wa.me/+918107302002");
+              }),
           SpeedDialChild(
             child: Image(image: AssetImage('assets/socialicons/instagram.png')),
             // backgroundColor: Colors.indigo,
             label: 'Instagram',
-            onTap: () => showToast('Selected Instagram..'),
+            onTap: () {
+              launch("https://www.instagram.com/chefconnectindia");
+            },
           ),
           SpeedDialChild(
-            child: Image(image: AssetImage('assets/socialicons/twitter.png')),
-            label: 'Twitter',
-            onTap: () => showToast('Selected Twitter..'),
-          ),
+              child: Image(image: AssetImage('assets/socialicons/twitter.png')),
+              label: 'Twitter',
+              onTap: () {
+                launch("https://mobile.twitter.com/chefconnect_");
+              }),
         ],
       ),
       body: SingleChildScrollView(

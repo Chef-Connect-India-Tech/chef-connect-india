@@ -309,7 +309,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
           ),
           Image.asset(
             image,
-            height: 119,
+            height: 117,
             width: 160,
             scale: 1,
             fit: BoxFit.cover,
