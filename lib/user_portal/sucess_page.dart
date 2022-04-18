@@ -40,7 +40,7 @@ class _Sucess_pageState extends State<Sucess_page> {
                 Padding(
                   padding: const EdgeInsets.all(35.0),
                   child: Text(
-                    'Your booking with our chef is successful. One of Our Executive will come in contact with you soon.',
+                    'Thank you for making a booking with us.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Montserrat',

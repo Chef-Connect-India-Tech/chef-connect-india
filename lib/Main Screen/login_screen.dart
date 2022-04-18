@@ -139,17 +139,24 @@ class _LoginScreenState extends State<LoginScreen> {
                             Text(
                               widget.isowner
                                   ? ""
-                                  : "One Stop Solution for all\nYour Culinary Needs",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.caveat(
-                                  color: Colors.white,
-                                  textStyle:
-                                      Theme.of(context).textTheme.headline4,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w900,
-                                  fontStyle: FontStyle.italic,
-                                  backgroundColor:
-                                      Colors.black.withOpacity(.7)),
+                                  : "One Stop Solution for all Your Culinary Needs",
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 15,
+                                color: Colors.white,
+                                backgroundColor: Colors.black54,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              // textAlign: TextAlign.center,
+                              // style: GoogleFonts.caveat(
+                              //     color: Colors.white,
+                              //     textStyle:
+                              //         Theme.of(context).textTheme.headline4,
+                              //     fontSize: 16,
+                              //     fontWeight: FontWeight.w900,
+                              //     fontStyle: FontStyle.italic,
+                              //     backgroundColor:
+                              //         Colors.black.withOpacity(.7)),
                               // style: TextStyle(
                               //     fontFamily: 'Montserrat',
                               //     color: Colors.white,

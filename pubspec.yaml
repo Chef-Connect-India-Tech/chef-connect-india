@@ -49,6 +49,7 @@ dependencies:
   smooth_star_rating_nsafe: ^1.0.0+1
   expandable: ^5.0.1
   flutter_form_builder: ^7.1.1
+  date_time_picker: ^2.1.0
   # cached_network_image:
 
 flutter_native_splash:

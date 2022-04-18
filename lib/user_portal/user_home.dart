@@ -3,6 +3,7 @@ import 'package:chef_connect_india/Helper/chef_list.dart';
 // import 'package:chef_connect_india/Helper/list.dart';
 import 'package:chef_connect_india/user_portal/chef_details/View_more.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
@@ -22,12 +23,30 @@ class user_home extends StatefulWidget {
 }
 
 class _user_homeState extends State<user_home> {
+  DateTime selectedDate = DateTime.now();
+
+  // Future<void> _selectDate(BuildContext context) async {
+  //   final DateTime? picked = await showDatePicker(
+  //       context: context,
+  //       initialDate: selectedDate,
+  //       firstDate: DateTime(2015, 8),
+  //       lastDate: DateTime(2101));
+  //   if (picked != null && picked != selectedDate) {
+  //     setState(() {
+  //       selectedDate = picked;
+  //     });
+  //   }
+  // }
+
   @override
   void initState() {
     _myCusine = [];
     super.initState();
   }
 
+  DateTime _date = DateTime.now();
+  final TextEditingController dateCtl = TextEditingController();
+  final dateController = TextEditingController();
   final GenderEditingController = new TextEditingController();
   final categoryofchefEditingController = new TextEditingController();
   final salaryEditingController = new TextEditingController();
@@ -599,28 +618,36 @@ class _user_homeState extends State<user_home> {
                                                           height: 10,
                                                         ),
                                                         TextFormField(
+                                                          readOnly: true,
+                                                          controller: dateCtl,
                                                           decoration:
                                                               InputDecoration(
-                                                            fillColor:
-                                                                Colors.white70,
-                                                            filled: true,
-                                                            hintText:
-                                                                'Date Required',
-                                                            hintStyle:
-                                                                TextStyle(
-                                                              fontFamily:
-                                                                  'Montserrat',
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                            ),
+                                                            labelText: 'Date',
                                                           ),
+                                                          // onTap: () async {
+                                                          //   await showDatePicker(
+                                                          //     context: context,
+                                                          //     initialDate:
+                                                          //         DateTime
+                                                          //             .now(),
+                                                          //     firstDate:
+                                                          //         DateTime(
+                                                          //             1947),
+                                                          //     lastDate:
+                                                          //         DateTime(
+                                                          //             2400),
+                                                          //   ).then(
+                                                          //       (selectedDate) {
+                                                          //     if (selectedDate !=
+                                                          //         null) {
+                                                          //       dateCtl
+                                                          //           .text = DateFormat(
+                                                          //               'yyyy-MM-dd')
+                                                          //           .format(
+                                                          //               selectedDate);
+                                                          //     }
+                                                          //   });
+                                                          // },
                                                         ),
                                                         SizedBox(
                                                           height: 10,
