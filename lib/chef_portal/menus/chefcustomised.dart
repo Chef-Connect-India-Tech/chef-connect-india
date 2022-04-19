@@ -276,7 +276,7 @@ class _chefcustomisedState extends State<chefcustomised> {
                       ),
                     ),
                     TextButton(
-                      child: Text("Continue"),
+                      child: Text("ADD DISH"),
                       onPressed: () {
                         List aa = [adddish.text];
                         var target_list_2 = List<dynamic>.from(aa);

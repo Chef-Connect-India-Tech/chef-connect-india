@@ -19,11 +19,13 @@ import 'package:url_launcher/url_launcher.dart';
 class custom_user_checkout extends StatefulWidget {
   List dishes;
   String chefId;
+  double price;
   String cid;
   var chefContact;
   custom_user_checkout(
       {Key? key,
       required this.dishes,
+      required this.price,
       required this.chefId,
       required this.cid,
       required this.chefContact})

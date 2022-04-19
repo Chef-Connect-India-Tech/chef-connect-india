@@ -149,7 +149,8 @@ class _view_moreState extends State<view_more> {
         query: FirebaseFirestore.instance
             .collection('chefs')
             .orderBy('firstname')
-            .where("verified", isEqualTo: true),
+            .where("verified", isEqualTo: true)
+            .where('dutystatus', isEqualTo: true),
         // to fetch real-time data
         isLive: true,
       ),

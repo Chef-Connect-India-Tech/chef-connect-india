@@ -21,6 +21,18 @@ class predefineduser extends StatefulWidget {
 }
 
 class _predefineduserState extends State<predefineduser> {
+  late int price;
+  void pp() async {
+    var a = widget.cid;
+    var collection = FirebaseFirestore.instance.collection('chefs');
+    var docSnapshot = await collection.doc(a).get();
+    if (docSnapshot.exists) {
+      var data = docSnapshot.data()!;
+      price = data['cheffees'];
+      print(price);
+    }
+  }
+
   Future showToast(String message) async {
     await Fluttertoast.cancel();
 
@@ -110,6 +122,7 @@ class _predefineduserState extends State<predefineduser> {
                   child: GestureDetector(
                     child: listpredefined(
                       desserts: dataa!['desserts'],
+                      price: price + price * 0.25,
                       maincourse: dataa['main course'],
                       starters: dataa['starters'],
                       menuname: dataa['menu name'],
@@ -141,6 +154,7 @@ class listpredefined extends StatefulWidget {
   String chefId;
   String cid;
   var chefContact;
+  double price;
   listpredefined({
     required this.starters,
     required this.maincourse,
@@ -149,6 +163,7 @@ class listpredefined extends StatefulWidget {
     required this.chefId,
     required this.cid,
     required this.chefContact,
+    required this.price,
   });
 
   @override

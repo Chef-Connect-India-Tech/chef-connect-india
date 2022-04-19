@@ -27,6 +27,18 @@ class customiseduser extends StatefulWidget {
 }
 
 class _customiseduserState extends State<customiseduser> {
+  late int price;
+  void pp() async {
+    var a = widget.cid;
+    var collection = FirebaseFirestore.instance.collection('chefs');
+    var docSnapshot = await collection.doc(a).get();
+    if (docSnapshot.exists) {
+      var data = docSnapshot.data()!;
+      price = data['cheffees'];
+      print(price);
+    }
+  }
+
   var name;
 
   var selectingmode = false;
@@ -43,6 +55,7 @@ class _customiseduserState extends State<customiseduser> {
 
   var a = 'a';
   Widget build(BuildContext context) {
+    pp();
     Future showToast(String message) async {
       await Fluttertoast.cancel();
 
@@ -182,11 +195,13 @@ class _customiseduserState extends State<customiseduser> {
                 if (len == 0) {
                   Fluttertoast.showToast(msg: "Please select dishes");
                 } else if (len < 7) {
-                  Fluttertoast.showToast(msg: "Price is 2500");
+                  double rate = price + price * 0.25;
+                  Fluttertoast.showToast(msg: "Price is ${rate}");
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: ((context) => custom_user_checkout(
+                            price: rate,
                             cid: widget.cid,
                             chefContact: widget.chefContact,
                             chefId: widget.chefId,
@@ -195,12 +210,15 @@ class _customiseduserState extends State<customiseduser> {
                     ),
                   );
                 } else {
+                  print(price);
+                  double rate = price + price * 0.25;
                   Fluttertoast.showToast(
-                      msg: "Price is ${2500 + (len - 6) * 100}");
+                      msg: "Price is ${rate + (len - 6) * 100}");
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: ((context) => custom_user_checkout(
+                            price: rate,
                             cid: widget.cid,
                             chefContact: widget.chefContact,
                             chefId: widget.chefId,
@@ -211,11 +229,12 @@ class _customiseduserState extends State<customiseduser> {
                 }
                 print(_selectedItems);
                 print('Book A  Chef button pressed');
-
+                double rate = price + price * 0.25;
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: ((context) => custom_user_checkout(
+                          price: rate,
                           cid: widget.cid,
                           chefContact: widget.chefContact,
                           chefId: widget.chefId,
