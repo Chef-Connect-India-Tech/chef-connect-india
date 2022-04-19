@@ -1,6 +1,6 @@
 <manifest
   xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example.glass_morphism"
+  package="com.chefconnect.app.main"
 >
    <application
     android:label="Chef Connect"

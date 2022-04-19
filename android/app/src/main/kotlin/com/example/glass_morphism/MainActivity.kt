@@ -1,4 +1,4 @@
-package com.example.glass_morphism
+package com.chefconnect.app.main
 
 import io.flutter.embedding.android.FlutterActivity
 
