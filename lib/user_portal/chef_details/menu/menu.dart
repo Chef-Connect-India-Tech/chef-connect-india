@@ -5,6 +5,7 @@ import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/customiseduser.dart';
 import 'package:chef_connect_india/user_portal/chef_details/menu/predefineduser.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class MenuTab extends StatefulWidget {
@@ -23,6 +24,22 @@ class MenuTab extends StatefulWidget {
 }
 
 class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
+  // late int price;
+  // late double rate;
+  // void pop() async {
+  //   var a = widget.cid;
+  //   var collection = FirebaseFirestore.instance.collection('chefs');
+  //   var docSnapshot = await collection.doc(a).get();
+  //   if (docSnapshot.exists) {
+  //     var data = docSnapshot.data()!;
+  //     price = data['cheffees'];
+  //     print(price);
+  //     print('trail');
+  //     rate = price + price * 0.25;
+  //     print(rate);
+  //   }
+  // }
+
   final colorstheme = Color(0xff4b4b87);
 
   late TabController _tabController;
@@ -38,6 +55,8 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // pop();
+    //  print(rate);
     // List<String> _items = pp.cast<String>();
     return Scaffold(
       drawer: NavBar(),
@@ -102,6 +121,7 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
               controller: _tabController,
               children: [
                 predefineduser(
+                    // rate1: rate,
                     cid: widget.cid,
                     chefContact: widget.chefContact,
                     chefId: widget.chefId),

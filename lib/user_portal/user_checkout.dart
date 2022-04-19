@@ -18,6 +18,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class user_checkout extends StatefulWidget {
   String menu;
+  //double price;
   List starters;
   List desserts;
   List maincourse;
@@ -27,6 +28,7 @@ class user_checkout extends StatefulWidget {
   user_checkout(
       {Key? key,
       required this.menu,
+      //required this.price,
       required this.starters,
       required this.desserts,
       required this.maincourse,
@@ -228,6 +230,16 @@ class _user_checkoutState extends State<user_checkout> {
                                         ],
                                       ),
                                     ),
+                                    // Column(
+                                    //   children: [
+                                    //     Row(
+                                    //       children: [
+                                    //         Text("Price"),
+                                    //         Text((widget.price).toString())
+                                    //       ],
+                                    //     )
+                                    //   ],
+                                    // ),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
