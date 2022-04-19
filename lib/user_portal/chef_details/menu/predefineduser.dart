@@ -142,7 +142,7 @@ class _predefineduserState extends State<predefineduser> {
                       chefId: widget.chefId,
                       cid: widget.cid,
                       chefContact: widget.chefContact,
-                      price: rate,
+                      // price: rate,
                     ),
                   ),
                 );
@@ -168,7 +168,7 @@ class listpredefined extends StatefulWidget {
   String chefId;
   String cid;
   var chefContact;
-  double price;
+  //double price;
   listpredefined({
     required this.starters,
     required this.maincourse,
@@ -177,7 +177,7 @@ class listpredefined extends StatefulWidget {
     required this.chefId,
     required this.cid,
     required this.chefContact,
-    required this.price,
+    //  required this.price,
   });
 
   @override
@@ -185,8 +185,25 @@ class listpredefined extends StatefulWidget {
 }
 
 class _listpredefinedState extends State<listpredefined> {
+  late int price;
+  late double rate;
+  void pp() async {
+    var a = widget.cid;
+    var collection = FirebaseFirestore.instance.collection('chefs');
+    var docSnapshot = await collection.doc(a).get();
+    if (docSnapshot.exists) {
+      var data = docSnapshot.data()!;
+      price = data['cheffees'];
+      print(price);
+      print('trail');
+      rate = price + price * 0.25;
+      print(rate);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    pp();
     var scwidth = MediaQuery.of(context).size.width;
     bool selected = false;
     return Padding(
@@ -432,7 +449,7 @@ class _listpredefinedState extends State<listpredefined> {
                             context,
                             MaterialPageRoute(
                               builder: ((context) => user_checkout(
-                                    //price: widget.price,
+                                    price: rate,
                                     chefId: widget.chefId,
                                     chefContact: widget.chefContact,
                                     menu: widget.menuname,
