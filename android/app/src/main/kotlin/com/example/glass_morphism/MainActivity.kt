@@ -1,4 +1,4 @@
-package com.chefconnect.app.main
+package com.chefconnect.app
 
 import io.flutter.embedding.android.FlutterActivity
 

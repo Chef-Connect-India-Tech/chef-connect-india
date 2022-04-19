@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "289107112804",
-    "project_id": "chef-connect-india-main",
-    "storage_bucket": "chef-connect-india-main.appspot.com"
+    "project_number": "194064177069",
+    "project_id": "app-chef-connect-india",
+    "storage_bucket": "app-chef-connect-india.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:289107112804:android:e981c6badcef7a3945c071",
+        "mobilesdk_app_id": "1:194064177069:android:f38aa2ca8affc4d66a7324",
         "android_client_info": {
-          "package_name": "com.chefconnect.app.main"
+          "package_name": "com.chefconnect.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "289107112804-7t4tcb5edfhlp1nijp7c61h4ods96c0g.apps.googleusercontent.com",
+          "client_id": "194064177069-7otkcehjp4aqt4k8698f4upclq05ag9l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCAIwIA91BHCP_xeENbTmy37ewYoIpRF6Q"
+          "current_key": "AIzaSyAI52QUSGMlJoUkZYue8jl93T-wVzGUA1s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "289107112804-7t4tcb5edfhlp1nijp7c61h4ods96c0g.apps.googleusercontent.com",
+              "client_id": "194064177069-7otkcehjp4aqt4k8698f4upclq05ag9l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
