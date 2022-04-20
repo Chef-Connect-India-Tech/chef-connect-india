@@ -275,7 +275,7 @@ class _chefcustomisedState extends State<chefcustomised> {
                         ),
                       ),
                     ),
-                    TextButton(
+                    ElevatedButton(
                       child: Text("ADD DISH"),
                       onPressed: () {
                         List aa = [adddish.text];
@@ -370,7 +370,7 @@ class _chefcustomisedState extends State<chefcustomised> {
                         ),
                         onPressed: savedata,
                         child: Text(
-                          'Upload',
+                          'Add into profile',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 18,
