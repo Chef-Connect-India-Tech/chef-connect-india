@@ -1578,7 +1578,7 @@ class _user_homeState extends State<user_home> {
                         .collection("chefs")
                         .limit(4)
                         .where('verified', isEqualTo: true)
-                        .where('dutystatus', isEqualTo: true)
+                        // .where('dutystatus', isEqualTo: true)
                         .snapshots(),
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {

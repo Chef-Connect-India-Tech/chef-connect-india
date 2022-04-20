@@ -86,6 +86,7 @@ class customisedlist extends StatefulWidget {
 
 class _customisedlistState extends State<customisedlist> {
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     List listt = [];
     return Scaffold(
       body: SafeArea(
@@ -114,10 +115,53 @@ class _customisedlistState extends State<customisedlist> {
                       primary: true,
                       children:
                           snapshot.data!.docs.map((DocumentSnapshot document) {
+                        var alldishes = [] + document["customised menu"];
                         print(document.data());
                         return Container(
-                            child:
-                                Text(document["customised menu"].toString()));
+                          // height: 130,
+                          // width: width - 20,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.16),
+                                offset: Offset(0, 3.0),
+                                blurRadius: 12.0,
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 30, left: 20),
+                                child: Column(
+                                  children: [
+                                    Wrap(
+                                      children: alldishes
+                                          .map((e) => Chip(
+                                                label: Text(e),
+                                              ))
+                                          .toList(),
+                                    ),
+                                  ],
+                                ),
+                                // Text(
+                                //   data["cuisineexpert"].toString(),
+                                //   style: TextStyle(
+                                //     fontFamily: 'Montserrat',
+                                //     fontSize: 20,
+                                //     fontWeight: FontWeight.w500,
+                                //   ),
+                                // ),
+                              ),
+                            ],
+                          ),
+                        );
                       }).toList(),
                     );
                   },
