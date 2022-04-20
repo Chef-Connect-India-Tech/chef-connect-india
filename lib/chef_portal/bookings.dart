@@ -11,32 +11,11 @@ import 'package:google_fonts/google_fonts.dart';
 class chef_bookings extends StatelessWidget {
   chef_bookings({Key? key}) : super(key: key);
   bool check = false;
+  bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          Row(
-            children: [
-              Switch(
-                  activeColor: Colors.white,
-                  value: check,
-                  onChanged: (value) {
-                    setState(() {
-                      this.check = value;
-                    });
-                  }),
-              Text(
-                'Duty Status',
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600,
-                ),
-              )
-            ],
-          )
-        ],
         title: const Text(
           'My Bookings',
           style: TextStyle(
@@ -110,8 +89,6 @@ class chef_bookings extends StatelessWidget {
       ),
     );
   }
-
-  void setState(Null Function() param0) {}
 }
 
 class listpredefined extends StatefulWidget {
