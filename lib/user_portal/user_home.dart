@@ -4,6 +4,7 @@ import 'package:chef_connect_india/Helper/chef_list.dart';
 import 'package:chef_connect_india/user_portal/chef_details/View_more.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_time_picker/date_time_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
@@ -24,6 +25,78 @@ class user_home extends StatefulWidget {
 }
 
 class _user_homeState extends State<user_home> {
+  Future<void> privatedb() async {
+    if (dateController.text.length == 0) {
+      Fluttertoast.showToast(msg: "Date can't be empty");
+    } else if (addressController.text.length == 0) {
+      Fluttertoast.showToast(msg: "Address can't be empty");
+    } else if (addressController.text.length < 21) {
+      Fluttertoast.showToast(msg: "Please Enter Detailed Address");
+    } else {
+      print(GenderEditingController.text);
+      print(LevelEditingController.text);
+      print(salaryEditingController.text);
+      print(dateController.text);
+      print(addressController.text);
+      FirebaseFirestore.instance
+          .collection('bookings')
+          .doc('00private')
+          .collection('private')
+          .doc()
+          .set({
+        'Gender': GenderEditingController.text,
+        'salary': salaryEditingController.text,
+        'category': LevelEditingController.text,
+        'date': dateController.text,
+        'address': addressController.text,
+        'cid': FirebaseAuth.instance.currentUser!.uid
+      }, SetOptions(merge: true));
+      Fluttertoast.showToast(msg: "Successfully added");
+      Navigator.pop(context);
+    }
+  }
+
+  Future<void> kitchendb() async {
+    if (hotelnameController.text.length == 0) {
+      Fluttertoast.showToast(msg: "Hotel name can't be empty");
+    } else if (numofchefsController.text.length == 0) {
+      Fluttertoast.showToast(msg: "Number of chefs can't be zero");
+    } else if (kitchendateController.text.length == 0) {
+      Fluttertoast.showToast(msg: "Please Enter Date");
+    } else if (kitchendateController.text.length < 6) {
+      Fluttertoast.showToast(msg: "Please enter Correct Date-Format");
+    } else if (kitchenaddressController.text.length == 0) {
+      Fluttertoast.showToast(msg: "Address can't be empty");
+    } else if (kitchenaddressController.text.length < 21) {
+      Fluttertoast.showToast(msg: "Please Enter Detailed Address");
+    } else {
+      print(hotelnameController.text);
+      print(numofchefsController.text);
+      print(kitchendateController.text);
+      print(kitchenLevelController.text);
+      print(_myCusine);
+      print(kitchensalaryController.text);
+      print(kitchenaddressController.text);
+      FirebaseFirestore.instance
+          .collection('bookings')
+          .doc('01kitchen')
+          .collection('Kitchen Professional')
+          .doc()
+          .set({
+        'hotel name': hotelnameController.text,
+        'numofchefs': numofchefsController.text,
+        'date': kitchendateController.text,
+        'level': kitchenLevelController.text,
+        'cusine': _myCusine,
+        'salary': kitchensalaryController.text,
+        'address': kitchenaddressController.text,
+        'cid': FirebaseAuth.instance.currentUser!.uid
+      }, SetOptions(merge: true));
+      Fluttertoast.showToast(msg: "Successfully added");
+      Navigator.pop(context);
+    }
+  }
+
   DateTime selectedDate = DateTime.now();
 
   // Future<void> _selectDate(BuildContext context) async {
@@ -48,10 +121,19 @@ class _user_homeState extends State<user_home> {
   DateTime _date = DateTime.now();
   final TextEditingController dateCtl = TextEditingController();
   final dateController = TextEditingController();
+  final addressController = TextEditingController();
   final GenderEditingController = new TextEditingController();
   final categoryofchefEditingController = new TextEditingController();
   final salaryEditingController = new TextEditingController();
   final LevelEditingController = new TextEditingController();
+  //kitchen
+  final hotelnameController = new TextEditingController();
+  final numofchefsController = new TextEditingController();
+  final kitchendateController = new TextEditingController();
+  final kitchenLevelController = new TextEditingController();
+  final kitchencusineController = new TextEditingController();
+  final kitchensalaryController = new TextEditingController();
+  final kitchenaddressController = new TextEditingController();
 
   final SelectGender = ['Male', 'Female'];
   final categoryofchef = [
@@ -620,6 +702,21 @@ class _user_homeState extends State<user_home> {
                                                           height: 10,
                                                         ),
                                                         TextFormField(
+                                                          controller:
+                                                              dateController,
+                                                          // validator: (value) {
+                                                          //   if (value!
+                                                          //       .isEmpty) {
+                                                          //     //allow upper and lower case alphabets and space
+                                                          //     return "Date can't be Empty";
+                                                          //   } else {
+                                                          //     return null;
+                                                          //   }
+                                                          // },
+                                                          onSaved: (value) {
+                                                            dateController
+                                                                .text = value!;
+                                                          },
                                                           decoration:
                                                               InputDecoration(
                                                             fillColor:
@@ -681,6 +778,22 @@ class _user_homeState extends State<user_home> {
                                                         TextFormField(
                                                           minLines: 5,
                                                           maxLines: 20,
+                                                          controller:
+                                                              addressController,
+                                                          // validator: (value) {
+                                                          //   if (value!
+                                                          //       .isEmpty) {
+                                                          //     //allow upper and lower case alphabets and space
+                                                          //     return "Address can't be Empty";
+                                                          //   } else {
+                                                          //     return null;
+                                                          //   }
+                                                          // },
+                                                          onSaved: (value) {
+                                                            addressController
+                                                                .text = value!;
+                                                          },
+
                                                           decoration:
                                                               InputDecoration(
                                                             fillColor:
@@ -721,6 +834,7 @@ class _user_homeState extends State<user_home> {
                                                                 width: 1,
                                                               ),
                                                             ),
+
                                                             // enabledBorder:
                                                             //     OutlineInputBorder(
                                                             //   borderRadius:
@@ -792,8 +906,7 @@ class _user_homeState extends State<user_home> {
                                                               ),
                                                             ),
                                                             onPressed: () {
-                                                              Navigator.pop(
-                                                                  context);
+                                                              privatedb();
                                                             },
                                                             child: Text(
                                                               'Submit',
@@ -900,6 +1013,12 @@ class _user_homeState extends State<user_home> {
                                                           height: 10,
                                                         ),
                                                         TextFormField(
+                                                          controller:
+                                                              hotelnameController,
+                                                          onSaved: (value) {
+                                                            hotelnameController
+                                                                .text = value!;
+                                                          },
                                                           decoration:
                                                               InputDecoration(
                                                             fillColor:
@@ -927,6 +1046,12 @@ class _user_homeState extends State<user_home> {
                                                           height: 10,
                                                         ),
                                                         TextFormField(
+                                                          controller:
+                                                              numofchefsController,
+                                                          onSaved: (value) {
+                                                            numofchefsController
+                                                                .text = value!;
+                                                          },
                                                           decoration:
                                                               InputDecoration(
                                                             fillColor:
@@ -954,6 +1079,12 @@ class _user_homeState extends State<user_home> {
                                                           height: 10,
                                                         ),
                                                         TextFormField(
+                                                          controller:
+                                                              kitchendateController,
+                                                          onSaved: (value) {
+                                                            kitchendateController
+                                                                .text = value!;
+                                                          },
                                                           decoration:
                                                               InputDecoration(
                                                             fillColor:
@@ -1054,11 +1185,11 @@ class _user_homeState extends State<user_home> {
                                                               setState(() {
                                                             this.chefvalue =
                                                                 Evalue;
-                                                            categoryofchefEditingController
+                                                            kitchenLevelController
                                                                 .text = Evalue!;
                                                           }),
                                                           onSaved: (Evalue) {
-                                                            categoryofchefEditingController
+                                                            kitchenLevelController
                                                                 .text = Evalue!;
                                                           },
                                                         ),
@@ -1148,6 +1279,12 @@ class _user_homeState extends State<user_home> {
                                                               "value":
                                                                   "Multi Cuisine",
                                                             },
+                                                            {
+                                                              "display":
+                                                                  "Continental",
+                                                              "value":
+                                                                  "Continental",
+                                                            },
                                                           ],
                                                           textField: 'display',
                                                           valueField: 'value',
@@ -1235,11 +1372,11 @@ class _user_homeState extends State<user_home> {
                                                               setState(() {
                                                             this.salaryValue =
                                                                 svalue;
-                                                            salaryEditingController
+                                                            kitchensalaryController
                                                                 .text = svalue!;
                                                           }),
                                                           onSaved: (lvalue) {
-                                                            salaryEditingController
+                                                            kitchensalaryController
                                                                 .text = lvalue!;
                                                           },
                                                         ),
@@ -1247,6 +1384,12 @@ class _user_homeState extends State<user_home> {
                                                           height: 10,
                                                         ),
                                                         TextFormField(
+                                                          controller:
+                                                              kitchenaddressController,
+                                                          onSaved: (value) {
+                                                            kitchenaddressController
+                                                                .text = value!;
+                                                          },
                                                           minLines: 5,
                                                           maxLines: 20,
                                                           decoration:
@@ -1357,8 +1500,7 @@ class _user_homeState extends State<user_home> {
                                                               ),
                                                             ),
                                                             onPressed: () {
-                                                              Navigator.pop(
-                                                                  context);
+                                                              kitchendb();
                                                             },
                                                             child: Text(
                                                               'Submit',
