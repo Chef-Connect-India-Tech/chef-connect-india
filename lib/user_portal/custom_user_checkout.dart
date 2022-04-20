@@ -805,7 +805,7 @@ class _custom_user_checkoutState extends State<custom_user_checkout> {
                                   Icons.food_bank_outlined,
                                 ),
                                 Text(
-                                  "Price:",
+                                  "Approximate cost:",
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w600,

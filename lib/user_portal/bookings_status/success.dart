@@ -16,7 +16,7 @@ class _successState extends State<success> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green.shade200,
+      // backgroundColor: Colors.green.shade200,
       body: SafeArea(
         child: StreamBuilder(
             stream: FirebaseFirestore.instance

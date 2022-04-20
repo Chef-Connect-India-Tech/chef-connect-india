@@ -46,6 +46,12 @@ class _bookings_cardState extends State<bookings_card> {
                 // height: 380,
                 width: MediaQuery.of(context).size.width - 50,
                 decoration: BoxDecoration(
+                  // image: new DecorationImage(
+                  //   image: new AssetImage(
+                  //     "assets/background_image.jpeg",
+                  //   ),
+                  //   fit: BoxFit.cover,
+                  // ),
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [

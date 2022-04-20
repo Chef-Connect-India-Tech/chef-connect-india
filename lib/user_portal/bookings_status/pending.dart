@@ -16,9 +16,18 @@ class _pendingState extends State<pending> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red.shade300,
+      // backgroundColor: Colors.red.shade300,
+
       body: SafeArea(
         child: Container(
+          // decoration: BoxDecoration(
+          //   image: new DecorationImage(
+          //     image: new AssetImage(
+          //       "assets/background_image.jpeg",
+          //     ),
+          //     // fit: BoxFit.fill,
+          //   ),
+          // ),
           child: SingleChildScrollView(
             child: StreamBuilder(
               stream: FirebaseFirestore.instance

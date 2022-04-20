@@ -19,7 +19,7 @@ class _InprogressState extends State<Inprogress> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange.shade200,
+      // backgroundColor: Colors.orange.shade200,
       body: SafeArea(
         child: StreamBuilder(
             stream: FirebaseFirestore.instance
