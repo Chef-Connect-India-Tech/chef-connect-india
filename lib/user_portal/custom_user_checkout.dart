@@ -782,6 +782,66 @@ class _custom_user_checkoutState extends State<custom_user_checkout> {
                               ),
                             ),
                           ),
+                          Container(
+                            height: 50,
+                            width: width - 20,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(
+                                20,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.16),
+                                  offset: Offset(0, 3.0),
+                                  blurRadius: 12.0,
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.food_bank_outlined,
+                                ),
+                                Text(
+                                  "Price:",
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.indigo[900],
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 10,
+                                  ),
+                                  child: Text(
+                                    "\u20B9",
+                                    style: TextStyle(
+                                      // fontFamily: 'Roboto',
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.indigo[900],
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Text(
+                                    (widget.price).toString(),
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.indigo[900],
+                                      fontSize: 17.5,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(
                               top: 20,
