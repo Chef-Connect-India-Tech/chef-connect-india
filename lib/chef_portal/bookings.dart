@@ -10,24 +10,22 @@ import 'package:google_fonts/google_fonts.dart';
 
 class chef_bookings extends StatelessWidget {
   chef_bookings({Key? key}) : super(key: key);
-  bool checking = false;
+  bool check = false;
   @override
   Widget build(BuildContext context) {
-    bool checking = true;
     return Scaffold(
       appBar: AppBar(
         actions: [
           Row(
             children: [
               Switch(
-                activeColor: Colors.white,
-                value: checking,
-                onChanged: (value) {
-                  setState(() {
-                    checking = value;
-                  });
-                },
-              ),
+                  activeColor: Colors.white,
+                  value: check,
+                  onChanged: (value) {
+                    setState(() {
+                      this.check = value;
+                    });
+                  }),
               Text(
                 'Duty Status',
                 style: TextStyle(
