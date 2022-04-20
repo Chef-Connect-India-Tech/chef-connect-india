@@ -637,6 +637,7 @@ class _chef_profileState extends State<chef_profile> {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           var data = snapshot.data;
+          var dishes = [] + data["cuisineexpert"];
           if (data == null) {
             return Center(
               child: CircularProgressIndicator(),
@@ -1434,7 +1435,7 @@ class _chef_profileState extends State<chef_profile> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "cuisine expert",
+                          "Cuisine Expert",
                           style: TextStyle(
                             fontFamily: 'Montserrat',
                             fontSize: 20,
@@ -1453,8 +1454,8 @@ class _chef_profileState extends State<chef_profile> {
                     ),
                   ),
                   Container(
-                    height: 130,
-                    width: width - 20,
+                    // height: 130,
+                    // width: width - 20,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
@@ -1473,14 +1474,25 @@ class _chef_profileState extends State<chef_profile> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 30, left: 20),
-                          child: Text(
-                            data["cuisineexpert"].toString(),
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          child: Column(
+                            children: [
+                              Wrap(
+                                children: dishes
+                                    .map((e) => Chip(
+                                          label: Text(e),
+                                        ))
+                                    .toList(),
+                              ),
+                            ],
                           ),
+                          // Text(
+                          //   data["cuisineexpert"].toString(),
+                          //   style: TextStyle(
+                          //     fontFamily: 'Montserrat',
+                          //     fontSize: 20,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
                         ),
                       ],
                     ),
