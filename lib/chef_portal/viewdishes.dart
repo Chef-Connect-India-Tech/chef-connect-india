@@ -117,49 +117,60 @@ class _customisedlistState extends State<customisedlist> {
                           snapshot.data!.docs.map((DocumentSnapshot document) {
                         var alldishes = [] + document["customised menu"];
                         print(document.data());
-                        return Container(
-                          // height: 130,
-                          // width: width - 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.16),
-                                offset: Offset(0, 3.0),
-                                blurRadius: 12.0,
-                              ),
-                            ],
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                            top: 20,
                           ),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width: 15,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 130,
+                              width: width - 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.16),
+                                    offset: Offset(0, 3.0),
+                                    blurRadius: 12.0,
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 30, left: 20),
-                                child: Column(
-                                  children: [
-                                    Wrap(
-                                      children: alldishes
-                                          .map((e) => Chip(
-                                                label: Text(e),
-                                              ))
-                                          .toList(),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width -
+                                          30,
+                                      child: Wrap(
+                                        spacing: 5,
+                                        children: alldishes
+                                            .map((e) => Chip(
+                                                  backgroundColor:
+                                                      Colors.blue.shade100,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                      10,
+                                                    ),
+                                                  ),
+                                                  label: Text(
+                                                    e,
+                                                    style: TextStyle(
+                                                      color:
+                                                          Colors.blue.shade700,
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                      ),
                                     ),
-                                  ],
-                                ),
-                                // Text(
-                                //   data["cuisineexpert"].toString(),
-                                //   style: TextStyle(
-                                //     fontFamily: 'Montserrat',
-                                //     fontSize: 20,
-                                //     fontWeight: FontWeight.w500,
-                                //   ),
-                                // ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         );
                       }).toList(),
@@ -208,7 +219,7 @@ class _predefinedlistState extends State<predefinedlist> {
                     return ListView(
                       physics: BouncingScrollPhysics(),
                       shrinkWrap: true,
-                      padding: const EdgeInsets.all(0.0),
+                      // padding: const EdgeInsets.all(0.0),
                       scrollDirection: Axis.vertical,
                       primary: true,
                       children:
@@ -256,104 +267,179 @@ class listpredefined extends StatefulWidget {
 class _listpredefinedState extends State<listpredefined> {
   @override
   Widget build(BuildContext context) {
-    return Align(
-      // padding: const EdgeInsets.all(4.0),
-      alignment: Alignment(0.03, -0.77),
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: () {},
-          child: SizedBox(
-            width: 360.0,
-            height: 158.0,
-            child: Stack(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          // alignment: Alignment(0.2, 0.0),
+          width: 245.0,
+          height: 258.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.horizontal(
+              left: Radius.circular(30.0),
+              right: Radius.circular(30.0),
+            ),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.16),
+                offset: Offset(0, 3.0),
+                blurRadius: 12.0,
+              ),
+            ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Positioned(
-                  right: 10.0,
-                  child: Container(
-                    alignment: Alignment(0.2, 0.0),
-                    width: 345.0,
-                    height: 158.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.horizontal(
-                        left: Radius.circular(30.0),
-                        right: Radius.circular(10.0),
-                      ),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.16),
-                          offset: Offset(0, 3.0),
-                          blurRadius: 12.0,
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          width: 150.0,
-                          height: 142.0,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "${widget.menuname}'s menu",
-                                style: GoogleFonts.roboto(
-                                  fontSize: 20.0,
-                                  color: const Color(0xFF4A4B4D),
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              Text(
-                                'starters: ${widget.starters}',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 15.0,
-                                  color: const Color(0xFFB6B7B7),
-                                  height: 1.11,
-                                ),
-                              ),
-                              Text(
-                                'maincourse: ${widget.maincourse}',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 15.0,
-                                  color: const Color(0xFFB6B7B7),
-                                  height: 1.11,
-                                ),
-                              ),
-                              Text(
-                                'desserts: ${widget.desserts}',
-                                style: GoogleFonts.roboto(
-                                  fontSize: 15.0,
-                                  color: const Color(0xFFB6B7B7),
-                                  height: 1.11,
-                                ),
-                              ),
-
-                              // Text(
-                              //   'spc: ${widget.speciality}',
-                              //   style: GoogleFonts.roboto(
-                              //     fontSize: 15.0,
-                              //     color: const Color(0xFFB6B7B7),
-                              //     height: 1.11,
-                              //   ),
-                              // ),
-                            ],
-                          ),
-                        ),
-                      ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 85),
+                  child: Text(
+                    "${widget.menuname}'s menu",
+                    style: GoogleFonts.roboto(
+                      fontSize: 20.0,
+                      color: const Color(0xFF4A4B4D),
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Starters: ',
+                        style: TextStyle(
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Montserrat',
+                          color: Colors.indigo.shade600,
+                          height: 1.11,
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width - 200,
+                        child: Wrap(
+                          spacing: 4,
+                          children: widget.starters
+                              .map((e) => Chip(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        10,
+                                      ),
+                                    ),
+                                    backgroundColor: Colors.orange.shade100,
+                                    label: Text(e,
+                                        style: TextStyle(
+                                          color: Colors.orange.shade700,
+                                        )),
+                                  ))
+                              .toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Maincourse: ',
+                        style: TextStyle(
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Montserrat',
+                          color: Colors.indigo.shade600,
+                          height: 1.11,
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width - 200,
+                        child: Wrap(
+                          spacing: 4,
+                          children: widget.maincourse
+                              .map((e) => Chip(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        10,
+                                      ),
+                                    ),
+                                    backgroundColor: Colors.purple.shade100,
+                                    label: Text(e,
+                                        style: TextStyle(
+                                          color: Colors.purple.shade700,
+                                        )),
+                                  ))
+                              .toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Desserts: ',
+                        style: TextStyle(
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Montserrat',
+                          color: Colors.indigo.shade600,
+                        ),
+                      ),
+                      // Text(
+                      //   '${widget.desserts}',
+                      //   style: TextStyle(
+                      //     fontSize: 15.0,
+                      //     fontWeight: FontWeight.w600,
+                      //     fontFamily: 'Montserrat',
+                      //     color: Colors.indigo.shade600,
+                      //   ),
+                      // ),
+                      Container(
+                        width: MediaQuery.of(context).size.width - 200,
+                        child: Wrap(
+                          spacing: 4,
+                          children: widget.desserts
+                              .map((e) => Chip(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        10,
+                                      ),
+                                    ),
+                                    backgroundColor: Colors.blue.shade100,
+                                    label: Text(
+                                      e,
+                                      style: TextStyle(
+                                        color: Colors.blue.shade700,
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
 
-                // Positioned(
-                //   right: 0,
-                //   bottom: 61.0,
-                //   child: Container(
-                //     alignment: Alignment(0.04, -0.04),
-                //     width: 33.0,
-                //     height: 33.0,
+                // Text(
+                //   'spc: ${widget.speciality}',
+                //   style: GoogleFonts.roboto(
+                //     fontSize: 15.0,
+                //     color: const Color(0xFFB6B7B7),
+                //     height: 1.11,
                 //   ),
                 // ),
               ],

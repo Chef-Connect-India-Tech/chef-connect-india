@@ -12,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -712,6 +713,7 @@ class _chef_profileState extends State<chef_profile> {
                                           child: Icon(
                                             Icons.camera_alt,
                                             size: 30,
+                                            color: Colors.grey,
                                           ),
                                         ),
                                         onTap: () {
@@ -727,9 +729,9 @@ class _chef_profileState extends State<chef_profile> {
                                 child: Text(
                                   data['chefid'],
                                   style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: const Color(0xFF4A4B4D),
-                                    fontWeight: FontWeight.w700,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18.0,
                                   ),
                                 ),
                               ),
@@ -738,9 +740,9 @@ class _chef_profileState extends State<chef_profile> {
                                 child: Text(
                                   '${data['firstname']} ${data['lastname']}',
                                   style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: const Color(0xFF4A4B4D),
-                                    fontWeight: FontWeight.w700,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18.0,
                                   ),
                                 ),
                               ),
@@ -764,9 +766,6 @@ class _chef_profileState extends State<chef_profile> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(
-                        width: 160,
-                      ),
                       InkWell(
                         onTap: () async {
                           await open_personal_Dialog(data);
@@ -777,247 +776,223 @@ class _chef_profileState extends State<chef_profile> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment(0.0, 0.8),
-                    child: Stack(
-                      alignment: Alignment.topCenter,
-                      children: [
-                        SizedBox(
-                          width: 370.0,
-                          height: 250.0,
-                          child: Stack(
-                            alignment: Alignment.topCenter,
-                            children: <Widget>[
-                              Positioned(
-                                top: 0,
-                                child: Container(
-                                  width: width - 50,
-                                  height: 250,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.16),
-                                        offset: Offset(0, 3.0),
-                                        blurRadius: 12.0,
-                                      ),
-                                    ],
+
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 15,
+                    ),
+                    child: Container(
+                      width: width - 40,
+                      height: 250,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.0),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.16),
+                            offset: Offset(0, 3.0),
+                            blurRadius: 12.0,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 20),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'First Name:',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.0,
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 20,
-                                left: 10,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'First Name',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    (() {
+                                      if (data['firstname'] == null) {
+                                        return "please add...";
+                                      }
+                                      return data['firstname'];
+                                    })(),
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14.0,
                                     ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['firstname'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['firstname'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 55,
-                                left: 10,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Lastname',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 30,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['lastname'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['lastname'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 95,
-                                left: 10,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Mobile 1',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 38,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['mobile1'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['mobile1'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 10,
-                                bottom: 95.0,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Mobile 2',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 38,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['mobile2'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['mobile2'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 10,
-                                bottom: 55.0,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'DOB',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 72,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['dob'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['dob'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 10,
-                                bottom: 20.0,
-                                child: Row(
-                                  children: [
-                                    Wrap(children: [
-                                      Text(
-                                        'Email Id',
-                                        style: TextStyle(
-                                          fontSize: 18.0,
-                                          color: const Color(0xFF4A4B4D),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ]),
-                                    SizedBox(
-                                      width: 42,
-                                    ),
-                                    Wrap(
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.center,
-                                      children: [
-                                        Text(
-                                          (() {
-                                            if (data['email'] == null) {
-                                              return "please add...";
-                                            }
-                                            return data['email'];
-                                          })(),
-                                          style: TextStyle(
-                                            fontSize: 15.0,
-                                            color: const Color(0xFF4A4B4D),
-                                            // fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            // padding: const EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Lastname:',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Text(
+                                    (() {
+                                      if (data['lastname'] == null) {
+                                        return "please add...";
+                                      }
+                                      return data['lastname'];
+                                    })(),
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Mobile 1:',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Text(
+                                    (() {
+                                      if (data['mobile1'] == null) {
+                                        return "please add...";
+                                      }
+                                      return data['mobile1'];
+                                    })(),
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Mobile 2:',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Text(
+                                    (() {
+                                      if (data['mobile2'] == null) {
+                                        return "please add...";
+                                      }
+                                      return data['mobile2'];
+                                    })(),
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'D.O.B:',
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Text(
+                                    (() {
+                                      if (data['dob'] == null) {
+                                        return "please add...";
+                                      }
+                                      return data['dob'];
+                                    })(),
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Row(
+                              children: [
+                                Wrap(children: [
+                                  Text(
+                                    'Email Id:',
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16.0,
+                                    ),
+                                  ),
+                                ]),
+                                Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Text(
+                                    (() {
+                                      if (data['email'] == null) {
+                                        return "please add...";
+                                      }
+                                      return data['email'];
+                                    })(),
+                                    style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14.0,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -1040,395 +1015,333 @@ class _chef_profileState extends State<chef_profile> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment(0.0, 0.8),
-                    child: Stack(
-                      alignment: Alignment.topCenter,
+
+                  Container(
+                    width: width - 40,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.16),
+                          offset: Offset(0, 3.0),
+                          blurRadius: 12.0,
+                        ),
+                      ],
+                    ),
+                    child: Column(
                       children: [
-                        SizedBox(
-                          width: width - 20,
-                          height: 140.0,
-                          child: Stack(
-                            alignment: Alignment.topCenter,
-                            children: <Widget>[
-                              Positioned(
-                                top: 0,
-                                child: Container(
-                                  width: width - 20,
-                                  height: 140,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.16),
-                                        offset: Offset(0, 3.0),
-                                        blurRadius: 12.0,
-                                      ),
-                                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, top: 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'City:',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  (() {
+                                    if (data['address'] == null) {
+                                      return "please add...";
+                                    }
+                                    return data['address'];
+                                  })(),
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 20,
-                                left: 10,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'City',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 70,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['address'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['address'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, top: 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Country:',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.0,
                                 ),
                               ),
-                              Positioned(
-                                top: 55,
-                                left: 10,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Country',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 40,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['country'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['country'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  (() {
+                                    if (data['country'] == null) {
+                                      return "please add...";
+                                    }
+                                    return data['country'];
+                                  })(),
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, top: 10),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Pincode:',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.0,
                                 ),
                               ),
-                              Positioned(
-                                left: 10,
-                                top: 95.0,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Pincode',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 38,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['pincode'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['pincode'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  (() {
+                                    if (data['pincode'] == null) {
+                                      return "please add...";
+                                    }
+                                    return data['pincode'];
+                                  })(),
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                  ),
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Work',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 250,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.edit,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment(0.0, 0.8),
-                    child: Stack(
-                      alignment: Alignment.topCenter,
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          width: width - 20,
-                          height: 200.0,
-                          child: Stack(
-                            alignment: Alignment.topCenter,
-                            children: <Widget>[
-                              Positioned(
-                                top: 0,
-                                child: Container(
-                                  width: width - 30,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.16),
-                                        offset: Offset(0, 3.0),
-                                        blurRadius: 12.0,
-                                      ),
-                                    ],
+                        Text(
+                          'Work',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.edit,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Container(
+                    width: width - 40,
+                    height: 220,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.16),
+                          offset: Offset(0, 3.0),
+                          blurRadius: 12.0,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            top: 20,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Experience:',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  (() {
+                                    if (data['experience'] == null) {
+                                      return "please add...";
+                                    }
+                                    return data['experience'].toString();
+                                  })(),
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 20,
-                                left: 10,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Experience',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 88,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['experience'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['experience'].toString();
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            top: 10,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Work Preference:',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.0,
                                 ),
                               ),
-                              Positioned(
-                                top: 55,
-                                left: 10,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Work Preference',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 38,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['workpreference'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['workpreference'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  (() {
+                                    if (data['workpreference'] == null) {
+                                      return "please add...";
+                                    }
+                                    return data['workpreference'];
+                                  })(),
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            top: 10,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Cost Per Day:',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.0,
                                 ),
                               ),
-                              Positioned(
-                                left: 10,
-                                top: 90.0,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Cost Per Day',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 70,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['cheffees'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['cheffees'].toString();
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  (() {
+                                    if (data['cheffees'] == null) {
+                                      return "please add...";
+                                    }
+                                    return data['cheffees'].toString();
+                                  })(),
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            top: 10,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Salary Range:',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.0,
                                 ),
                               ),
-                              Positioned(
-                                left: 10,
-                                bottom: 55.0,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Salary Range',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 70,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['currentsalary'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['currentsalary'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  (() {
+                                    if (data['currentsalary'] == null) {
+                                      return "please add...";
+                                    }
+                                    return data['currentsalary'];
+                                  })(),
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            top: 10,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                'City:',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.0,
                                 ),
                               ),
-                              Positioned(
-                                left: 10,
-                                bottom: 20.0,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'City',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 145,
-                                    ),
-                                    Text(
-                                      (() {
-                                        if (data['city'] == null) {
-                                          return "please add...";
-                                        }
-                                        return data['city'];
-                                      })(),
-                                      style: TextStyle(
-                                        fontSize: 15.0,
-                                        color: const Color(0xFF4A4B4D),
-                                        // fontWeight: FontWeight.w700,
-                                      ),
-                                    )
-                                  ],
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  (() {
+                                    if (data['city'] == null) {
+                                      return "please add...";
+                                    }
+                                    return data['city'];
+                                  })(),
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14.0,
+                                  ),
                                 ),
-                              ),
+                              )
                             ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                  // SizedBox(
-                  //   height: 15,
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     SizedBox(
-                  //       width: 15,
-                  //     ),
-                  //     Text(
-                  //       'Salary',
-                  //       style: TextStyle(
-                  //         fontFamily: 'Montserrat',
-                  //         fontSize: 20,
-                  //         fontWeight: FontWeight.w500,
-                  //       ),
-                  //     ),
-                  //     SizedBox(
-                  //       width: 240,
-                  //     ),
-                  //     InkWell(
-                  //       onTap: () {},
-                  //       child: Icon(
-                  //         Icons.edit,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  SizedBox(
-                    height: 15,
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -1438,8 +1351,8 @@ class _chef_profileState extends State<chef_profile> {
                           "Cuisine Expert",
                           style: TextStyle(
                             fontFamily: 'Montserrat',
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
                           ),
                         ),
                         IconButton(
@@ -1454,10 +1367,10 @@ class _chef_profileState extends State<chef_profile> {
                     ),
                   ),
                   Container(
-                    // height: 130,
-                    // width: width - 20,
+                    height: 130,
+                    width: width - 40,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -1469,153 +1382,156 @@ class _chef_profileState extends State<chef_profile> {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30, left: 20),
-                          child: Column(
-                            children: [
-                              Wrap(
+                        //
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12),
+                              child: Wrap(
+                                spacing: 5,
                                 children: dishes
                                     .map((e) => Chip(
-                                          label: Text(e),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              10,
+                                            ),
+                                          ),
+                                          backgroundColor:
+                                              Colors.indigo.shade100,
+                                          label: Text(
+                                            e,
+                                            style: TextStyle(
+                                              color: Colors.indigo.shade700,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12.0,
+                                            ),
+                                          ),
                                         ))
                                     .toList(),
                               ),
-                            ],
-                          ),
-                          // Text(
-                          //   data["cuisineexpert"].toString(),
-                          //   style: TextStyle(
-                          //     fontFamily: 'Montserrat',
-                          //     fontSize: 20,
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          // ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
 
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Dishes',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Dishes',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => chefcustomised(),
-                            ),
-                          );
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => chefcustomised(),
+                              ),
+                            );
+                          },
+                          child: Icon(
+                            Icons.add,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Menu',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => predefined(),
+                              ),
+                            );
+                          },
+                          child: Icon(
+                            Icons.add,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'View Dishes and Menu',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => viewdish(),
+                              ),
+                            );
+                          },
+                          child: Icon(Icons.list),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: SizedBox(
+                      height: 50,
+                      width: 150,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.purple.shade600,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () async {
+                          await FirebaseAuth.instance.signOut();
+                          Navigator.pushAndRemoveUntil(
+                              (context),
+                              MaterialPageRoute(
+                                  builder: (context) => ChefConnectMain()),
+                              (route) => false);
                         },
-                        child: Icon(
-                          Icons.add,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Menu',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => predefined(),
-                            ),
-                          );
-                        },
-                        child: Icon(
-                          Icons.add,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'View Dishes and Menu',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => viewdish(),
-                            ),
-                          );
-                        },
-                        child: Icon(Icons.list),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 50,
-                    width: 150,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.purple.shade600,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () async {
-                        await FirebaseAuth.instance.signOut();
-                        Navigator.pushAndRemoveUntil(
-                            (context),
-                            MaterialPageRoute(
-                                builder: (context) => ChefConnectMain()),
-                            (route) => false);
-                      },
-                      child: Text(
-                        'Log Out',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                        child: Text(
+                          'Log Out',
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
