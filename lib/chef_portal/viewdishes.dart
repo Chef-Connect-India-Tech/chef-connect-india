@@ -124,7 +124,7 @@ class _customisedlistState extends State<customisedlist> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 130,
+                              height: 200,
                               width: width - 20,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
@@ -137,38 +137,42 @@ class _customisedlistState extends State<customisedlist> {
                                   ),
                                 ],
                               ),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width -
-                                          30,
-                                      child: Wrap(
-                                        spacing: 5,
-                                        children: alldishes
-                                            .map((e) => Chip(
-                                                  backgroundColor:
-                                                      Colors.blue.shade100,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                      10,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                100,
+                                        child: Wrap(
+                                          spacing: 5,
+                                          children: alldishes
+                                              .map((e) => Chip(
+                                                    backgroundColor:
+                                                        Colors.blue.shade100,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                        10,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  label: Text(
-                                                    e,
-                                                    style: TextStyle(
-                                                      color:
-                                                          Colors.blue.shade700,
+                                                    label: Text(
+                                                      e,
+                                                      style: TextStyle(
+                                                        color: Colors
+                                                            .blue.shade700,
+                                                      ),
                                                     ),
-                                                  ),
-                                                ))
-                                            .toList(),
+                                                  ))
+                                              .toList(),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -297,13 +301,21 @@ class _listpredefinedState extends State<listpredefined> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(left: 85),
-                  child: Text(
-                    "${widget.menuname}'s menu",
-                    style: GoogleFonts.roboto(
-                      fontSize: 20.0,
-                      color: const Color(0xFF4A4B4D),
-                      fontWeight: FontWeight.w700,
-                    ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.list_alt_sharp,
+                        color: Colors.indigo,
+                      ),
+                      Text(
+                        "${widget.menuname}'s menu",
+                        style: GoogleFonts.roboto(
+                          fontSize: 20.0,
+                          color: const Color(0xFF4A4B4D),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(

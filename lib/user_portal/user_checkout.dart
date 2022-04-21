@@ -131,7 +131,7 @@ class _user_checkoutState extends State<user_checkout> {
               backgroundColor: Colors.transparent,
               label: 'Mail',
               onTap: () {
-                launch('mailto:chefconnectindia@gmail.com');
+                launch('mailto:info@chefconnect.co.in');
               }),
           // SpeedDialChild(
           //     child:

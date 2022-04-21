@@ -41,7 +41,10 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                       CircleAvatar(
                         backgroundColor: Color(0xFF092349),
                         radius: 100,
-                        child: Image.asset('assets/CCI1.png'),
+                        child: Image.asset(
+                          'assets/CCI1.png',
+                          height: 130,
+                        ),
                       ),
                       SizedBox(
                         height: 240,

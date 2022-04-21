@@ -35,6 +35,17 @@ class _Sucess_pageState extends State<Sucess_page> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Thank you for making a booking with us.',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 10,
                 ),

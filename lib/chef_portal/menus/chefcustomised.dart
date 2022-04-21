@@ -1,5 +1,6 @@
 // import 'dart:ffi';
 
+import 'package:chef_connect_india/chef_portal/viewdishes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -193,18 +194,19 @@ class _chefcustomisedState extends State<chefcustomised> {
       backgroundColor: Colors.white,
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.indigo,
         elevation: 0,
         title: Text(
           'ADD YOUR DISHES',
-          style: GoogleFonts.lato(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Montserrat',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
           ),
         ),
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       body: SingleChildScrollView(
@@ -242,7 +244,7 @@ class _chefcustomisedState extends State<chefcustomised> {
 
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
-                        labelText: 'Add dish',
+                        labelText: 'Add Dish',
                         labelStyle: TextStyle(
                             fontSize: 15,
                             color: Colors.black87,
@@ -275,82 +277,129 @@ class _chefcustomisedState extends State<chefcustomised> {
                         ),
                       ),
                     ),
-                    ElevatedButton(
-                      child: Text("ADD DISH"),
-                      onPressed: () {
-                        List aa = [adddish.text];
-                        var target_list_2 = List<dynamic>.from(aa);
-                        var len = ((target_list_2).length);
-                        var aaa = (adddish.text).length;
-                        print("le");
-                        print(aaa);
-                        if (aaa == 0) {
-                          Fluttertoast.showToast(msg: "Please Enter Items");
-                        } else {
-                          FirebaseFirestore.instance
-                              .collection("Menu")
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .update({
-                            "customised menu":
-                                FieldValue.arrayUnion(target_list_2),
-                          });
-                          print('------------------------');
-                          print(target_list_2);
-                          Fluttertoast.showToast(
-                              msg:
-                                  "successfully ${target_list_2.toString()} added");
-                        }
-                      },
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Enter Dishes',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        CircleAvatar(
-                          radius: 15,
-                          backgroundColor: Colors.grey.shade200,
-                          child: InkWell(
-                            onTap: _showMultiSelect,
-                            child: Icon(
-                              Icons.add,
-                              size: 18,
-                              color: Colors.black,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: SizedBox(
+                        height: 40,
+                        width: 200,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.indigo,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                10,
+                              ),
                             ),
                           ),
+                          child: Text("ADD DISH"),
+                          onPressed: () {
+                            List aa = [adddish.text];
+                            var target_list_2 = List<dynamic>.from(aa);
+                            var len = ((target_list_2).length);
+                            var aaa = (adddish.text).length;
+                            print("le");
+                            print(aaa);
+                            if (aaa == 0) {
+                              Fluttertoast.showToast(msg: "Please Enter Items");
+                            } else {
+                              FirebaseFirestore.instance
+                                  .collection("Menu")
+                                  .doc(FirebaseAuth.instance.currentUser!.uid)
+                                  .update({
+                                "customised menu":
+                                    FieldValue.arrayUnion(target_list_2),
+                              });
+                              print('------------------------');
+                              print(target_list_2);
+                              Fluttertoast.showToast(
+                                  msg:
+                                      "successfully ${target_list_2.toString()} added");
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => viewdish(),
+                                ),
+                              );
+                            }
+                          },
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: 250,
-                      width: 400,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.shade200,
                       ),
-                      child: InkWell(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Wrap(
-                                children: _selectedItems
-                                    .map((e) => Chip(
-                                          label: Text(e),
-                                        ))
-                                    .toList(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Enter Dishes',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          IconButton(
+                            iconSize: 30,
+                            onPressed: _showMultiSelect,
+                            icon: Icon(
+                              Icons.arrow_drop_down,
+                            ),
+                          )
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 20),
+                          //   child: CircleAvatar(
+                          //     radius: 15,
+                          //     backgroundColor: Colors.grey.shade200,
+                          //     child: InkWell(
+                          //       onTap: _showMultiSelect,
+                          //       child: Icon(
+                          //         Icons.arrow_drop_down_circle,
+                          //         size: 18,
+                          //         color: Colors.indigo,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Container(
+                        height: 250,
+                        width: 400,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.shade200,
+                        ),
+                        child: InkWell(
+                          child: SingleChildScrollView(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Wrap(
+                                    spacing: 5,
+                                    children: _selectedItems
+                                        .map((e) => Chip(
+                                              backgroundColor:
+                                                  Colors.blue.shade100,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  10,
+                                                ),
+                                              ),
+                                              label: Text(
+                                                e,
+                                                style: TextStyle(
+                                                  color: Colors.blue.shade900,
+                                                ),
+                                              ),
+                                            ))
+                                        .toList(),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
@@ -359,8 +408,8 @@ class _chefcustomisedState extends State<chefcustomised> {
                       height: 20,
                     ),
                     SizedBox(
-                      height: 50,
-                      width: 360,
+                      height: 45,
+                      width: 230,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.indigo,
@@ -412,6 +461,12 @@ class _chefcustomisedState extends State<chefcustomised> {
       });
       SetOptions(merge: true);
       Fluttertoast.showToast(msg: "Successfully added");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => viewdish(),
+        ),
+      );
     }
   }
 }
@@ -427,6 +482,8 @@ class MultiSelect extends StatefulWidget {
 class _MultiSelectState extends State<MultiSelect> {
   // this variable holds the selected items
   final List<String> _selectedItems = [];
+
+  get cid => null;
 
 // This function is triggered when a checkbox is checked or unchecked
   void _itemChange(String itemValue, bool isSelected) {
@@ -448,6 +505,7 @@ class _MultiSelectState extends State<MultiSelect> {
   void _submit() {
     print('--=========--------------');
     print(_selectedItems);
+
     Navigator.pop(context, _selectedItems);
   }
 

@@ -49,7 +49,7 @@ class _user_bookingsState extends State<user_bookings> {
               backgroundColor: Colors.transparent,
               label: 'Mail',
               onTap: () {
-                launch('mailto:chefconnectindia@gmail.com');
+                launch('mailto:info@chefconnect.co.in');
               }),
           // SpeedDialChild(
           //     child:

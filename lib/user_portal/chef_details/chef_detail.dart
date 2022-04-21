@@ -100,7 +100,7 @@ class _chef_detailState extends State<chef_detail> {
               backgroundColor: Colors.transparent,
               label: 'Mail',
               onTap: () {
-                launch('mailto:chefconnectindia@gmail.com');
+                launch('mailto:info@chefconnect.co.in');
               }),
           // SpeedDialChild(
           //     child:
@@ -185,8 +185,8 @@ class _chef_detailState extends State<chef_detail> {
                                   child: Text(
                                     '${widget.chefid}',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
-                                      fontWeight: FontWeight.w700,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 24.0,
                                     ),
                                   ),
@@ -201,15 +201,15 @@ class _chef_detailState extends State<chef_detail> {
                                       Text(
                                         'City: ',
                                         style: TextStyle(
-                                          fontFamily: 'SF Pro',
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w600,
                                           fontSize: 20.0,
                                         ),
                                       ),
                                       Text(
                                         '${widget.city}',
                                         style: TextStyle(
-                                          fontFamily: 'SF Pro',
+                                          fontFamily: 'Montserrat',
                                           fontWeight: FontWeight.w400,
                                           fontSize: 20.0,
                                         ),
@@ -232,15 +232,15 @@ class _chef_detailState extends State<chef_detail> {
                                           Text(
                                             'Chef Level: ',
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
-                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w600,
                                               fontSize: 20.0,
                                             ),
                                           ),
                                           Text(
                                             '${widget.cheflevel}',
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
+                                              fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
                                               fontSize: 20.0,
                                             ),
@@ -266,7 +266,7 @@ class _chef_detailState extends State<chef_detail> {
                                           Text(
                                             '${widget.rating}',
                                             style: TextStyle(
-                                              fontFamily: 'SF Pro',
+                                              fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
                                               fontSize: 20.0,
                                             ),
@@ -310,15 +310,15 @@ class _chef_detailState extends State<chef_detail> {
                               Text(
                                 'Experience: ',
                                 style: TextStyle(
-                                  fontFamily: 'SF Pro',
-                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 18.0,
                                 ),
                               ),
                               Text(
                                 '${widget.experience}',
                                 style: TextStyle(
-                                  fontFamily: 'SF Pro',
+                                  fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w400,
                                   fontSize: 18.0,
                                 ),
@@ -338,8 +338,8 @@ class _chef_detailState extends State<chef_detail> {
                                   Text(
                                     'Cuisine Expert : ',
                                     style: TextStyle(
-                                      fontFamily: 'SF Pro',
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 18.0,
                                     ),
                                   ),
@@ -352,7 +352,18 @@ class _chef_detailState extends State<chef_detail> {
                                 spacing: 5.0,
                                 children: widget.cuisine
                                     .map((e) => Chip(
-                                          label: Text(e),
+                                          backgroundColor:
+                                              Colors.purple.shade100,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          label: Text(
+                                            e,
+                                            style: TextStyle(
+                                              color: Colors.purple.shade900,
+                                            ),
+                                          ),
                                         ))
                                     .toList(),
                               ),
@@ -406,7 +417,7 @@ class _chef_detailState extends State<chef_detail> {
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),

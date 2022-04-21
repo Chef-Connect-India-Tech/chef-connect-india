@@ -101,7 +101,7 @@ class _customiseduserState extends State<customiseduser> {
               backgroundColor: Colors.transparent,
               label: 'Mail',
               onTap: () {
-                launch('mailto:chefconnectindia@gmail.com');
+                launch('mailto:info@chefconnect.co.in');
               }),
           // SpeedDialChild(
           //     child:

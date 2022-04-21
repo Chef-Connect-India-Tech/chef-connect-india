@@ -267,7 +267,17 @@ class _chef_add_dishState extends State<chef_add_dish> {
                               Wrap(
                                 children: _selectedItems
                                     .map((e) => Chip(
-                                          label: Text(e),
+                                          backgroundColor:
+                                              Colors.amber.shade100,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          label: Text(
+                                            e,
+                                            style: TextStyle(
+                                                color: Colors.amber.shade900),
+                                          ),
                                         ))
                                     .toList(),
                               ),

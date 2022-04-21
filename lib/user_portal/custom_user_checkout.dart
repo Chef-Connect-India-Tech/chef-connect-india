@@ -126,7 +126,7 @@ class _custom_user_checkoutState extends State<custom_user_checkout> {
               backgroundColor: Colors.transparent,
               label: 'Mail',
               onTap: () {
-                launch('mailto:chefconnectindia@gmail.com');
+                launch('mailto:info@chefconnect.co.in');
               }),
           // SpeedDialChild(
           //     child:
@@ -303,6 +303,7 @@ class _custom_user_checkoutState extends State<custom_user_checkout> {
                                     height: 15,
                                   ),
                                   CustomCheckBoxGroup(
+                                    elevation: 5,
                                     buttonTextStyle: ButtonTextStyle(
                                       selectedColor: Colors.white,
                                       unSelectedColor: Colors.black,

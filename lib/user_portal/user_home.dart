@@ -151,6 +151,7 @@ class _user_homeState extends State<user_home> {
     "Executive chef HOD  Unit chef ",
     "Corporate chef multi unit chef ",
     "Director culinary  vice president presiden",
+    "Helper"
   ];
   final levelofchef = [
     "Basic",
@@ -237,7 +238,7 @@ class _user_homeState extends State<user_home> {
                 backgroundColor: Colors.transparent,
                 label: 'Mail',
                 onTap: () {
-                  launch('mailto:chefconnectindia@gmail.com');
+                  launch('mailto:info@chefconnect.co.in');
                 }),
             // SpeedDialChild(
             //     child:
@@ -1590,12 +1591,12 @@ class _user_homeState extends State<user_home> {
                       return GridView(
                         physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
-                        padding: const EdgeInsets.all(0.0),
+                        // padding: const EdgeInsets.all(0.0),
                         scrollDirection: Axis.vertical,
                         primary: true,
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 200,
-                          childAspectRatio: 1 / 75,
+                          childAspectRatio: 1 / 7.5,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 0,
                         ),

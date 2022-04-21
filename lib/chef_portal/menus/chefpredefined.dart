@@ -1,5 +1,7 @@
 // ignore_for_file: unused_element
 
+// import 'dart:html';
+//
 import 'package:chef_connect_india/chef_portal/viewdishes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -222,14 +224,15 @@ class _predefinedState extends State<predefined> {
       backgroundColor: Colors.white,
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.indigo,
         elevation: 0,
         title: Text(
           'ADD PREDEFINED MENU',
-          style: GoogleFonts.lato(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Montserrat',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
           ),
         ),
         iconTheme: IconThemeData(
@@ -249,52 +252,66 @@ class _predefinedState extends State<predefined> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 15,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Text(
+                            'Dishes that are added into your profile will shown over here',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Montserrat',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
-                        TextFormField(
-                          autofocus: false,
-                          controller: _menunameController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {
-                            if (value!.isEmpty ||
-                                !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                              //allow upper and lower case alphabets and space
-                              return "Enter Correct Menu name";
-                            } else {
-                              return null;
-                            }
-                          },
-                          onSaved: (value) {
-                            _menunameController.text = value!;
-                          },
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            fillColor: Colors.white70,
-                            prefixIcon: Icon(Icons.list_alt),
-                            hintText: 'Enter Menu Name',
-                            hintStyle:
-                                TextStyle(color: Colors.black38, fontSize: 15),
-                            filled: true,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                                width: 1,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 20,
+                          ),
+                          child: TextFormField(
+                            autofocus: false,
+                            controller: _menunameController,
+                            keyboardType: TextInputType.name,
+                            validator: (value) {
+                              if (value!.isEmpty ||
+                                  !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                                //allow upper and lower case alphabets and space
+                                return "Enter Correct Menu name";
+                              } else {
+                                return null;
+                              }
+                            },
+                            onSaved: (value) {
+                              _menunameController.text = value!;
+                            },
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                              fillColor: Colors.white70,
+                              prefixIcon: Icon(Icons.list_alt),
+                              hintText: 'Enter Menu Name',
+                              hintStyle: TextStyle(
+                                  color: Colors.black38, fontSize: 15),
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
+                                ),
                               ),
-                            ),
-                            focusedBorder: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(10.0),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                                width: 1,
+                              focusedBorder: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(10.0),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
+                                ),
                               ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                                width: 1,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                  width: 1,
+                                ),
                               ),
                             ),
                           ),
@@ -307,9 +324,10 @@ class _predefinedState extends State<predefined> {
                             Text(
                               'Enter Starters',
                               style: TextStyle(
-                                fontFamily: 'Roboto',
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
                                 fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             SizedBox(
@@ -343,13 +361,32 @@ class _predefinedState extends State<predefined> {
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  Wrap(
-                                    spacing: 5.0,
-                                    children: _selectedItems
-                                        .map((e) => Chip(
-                                              label: Text(e),
-                                            ))
-                                        .toList(),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 10,
+                                    ),
+                                    child: Wrap(
+                                      spacing: 5.0,
+                                      children: _selectedItems
+                                          .map((e) => Chip(
+                                                backgroundColor:
+                                                    Colors.orange.shade100,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    10,
+                                                  ),
+                                                ),
+                                                label: Text(
+                                                  e,
+                                                  style: TextStyle(
+                                                    color:
+                                                        Colors.orange.shade900,
+                                                  ),
+                                                ),
+                                              ))
+                                          .toList(),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -364,9 +401,10 @@ class _predefinedState extends State<predefined> {
                             Text(
                               'Enter Main Course',
                               style: TextStyle(
-                                fontFamily: 'Roboto',
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
                                 fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             SizedBox(
@@ -402,13 +440,31 @@ class _predefinedState extends State<predefined> {
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  Wrap(
-                                    spacing: 5.0,
-                                    children: _selectedItems1
-                                        .map((e) => Chip(
-                                              label: Text(e),
-                                            ))
-                                        .toList(),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 15,
+                                    ),
+                                    child: Wrap(
+                                      spacing: 5.0,
+                                      children: _selectedItems1
+                                          .map((e) => Chip(
+                                                backgroundColor:
+                                                    Colors.blue.shade100,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    10,
+                                                  ),
+                                                ),
+                                                label: Text(
+                                                  e,
+                                                  style: TextStyle(
+                                                    color: Colors.blue.shade900,
+                                                  ),
+                                                ),
+                                              ))
+                                          .toList(),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -423,9 +479,10 @@ class _predefinedState extends State<predefined> {
                             Text(
                               "Enter Dessert's",
                               style: TextStyle(
-                                fontFamily: 'Roboto',
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
                                 fontSize: 18,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             SizedBox(
@@ -459,13 +516,32 @@ class _predefinedState extends State<predefined> {
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  Wrap(
-                                    spacing: 5.0,
-                                    children: _selectedItems2
-                                        .map((e) => Chip(
-                                              label: Text(e),
-                                            ))
-                                        .toList(),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 10,
+                                    ),
+                                    child: Wrap(
+                                      spacing: 5.0,
+                                      children: _selectedItems2
+                                          .map((e) => Chip(
+                                                backgroundColor:
+                                                    Colors.purple.shade100,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    10,
+                                                  ),
+                                                ),
+                                                label: Text(
+                                                  e,
+                                                  style: TextStyle(
+                                                    color:
+                                                        Colors.purple.shade900,
+                                                  ),
+                                                ),
+                                              ))
+                                          .toList(),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -476,8 +552,8 @@ class _predefinedState extends State<predefined> {
                           height: 20,
                         ),
                         SizedBox(
-                          height: 50,
-                          width: 350,
+                          height: 45,
+                          width: 240,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               primary: Colors.indigo,
@@ -500,7 +576,8 @@ class _predefinedState extends State<predefined> {
                             child: Text(
                               'Add Menu',
                               style: TextStyle(
-                                fontFamily: 'Roboto',
+                                color: Colors.white,
+                                fontFamily: 'Montserrat',
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                               ),
