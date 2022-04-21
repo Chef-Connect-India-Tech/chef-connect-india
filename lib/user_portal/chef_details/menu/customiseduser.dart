@@ -212,13 +212,16 @@ class _customiseduserState extends State<customiseduser> {
                 } else {
                   print(price);
                   double rate = price + price * 0.25;
+                  double rate1 = rate + (len - 6) * 100;
+                  print('hiiiiiiiiiiiiiiii');
+                  print(rate1);
                   Fluttertoast.showToast(
                       msg: "Price is ${rate + (len - 6) * 100}");
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: ((context) => custom_user_checkout(
-                            price: rate,
+                            price: rate1,
                             cid: widget.cid,
                             chefContact: widget.chefContact,
                             chefId: widget.chefId,
@@ -227,21 +230,21 @@ class _customiseduserState extends State<customiseduser> {
                     ),
                   );
                 }
-                print(_selectedItems);
-                print('Book A  Chef button pressed');
-                double rate = price + price * 0.25;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: ((context) => custom_user_checkout(
-                          price: rate,
-                          cid: widget.cid,
-                          chefContact: widget.chefContact,
-                          chefId: widget.chefId,
-                          dishes: _selectedItems,
-                        )),
-                  ),
-                );
+                // print(_selectedItems);
+                // print('Book A  Chef button pressed');
+                // double rate = price + price * 0.25;
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: ((context) => custom_user_checkout(
+                //           price: rate,
+                //           cid: widget.cid,
+                //           chefContact: widget.chefContact,
+                //           chefId: widget.chefId,
+                //           dishes: _selectedItems,
+                //         )),
+                //   ),
+                // );
               },
               child: Text(
                 'Proceed to Check Out',

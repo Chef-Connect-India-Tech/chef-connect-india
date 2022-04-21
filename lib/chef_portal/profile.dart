@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
 import 'dart:io';
-
+import 'package:intl/intl.dart';
 import 'package:chef_connect_india/Helper/models/user.dart';
 import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
@@ -87,8 +87,29 @@ class _chef_profileState extends State<chef_profile> {
   }
 
   // var date = DateTime.now();
-  DateTime dateTime = DateTime.now();
-  late String date;
+  DateTime selectedDate = DateTime.now();
+  late String dateUTC;
+  late String date_Time;
+  Future<void> selectDate(BuildContext context) async {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2025),
+    ).then(
+      (date) {
+        setState(
+          () {
+            selectedDate = date!;
+            String formattedDate =
+                DateFormat('dd-MM-yyyy').format(selectedDate);
+            _dateController = formattedDate as TextEditingController;
+            dateUTC = DateFormat('yyyy-MM-dd').format(selectedDate);
+          },
+        );
+      },
+    );
+  }
 
   //personal details controller
   TextEditingController? _firstnameController;
@@ -96,8 +117,7 @@ class _chef_profileState extends State<chef_profile> {
   TextEditingController? _phoneController;
   TextEditingController? _phone2Controller;
   TextEditingController? _emailController;
-  TextEditingController? _dobController;
-
+  late TextEditingController _dateController = TextEditingController();
   //current location details controller
   TextEditingController? _currentcity;
   TextEditingController? _currentcountry;
@@ -135,22 +155,10 @@ class _chef_profileState extends State<chef_profile> {
   //   setState(() => date = newDate);
   // }
 
-  Widget buildDatePicker() => SizedBox(
-        height: 180,
-        child: CupertinoDatePicker(
-          minimumYear: 1947,
-          maximumYear: DateTime.now().year,
-          initialDateTime: dateTime,
-          mode: CupertinoDatePickerMode.date,
-          onDateTimeChanged: (dateTime) =>
-              setState(() => this.dateTime = dateTime),
-        ),
-      );
-
-  Future<String?> open_personal_Dialog(data) => showDialog<String>(
+  Future<String?> open_curloc_Dialog0(data) => showDialog<String>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Profile Data'),
+          title: Text('Current Location Data'),
           content: SingleChildScrollView(
             child: Container(
               child: Column(
@@ -161,10 +169,11 @@ class _chef_profileState extends State<chef_profile> {
                         TextEditingController(text: data['firstname']),
                     autofocus: true,
                     decoration: InputDecoration(
-                        hintText: 'Enter your First Name',
-                        hintStyle: TextStyle(
-                          fontFamily: 'Montserrat',
-                        )),
+                      hintText: 'Enter your first name',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -175,74 +184,105 @@ class _chef_profileState extends State<chef_profile> {
                         TextEditingController(text: data['lastname']),
                     autofocus: true,
                     decoration: InputDecoration(
-                        hintText: 'Enter your Last Name',
-                        hintStyle: TextStyle(
-                          fontFamily: 'Montserrat',
-                        )),
+                      hintText: 'Enter your last name',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextField(
-                    style: TextStyle(color: Colors.grey),
+                    // style: TextStyle(color: Colors.black),
                     // readOnly: true,
-                    enabled: false,
-                    controller: _phoneController =
-                        TextEditingController(text: data['mobile1']),
-                    autofocus: true,
-                    decoration: InputDecoration(
-                        hintText: 'Enter your Mobile Num 1',
-                        hintStyle: TextStyle(
-                          fontFamily: 'Montserrat',
-                        )),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.phone,
+                    // enabled: false,
+                    keyboardType: TextInputType.name,
                     controller: _phone2Controller =
                         TextEditingController(text: data['mobile2']),
                     autofocus: true,
                     decoration: InputDecoration(
-                        hintText: 'Enter your Mobile Num 2',
-                        hintStyle: TextStyle(
-                          fontFamily: 'Montserrat',
-                        )),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    onTap: () => Utils.showSheet(
-                      context,
-                      child: buildDatePicker(),
-                      onClicked: () {
-                        final date_value =
-                            DateFormat('dd/MM/yyyy').format(dateTime);
-                        // Utils.showSnackBar(context, 'Selected "$date_value"');
-                        date = date_value;
-                        Navigator.of(context).pop();
-                        // Navigator.pop(context);
-                      },
+                      hintText: 'Enter your mobile2',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
                     ),
-                    controller: _dobController =
-                        TextEditingController(text: data['dob']),
-                    readOnly: true,
-                    autofocus: true,
-                    decoration:
-                        InputDecoration(hintText: 'Click to Enter your DOB'),
                   ),
-                  SizedBox(
-                    height: 10,
+                  TextFormField(
+                    controller: _dateController,
+                    decoration: InputDecoration(
+                      labelText: "Date of birth",
+                      hintText: "Ex. Insert your dob",
+                    ),
+                    onTap: () async {
+                      DateTime date = DateTime(1900);
+                      FocusScope.of(context).requestFocus(new FocusNode());
+
+                      date = (await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1900),
+                          lastDate: DateTime(2100)))!;
+
+                      _dateController.text = date.toIso8601String();
+                    },
                   ),
                   TextField(
-                    keyboardType: TextInputType.emailAddress,
+                    // style: TextStyle(color: Colors.black),
+                    // readOnly: true,
+                    // enabled: false,
+                    keyboardType: TextInputType.name,
                     controller: _emailController =
                         TextEditingController(text: data['email']),
                     autofocus: true,
-                    decoration: InputDecoration(hintText: 'Enter your email'),
+                    decoration: InputDecoration(
+                      hintText: 'Enter your email',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
                   ),
+                  // TextField(
+                  //   // style: TextStyle(color: Colors.black),
+                  //   // readOnly: true,
+                  //   // enabled: false,
+                  //   keyboardType: TextInputType.name,
+                  //   controller: _dobController =
+                  //       TextEditingController(text: data['dob']),
+                  //   autofocus: true,
+                  //   decoration: InputDecoration(
+                  //     hintText: 'Enter your date of birth',
+                  //     hintStyle: TextStyle(
+                  //       fontFamily: 'Montserrat',
+                  //     ),
+                  //   ),
+                  //   readOnly: true,
+                  //   onTap: () async {
+                  //     DateTime? pickedDate = await showDatePicker(
+                  //         context: context,
+                  //         initialDate: DateTime.now(),
+                  //         firstDate: DateTime(
+                  //             2000), //DateTime.now() - not to allow to choose before today.
+                  //         lastDate: DateTime(2101));
+
+                  //     if (pickedDate != null) {
+                  //       print(
+                  //           pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                  //       String formattedDate =
+                  //           DateFormat('yyyy-MM-dd').format(pickedDate);
+                  //       print(
+                  //           formattedDate); //formatted date output using intl package =>  2021-03-16
+                  //       //you can implement different kind of Date Format here according to your requirement
+
+                  //       setState(() {
+                  //         _dobController = formattedDate
+                  //             as TextEditingController?; //set output date to TextField value.
+                  //       });
+                  //     } else {
+                  //       print("Date is not selected");
+                  //     }
+                  //   },
+                  // ),
                 ],
               ),
             ),
@@ -250,13 +290,18 @@ class _chef_profileState extends State<chef_profile> {
           actions: [
             TextButton(
               onPressed: cancel,
-              child: Text('Cancel'),
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
             ),
             SizedBox(
               width: 20,
             ),
             TextButton(
-              onPressed: submit,
+              onPressed: submit_curr0,
               child: Text(
                 'Update',
                 style: TextStyle(
@@ -268,29 +313,172 @@ class _chef_profileState extends State<chef_profile> {
         ),
       );
 
-  void submit() {
+  void submit_curr0() {
     Navigator.of(context).pop();
-    updatePersonalData();
+    updateCurLocData0();
+  }
+
+  updateCurLocData0() {
+    if (_dateController.text.length >= 10) {
+      CollectionReference _collectionRef =
+          FirebaseFirestore.instance.collection("chefs");
+      return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+        "firstname": _firstnameController!.text,
+        'lastname': _lastnameController!.text,
+        "mobile2": _phone2Controller!.text,
+        "email": _emailController!.text,
+        "dob": _dateController.text,
+        'username':
+            '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
+      }).then((value) => print("Updated Successfully"));
+    }
+    // var current_user_ui
+    //d = FirebaseAuth.instance.currentUser!.uid;
+    else {
+      CollectionReference _collectionRef =
+          FirebaseFirestore.instance.collection("chefs");
+      return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+        "firstname": _firstnameController!.text,
+        'lastname': _lastnameController!.text,
+        "mobile2": _phone2Controller!.text,
+        "email": _emailController!.text,
+      }).then((value) => print("Updated Successfully"));
+    }
   }
 
   void cancel() {
     Navigator.of(context).pop();
-    // updateData();
   }
 
-  updatePersonalData() {
-    // var current_user_uid = FirebaseAuth.instance.currentUser!.uid;
+  Future<String?> open_curloc_Dialog2(data) => showDialog<String>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Current Location Data'),
+          content: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    controller: _workexperience = TextEditingController(
+                        text: data['experience'].toString()),
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your experience',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  // TextField(
+                  //   keyboardType: TextInputType.name,
+                  //   controller: _workpreference =
+                  //       TextEditingController(text: data['workpreference']),
+                  //   autofocus: true,
+                  //   decoration: InputDecoration(
+                  //     hintText: 'Enter your workpreference',
+                  //     hintStyle: TextStyle(
+                  //       fontFamily: 'Montserrat',
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
+                  TextField(
+                    // style: TextStyle(color: Colors.black),
+                    // readOnly: true,
+                    // enabled: false,
+
+                    keyboardType: TextInputType.number,
+                    controller: _cheffees = TextEditingController(
+                        text: data['cheffees'].toString()),
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your Rate per day',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ),
+                  TextField(
+                    // style: TextStyle(color: Colors.black),
+                    // readOnly: true,
+                    // enabled: false,
+
+                    keyboardType: TextInputType.name,
+                    controller: _workcity =
+                        TextEditingController(text: data['address']),
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your address',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: cancel,
+              child: Text(
+                'Cancel',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            TextButton(
+              onPressed: submit_curr2,
+              child: Text(
+                'Update',
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+  void submit_curr2() {
+    Navigator.of(context).pop();
+    updateCurLocData2();
+  }
+
+  updateCurLocData2() {
+    // if (_dateController.text.length >= 10) {
+    //   CollectionReference _collectionRef =
+    //       FirebaseFirestore.instance.collection("chefs");
+    //   return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+    //     "firstname": _firstnameController!.text,
+    //     'lastname': _lastnameController!.text,
+    //     "mobile2": _phone2Controller!.text,
+    //     "email": _emailController!.text,
+    //     "dob": _dateController.text,
+    //     'username':
+    //         '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
+    //   }).then((value) => print("Updated Successfully"));
+    // }
+    // var current_user_ui
+    //d = FirebaseAuth.instance.currentUser!.uid;
+
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection("chefs");
     return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
-      "firstname": _firstnameController!.text,
-      'lastname': _lastnameController!.text,
-      "mobile1": _phoneController!.text,
-      "email": _emailController!.text,
-      'mobile2': _phone2Controller!.text,
-      'dob': date,
-      'username':
-          '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
+      "experience": int.parse(_workexperience!.text),
+      //'lastname': _workpreference!.text,
+      "cheffees": int.parse(_cheffees!.text),
+      "address": _workcity!.text,
     }).then((value) => print("Updated Successfully"));
   }
 
@@ -305,7 +493,7 @@ class _chef_profileState extends State<chef_profile> {
                   TextField(
                     keyboardType: TextInputType.name,
                     controller: _currentcity =
-                        TextEditingController(text: data['address']),
+                        TextEditingController(text: data['city']),
                     autofocus: true,
                     decoration: InputDecoration(
                       hintText: 'Enter your Current City',
@@ -383,6 +571,7 @@ class _chef_profileState extends State<chef_profile> {
   }
 
   updateCurLocData() {
+    print(_currentcity!.text);
     // var current_user_uid = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection("chefs");
@@ -547,30 +736,30 @@ class _chef_profileState extends State<chef_profile> {
                   SizedBox(
                     height: 10,
                   ),
-                  TextField(
-                    onTap: () => Utils.showSheet(
-                      context,
-                      child: buildDatePicker(),
-                      onClicked: () {
-                        final date_value =
-                            DateFormat('dd/MM/yyyy').format(dateTime);
-                        // Utils.showSnackBar(context, 'Selected "$date_value"');
-                        date = date_value;
-                        Navigator.of(context).pop();
-                        // Navigator.pop(context);
-                      },
-                    ),
-                    controller: _dobController =
-                        TextEditingController(text: data['dob']),
-                    readOnly: true,
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      hintText: 'Click to Enter your DOB',
-                      hintStyle: TextStyle(
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                  ),
+                  // TextField(
+                  //   onTap: () => Utils.showSheet(
+                  //     context,
+                  //     child: buildDatePicker(),
+                  //     onClicked: () {
+                  //       final date_value =
+                  //           DateFormat('dd/MM/yyyy').format(dateTime);
+                  //       // Utils.showSnackBar(context, 'Selected "$date_value"');
+                  //       date = date_value;
+                  //       Navigator.of(context).pop();
+                  //       // Navigator.pop(context);
+                  //     },
+                  //   ),
+                  //   controller: _dobController =
+                  //       TextEditingController(text: data['dob']),
+                  //   readOnly: true,
+                  //   autofocus: true,
+                  //   decoration: InputDecoration(
+                  //     hintText: 'Click to Enter your DOB',
+                  //     hintStyle: TextStyle(
+                  //       fontFamily: 'Montserrat',
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 10,
                   ),
@@ -768,7 +957,7 @@ class _chef_profileState extends State<chef_profile> {
                       ),
                       InkWell(
                         onTap: () async {
-                          await open_personal_Dialog(data);
+                          await open_curloc_Dialog0(data);
                         },
                         child: Icon(
                           Icons.edit,
@@ -941,7 +1130,7 @@ class _chef_profileState extends State<chef_profile> {
                                       if (data['dob'] == null) {
                                         return "please add...";
                                       }
-                                      return data['dob'];
+                                      return data['dob'].substring(0, 10);
                                     })(),
                                     style: TextStyle(
                                       fontFamily: 'Montserrat',
@@ -1048,10 +1237,10 @@ class _chef_profileState extends State<chef_profile> {
                                 padding: const EdgeInsets.all(5.0),
                                 child: Text(
                                   (() {
-                                    if (data['address'] == null) {
+                                    if (data['city'] == null) {
                                       return "please add...";
                                     }
-                                    return data['address'];
+                                    return data['city'];
                                   })(),
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
@@ -1143,7 +1332,9 @@ class _chef_profileState extends State<chef_profile> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () async {
+                            open_curloc_Dialog2(data);
+                          },
                           child: Icon(
                             Icons.edit,
                           ),
