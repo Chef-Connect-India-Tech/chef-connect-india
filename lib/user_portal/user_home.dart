@@ -1750,57 +1750,52 @@ class _user_homeState extends State<user_home> {
                       ],
                     ),
                   ),
-                  Container(
-                    child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection("chefs")
-                          .limit(4)
-                          .where('verified', isEqualTo: true)
-                          // .where('dutystatus', isEqualTo: true)
-                          .snapshots(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        return GridView(
-                          physics: BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          // padding: const EdgeInsets.all(0.0),
-                          scrollDirection: Axis.vertical,
-                          primary: true,
-                          gridDelegate:
-                              SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
-                            childAspectRatio: 1 / 7.5,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 0,
-                          ),
-                          children: snapshot.data!.docs
-                              .map((DocumentSnapshot document) {
-                            print(document.data());
-                            return new chef_list_view(
-                              chefid:
-                                  document['chefid'].toString().toLowerCase(),
-                              cusineexpert: document['cuisineexpert'],
-                              level: document['level'].toString(),
-                              speciality: document['specialities'].toString(),
-                              experience: document['experience'],
-                              profilepic: document['profilepic'],
-                              city: document['city'].toString(),
-                              rating: document['rating'],
-                              currentsalary:
-                                  document['currentsalary'].toString(),
-                              uid: document['uid'],
-                              costperday: document['cheffees'],
-                              chefContact: document['mobile1'],
-                            );
-                          }).toList(),
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("chefs")
+                        .limit(4)
+                        .where('verified', isEqualTo: true)
+                        // .where('dutystatus', isEqualTo: true)
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(),
                         );
-                      },
-                    ),
+                      }
+                      return GridView(
+                        physics: BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        // padding: const EdgeInsets.all(0.0),
+                        scrollDirection: Axis.vertical,
+                        primary: true,
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 1 / 7.5,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 0,
+                        ),
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          print(document.data());
+                          return new chef_list_view(
+                            chefid: document['chefid'].toString().toLowerCase(),
+                            cusineexpert: document['cuisineexpert'],
+                            level: document['level'].toString(),
+                            speciality: document['specialities'].toString(),
+                            experience: document['experience'],
+                            profilepic: document['profilepic'],
+                            city: document['city'].toString(),
+                            rating: document['rating'],
+                            currentsalary: document['currentsalary'].toString(),
+                            uid: document['uid'],
+                            costperday: document['cheffees'],
+                            chefContact: document['mobile1'],
+                          );
+                        }).toList(),
+                      );
+                    },
                   ),
                 ],
               ),
