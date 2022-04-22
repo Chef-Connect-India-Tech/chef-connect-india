@@ -158,7 +158,7 @@ class _chef_profileState extends State<chef_profile> {
   Future<String?> open_curloc_Dialog0(data) => showDialog<String>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Current Location Data'),
+          title: Text('Edit Personal Details'),
           content: SingleChildScrollView(
             child: Container(
               child: Column(
@@ -353,7 +353,7 @@ class _chef_profileState extends State<chef_profile> {
   Future<String?> open_curloc_Dialog2(data) => showDialog<String>(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Current Location Data'),
+          title: Text('Edit Work Details'),
           content: SingleChildScrollView(
             child: Container(
               child: Column(
@@ -1773,7 +1773,7 @@ class _MultiSelectState extends State<MultiSelect> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Select Topics'),
+      title: const Text('Select Cuisine'),
       content: SingleChildScrollView(
         child: ListBody(
           children: widget.items

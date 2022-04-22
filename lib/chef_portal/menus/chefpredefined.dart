@@ -227,7 +227,7 @@ class _predefinedState extends State<predefined> {
         backgroundColor: Colors.indigo,
         elevation: 0,
         title: Text(
-          'ADD PREDEFINED MENU',
+          'ADD MY MENU',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'Montserrat',
@@ -236,7 +236,7 @@ class _predefinedState extends State<predefined> {
           ),
         ),
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       body: SafeArea(
@@ -287,7 +287,10 @@ class _predefinedState extends State<predefined> {
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
                               fillColor: Colors.white70,
-                              prefixIcon: Icon(Icons.list_alt),
+                              prefixIcon: Icon(
+                                Icons.list_alt,
+                                color: Colors.indigo,
+                              ),
                               hintText: 'Enter Menu Name',
                               hintStyle: TextStyle(
                                   color: Colors.black38, fontSize: 15),
@@ -333,18 +336,25 @@ class _predefinedState extends State<predefined> {
                             SizedBox(
                               width: 10,
                             ),
-                            CircleAvatar(
-                              radius: 15,
-                              backgroundColor: Colors.grey.shade200,
-                              child: InkWell(
-                                onTap: showdishes,
-                                child: Icon(
-                                  Icons.add,
-                                  size: 18,
-                                  color: Colors.black,
-                                ),
+                            IconButton(
+                              iconSize: 30,
+                              onPressed: showdishes,
+                              icon: Icon(
+                                Icons.arrow_drop_down,
                               ),
                             ),
+                            // CircleAvatar(
+                            //   radius: 15,
+                            //   backgroundColor: Colors.grey.shade200,
+                            //   child: InkWell(
+                            //     onTap: showdishes,
+                            //     child: Icon(
+                            //       Icons.arrow_drop_down,
+                            //       size: 18,
+                            //       color: Colors.black,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                         SizedBox(
@@ -410,18 +420,25 @@ class _predefinedState extends State<predefined> {
                             SizedBox(
                               width: 10,
                             ),
-                            CircleAvatar(
-                              radius: 15,
-                              backgroundColor: Colors.grey.shade200,
-                              child: InkWell(
-                                onTap: showdishes1,
-                                child: Icon(
-                                  Icons.add,
-                                  size: 18,
-                                  color: Colors.black,
-                                ),
+                            IconButton(
+                              iconSize: 30,
+                              onPressed: showdishes1,
+                              icon: Icon(
+                                Icons.arrow_drop_down,
                               ),
                             ),
+                            // CircleAvatar(
+                            //   radius: 15,
+                            //   backgroundColor: Colors.grey.shade200,
+                            //   child: InkWell(
+                            //     onTap: showdishes1,
+                            //     child: Icon(
+                            //       Icons.arrow_drop_down,
+                            //       size: 18,
+                            //       color: Colors.black,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                         SizedBox(
@@ -488,18 +505,25 @@ class _predefinedState extends State<predefined> {
                             SizedBox(
                               width: 10,
                             ),
-                            CircleAvatar(
-                              radius: 15,
-                              backgroundColor: Colors.grey.shade200,
-                              child: InkWell(
-                                onTap: showdishes2,
-                                child: Icon(
-                                  Icons.add,
-                                  size: 18,
-                                  color: Colors.black,
-                                ),
+                            IconButton(
+                              iconSize: 30,
+                              onPressed: showdishes2,
+                              icon: Icon(
+                                Icons.arrow_drop_down,
                               ),
                             ),
+                            // CircleAvatar(
+                            //   radius: 15,
+                            //   backgroundColor: Colors.grey.shade200,
+                            //   child: InkWell(
+                            //     onTap: showdishes2,
+                            //     child: Icon(
+                            //       Icons.arrow_drop_down,
+                            //       size: 18,
+                            //       color: Colors.black,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                         SizedBox(
@@ -566,12 +590,6 @@ class _predefinedState extends State<predefined> {
                             onPressed: () {
                               _createAppointment();
                               print(_menunameController.text);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => viewdish(),
-                                ),
-                              );
                             },
                             child: Text(
                               'Add Menu',
@@ -620,6 +638,12 @@ class _predefinedState extends State<predefined> {
         'desserts': _selectedItems2,
       }, SetOptions(merge: true));
       Fluttertoast.showToast(msg: "Successfully added");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => viewdish(),
+        ),
+      );
     }
   }
 
