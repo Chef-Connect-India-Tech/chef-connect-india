@@ -316,7 +316,7 @@ class _chef_detailState extends State<chef_detail> {
                                 ),
                               ),
                               Text(
-                                '${widget.experience}',
+                                '${widget.experience} years',
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w400,

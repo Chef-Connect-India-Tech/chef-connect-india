@@ -582,6 +582,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     chefModel.cuisineexpert = _myCusine;
     chefModel.workpreference = timeEditingController.text;
     chefModel.dutystatus = true;
+    chefModel.level = 'Expert';
     chefModel.rating = 3.9;
     chefModel.role = 'chef';
     chefModel.profilepic =

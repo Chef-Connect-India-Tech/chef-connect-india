@@ -107,12 +107,12 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
                   controller: _tabController,
                   tabs: [
                     Text(
-                      'Pre-defined menu',
+                      'Pre-defined Menu',
                       style: TextStyle(
                         fontSize: 20,
                       ),
                     ),
-                    Text('customised menu'),
+                    Text('Customised Menu'),
                   ]),
             ),
           ),
