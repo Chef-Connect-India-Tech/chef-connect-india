@@ -38,7 +38,7 @@ class _user_bookingsState extends State<user_bookings> {
         overlayOpacity: 0.4,
         spacing: 10,
         spaceBetweenChildren: 10,
-        closeManually: true,
+        closeManually: false,
         openCloseDial: isDialOpen,
         children: [
           SpeedDialChild(

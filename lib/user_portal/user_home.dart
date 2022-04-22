@@ -3,13 +3,14 @@ import 'package:chef_connect_india/Helper/chef_list.dart';
 // import 'package:chef_connect_india/Helper/list.dart';
 import 'package:chef_connect_india/user_portal/chef_details/View_more.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:date_time_picker/date_time_picker.dart';
+// import 'package:date_time_picker/date_time_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
 
 class user_home extends StatefulWidget {
   // final String city;
@@ -202,10 +203,7 @@ class _user_homeState extends State<user_home> {
         drawer: NavBar(),
         appBar: AppBar(
           backgroundColor: Colors.indigo.shade700,
-          // backgroundColor: Color.fromARGB(255, 25, 75, 125),
-          // shadowColor: Colors.deepPurpleAccent,
           toolbarHeight: 70, // default is 56
-          // toolbarOpacity: 0.5,
           elevation: 50.0,
           title: Text(
             'Chef Connect',
@@ -227,7 +225,7 @@ class _user_homeState extends State<user_home> {
           overlayOpacity: 0.4,
           spacing: 10,
           spaceBetweenChildren: 10,
-          closeManually: true,
+          closeManually: false,
           openCloseDial: isDialOpen,
           children: [
             SpeedDialChild(
@@ -246,7 +244,7 @@ class _user_homeState extends State<user_home> {
             //     // backgroundColor: Colors.blue,
             //     label: 'Facebook',
             //     onTap: () => () {
-            //           launch("https://www.facebook.com/Chef-Connect");
+            //           launch("https://www.facebook.com/chefconnect.india");
             //         }),
             SpeedDialChild(
                 child:
@@ -705,74 +703,178 @@ class _user_homeState extends State<user_home> {
                                                         TextFormField(
                                                           controller:
                                                               dateController,
-                                                          // validator: (value) {
-                                                          //   if (value!
-                                                          //       .isEmpty) {
-                                                          //     //allow upper and lower case alphabets and space
-                                                          //     return "Date can't be Empty";
-                                                          //   } else {
-                                                          //     return null;
-                                                          //   }
-                                                          // },
-                                                          onSaved: (value) {
-                                                            dateController
-                                                                .text = value!;
-                                                          },
                                                           decoration:
                                                               InputDecoration(
-                                                            fillColor:
-                                                                Colors.white70,
-                                                            filled: true,
-                                                            hintText:
-                                                                'Enter Date',
-                                                            hintStyle:
-                                                                TextStyle(
-                                                              fontFamily:
-                                                                  'Montserrat',
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: 1,
-                                                              ),
-                                                            ),
-                                                            focusedBorder:
-                                                                new OutlineInputBorder(
-                                                              borderRadius:
-                                                                  new BorderRadius
-                                                                          .circular(
-                                                                      10.0),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                                width: 1,
-                                                              ),
-                                                            ),
-                                                            // enabledBorder:
-                                                            //     OutlineInputBorder(
-                                                            //   borderRadius:
-                                                            //       BorderRadius
-                                                            //           .circular(
-                                                            //               10),
-                                                            //   borderSide:
-                                                            //       BorderSide(
-                                                            //     color: Colors
-                                                            //         .black,
-                                                            //     width: 1,
-                                                            //   ),
-                                                            // ),
-                                                          ),
+                                                                  border:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .all(
+                                                                      Radius.circular(
+                                                                          10.0),
+                                                                    ),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      new OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        new BorderRadius.circular(
+                                                                            10.0),
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      width: 1,
+                                                                    ),
+                                                                  ),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade500,
+                                                                      width: 1,
+                                                                    ),
+                                                                  ),
+                                                                  // icon: Icon(Icons
+                                                                  //     .calendar_today),
+                                                                  labelText:
+                                                                      "Select Date"),
+                                                          readOnly: true,
+                                                          validator: (value) {
+                                                            if (dateController
+                                                                .text.isEmpty) {
+                                                              return "Please Select Date";
+                                                            }
+                                                            return null;
+                                                          },
+                                                          onTap: () async {
+                                                            DateTime?
+                                                                pickedDate =
+                                                                await showDatePicker(
+                                                                    context:
+                                                                        context,
+                                                                    initialDate:
+                                                                        DateTime
+                                                                            .now(),
+                                                                    firstDate:
+                                                                        DateTime
+                                                                            .now(),
+                                                                    lastDate:
+                                                                        DateTime(
+                                                                            2101));
+
+                                                            if (pickedDate !=
+                                                                null) {
+                                                              print(pickedDate);
+                                                              String
+                                                                  formattedDate =
+                                                                  DateFormat(
+                                                                          'yyyy-MM-dd')
+                                                                      .format(
+                                                                          pickedDate);
+
+                                                              setState(() {
+                                                                dateController
+                                                                        .text =
+                                                                    formattedDate;
+                                                              });
+                                                            } else {
+                                                              Fluttertoast.showToast(
+                                                                  msg:
+                                                                      "Date not Selected",
+                                                                  toastLength: Toast
+                                                                      .LENGTH_SHORT,
+                                                                  gravity:
+                                                                      ToastGravity
+                                                                          .SNACKBAR,
+                                                                  timeInSecForIosWeb:
+                                                                      1,
+                                                                  backgroundColor:
+                                                                      Colors.red
+                                                                          .shade300,
+                                                                  textColor:
+                                                                      Colors
+                                                                          .white,
+                                                                  fontSize:
+                                                                      16.0);
+                                                            }
+                                                          },
                                                         ),
+                                                        // TextFormField(
+                                                        //   controller:
+                                                        //       dateController,
+                                                        //   // validator: (value) {
+                                                        //   //   if (value!
+                                                        //   //       .isEmpty) {
+                                                        //   //     //allow upper and lower case alphabets and space
+                                                        //   //     return "Date can't be Empty";
+                                                        //   //   } else {
+                                                        //   //     return null;
+                                                        //   //   }
+                                                        //   // },
+                                                        //   onSaved: (value) {
+                                                        //     dateController
+                                                        //         .text = value!;
+                                                        //   },
+                                                        //   decoration:
+                                                        //       InputDecoration(
+                                                        //     fillColor:
+                                                        //         Colors.white70,
+                                                        //     filled: true,
+                                                        //     hintText:
+                                                        //         'Enter Date',
+                                                        //     hintStyle:
+                                                        //         TextStyle(
+                                                        //       fontFamily:
+                                                        //           'Montserrat',
+                                                        //       color:
+                                                        //           Colors.black,
+                                                        //     ),
+                                                        //     border:
+                                                        //         OutlineInputBorder(
+                                                        //       borderRadius:
+                                                        //           BorderRadius
+                                                        //               .circular(
+                                                        //                   10),
+                                                        //       borderSide:
+                                                        //           BorderSide(
+                                                        //         color: Colors
+                                                        //             .black,
+                                                        //         width: 1,
+                                                        //       ),
+                                                        //     ),
+                                                        //     focusedBorder:
+                                                        //         new OutlineInputBorder(
+                                                        //       borderRadius:
+                                                        //           new BorderRadius
+                                                        //                   .circular(
+                                                        //               10.0),
+                                                        //       borderSide:
+                                                        //           BorderSide(
+                                                        //         color: Colors
+                                                        //             .black,
+                                                        //         width: 1,
+                                                        //       ),
+                                                        //     ),
+                                                        //     // enabledBorder:
+                                                        //     //     OutlineInputBorder(
+                                                        //     //   borderRadius:
+                                                        //     //       BorderRadius
+                                                        //     //           .circular(
+                                                        //     //               10),
+                                                        //     //   borderSide:
+                                                        //     //       BorderSide(
+                                                        //     //     color: Colors
+                                                        //     //         .black,
+                                                        //     //     width: 1,
+                                                        //     //   ),
+                                                        //     // ),
+                                                        //   ),
+                                                        // ),
                                                         SizedBox(
                                                           height: 10,
                                                         ),
@@ -1082,32 +1184,106 @@ class _user_homeState extends State<user_home> {
                                                         TextFormField(
                                                           controller:
                                                               kitchendateController,
-                                                          onSaved: (value) {
-                                                            kitchendateController
-                                                                .text = value!;
-                                                          },
                                                           decoration:
                                                               InputDecoration(
-                                                            fillColor:
-                                                                Colors.white70,
-                                                            filled: true,
-                                                            hintText:
-                                                                'Date Required',
-                                                            hintStyle:
-                                                                TextStyle(
-                                                              fontFamily:
-                                                                  'Montserrat',
-                                                              color:
-                                                                  Colors.black,
-                                                            ),
-                                                            border:
-                                                                OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                            ),
-                                                          ),
+                                                                  border:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .all(
+                                                                      Radius.circular(
+                                                                          10.0),
+                                                                    ),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      new OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        new BorderRadius.circular(
+                                                                            10.0),
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      width: 1,
+                                                                    ),
+                                                                  ),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10),
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade500,
+                                                                      width: 1,
+                                                                    ),
+                                                                  ),
+                                                                  // icon: Icon(Icons
+                                                                  //     .calendar_today),
+                                                                  labelText:
+                                                                      "Select Date"),
+                                                          readOnly: true,
+                                                          validator: (value) {
+                                                            if (kitchendateController
+                                                                .text.isEmpty) {
+                                                              return "Please Select Date";
+                                                            }
+                                                            return null;
+                                                          },
+                                                          onTap: () async {
+                                                            DateTime?
+                                                                pickedDate =
+                                                                await showDatePicker(
+                                                                    context:
+                                                                        context,
+                                                                    initialDate:
+                                                                        DateTime
+                                                                            .now(),
+                                                                    firstDate:
+                                                                        DateTime
+                                                                            .now(),
+                                                                    lastDate:
+                                                                        DateTime(
+                                                                            2101));
+
+                                                            if (pickedDate !=
+                                                                null) {
+                                                              print(pickedDate);
+                                                              String
+                                                                  formattedDate =
+                                                                  DateFormat(
+                                                                          'yyyy-MM-dd')
+                                                                      .format(
+                                                                          pickedDate);
+
+                                                              setState(() {
+                                                                kitchendateController
+                                                                        .text =
+                                                                    formattedDate;
+                                                              });
+                                                            } else {
+                                                              Fluttertoast.showToast(
+                                                                  msg:
+                                                                      "Date not Selected",
+                                                                  toastLength: Toast
+                                                                      .LENGTH_SHORT,
+                                                                  gravity:
+                                                                      ToastGravity
+                                                                          .SNACKBAR,
+                                                                  timeInSecForIosWeb:
+                                                                      1,
+                                                                  backgroundColor:
+                                                                      Colors.red
+                                                                          .shade300,
+                                                                  textColor:
+                                                                      Colors
+                                                                          .white,
+                                                                  fontSize:
+                                                                      16.0);
+                                                            }
+                                                          },
                                                         ),
                                                         SizedBox(
                                                           height: 10,
@@ -1574,52 +1750,57 @@ class _user_homeState extends State<user_home> {
                       ],
                     ),
                   ),
-                  StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection("chefs")
-                        .limit(4)
-                        .where('verified', isEqualTo: true)
-                        // .where('dutystatus', isEqualTo: true)
-                        .snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return GridView(
-                        physics: BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        // padding: const EdgeInsets.all(0.0),
-                        scrollDirection: Axis.vertical,
-                        primary: true,
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 200,
-                          childAspectRatio: 1 / 7.5,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 0,
-                        ),
-                        children: snapshot.data!.docs
-                            .map((DocumentSnapshot document) {
-                          print(document.data());
-                          return new chef_list_view(
-                            chefid: document['chefid'].toString().toLowerCase(),
-                            cusineexpert: document['cuisineexpert'],
-                            level: document['level'].toString(),
-                            speciality: document['specialities'].toString(),
-                            experience: document['experience'],
-                            profilepic: document['profilepic'],
-                            city: document['city'].toString(),
-                            rating: document['rating'],
-                            currentsalary: document['currentsalary'].toString(),
-                            uid: document['uid'],
-                            costperday: document['cheffees'],
-                            chefContact: document['mobile1'],
+                  Container(
+                    child: StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection("chefs")
+                          .limit(4)
+                          .where('verified', isEqualTo: true)
+                          // .where('dutystatus', isEqualTo: true)
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: CircularProgressIndicator(),
                           );
-                        }).toList(),
-                      );
-                    },
+                        }
+                        return GridView(
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          // padding: const EdgeInsets.all(0.0),
+                          scrollDirection: Axis.vertical,
+                          primary: true,
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 1 / 7.5,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 0,
+                          ),
+                          children: snapshot.data!.docs
+                              .map((DocumentSnapshot document) {
+                            print(document.data());
+                            return new chef_list_view(
+                              chefid:
+                                  document['chefid'].toString().toLowerCase(),
+                              cusineexpert: document['cuisineexpert'],
+                              level: document['level'].toString(),
+                              speciality: document['specialities'].toString(),
+                              experience: document['experience'],
+                              profilepic: document['profilepic'],
+                              city: document['city'].toString(),
+                              rating: document['rating'],
+                              currentsalary:
+                                  document['currentsalary'].toString(),
+                              uid: document['uid'],
+                              costperday: document['cheffees'],
+                              chefContact: document['mobile1'],
+                            );
+                          }).toList(),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),

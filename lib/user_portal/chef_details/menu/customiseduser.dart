@@ -79,20 +79,9 @@ class _customiseduserState extends State<customiseduser> {
         overlayOpacity: 0.4,
         spacing: 10,
         spaceBetweenChildren: 10,
-        closeManually: true,
+        closeManually: false,
         openCloseDial: isDialOpen,
         children: [
-          SpeedDialChild(
-            child: Image(
-              image: AssetImage('assets/socialicons/gmail.png'),
-              height: 35,
-            ),
-            backgroundColor: Colors.transparent,
-            label: 'Mail',
-            onTap: () => showToast(
-              'Selected Mail..',
-            ),
-          ),
           SpeedDialChild(
               child: Image(
                 image: AssetImage('assets/socialicons/gmail.png'),

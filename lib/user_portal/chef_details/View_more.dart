@@ -5,8 +5,10 @@ import 'package:chef_connect_india/user_portal/chef_details/searchchef.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:paginate_firestore/bloc/pagination_cubit.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:paginate_firestore/widgets/bottom_loader.dart';
 import 'package:paginate_firestore/widgets/empty_separator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,6 +20,8 @@ class view_more extends StatefulWidget {
 }
 
 class _view_moreState extends State<view_more> {
+  get documentSnapshots => null;
+
   Future showToast(String message) async {
     await Fluttertoast.cancel();
 
@@ -30,9 +34,7 @@ class _view_moreState extends State<view_more> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        // shadowColor: Colors.deepPurpleAccent,
         toolbarHeight: 70, // default is 56
-        // toolbarOpacity: 0.5,
         elevation: 50.0,
         centerTitle: true,
         title: Text('Chef Connect India - Chefs'),
@@ -67,7 +69,7 @@ class _view_moreState extends State<view_more> {
         overlayOpacity: 0.4,
         spacing: 10,
         spaceBetweenChildren: 10,
-        closeManually: true,
+        closeManually: false,
         openCloseDial: isDialOpen,
         children: [
           SpeedDialChild(
@@ -121,6 +123,18 @@ class _view_moreState extends State<view_more> {
             crossAxisSpacing: 6,
             mainAxisSpacing: 0),
         shrinkWrap: false,
+        initialLoader: Center(
+          child: CircularProgressIndicator(),
+        ),
+        bottomLoader: Center(
+          // optional
+          child: Transform.scale(
+            scale: 0.01,
+            child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.transparent)),
+          ),
+        ),
+        // onReachedEnd: ,
         separator: EmptySeparator(),
         padding: const EdgeInsets.all(0.0),
         scrollDirection: Axis.vertical,
@@ -145,11 +159,13 @@ class _view_moreState extends State<view_more> {
             ),
           );
         },
+        // itemsPerPage: 2,
         // orderBy is compulsory to enable pagination
         query: FirebaseFirestore.instance
             .collection('chefs')
             .orderBy('firstname')
-            .where("verified", isEqualTo: true),
+            .where("verified", isEqualTo: true)
+            .limit(10),
         // .where('dutystatus', isEqualTo: true),
         // to fetch real-time data
         isLive: true,

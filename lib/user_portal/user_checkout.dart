@@ -120,7 +120,7 @@ class _user_checkoutState extends State<user_checkout> {
         overlayOpacity: 0.4,
         spacing: 10,
         spaceBetweenChildren: 10,
-        closeManually: true,
+        closeManually: false,
         openCloseDial: isDialOpen,
         children: [
           SpeedDialChild(
