@@ -41,7 +41,7 @@ class _Sucess_pageState extends State<Sucess_page> {
                     'Thank you for making a booking with us.',
                     style: TextStyle(
                       fontFamily: 'Montserrat',
-                      fontSize: 28,
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
