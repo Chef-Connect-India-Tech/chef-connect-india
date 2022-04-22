@@ -22,7 +22,7 @@ class BookingModel {
   String? preferedBudget;
   List? preferedCuisine;
   String? restaurantName;
-  int? chefCount;
+  String? chefCount;
 
   BookingModel({
     this.bookingDate,
