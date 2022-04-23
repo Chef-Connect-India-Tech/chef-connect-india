@@ -51,7 +51,7 @@ class _user_homeState extends State<user_home> {
       Fluttertoast.showToast(msg: "Please Enter Detailed Address");
     } else {
       await firebaseFirestore
-          .collection("bookings")
+          .collection("Queries")
           .doc(bookingId)
           .set(bookingModel.toMap());
       // print(GenderEditingController.text);
@@ -119,7 +119,7 @@ class _user_homeState extends State<user_home> {
       // print(kitchensalaryController.text);
       // print(kitchenaddressController.text);
       await firebaseFirestore
-          .collection("bookings")
+          .collection("Queries")
           .doc(bookingId)
           .set(bookingModel.toMap());
       // FirebaseFirestore.instance

@@ -1,12 +1,10 @@
 // ignore_for_file: deprecated_member_use
-
 import 'dart:async';
 import 'dart:developer';
 import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
-// import 'package:chef_connect_india/roles/user/Registration_user.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,7 +47,6 @@ class _MyAppState extends State<MyApp> {
 
   Widget build(BuildContext context) {
     final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
@@ -87,7 +84,6 @@ class _MyAppState extends State<MyApp> {
                             } else {
                               if (snapShot.hasData) {
                                 return chef_dashboard();
-                                // }
                               }
                               log('Has no data');
                               return chef_registration_one();
@@ -110,7 +106,6 @@ class _MyAppState extends State<MyApp> {
                             } else {
                               if (snapShot.hasData) {
                                 return user_home();
-                                // }
                               }
                               log('Has no data');
                               return Onboarding_screen();

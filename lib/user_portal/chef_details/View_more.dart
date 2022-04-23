@@ -52,7 +52,7 @@ class _view_moreState extends State<view_more> {
               //   ),
               // );
               showToast(
-                'Comming Soon',
+                'Coming Soon',
               );
             },
           ),

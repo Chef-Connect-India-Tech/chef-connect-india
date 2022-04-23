@@ -35,7 +35,7 @@ packages:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.1"
+    version: "8.0.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -98,21 +98,21 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.10"
+    version: "3.1.11"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.5.1"
+    version: "5.5.4"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.10"
+    version: "2.6.11"
   collection:
     dependency: transitive
     description:
@@ -271,7 +271,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.3.3"
+    version: "8.0.1"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -596,7 +596,7 @@ packages:
       name: paginate_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.3+1"
   path:
     dependency: transitive
     description:

@@ -6,6 +6,7 @@ import 'package:chef_connect_india/Main%20Screen/select_mode.dart';
 import 'package:chef_connect_india/user_portal/user_bookings.dart';
 import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:chef_connect_india/user_portal/user_profile.dart';
+import 'package:chef_connect_india/user_portal/user_queries.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -116,6 +117,24 @@ class NavBar extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) =>
                                     user_bookings(customerId: data['username']),
+                              ),
+                            );
+                          },
+                        ),
+                        ListTile(
+                          leading: Icon(Icons.question_answer_outlined),
+                          title: Text(
+                            'My Queries',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    user_queries(customerId: data['username']),
                               ),
                             );
                           },
