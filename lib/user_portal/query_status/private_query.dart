@@ -60,6 +60,7 @@ class _private_queryState extends State<private_query> {
                       selectedDate: document['requirementDate'],
                       fullAddress: document['address'],
                       chefCategory: document['chefCategory'],
+                      queryStatus: document['bookingStatus'],
                     );
                   }).toList(),
                 );

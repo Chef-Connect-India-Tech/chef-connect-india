@@ -10,6 +10,7 @@ class private_query_card extends StatefulWidget {
   String? fullAddress;
   String? chefCategory;
   String? preferedBudget;
+  String? queryStatus;
   private_query_card(
       {Key? key,
       required this.bookingId,
@@ -18,6 +19,7 @@ class private_query_card extends StatefulWidget {
       required this.selectedDate,
       required this.chefCategory,
       required this.fullAddress,
+      required this.queryStatus,
       required this.preferedBudget})
       : super(key: key);
 
@@ -214,6 +216,35 @@ class _private_query_cardState extends State<private_query_card> {
                       ),
                     ),
                     Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Query Status : ',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.0,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            width: MediaQuery.of(context).size.width - 200,
+                            child: Text(
+                              '${widget.queryStatus}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
                       padding:
                           const EdgeInsets.only(top: 10, bottom: 20, left: 20),
                       child: Row(
@@ -264,6 +295,7 @@ class kitchen_query_card extends StatefulWidget {
   String? chefCategory;
   String? preferedBudget;
   List? preferedCuisine;
+  String? queryStatus;
   kitchen_query_card(
       {Key? key,
       required this.bookingId,
@@ -274,6 +306,7 @@ class kitchen_query_card extends StatefulWidget {
       required this.preferedCuisine,
       required this.chefCategory,
       required this.fullAddress,
+      required this.queryStatus,
       required this.preferedBudget})
       : super(key: key);
 
@@ -513,6 +546,35 @@ class _kitchen_query_cardState extends State<kitchen_query_card> {
                             width: MediaQuery.of(context).size.width - 200,
                             child: Text(
                               '${cuisine_list}',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Query Status : ',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.0,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            width: MediaQuery.of(context).size.width - 200,
+                            child: Text(
+                              '${widget.queryStatus}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontFamily: 'Montserrat',
