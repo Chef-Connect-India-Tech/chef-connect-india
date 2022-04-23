@@ -70,6 +70,7 @@ dev_dependencies:
 #   adaptive_icon_foreground: "assets/CCI_MAINLOGO.png"
 #   adaptive_icon_background: "#000000"
 flutter_icons:
+  adaptive_icon_background: "#03203C"
   android: true
   ios: true
   image_path: "assets/mainlogo/CCI_MAINLOGO.png"
