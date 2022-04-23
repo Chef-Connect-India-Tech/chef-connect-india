@@ -1912,7 +1912,7 @@ class _user_homeState extends State<user_home> {
                           StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection("chefs")
-                                .limit(4)
+                                .limit(2)
                                 .where('verified', isEqualTo: true)
                                 // .where('dutystatus', isEqualTo: true)
                                 .snapshots(),

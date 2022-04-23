@@ -465,7 +465,7 @@ class _chef_profileState extends State<chef_profile> {
     var result = await appointmentdatbase
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({
-      "experience": (_workexperience!.text),
+      "experience": int.parse(_workexperience!.text),
       //'lastname': _workpreference!.text,
       "cheffees": int.parse(_cheffees!.text),
       "address": _workcity!.text,
