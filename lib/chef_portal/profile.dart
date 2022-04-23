@@ -193,21 +193,6 @@ class _chef_profileState extends State<chef_profile> {
                   SizedBox(
                     height: 10,
                   ),
-                  TextField(
-                    // style: TextStyle(color: Colors.black),
-                    // readOnly: true,
-                    // enabled: false,
-                    keyboardType: TextInputType.name,
-                    controller: _phone2Controller =
-                        TextEditingController(text: data['mobile2']),
-                    autofocus: true,
-                    decoration: InputDecoration(
-                      hintText: 'Enter your mobile2',
-                      hintStyle: TextStyle(
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                  ),
                   TextFormField(
                     controller: _dateController,
                     decoration: InputDecoration(
@@ -227,6 +212,25 @@ class _chef_profileState extends State<chef_profile> {
                       _dateController.text = date.toIso8601String();
                     },
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    // style: TextStyle(color: Colors.black),
+                    // readOnly: true,
+                    // enabled: false,
+                    keyboardType: TextInputType.name,
+                    controller: _phone2Controller =
+                        TextEditingController(text: data['mobile2']),
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your mobile2',
+                      hintStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ),
+
                   TextField(
                     // style: TextStyle(color: Colors.black),
                     // readOnly: true,
@@ -328,8 +332,8 @@ class _chef_profileState extends State<chef_profile> {
         "mobile2": _phone2Controller!.text,
         "email": _emailController!.text,
         "dob": _dateController.text,
-        'username':
-            '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
+        // 'username':
+        //     '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
       }).then((value) => print("Updated Successfully"));
     }
     // var current_user_ui
@@ -451,36 +455,53 @@ class _chef_profileState extends State<chef_profile> {
       );
 
   void submit_curr2() {
-    Navigator.of(context).pop();
     updateCurLocData2();
+    Navigator.of(context).pop();
   }
 
-  updateCurLocData2() {
-    // if (_dateController.text.length >= 10) {
-    //   CollectionReference _collectionRef =
-    //       FirebaseFirestore.instance.collection("chefs");
-    //   return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
-    //     "firstname": _firstnameController!.text,
-    //     'lastname': _lastnameController!.text,
-    //     "mobile2": _phone2Controller!.text,
-    //     "email": _emailController!.text,
-    //     "dob": _dateController.text,
-    //     'username':
-    //         '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
-    //   }).then((value) => print("Updated Successfully"));
-    // }
-    // var current_user_ui
-    //d = FirebaseAuth.instance.currentUser!.uid;
-
-    CollectionReference _collectionRef =
+  updateCurLocData2() async {
+    CollectionReference appointmentdatbase =
         FirebaseFirestore.instance.collection("chefs");
-    return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
-      "experience": int.parse(_workexperience!.text),
+    var result = await appointmentdatbase
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({
+      "experience": (_workexperience!.text),
       //'lastname': _workpreference!.text,
       "cheffees": int.parse(_cheffees!.text),
       "address": _workcity!.text,
     }).then((value) => print("Updated Successfully"));
   }
+  // if (_dateController.text.length >= 10) {
+  //   CollectionReference _collectionRef =
+  //       FirebaseFirestore.instance.collection("chefs");
+  //   return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+  //     "firstname": _firstnameController!.text,
+  //     'lastname': _lastnameController!.text,
+  //     "mobile2": _phone2Controller!.text,
+  //     "email": _emailController!.text,
+  //     "dob": _dateController.text,
+  //     'username':
+  //         '${_firstnameController!.text.toString().substring(0, 2)}_${_lastnameController!.text.toString().substring(0, 2)}',
+  //   }).then((value) => print("Updated Successfully"));
+  // }
+  // var current_user_ui
+  //d = FirebaseAuth.instance.currentUser!.uid;
+  // CollectionReference _collectionRef =
+  //     FirebaseFirestore.instance.collection("chefs");
+  // return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+  //   "experience": (_workexperience!.text),
+  //   //'lastname': _workpreference!.text,
+  //   "cheffees": int.parse(_cheffees!.text),
+  //   "address": _workcity!.text,
+  // }).then((value) => print("Updated Successfully"));
+  // CollectionReference _collectionRef =
+  //     FirebaseFirestore.instance.collection("chefs");
+  // return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
+  //   "experience": int.parse(_workexperience!.text),
+  //   //'lastname': _workpreference!.text,
+  //   "cheffees": int.parse(_cheffees!.text),
+  //   "address": _workcity!.text,
+  // }).then((value) => print("Updated Successfully"));
 
   Future<String?> open_curloc_Dialog(data) => showDialog<String>(
         context: context,
@@ -1503,7 +1524,7 @@ class _chef_profileState extends State<chef_profile> {
                           child: Row(
                             children: [
                               Text(
-                                'City:',
+                                'Address:',
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
@@ -1514,10 +1535,10 @@ class _chef_profileState extends State<chef_profile> {
                                 padding: const EdgeInsets.all(5.0),
                                 child: Text(
                                   (() {
-                                    if (data['city'] == null) {
+                                    if (data['address'] == null) {
                                       return "please add...";
                                     }
-                                    return data['city'];
+                                    return data['address'];
                                   })(),
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
