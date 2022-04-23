@@ -62,6 +62,7 @@ class _kitchen_queryState extends State<kitchen_query> {
                       hotelName: document['restaurantName'],
                       no_of_chefs: document['chefCount'],
                       preferedCuisine: document['preferedCuisine'],
+                      queryStatus: document['bookingStatus'],
                     );
                   }).toList(),
                 );

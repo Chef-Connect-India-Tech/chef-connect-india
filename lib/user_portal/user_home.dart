@@ -42,6 +42,7 @@ class _user_homeState extends State<user_home> {
     bookingModel.requirementDate = dateController.text;
     bookingModel.preferedBudget = salaryEditingController.text;
     bookingModel.preferedChefGender = GenderEditingController.text;
+    bookingModel.bookingStatus = 'Submitted';
 
     if (dateController.text.length == 0) {
       Fluttertoast.showToast(msg: "Date can't be empty");
@@ -96,7 +97,7 @@ class _user_homeState extends State<user_home> {
     bookingModel.preferedCuisine = _myCusine;
     bookingModel.bookingId = bookingId;
     bookingModel.location = selectedLocation;
-    bookingModel.bookingStatus = 'Pending';
+    bookingModel.bookingStatus = 'Submitted';
 
     if (hotelnameController.text.length == 0) {
       Fluttertoast.showToast(msg: "Hotel name can't be empty");
