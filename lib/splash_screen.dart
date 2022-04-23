@@ -1,27 +1,30 @@
 import 'dart:async';
 
+import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:flutter/material.dart';
 // import 'package:prabishaapi/homeScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
+
+  void removeAfter(Future Function(BuildContext? context) initialization) {}
 }
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => HomePage()));
+    Timer(Duration(seconds: 2), () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ChefConnectMain()));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.indigo,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -68,13 +71,13 @@ class _SplashScreenState extends State<SplashScreen> {
                     SizedBox(
                       height: 25,
                     ),
-                    Text(
-                      "Way to DASHBOARD",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                          color: Colors.white),
-                    ),
+                    // Text(
+                    //   "Way to DASHBOARD",
+                    //   style: TextStyle(
+                    //       fontWeight: FontWeight.bold,
+                    //       fontSize: 25,
+                    //       color: Colors.white),
+                    // ),
                   ],
                 ),
               ),

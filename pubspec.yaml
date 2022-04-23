@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_form_builder: ^7.1.1
-  flutter_native_splash: ^2.1.5
+  
   flutter_neumorphic: ^3.2.0
   flutter_rating_bar: ^4.0.0
   flutter_riverpod: ^1.0.3
@@ -53,9 +53,6 @@ dependencies:
   url_launcher: ^6.0.20
   url_launcher_web: ^2.0.9
 
-flutter_native_splash:
-  color: "#03203C"
-  image: assets/mainlogo/cci_main.png
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.2
