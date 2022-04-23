@@ -273,6 +273,14 @@ class _user_homeState extends State<user_home> {
           openCloseDial: isDialOpen,
           children: [
             SpeedDialChild(
+                child: Icon(Icons.call),
+                backgroundColor: Colors.green,
+                label: 'Call',
+                onTap: () {
+                  var a = '+91 7353064599';
+                  launch("tel: ${a}");
+                }),
+            SpeedDialChild(
                 child: Image(
                   image: AssetImage('assets/socialicons/gmail.png'),
                   height: 35,
