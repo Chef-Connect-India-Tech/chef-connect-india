@@ -1030,6 +1030,7 @@ class _user_checkoutState extends State<user_checkout> {
     bookingModel.withMaterial = withmaterialChecked;
     bookingModel.bookingId = bookingId;
     bookingModel.bookingStatus = 'Pending';
+    bookingModel.preferedBudget = (widget.price).toString();
 
     await firebaseFirestore
         .collection("bookings")

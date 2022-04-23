@@ -52,6 +52,7 @@ class _InprogressState extends State<Inprogress> {
                       selectedMenu: document["selectedMenu"][0],
                       fullAddress: document['address'],
                       withMaterial: document['withMaterial'].toString(),
+                      preferedBudget: document['preferedBudget'].toString(),
                       no_of_plates: document['numberOfPlates']);
                 }).toList(),
               );

@@ -43,6 +43,7 @@ class _successState extends State<success> {
                       bookingId: document['bookingId'],
                       chefId: document['chefId'],
                       userId: document["customerId"],
+                      preferedBudget: document["preferedBudget"],
                       preferedMeal: document['bookingSlot'],
                       selectedDate: document['requirementDate'],
                       selectedTime: document["requirementTime"],

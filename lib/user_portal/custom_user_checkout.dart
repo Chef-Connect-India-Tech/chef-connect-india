@@ -84,7 +84,6 @@ class _custom_user_checkoutState extends State<custom_user_checkout> {
 
   @override
   Widget build(BuildContext context) {
-    print("error");
     print(widget.cid);
     Future showToast(String message) async {
       await Fluttertoast.cancel();
@@ -948,6 +947,7 @@ class _custom_user_checkoutState extends State<custom_user_checkout> {
     bookingModel.withMaterial = withmaterialChecked;
     bookingModel.bookingId = bookingId;
     bookingModel.bookingStatus = 'Pending';
+    bookingModel.preferedBudget = (widget.price).toString();
 
     await firebaseFirestore
         .collection("bookings")

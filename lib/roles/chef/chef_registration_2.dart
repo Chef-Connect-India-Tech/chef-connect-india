@@ -307,6 +307,8 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 if (value!.isEmpty ||
                                     !RegExp(r'^[0-9]+$').hasMatch(value)) {
                                   return "Enter Correct Rate";
+                                } else if (int.parse(value) >= 20000) {
+                                  return "Rate per day can't be more than 20,000";
                                 } else {
                                   return null;
                                 }

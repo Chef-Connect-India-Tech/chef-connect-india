@@ -12,6 +12,7 @@ class bookings_card extends StatefulWidget {
   String preferedMeal;
   String fullAddress;
   String selectedMenu;
+  String preferedBudget;
   String withMaterial;
   bookings_card(
       {Key? key,
@@ -24,6 +25,7 @@ class bookings_card extends StatefulWidget {
       required this.selectedMenu,
       required this.fullAddress,
       required this.no_of_plates,
+      required this.preferedBudget,
       required this.withMaterial})
       : super(key: key);
 
@@ -104,6 +106,31 @@ class _bookings_cardState extends State<bookings_card> {
                           Text(
                             '${widget.userId}',
                             style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16.0,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Price: ',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.0,
+                            ),
+                          ),
+                          Text(
+                            '${widget.preferedBudget}',
+                            style: TextStyle(
+                              color: Colors.red,
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w400,
                               fontSize: 16.0,
