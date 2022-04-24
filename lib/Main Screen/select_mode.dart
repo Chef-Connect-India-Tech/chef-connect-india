@@ -7,10 +7,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-enum City { Jaipur, Banglore }
+enum City { Jaipur, Bangalore }
 
 // enum Location1 {
-//   banglore,
+//   Bangalore,
 // }
 
 class Select_mode_new extends StatefulWidget {
@@ -201,7 +201,7 @@ class _Select_mode_newState extends State<Select_mode_new> {
     );
   }
 
-  // City? selectedCity = City.Banglore;
+  // City? selectedCity = City.Bangalore;
   City? selectedCity = null;
 
   @override
@@ -248,15 +248,15 @@ class _Select_mode_newState extends State<Select_mode_new> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    selectedCity = City.Banglore;
+                    selectedCity = City.Bangalore;
                   });
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    border: selectedCity == City.Banglore
+                    border: selectedCity == City.Bangalore
                         ? Border.all(color: Colors.deepPurple, width: 4)
                         : Border.all(color: Colors.grey.shade300),
-                    color: selectedCity == City.Banglore
+                    color: selectedCity == City.Bangalore
                         ? Colors.white70
                         : Colors.white38,
                     borderRadius: BorderRadius.circular(10),
@@ -265,11 +265,11 @@ class _Select_mode_newState extends State<Select_mode_new> {
                       child: _buildAwesome(
                           context,
                           'assets/banglore_1.png',
-                          "Banglore",
-                          selectedCity == City.Banglore
+                          "Bangalore",
+                          selectedCity == City.Bangalore
                               ? Colors.black
                               : Colors.white,
-                          selectedCity == City.Banglore)),
+                          selectedCity == City.Bangalore)),
                 ),
               ),
             ],

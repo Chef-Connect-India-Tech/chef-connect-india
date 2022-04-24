@@ -17,7 +17,7 @@ class chef_list_view extends StatefulWidget {
   var city;
   var uid;
   var currentsalary;
-  var costperday;
+  int costperday;
   var chefContact;
 
   chef_list_view(
@@ -45,8 +45,8 @@ class _chef_list_viewState extends State<chef_list_view> {
 
   @override
   Widget build(BuildContext context) {
-    String cuisine_exp =
-        widget.cusineexpert.toString().replaceAll('[', '').replaceAll(']', '');
+    // String cuisine_exp =
+    //     widget.cusineexpert.toString().replaceAll('[', '').replaceAll(']', '');
     return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,17 +71,17 @@ class _chef_list_viewState extends State<chef_list_view> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => chef_detail(
-                      cid: widget.uid,
-                      chefid: widget.chefid,
-                      cheflevel: widget.level,
-                      experience: widget.experience,
-                      cuisine: _items,
-                      city: widget.city,
-                      profilepic: widget.profilepic,
-                      specialities: widget.speciality,
-                      rating: widget.rating,
-                      chefContact: widget.chefContact,
-                    ),
+                        cid: widget.uid,
+                        chefid: widget.chefid,
+                        cheflevel: widget.level,
+                        experience: widget.experience,
+                        cuisine: _items,
+                        city: widget.city,
+                        profilepic: widget.profilepic,
+                        specialities: widget.speciality,
+                        rating: widget.rating,
+                        chefContact: widget.chefContact,
+                        rate: widget.costperday),
                   ),
                 );
               },
@@ -209,7 +209,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                             ],
                           ),
                           Text(
-                            '\u20B9${widget.costperday} per day ',
+                            '\u20B9${(widget.costperday * 0.25) + widget.costperday} per day ',
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
@@ -312,6 +312,7 @@ class _chef_grid_viewState extends State<chef_grid_view> {
                       specialities: widget.speciality,
                       rating: widget.rating,
                       chefContact: widget.chefContact,
+                      rate: widget.costperday,
                     ),
                   ),
                 );

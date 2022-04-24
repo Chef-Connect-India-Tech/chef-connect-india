@@ -20,15 +20,7 @@ class _private_queryState extends State<private_query> {
       // backgroundColor: Colors.red.shade300,
 
       body: SafeArea(
-        child: Container(
-          // decoration: BoxDecoration(
-          //   image: new DecorationImage(
-          //     image: new AssetImage(
-          //       "assets/background_image.jpeg",
-          //     ),
-          //     // fit: BoxFit.fill,
-          //   ),
-          // ),
+        child: Center(
           child: SingleChildScrollView(
             child: StreamBuilder(
               stream: FirebaseFirestore.instance
@@ -38,9 +30,33 @@ class _private_queryState extends State<private_query> {
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData) {
+                if (snapshot.hasError) {
                   return Center(
-                    child: Text('No Bookings Found..'),
+                    child: Text('Something went wrong..'),
+                  );
+                } else if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return Center(
+                    child: Column(
+                      children: const [
+                        CircularProgressIndicator(),
+                        Text('Loading data, please wait...'),
+                      ],
+                    ),
+                  );
+                } else if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.data!.docs.isEmpty) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        'No queries yet. Just submit a query with us to get the perfect Chef for your Home',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 18),
+                      ),
+                    ),
                   );
                 }
                 return ListView(
@@ -67,7 +83,6 @@ class _private_queryState extends State<private_query> {
               },
             ),
           ),
-          margin: EdgeInsets.only(bottom: 10),
         ),
       ),
     );

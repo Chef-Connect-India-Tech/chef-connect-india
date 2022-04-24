@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,6 +22,7 @@ class chef_detail extends StatefulWidget {
   double rating;
   var cid;
   var chefContact;
+  int rate;
 
   chef_detail({
     Key? key,
@@ -35,6 +36,7 @@ class chef_detail extends StatefulWidget {
     required this.specialities,
     required this.cid,
     required this.chefContact,
+    required this.rate,
   }) : super(key: key);
 
   @override
@@ -306,7 +308,7 @@ class _chef_detailState extends State<chef_detail> {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-                    height: 180,
+                    //height: 180,
                     width: width,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -338,6 +340,32 @@ class _chef_detailState extends State<chef_detail> {
                               ),
                               Text(
                                 '${widget.experience} years',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18.0,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding:
+                              EdgeInsets.only(top: 16, left: 16, right: 16),
+                          child: Row(
+                            // mainAxisAlignment:
+                            //     MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Rate Per Day: ',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                              Text(
+                                '\u20B9 ${(widget.rate * 0.25) + widget.rate}',
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w400,

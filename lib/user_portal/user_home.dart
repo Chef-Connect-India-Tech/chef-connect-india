@@ -334,6 +334,11 @@ class _user_homeState extends State<user_home> {
                   .snapshots(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 var data = snapshot.data;
+                // print('-------------data-----${data}');
+                // if (snapshot.hasData) {
+                //   String location = data['selectedLocation'];
+                // }
+                // var location = data['selectedLocation'];
                 return SingleChildScrollView(
                   child: SafeArea(
                     child: Container(
@@ -1900,7 +1905,9 @@ class _user_homeState extends State<user_home> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => view_more(),
+                                        builder: (context) => view_more(
+                                            selectedLocation:
+                                                data['selectedLocation']),
                                       ),
                                     );
                                   },
@@ -1912,6 +1919,8 @@ class _user_homeState extends State<user_home> {
                             stream: FirebaseFirestore.instance
                                 .collection("chefs")
                                 .limit(2)
+                                // .where('city',
+                                //     isEqualTo: data['selectedLocation'])
                                 .where('verified', isEqualTo: true)
                                 // .where('dutystatus', isEqualTo: true)
                                 .snapshots(),

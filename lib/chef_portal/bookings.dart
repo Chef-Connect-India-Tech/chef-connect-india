@@ -2,10 +2,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable/expandable.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class chef_bookings extends StatelessWidget {
@@ -28,62 +26,85 @@ class chef_bookings extends StatelessWidget {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection("bookings")
-                      .limit(4)
-                      .where('cid',
-                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-                      .snapshots(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return ListView(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.all(0.0),
-                      scrollDirection: Axis.vertical,
-                      primary: true,
-                      children:
-                          snapshot.data!.docs.map((DocumentSnapshot document) {
-                        print(document.data());
-                        return Container(
-                          child: GestureDetector(
-                            child: listpredefined(
-                              bookingId: document['bookingId'],
-                              bookingTime: document['bookingTime'],
-                              bookingDate: document['bookingDate'],
-                              requirementDate: document['bookingDate'],
-                              requirementTime: document['requirementTime'],
-                              bookingSlot: document['bookingSlot'],
-                              bookingType: document['bookingType'],
-                              chefContact: document['chefContact'],
-                              chefId: document['chefId'],
-                              customerId: document['customerId'],
-                              location: document['location'],
-                              // preferedBudget: document['preferedBudget'],
-                              customerPhone: document['customerPhone'],
-                              numberOfPlates: document['numberOfPlates'],
-                              selectedMenu: document['selectedMenu'],
-                              withMaterial: document['withMaterial'],
-                              address: document['address'],
-                              bookingStatus: document['bookingStatus'],
-                            ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("bookings")
+                        .limit(4)
+                        .where('cid',
+                            isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return Center(
+                          child: Text('Something went wrong..'),
+                        );
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return Center(
+                          child: Column(
+                            children: const [
+                              CircularProgressIndicator(),
+                              Text('Loading data, please wait...'),
+                            ],
                           ),
                         );
-                      }).toList(),
-                    );
-                  },
-                ),
-              ],
+                      } else if (!snapshot.hasData) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.data!.docs.isEmpty) {
+                        return Center(
+                          child: Text(
+                            'No Bookings yet. Add your special menu to get more Bookings',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 18),
+                          ),
+                        );
+                      }
+                      return ListView(
+                        physics: BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(0.0),
+                        scrollDirection: Axis.vertical,
+                        primary: true,
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          print(document.data());
+                          return Container(
+                            child: GestureDetector(
+                              child: listpredefined(
+                                bookingId: document['bookingId'],
+                                bookingTime: document['bookingTime'],
+                                bookingDate: document['bookingDate'],
+                                requirementDate: document['bookingDate'],
+                                requirementTime: document['requirementTime'],
+                                bookingSlot: document['bookingSlot'],
+                                bookingType: document['bookingType'],
+                                chefContact: document['chefContact'],
+                                chefId: document['chefId'],
+                                customerId: document['customerId'],
+                                location: document['location'],
+                                // preferedBudget: document['preferedBudget'],
+                                customerPhone: document['customerPhone'],
+                                numberOfPlates: document['numberOfPlates'],
+                                selectedMenu: document['selectedMenu'],
+                                withMaterial: document['withMaterial'],
+                                address: document['address'],
+                                bookingStatus: document['bookingStatus'],
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

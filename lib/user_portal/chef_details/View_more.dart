@@ -1,27 +1,24 @@
 import 'package:chef_connect_india/Helper/chef_list.dart';
-import 'package:chef_connect_india/Helper/list.dart';
-import 'package:chef_connect_india/user_portal/chef_details/filterpage.dart';
-import 'package:chef_connect_india/user_portal/chef_details/searchchef.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:paginate_firestore/bloc/pagination_cubit.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:paginate_firestore/widgets/bottom_loader.dart';
 import 'package:paginate_firestore/widgets/empty_separator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class view_more extends StatefulWidget {
-  const view_more({Key? key}) : super(key: key);
+  String? selectedLocation;
+  view_more({
+    Key? key,
+    required this.selectedLocation,
+  }) : super(key: key);
 
   @override
   State<view_more> createState() => _view_moreState();
 }
 
 class _view_moreState extends State<view_more> {
-  get documentSnapshots => null;
-
   Future showToast(String message) async {
     await Fluttertoast.cancel();
 
@@ -139,7 +136,7 @@ class _view_moreState extends State<view_more> {
           child: Transform.scale(
             scale: 0.01,
             child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.transparent)),
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.black)),
           ),
         ),
         // onReachedEnd: ,
@@ -167,12 +164,13 @@ class _view_moreState extends State<view_more> {
             ),
           );
         },
-        // itemsPerPage: 2,
+        // itemsPerPage: 15,
         // orderBy is compulsory to enable pagination
         query: FirebaseFirestore.instance
             .collection('chefs')
             .orderBy('firstname')
-            .where("verified", isEqualTo: true),
+            .where('verified', isEqualTo: true)
+            .where('city', isEqualTo: widget.selectedLocation),
         // .where('dutystatus', isEqualTo: true),
         // to fetch real-time data
         isLive: true,

@@ -19,15 +19,7 @@ class _pendingState extends State<pending> {
       // backgroundColor: Colors.red.shade300,
 
       body: SafeArea(
-        child: Container(
-          // decoration: BoxDecoration(
-          //   image: new DecorationImage(
-          //     image: new AssetImage(
-          //       "assets/background_image.jpeg",
-          //     ),
-          //     // fit: BoxFit.fill,
-          //   ),
-          // ),
+        child: Center(
           child: SingleChildScrollView(
             child: StreamBuilder(
               stream: FirebaseFirestore.instance
@@ -37,9 +29,30 @@ class _pendingState extends State<pending> {
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData) {
+                if (snapshot.hasError) {
                   return Center(
-                    child: Text('No Bookings Found..'),
+                    child: Text('Something went wrong..'),
+                  );
+                } else if (snapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return Center(
+                    child: Column(
+                      children: const [
+                        CircularProgressIndicator(),
+                        Text('Loading data, please wait...'),
+                      ],
+                    ),
+                  );
+                } else if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.data!.docs.isEmpty) {
+                  return Center(
+                    child: Text(
+                      'Huh!! Looks like you have no bookings yet!\nGo on find a chef for your next party',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal, fontSize: 18),
+                    ),
                   );
                 }
                 return ListView(
@@ -68,7 +81,6 @@ class _pendingState extends State<pending> {
               },
             ),
           ),
-          margin: EdgeInsets.only(bottom: 10),
         ),
       ),
     );

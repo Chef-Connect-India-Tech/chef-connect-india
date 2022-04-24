@@ -59,8 +59,8 @@ class _MyAppState extends State<MyApp> {
             primarySwatch: Colors.blue,
           ),
           // routes: {
-          //   // '/detailsScreen': (context) => DetailsScreen(),
-          //   // '/mainPage': (context) => ChefConnectMain(),
+          // '/detailsScreen': (context) => DetailsScreen(),
+          // '/mainPage': (context) => ChefConnectMain(),
           // },
           home: snapshot.connectionState != ConnectionState.done
               ? Loading()
