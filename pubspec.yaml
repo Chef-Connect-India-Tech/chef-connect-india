@@ -51,6 +51,7 @@ dependencies:
   smooth_star_rating_nsafe: ^1.0.0+1
   url_launcher: ^6.0.20
   url_launcher_web: ^2.0.9
+  flutter_native_splash: ^2.1.5
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.2
@@ -70,6 +71,10 @@ flutter_icons:
   ios: true
   image_path: "assets/mainlogo/cci_logo.png"
   adaptive_icon_foreground: "assets/mainlogo/cci_logo_m.png"
+
+flutter_native_splash:
+  color: "#03203C"
+  image: assets/mainlogo/cci_main.png
 
 flutter:
   uses-material-design: true

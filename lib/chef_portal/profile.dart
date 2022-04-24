@@ -1494,7 +1494,7 @@ class _chef_profileState extends State<chef_profile> {
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 18.0,
+                                  fontSize: 16.0,
                                 ),
                               ),
                               Padding(
@@ -1528,7 +1528,7 @@ class _chef_profileState extends State<chef_profile> {
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 18.0,
+                                  fontSize: 16.0,
                                 ),
                               ),
                               Padding(

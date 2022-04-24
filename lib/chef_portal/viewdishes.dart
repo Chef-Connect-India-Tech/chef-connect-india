@@ -278,7 +278,7 @@ class _listpredefinedState extends State<listpredefined> {
         child: Container(
           // alignment: Alignment(0.2, 0.0),
           width: 245.0,
-          height: 258.0,
+          // height: 258.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.horizontal(
               left: Radius.circular(30.0),

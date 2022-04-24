@@ -194,12 +194,13 @@ class _chef_add_dishState extends State<chef_add_dish> {
       backgroundColor: Colors.white,
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.indigo,
         elevation: 0,
+        centerTitle: true,
         title: Text(
           'ADD MY DISHES',
           style: GoogleFonts.lato(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -209,15 +210,26 @@ class _chef_add_dishState extends State<chef_add_dish> {
         ),
       ),
       body: SingleChildScrollView(
-        child: ListView(
-          shrinkWrap: true,
+        child: Column(
+          // shrinkWrap: true,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                'Please select dishes that you are expert in. You can edit and add your custom dishes in profile page later as well.',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Montserrat',
+                  color: Colors.indigo.shade600,
+                ),
+              ),
+            ),
             //
-            Form(
-              key: _formKey,
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.only(top: 0),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.only(top: 0),
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     SizedBox(
@@ -261,8 +273,7 @@ class _chef_add_dishState extends State<chef_add_dish> {
                       height: 10,
                     ),
                     Container(
-                      height: 250,
-                      width: 400,
+                      width: MediaQuery.of(context).size.width - 20,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.grey.shade200,
@@ -272,10 +283,11 @@ class _chef_add_dishState extends State<chef_add_dish> {
                           child: Column(
                             children: [
                               Wrap(
+                                spacing: 5,
                                 children: _selectedItems
                                     .map((e) => Chip(
                                           backgroundColor:
-                                              Colors.amber.shade100,
+                                              Colors.purple.shade100,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -283,7 +295,8 @@ class _chef_add_dishState extends State<chef_add_dish> {
                                           label: Text(
                                             e,
                                             style: TextStyle(
-                                                color: Colors.amber.shade900),
+                                              color: Colors.purple.shade900,
+                                            ),
                                           ),
                                         ))
                                     .toList(),
@@ -298,7 +311,7 @@ class _chef_add_dishState extends State<chef_add_dish> {
                     ),
                     SizedBox(
                       height: 50,
-                      width: 360,
+                      width: 200,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.indigo,

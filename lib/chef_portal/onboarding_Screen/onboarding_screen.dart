@@ -42,11 +42,11 @@ class _Onboarding_screen_chefState extends State<Onboarding_screen_chef> {
                 const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
             alignment: Alignment.centerLeft,
             child: const Text(
-              """Book a permanent chef for your home, these will be for full time services
-                -Multiple trial options until satisfaction
-                -Chef as per your requirements 
-                -Proper background check 
-                -2 replacement options given""",
+              """Book a permanent chef for your home, these will be for full time servic
+-Multiple trial options until satisfaction
+-Chef as per your requirements 
+-Proper background check 
+-2 replacement options given""",
               style: pageInfoStyle,
               textAlign: TextAlign.left,
             ),
