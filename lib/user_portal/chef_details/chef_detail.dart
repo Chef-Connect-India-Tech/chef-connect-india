@@ -47,11 +47,11 @@ class _chef_detailState extends State<chef_detail> {
 
   @override
   Widget build(BuildContext context) {
-    Future showToast(String message) async {
-      await Fluttertoast.cancel();
+    // Future showToast(String message) async {
+    //   await Fluttertoast.cancel();
 
-      Fluttertoast.showToast(msg: message, fontSize: 18);
-    }
+    //   Fluttertoast.showToast(msg: message, fontSize: 18);
+    // }
 
     final isDialOpen = ValueNotifier(false);
     var width = MediaQuery.of(context).size.width;
@@ -188,16 +188,29 @@ class _chef_detailState extends State<chef_detail> {
                                 ),
                               ),
                               Center(
-                                child: Container(
-                                  padding: EdgeInsets.only(top: 12),
-                                  child: Text(
-                                    '${widget.chefid}',
-                                    style: TextStyle(
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 24.0,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.only(top: 12),
+                                      child: Text(
+                                        '${widget.chefid}',
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 24.0,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.only(top: 12, left: 5),
+                                      child: Icon(
+                                        Icons.verified,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Center(

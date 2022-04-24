@@ -24,10 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_form_builder: ^7.1.1
-  
   flutter_neumorphic: ^3.2.0
   flutter_rating_bar: ^4.0.0
-  flutter_riverpod: ^1.0.3
+  # flutter_riverpod: ^1.0.3
   flutter_secure_storage: ^5.0.2
   flutter_secure_storage_web: ^1.0.2
   flutter_speed_dial: ^5.1.0
@@ -53,7 +52,6 @@ dependencies:
   url_launcher: ^6.0.20
   url_launcher_web: ^2.0.9
 
-
 dev_dependencies:
   flutter_launcher_icons: ^0.9.2
   flutter_lints: ^1.0.0
@@ -70,7 +68,9 @@ flutter_icons:
   adaptive_icon_background: "#03203C"
   android: true
   ios: true
-  image_path: "assets/mainlogo/CCI_MAINLOGO.png"
+  image_path: "assets/mainlogo/cci_logo.png"
+  adaptive_icon_foreground: "assets/mainlogo/cci_logo_m.png"
+
 flutter:
   uses-material-design: true
 
