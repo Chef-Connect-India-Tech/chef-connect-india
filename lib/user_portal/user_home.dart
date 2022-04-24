@@ -165,6 +165,7 @@ class _user_homeState extends State<user_home> {
   }
 
   DateTime _date = DateTime.now();
+  final formGlobalKey = GlobalKey<FormState>();
   final TextEditingController dateCtl = TextEditingController();
   final dateController = TextEditingController();
   final addressController = TextEditingController();
@@ -469,362 +470,70 @@ class _user_homeState extends State<user_home> {
                                                               Colors.white,
                                                           content:
                                                               SingleChildScrollView(
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              children: [
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                DropdownButtonFormField<
-                                                                    String>(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    labelText:
-                                                                        'Prefered Chef Gender',
-                                                                    labelStyle: TextStyle(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        fontSize:
-                                                                            13,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontWeight:
-                                                                            FontWeight.w500),
-                                                                    prefixIcon:
-                                                                        Icon(
-                                                                      Icons
-                                                                          .person,
-                                                                      color: Colors
-                                                                          .black45,
-                                                                    ),
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    hintText:
-                                                                        'Prefered Chef Gender',
-                                                                    hintStyle: TextStyle(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize:
-                                                                            14),
-                                                                    filled:
-                                                                        true,
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        new OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          new BorderRadius.circular(
-                                                                              10.0),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    // enabledBorder:
-                                                                    //     OutlineInputBorder(
-                                                                    //   borderRadius:
-                                                                    //       BorderRadius
-                                                                    //           .circular(
-                                                                    //               10),
-                                                                    //   borderSide:
-                                                                    //       BorderSide(
-                                                                    //     color: Colors
-                                                                    //         .black,
-                                                                    //     width: 1,
-                                                                    //   ),
-                                                                    // ),
+                                                            child: Form(
+                                                              key:
+                                                                  formGlobalKey,
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceEvenly,
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: [
+                                                                  SizedBox(
+                                                                    height: 10,
                                                                   ),
-                                                                  autofocus:
-                                                                      false,
-                                                                  value:
-                                                                      locValue,
-                                                                  isExpanded:
-                                                                      true,
-                                                                  iconSize: 25,
-                                                                  icon: Icon(
-                                                                      Icons
-                                                                          .arrow_drop_down,
-                                                                      color: Colors
-                                                                          .black),
-                                                                  items: SelectGender
-                                                                          .map(
-                                                                              buildMenuItem)
-                                                                      .toList(),
-                                                                  onChanged:
-                                                                      (Gvalue) =>
-                                                                          setState(
-                                                                              () {
-                                                                    this.locValue =
-                                                                        Gvalue;
-                                                                    GenderEditingController
-                                                                            .text =
-                                                                        Gvalue!;
-                                                                  }),
-                                                                  onSaved:
-                                                                      (Gvalue) {
-                                                                    GenderEditingController
-                                                                            .text =
-                                                                        Gvalue!;
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                DropdownButtonFormField<
-                                                                    String>(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    labelText:
-                                                                        ' category of chef',
-                                                                    labelStyle: TextStyle(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        fontSize:
-                                                                            15,
+                                                                  DropdownButtonFormField<
+                                                                      String>(
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      labelText:
+                                                                          'Prefered Chef Gender',
+                                                                      labelStyle: TextStyle(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontSize:
+                                                                              13,
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                      prefixIcon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .person,
                                                                         color: Colors
-                                                                            .black,
-                                                                        fontWeight:
-                                                                            FontWeight.w500),
-                                                                    prefixIcon:
-                                                                        Icon(
-                                                                      Icons
-                                                                          .leaderboard,
-                                                                      color: Colors
-                                                                          .black45,
-                                                                    ),
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    // hintText: 'Select Current Salary',
-                                                                    hintStyle: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize:
-                                                                            15),
-                                                                    filled:
-                                                                        true,
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
+                                                                            .black45,
                                                                       ),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        new OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          new BorderRadius.circular(
-                                                                              10.0),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    // enabledBorder:
-                                                                    //     OutlineInputBorder(
-                                                                    //   borderRadius:
-                                                                    //       BorderRadius
-                                                                    //           .circular(
-                                                                    //               10),
-                                                                    //   borderSide:
-                                                                    //       BorderSide(
-                                                                    //     color: Colors
-                                                                    //         .black,
-                                                                    //     width: 1,
-                                                                    //   ),
-                                                                    // ),
-                                                                  ),
-                                                                  autofocus:
-                                                                      false,
-                                                                  value:
-                                                                      cheflevel,
-                                                                  isExpanded:
-                                                                      true,
-                                                                  iconSize: 25,
-                                                                  icon: Icon(
-                                                                      Icons
-                                                                          .arrow_drop_down,
-                                                                      color: Colors
-                                                                          .black),
-                                                                  items: levelofchef
-                                                                      .map(
-                                                                          buildMenuItem)
-                                                                      .toList(),
-                                                                  onChanged:
-                                                                      (Dvalue) =>
-                                                                          setState(
-                                                                              () {
-                                                                    this.chefvalue =
-                                                                        Dvalue;
-                                                                    LevelEditingController
-                                                                            .text =
-                                                                        Dvalue!;
-                                                                  }),
-                                                                  onSaved:
-                                                                      (Dvalue) {
-                                                                    LevelEditingController
-                                                                            .text =
-                                                                        Dvalue!;
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                DropdownButtonFormField<
-                                                                    String>(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    labelText:
-                                                                        'Budget For Chef',
-                                                                    labelStyle:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          15,
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                                    prefixIcon:
-                                                                        Icon(
-                                                                      Icons
-                                                                          .money,
-                                                                      color: Colors
-                                                                          .black45,
-                                                                    ),
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    // hintText: 'Select Current Salary',
-                                                                    hintStyle: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize:
-                                                                            15),
-                                                                    filled:
-                                                                        true,
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        new OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          new BorderRadius.circular(
-                                                                              10.0),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    // enabledBorder:
-                                                                    //     OutlineInputBorder(
-                                                                    //   borderRadius:
-                                                                    //       BorderRadius
-                                                                    //           .circular(
-                                                                    //               10),
-                                                                    //   borderSide:
-                                                                    //       BorderSide(
-                                                                    //     color: Colors
-                                                                    //         .black,
-                                                                    //     width: 1,
-                                                                    //   ),
-                                                                    // ),
-                                                                  ),
-                                                                  autofocus:
-                                                                      false,
-                                                                  value:
-                                                                      salaryValue,
-                                                                  isExpanded:
-                                                                      true,
-                                                                  iconSize: 25,
-                                                                  icon: Icon(
-                                                                      Icons
-                                                                          .arrow_drop_down,
-                                                                      color: Colors
-                                                                          .black),
-                                                                  items: salary
-                                                                      .map(
-                                                                          buildMenuItem)
-                                                                      .toList(),
-                                                                  onChanged:
-                                                                      (svalue) =>
-                                                                          setState(
-                                                                              () {
-                                                                    this.salaryValue =
-                                                                        svalue;
-                                                                    salaryEditingController
-                                                                            .text =
-                                                                        svalue!;
-                                                                  }),
-                                                                  onSaved:
-                                                                      (lvalue) {
-                                                                    salaryEditingController
-                                                                            .text =
-                                                                        lvalue!;
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                TextFormField(
-                                                                  controller:
-                                                                      dateController,
-                                                                  decoration: InputDecoration(
-                                                                      border: OutlineInputBorder(
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      hintText:
+                                                                          'Prefered Chef Gender',
+                                                                      hintStyle: TextStyle(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontSize:
+                                                                              14),
+                                                                      filled:
+                                                                          true,
+                                                                      border:
+                                                                          OutlineInputBorder(
                                                                         borderRadius:
-                                                                            BorderRadius.all(
-                                                                          Radius.circular(
-                                                                              10.0),
+                                                                            BorderRadius.circular(10),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
+                                                                              1,
                                                                         ),
                                                                       ),
-                                                                      focusedBorder: new OutlineInputBorder(
+                                                                      focusedBorder:
+                                                                          new OutlineInputBorder(
                                                                         borderRadius:
                                                                             new BorderRadius.circular(10.0),
                                                                         borderSide:
@@ -835,237 +544,471 @@ class _user_homeState extends State<user_home> {
                                                                               1,
                                                                         ),
                                                                       ),
-                                                                      enabledBorder: OutlineInputBorder(
+                                                                      // enabledBorder:
+                                                                      //     OutlineInputBorder(
+                                                                      //   borderRadius:
+                                                                      //       BorderRadius
+                                                                      //           .circular(
+                                                                      //               10),
+                                                                      //   borderSide:
+                                                                      //       BorderSide(
+                                                                      //     color: Colors
+                                                                      //         .black,
+                                                                      //     width: 1,
+                                                                      //   ),
+                                                                      // ),
+                                                                    ),
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (GenderEditingController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Please Select Chef Gender";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    autofocus:
+                                                                        false,
+                                                                    value:
+                                                                        locValue,
+                                                                    isExpanded:
+                                                                        true,
+                                                                    iconSize:
+                                                                        25,
+                                                                    icon: Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down,
+                                                                        color: Colors
+                                                                            .black),
+                                                                    items: SelectGender.map(
+                                                                            buildMenuItem)
+                                                                        .toList(),
+                                                                    onChanged: (Gvalue) =>
+                                                                        setState(
+                                                                            () {
+                                                                      this.locValue =
+                                                                          Gvalue;
+                                                                      GenderEditingController
+                                                                              .text =
+                                                                          Gvalue!;
+                                                                    }),
+                                                                    onSaved:
+                                                                        (Gvalue) {
+                                                                      GenderEditingController
+                                                                              .text =
+                                                                          Gvalue!;
+                                                                    },
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  DropdownButtonFormField<
+                                                                      String>(
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      labelText:
+                                                                          ' category of chef',
+                                                                      labelStyle: TextStyle(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontSize:
+                                                                              15,
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontWeight:
+                                                                              FontWeight.w500),
+                                                                      prefixIcon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .leaderboard,
+                                                                        color: Colors
+                                                                            .black45,
+                                                                      ),
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      // hintText: 'Select Current Salary',
+                                                                      hintStyle: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontSize:
+                                                                              15),
+                                                                      filled:
+                                                                          true,
+                                                                      border:
+                                                                          OutlineInputBorder(
                                                                         borderRadius:
                                                                             BorderRadius.circular(10),
                                                                         borderSide:
                                                                             BorderSide(
-                                                                          color: Colors
-                                                                              .grey
-                                                                              .shade500,
+                                                                          color:
+                                                                              Colors.black,
                                                                           width:
                                                                               1,
                                                                         ),
                                                                       ),
-                                                                      // icon: Icon(Icons
-                                                                      //     .calendar_today),
-                                                                      labelText: "Select Date"),
-                                                                  readOnly:
-                                                                      true,
-                                                                  validator:
-                                                                      (value) {
-                                                                    if (dateController
-                                                                        .text
-                                                                        .isEmpty) {
-                                                                      return "Please Select Date";
-                                                                    }
-                                                                    return null;
-                                                                  },
-                                                                  onTap:
-                                                                      () async {
-                                                                    DateTime? pickedDate = await showDatePicker(
-                                                                        context:
-                                                                            context,
-                                                                        initialDate:
-                                                                            DateTime
-                                                                                .now(),
-                                                                        firstDate:
-                                                                            DateTime
-                                                                                .now(),
-                                                                        lastDate:
-                                                                            DateTime(2101));
-
-                                                                    if (pickedDate !=
-                                                                        null) {
-                                                                      print(
-                                                                          pickedDate);
-                                                                      String
-                                                                          formattedDate =
-                                                                          DateFormat('yyyy-MM-dd')
-                                                                              .format(pickedDate);
-
-                                                                      setState(
-                                                                          () {
-                                                                        dateController.text =
-                                                                            formattedDate;
-                                                                      });
-                                                                    } else {
-                                                                      Fluttertoast.showToast(
-                                                                          msg:
-                                                                              "Date not Selected",
-                                                                          toastLength: Toast
-                                                                              .LENGTH_SHORT,
-                                                                          gravity: ToastGravity
-                                                                              .SNACKBAR,
-                                                                          timeInSecForIosWeb:
+                                                                      focusedBorder:
+                                                                          new OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            new BorderRadius.circular(10.0),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
                                                                               1,
-                                                                          backgroundColor: Colors
-                                                                              .red
-                                                                              .shade300,
-                                                                          textColor: Colors
-                                                                              .white,
-                                                                          fontSize:
-                                                                              16.0);
-                                                                    }
-                                                                  },
-                                                                ),
-                                                                // TextFormField(
-                                                                //   controller:
-                                                                //       dateController,
-                                                                //   // validator: (value) {
-                                                                //   //   if (value!
-                                                                //   //       .isEmpty) {
-                                                                //   //     //allow upper and lower case alphabets and space
-                                                                //   //     return "Date can't be Empty";
-                                                                //   //   } else {
-                                                                //   //     return null;
-                                                                //   //   }
-                                                                //   // },
-                                                                //   onSaved: (value) {
-                                                                //     dateController
-                                                                //         .text = value!;
-                                                                //   },
-                                                                //   decoration:
-                                                                //       InputDecoration(
-                                                                //     fillColor:
-                                                                //         Colors.white70,
-                                                                //     filled: true,
-                                                                //     hintText:
-                                                                //         'Enter Date',
-                                                                //     hintStyle:
-                                                                //         TextStyle(
-                                                                //       fontFamily:
-                                                                //           'Montserrat',
-                                                                //       color:
-                                                                //           Colors.black,
-                                                                //     ),
-                                                                //     border:
-                                                                //         OutlineInputBorder(
-                                                                //       borderRadius:
-                                                                //           BorderRadius
-                                                                //               .circular(
-                                                                //                   10),
-                                                                //       borderSide:
-                                                                //           BorderSide(
-                                                                //         color: Colors
-                                                                //             .black,
-                                                                //         width: 1,
-                                                                //       ),
-                                                                //     ),
-                                                                //     focusedBorder:
-                                                                //         new OutlineInputBorder(
-                                                                //       borderRadius:
-                                                                //           new BorderRadius
-                                                                //                   .circular(
-                                                                //               10.0),
-                                                                //       borderSide:
-                                                                //           BorderSide(
-                                                                //         color: Colors
-                                                                //             .black,
-                                                                //         width: 1,
-                                                                //       ),
-                                                                //     ),
-                                                                //     // enabledBorder:
-                                                                //     //     OutlineInputBorder(
-                                                                //     //   borderRadius:
-                                                                //     //       BorderRadius
-                                                                //     //           .circular(
-                                                                //     //               10),
-                                                                //     //   borderSide:
-                                                                //     //       BorderSide(
-                                                                //     //     color: Colors
-                                                                //     //         .black,
-                                                                //     //     width: 1,
-                                                                //     //   ),
-                                                                //     // ),
-                                                                //   ),
-                                                                // ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                TextFormField(
-                                                                  minLines: 5,
-                                                                  maxLines: 20,
-                                                                  controller:
-                                                                      addressController,
-                                                                  // validator: (value) {
-                                                                  //   if (value!
-                                                                  //       .isEmpty) {
-                                                                  //     //allow upper and lower case alphabets and space
-                                                                  //     return "Address can't be Empty";
-                                                                  //   } else {
-                                                                  //     return null;
-                                                                  //   }
-                                                                  // },
-                                                                  onSaved:
-                                                                      (value) {
-                                                                    addressController
-                                                                            .text =
-                                                                        value!;
-                                                                  },
-
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    filled:
+                                                                        ),
+                                                                      ),
+                                                                      // enabledBorder:
+                                                                      //     OutlineInputBorder(
+                                                                      //   borderRadius:
+                                                                      //       BorderRadius
+                                                                      //           .circular(
+                                                                      //               10),
+                                                                      //   borderSide:
+                                                                      //       BorderSide(
+                                                                      //     color: Colors
+                                                                      //         .black,
+                                                                      //     width: 1,
+                                                                      //   ),
+                                                                      // ),
+                                                                    ),
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (LevelEditingController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Please Select Chef Category";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    autofocus:
+                                                                        false,
+                                                                    value:
+                                                                        cheflevel,
+                                                                    isExpanded:
                                                                         true,
-                                                                    hintText:
-                                                                        'Enter Address',
-                                                                    hintStyle:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                      borderSide:
-                                                                          BorderSide(
+                                                                    iconSize:
+                                                                        25,
+                                                                    icon: Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down,
                                                                         color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        new OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          new BorderRadius.circular(
-                                                                              10.0),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-
-                                                                    // enabledBorder:
-                                                                    //     OutlineInputBorder(
-                                                                    //   borderRadius:
-                                                                    //       BorderRadius
-                                                                    //           .circular(
-                                                                    //               10),
-                                                                    //   borderSide:
-                                                                    //       BorderSide(
-                                                                    //     color: Colors
-                                                                    //         .black,
-                                                                    //     width: 1,
-                                                                    //   ),
-                                                                    // ),
+                                                                            .black),
+                                                                    items: levelofchef
+                                                                        .map(
+                                                                            buildMenuItem)
+                                                                        .toList(),
+                                                                    onChanged: (Dvalue) =>
+                                                                        setState(
+                                                                            () {
+                                                                      this.chefvalue =
+                                                                          Dvalue;
+                                                                      LevelEditingController
+                                                                              .text =
+                                                                          Dvalue!;
+                                                                    }),
+                                                                    onSaved:
+                                                                        (Dvalue) {
+                                                                      LevelEditingController
+                                                                              .text =
+                                                                          Dvalue!;
+                                                                    },
                                                                   ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                              ],
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  DropdownButtonFormField<
+                                                                      String>(
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (salaryEditingController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Please Select budget Range";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      labelText:
+                                                                          'Budget For Chef',
+                                                                      labelStyle:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            15,
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                      prefixIcon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .money,
+                                                                        color: Colors
+                                                                            .black45,
+                                                                      ),
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      // hintText: 'Select Current Salary',
+                                                                      hintStyle: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontSize:
+                                                                              15),
+                                                                      filled:
+                                                                          true,
+                                                                      border:
+                                                                          OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                      ),
+                                                                      focusedBorder:
+                                                                          new OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            new BorderRadius.circular(10.0),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                      ),
+                                                                      // enabledBorder:
+                                                                      //     OutlineInputBorder(
+                                                                      //   borderRadius:
+                                                                      //       BorderRadius
+                                                                      //           .circular(
+                                                                      //               10),
+                                                                      //   borderSide:
+                                                                      //       BorderSide(
+                                                                      //     color: Colors
+                                                                      //         .black,
+                                                                      //     width: 1,
+                                                                      //   ),
+                                                                      // ),
+                                                                    ),
+                                                                    autofocus:
+                                                                        false,
+                                                                    value:
+                                                                        salaryValue,
+                                                                    isExpanded:
+                                                                        true,
+                                                                    iconSize:
+                                                                        25,
+                                                                    icon: Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down,
+                                                                        color: Colors
+                                                                            .black),
+                                                                    items: salary
+                                                                        .map(
+                                                                            buildMenuItem)
+                                                                        .toList(),
+                                                                    onChanged: (svalue) =>
+                                                                        setState(
+                                                                            () {
+                                                                      this.salaryValue =
+                                                                          svalue;
+                                                                      salaryEditingController
+                                                                              .text =
+                                                                          svalue!;
+                                                                    }),
+                                                                    onSaved:
+                                                                        (lvalue) {
+                                                                      salaryEditingController
+                                                                              .text =
+                                                                          lvalue!;
+                                                                    },
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  TextFormField(
+                                                                    controller:
+                                                                        dateController,
+                                                                    decoration: InputDecoration(
+                                                                        border: OutlineInputBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.all(
+                                                                            Radius.circular(10.0),
+                                                                          ),
+                                                                        ),
+                                                                        focusedBorder: new OutlineInputBorder(
+                                                                          borderRadius:
+                                                                              new BorderRadius.circular(10.0),
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                        ),
+                                                                        enabledBorder: OutlineInputBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(10),
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Colors.grey.shade500,
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                        ),
+                                                                        // icon: Icon(Icons
+                                                                        //     .calendar_today),
+                                                                        labelText: "Select Date"),
+                                                                    readOnly:
+                                                                        true,
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (dateController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Please Select Date";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    onTap:
+                                                                        () async {
+                                                                      DateTime? pickedDate = await showDatePicker(
+                                                                          context:
+                                                                              context,
+                                                                          initialDate: DateTime
+                                                                              .now(),
+                                                                          firstDate: DateTime
+                                                                              .now(),
+                                                                          lastDate:
+                                                                              DateTime(2101));
+
+                                                                      if (pickedDate !=
+                                                                          null) {
+                                                                        print(
+                                                                            pickedDate);
+                                                                        String
+                                                                            formattedDate =
+                                                                            DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                                                                        setState(
+                                                                            () {
+                                                                          dateController.text =
+                                                                              formattedDate;
+                                                                        });
+                                                                      } else {
+                                                                        Fluttertoast.showToast(
+                                                                            msg:
+                                                                                "Date not Selected",
+                                                                            toastLength: Toast
+                                                                                .LENGTH_SHORT,
+                                                                            gravity: ToastGravity
+                                                                                .SNACKBAR,
+                                                                            timeInSecForIosWeb:
+                                                                                1,
+                                                                            backgroundColor:
+                                                                                Colors.red.shade300,
+                                                                            textColor: Colors.white,
+                                                                            fontSize: 16.0);
+                                                                      }
+                                                                    },
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  TextFormField(
+                                                                    minLines: 5,
+                                                                    maxLines:
+                                                                        20,
+                                                                    controller:
+                                                                        addressController,
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (value!
+                                                                          .isEmpty) {
+                                                                        //allow upper and lower case alphabets and space
+                                                                        return "Address can't be Empty";
+                                                                      } else {
+                                                                        return null;
+                                                                      }
+                                                                    },
+                                                                    onSaved:
+                                                                        (value) {
+                                                                      addressController
+                                                                              .text =
+                                                                          value!;
+                                                                    },
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      filled:
+                                                                          true,
+                                                                      hintText:
+                                                                          'Enter Address',
+                                                                      hintStyle:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                      border:
+                                                                          OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                      ),
+                                                                      focusedBorder:
+                                                                          new OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            new BorderRadius.circular(10.0),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                      ),
+                                                                      // enabledBorder:
+                                                                      //     OutlineInputBorder(
+                                                                      //   borderRadius:
+                                                                      //       BorderRadius
+                                                                      //           .circular(
+                                                                      //               10),
+                                                                      //   borderSide:
+                                                                      //       BorderSide(
+                                                                      //     color: Colors
+                                                                      //         .black,
+                                                                      //     width: 1,
+                                                                      //   ),
+                                                                      // ),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                           actions: [
@@ -1089,6 +1032,9 @@ class _user_homeState extends State<user_home> {
                                                                     ),
                                                                     onPressed:
                                                                         () {
+                                                                      formGlobalKey
+                                                                          .currentState!
+                                                                          .reset();
                                                                       Navigator.pop(
                                                                           context);
                                                                     },
@@ -1117,13 +1063,14 @@ class _user_homeState extends State<user_home> {
                                                                     ),
                                                                     onPressed:
                                                                         () {
-                                                                      privatedb(
-                                                                          data[
-                                                                              'username'],
-                                                                          data[
-                                                                              'mobile1'],
-                                                                          data[
-                                                                              'selectedLocation']);
+                                                                      if (formGlobalKey
+                                                                          .currentState!
+                                                                          .validate()) {
+                                                                        privatedb(
+                                                                            data['username'],
+                                                                            data['mobile1'],
+                                                                            data['selectedLocation']);
+                                                                      }
                                                                     },
                                                                     child: Text(
                                                                       'Submit',
@@ -1233,98 +1180,245 @@ class _user_homeState extends State<user_home> {
                                                               Colors.white,
                                                           content:
                                                               SingleChildScrollView(
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              children: [
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                TextFormField(
-                                                                  controller:
-                                                                      hotelnameController,
-                                                                  onSaved:
-                                                                      (value) {
-                                                                    hotelnameController
-                                                                            .text =
-                                                                        value!;
-                                                                  },
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    filled:
-                                                                        true,
-                                                                    hintText:
-                                                                        'Enter Hotel name',
-                                                                    hintStyle:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                    ),
+                                                            child: Form(
+                                                              key:
+                                                                  formGlobalKey,
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: [
+                                                                  SizedBox(
+                                                                    height: 10,
                                                                   ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                TextFormField(
-                                                                  controller:
-                                                                      numofchefsController,
-                                                                  onSaved:
-                                                                      (value) {
-                                                                    numofchefsController
-                                                                            .text =
-                                                                        value!;
-                                                                  },
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    filled:
-                                                                        true,
-                                                                    hintText:
-                                                                        'Number of Chefs Required',
-                                                                    hintStyle:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                TextFormField(
-                                                                  controller:
-                                                                      kitchendateController,
-                                                                  decoration: InputDecoration(
-                                                                      border: OutlineInputBorder(
+                                                                  TextFormField(
+                                                                    controller:
+                                                                        hotelnameController,
+                                                                    onSaved:
+                                                                        (value) {
+                                                                      hotelnameController
+                                                                              .text =
+                                                                          value!;
+                                                                    },
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (hotelnameController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Hotel Name can't be empty!";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      filled:
+                                                                          true,
+                                                                      hintText:
+                                                                          'Enter Hotel name',
+                                                                      hintStyle:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                      border:
+                                                                          OutlineInputBorder(
                                                                         borderRadius:
-                                                                            BorderRadius.all(
-                                                                          Radius.circular(
-                                                                              10.0),
+                                                                            BorderRadius.circular(10),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  TextFormField(
+                                                                    controller:
+                                                                        numofchefsController,
+                                                                    onSaved:
+                                                                        (value) {
+                                                                      numofchefsController
+                                                                              .text =
+                                                                          value!;
+                                                                    },
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (numofchefsController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Enter Number of Chefs!";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      filled:
+                                                                          true,
+                                                                      hintText:
+                                                                          'Number of Chefs Required',
+                                                                      hintStyle:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                      border:
+                                                                          OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  TextFormField(
+                                                                    controller:
+                                                                        kitchendateController,
+                                                                    decoration: InputDecoration(
+                                                                        border: OutlineInputBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.all(
+                                                                            Radius.circular(10.0),
+                                                                          ),
+                                                                        ),
+                                                                        focusedBorder: new OutlineInputBorder(
+                                                                          borderRadius:
+                                                                              new BorderRadius.circular(10.0),
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                        ),
+                                                                        enabledBorder: OutlineInputBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(10),
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Colors.grey.shade500,
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                        ),
+                                                                        // icon: Icon(Icons
+                                                                        //     .calendar_today),
+                                                                        labelText: "Select Date"),
+                                                                    readOnly:
+                                                                        true,
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (kitchendateController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Please Select Date";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    onTap:
+                                                                        () async {
+                                                                      DateTime? pickedDate = await showDatePicker(
+                                                                          context:
+                                                                              context,
+                                                                          initialDate: DateTime
+                                                                              .now(),
+                                                                          firstDate: DateTime
+                                                                              .now(),
+                                                                          lastDate:
+                                                                              DateTime(2101));
+
+                                                                      if (pickedDate !=
+                                                                          null) {
+                                                                        print(
+                                                                            pickedDate);
+                                                                        String
+                                                                            formattedDate =
+                                                                            DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                                                                        setState(
+                                                                            () {
+                                                                          kitchendateController.text =
+                                                                              formattedDate;
+                                                                        });
+                                                                      } else {
+                                                                        Fluttertoast.showToast(
+                                                                            msg:
+                                                                                "Date not Selected",
+                                                                            toastLength: Toast
+                                                                                .LENGTH_SHORT,
+                                                                            gravity: ToastGravity
+                                                                                .SNACKBAR,
+                                                                            timeInSecForIosWeb:
+                                                                                1,
+                                                                            backgroundColor:
+                                                                                Colors.red.shade300,
+                                                                            textColor: Colors.white,
+                                                                            fontSize: 16.0);
+                                                                      }
+                                                                    },
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  DropdownButtonFormField<
+                                                                      String>(
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      labelText:
+                                                                          'Level Of Chef',
+                                                                      labelStyle:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        fontSize:
+                                                                            16,
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight.w400,
+                                                                      ),
+                                                                      prefixIcon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .leaderboard,
+                                                                        color: Colors
+                                                                            .black45,
+                                                                      ),
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      // hintText: 'Select Current Salary',
+                                                                      hintStyle: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontSize:
+                                                                              15),
+                                                                      filled:
+                                                                          true,
+                                                                      border:
+                                                                          OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
+                                                                              1,
                                                                         ),
                                                                       ),
-                                                                      focusedBorder: new OutlineInputBorder(
+                                                                      focusedBorder:
+                                                                          new OutlineInputBorder(
                                                                         borderRadius:
                                                                             new BorderRadius.circular(10.0),
                                                                         borderSide:
@@ -1335,458 +1429,353 @@ class _user_homeState extends State<user_home> {
                                                                               1,
                                                                         ),
                                                                       ),
-                                                                      enabledBorder: OutlineInputBorder(
+                                                                    ),
+                                                                    autofocus:
+                                                                        false,
+                                                                    value:
+                                                                        chefvalue,
+                                                                    isExpanded:
+                                                                        true,
+                                                                    iconSize:
+                                                                        25,
+                                                                    icon: Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down,
+                                                                        color: Colors
+                                                                            .black),
+                                                                    items: categoryofchef
+                                                                        .map(
+                                                                            buildMenuItem)
+                                                                        .toList(),
+                                                                    onChanged: (Evalue) =>
+                                                                        setState(
+                                                                            () {
+                                                                      this.chefvalue =
+                                                                          Evalue;
+                                                                      kitchenLevelController
+                                                                              .text =
+                                                                          Evalue!;
+                                                                    }),
+                                                                    onSaved:
+                                                                        (Evalue) {
+                                                                      kitchenLevelController
+                                                                              .text =
+                                                                          Evalue!;
+                                                                    },
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (kitchenLevelController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Please Select Chef Level";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  MultiSelectFormField(
+                                                                    border:
+                                                                        OutlineInputBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10),
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        width:
+                                                                            2,
+                                                                      ),
+                                                                    ),
+                                                                    autovalidate:
+                                                                        AutovalidateMode
+                                                                            .always,
+                                                                    chipBackGroundColor:
+                                                                        Colors
+                                                                            .blue,
+                                                                    chipLabelStyle: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        color: Colors
+                                                                            .white),
+                                                                    dialogTextStyle:
+                                                                        TextStyle(
+                                                                            fontWeight:
+                                                                                FontWeight.w600),
+                                                                    checkBoxActiveColor:
+                                                                        Colors
+                                                                            .blue,
+                                                                    checkBoxCheckColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    dialogShapeBorder:
+                                                                        RoundedRectangleBorder(
+                                                                            borderRadius:
+                                                                                BorderRadius.all(Radius.circular(10.0))),
+                                                                    title: Text(
+                                                                      "Cusine",
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'Montserrat',
+                                                                          fontSize:
+                                                                              16),
+                                                                    ),
+                                                                    dataSource: [
+                                                                      {
+                                                                        "display":
+                                                                            "Indian",
+                                                                        "value":
+                                                                            "Indian",
+                                                                      },
+                                                                      {
+                                                                        "display":
+                                                                            "Chinese",
+                                                                        "value":
+                                                                            "Chinese",
+                                                                      },
+                                                                      {
+                                                                        "display":
+                                                                            "Italian",
+                                                                        "value":
+                                                                            "Italian",
+                                                                      },
+                                                                      {
+                                                                        "display":
+                                                                            "Sushi",
+                                                                        "value":
+                                                                            "Sushi",
+                                                                      },
+                                                                      {
+                                                                        "display":
+                                                                            "Mexican",
+                                                                        "value":
+                                                                            "Mexican",
+                                                                      },
+                                                                      {
+                                                                        "display":
+                                                                            "Multi Cuisine",
+                                                                        "value":
+                                                                            "Multi Cuisine",
+                                                                      },
+                                                                      {
+                                                                        "display":
+                                                                            "Continental",
+                                                                        "value":
+                                                                            "Continental",
+                                                                      },
+                                                                    ],
+                                                                    textField:
+                                                                        'display',
+                                                                    valueField:
+                                                                        'value',
+                                                                    okButtonLabel:
+                                                                        'OK',
+                                                                    cancelButtonLabel:
+                                                                        'CANCEL',
+                                                                    hintWidget:
+                                                                        Text(
+                                                                            'Select Cusine'),
+                                                                    initialValue:
+                                                                        _myCusine,
+                                                                    onSaved:
+                                                                        (value) {
+                                                                      if (value ==
+                                                                          null)
+                                                                        return;
+                                                                      setState(
+                                                                          () {
+                                                                        // cusineEditingController.text = value!;
+                                                                        _myCusine =
+                                                                            value;
+                                                                      });
+                                                                    },
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (value
+                                                                          .isEmpty) {
+                                                                        return "Please Select Cuisine";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  DropdownButtonFormField<
+                                                                      String>(
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      labelText:
+                                                                          'Budget For Chef Types',
+                                                                      labelStyle:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        fontSize:
+                                                                            14,
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight.w400,
+                                                                      ),
+                                                                      prefixIcon:
+                                                                          Icon(Icons
+                                                                              .money),
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      // hintText: 'Select Current Salary',
+                                                                      hintStyle: TextStyle(
+                                                                          color: Colors
+                                                                              .black,
+                                                                          fontSize:
+                                                                              15),
+                                                                      filled:
+                                                                          true,
+                                                                      border:
+                                                                          OutlineInputBorder(
                                                                         borderRadius:
                                                                             BorderRadius.circular(10),
+                                                                      ),
+                                                                      focusedBorder:
+                                                                          new OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            new BorderRadius.circular(10.0),
                                                                         borderSide:
                                                                             BorderSide(
-                                                                          color: Colors
-                                                                              .grey
-                                                                              .shade500,
+                                                                          color:
+                                                                              Colors.black,
                                                                           width:
                                                                               1,
                                                                         ),
                                                                       ),
-                                                                      // icon: Icon(Icons
-                                                                      //     .calendar_today),
-                                                                      labelText: "Select Date"),
-                                                                  readOnly:
-                                                                      true,
-                                                                  validator:
-                                                                      (value) {
-                                                                    if (kitchendateController
-                                                                        .text
-                                                                        .isEmpty) {
-                                                                      return "Please Select Date";
-                                                                    }
-                                                                    return null;
-                                                                  },
-                                                                  onTap:
-                                                                      () async {
-                                                                    DateTime? pickedDate = await showDatePicker(
-                                                                        context:
-                                                                            context,
-                                                                        initialDate:
-                                                                            DateTime
-                                                                                .now(),
-                                                                        firstDate:
-                                                                            DateTime
-                                                                                .now(),
-                                                                        lastDate:
-                                                                            DateTime(2101));
-
-                                                                    if (pickedDate !=
-                                                                        null) {
-                                                                      print(
-                                                                          pickedDate);
-                                                                      String
-                                                                          formattedDate =
-                                                                          DateFormat('yyyy-MM-dd')
-                                                                              .format(pickedDate);
-
-                                                                      setState(
-                                                                          () {
-                                                                        kitchendateController.text =
-                                                                            formattedDate;
-                                                                      });
-                                                                    } else {
-                                                                      Fluttertoast.showToast(
-                                                                          msg:
-                                                                              "Date not Selected",
-                                                                          toastLength: Toast
-                                                                              .LENGTH_SHORT,
-                                                                          gravity: ToastGravity
-                                                                              .SNACKBAR,
-                                                                          timeInSecForIosWeb:
-                                                                              1,
-                                                                          backgroundColor: Colors
-                                                                              .red
-                                                                              .shade300,
-                                                                          textColor: Colors
-                                                                              .white,
-                                                                          fontSize:
-                                                                              16.0);
-                                                                    }
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                DropdownButtonFormField<
-                                                                    String>(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    labelText:
-                                                                        'Level Of Chef',
-                                                                    labelStyle:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      fontSize:
-                                                                          16,
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
                                                                     ),
-                                                                    prefixIcon:
-                                                                        Icon(
-                                                                      Icons
-                                                                          .leaderboard,
-                                                                      color: Colors
-                                                                          .black45,
-                                                                    ),
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    // hintText: 'Select Current Salary',
-                                                                    hintStyle: TextStyle(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize:
-                                                                            15),
-                                                                    filled:
+                                                                    autofocus:
+                                                                        false,
+                                                                    value:
+                                                                        salaryValue,
+                                                                    isExpanded:
                                                                         true,
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                      borderSide:
-                                                                          BorderSide(
+                                                                    iconSize:
+                                                                        25,
+                                                                    icon: Icon(
+                                                                        Icons
+                                                                            .arrow_drop_down,
                                                                         color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        new OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          new BorderRadius.circular(
-                                                                              10.0),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
+                                                                            .black),
+                                                                    items: salary
+                                                                        .map(
+                                                                            buildMenuItem)
+                                                                        .toList(),
+                                                                    onChanged: (svalue) =>
+                                                                        setState(
+                                                                            () {
+                                                                      this.salaryValue =
+                                                                          svalue;
+                                                                      kitchensalaryController
+                                                                              .text =
+                                                                          svalue!;
+                                                                    }),
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (kitchensalaryController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Please Select Budget";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    onSaved:
+                                                                        (lvalue) {
+                                                                      kitchensalaryController
+                                                                              .text =
+                                                                          lvalue!;
+                                                                    },
                                                                   ),
-                                                                  autofocus:
-                                                                      false,
-                                                                  value:
-                                                                      chefvalue,
-                                                                  isExpanded:
-                                                                      true,
-                                                                  iconSize: 25,
-                                                                  icon: Icon(
-                                                                      Icons
-                                                                          .arrow_drop_down,
-                                                                      color: Colors
-                                                                          .black),
-                                                                  items: categoryofchef
-                                                                      .map(
-                                                                          buildMenuItem)
-                                                                      .toList(),
-                                                                  onChanged:
-                                                                      (Evalue) =>
-                                                                          setState(
-                                                                              () {
-                                                                    this.chefvalue =
-                                                                        Evalue;
-                                                                    kitchenLevelController
-                                                                            .text =
-                                                                        Evalue!;
-                                                                  }),
-                                                                  onSaved:
-                                                                      (Evalue) {
-                                                                    kitchenLevelController
-                                                                            .text =
-                                                                        Evalue!;
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                MultiSelectFormField(
-                                                                  border:
-                                                                      OutlineInputBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      width: 2,
-                                                                    ),
+                                                                  SizedBox(
+                                                                    height: 10,
                                                                   ),
-                                                                  autovalidate:
-                                                                      AutovalidateMode
-                                                                          .disabled,
-                                                                  chipBackGroundColor:
-                                                                      Colors
-                                                                          .blue,
-                                                                  chipLabelStyle: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      color: Colors
-                                                                          .white),
-                                                                  dialogTextStyle:
-                                                                      TextStyle(
-                                                                          fontWeight:
-                                                                              FontWeight.w600),
-                                                                  checkBoxActiveColor:
-                                                                      Colors
-                                                                          .blue,
-                                                                  checkBoxCheckColor:
-                                                                      Colors
-                                                                          .white,
-                                                                  dialogShapeBorder:
-                                                                      RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.all(Radius.circular(10.0))),
-                                                                  title: Text(
-                                                                    "Cusine",
-                                                                    style: TextStyle(
+                                                                  TextFormField(
+                                                                    controller:
+                                                                        kitchenaddressController,
+                                                                    onSaved:
+                                                                        (value) {
+                                                                      kitchenaddressController
+                                                                              .text =
+                                                                          value!;
+                                                                    },
+                                                                    validator:
+                                                                        (value) {
+                                                                      if (kitchenaddressController
+                                                                          .text
+                                                                          .isEmpty) {
+                                                                        return "Please Enter Address";
+                                                                      }
+                                                                      return null;
+                                                                    },
+                                                                    minLines: 5,
+                                                                    maxLines:
+                                                                        20,
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .white70,
+                                                                      filled:
+                                                                          true,
+                                                                      hintText:
+                                                                          'Enter Address',
+                                                                      hintStyle:
+                                                                          TextStyle(
                                                                         fontFamily:
                                                                             'Montserrat',
-                                                                        fontSize:
-                                                                            16),
-                                                                  ),
-                                                                  dataSource: [
-                                                                    {
-                                                                      "display":
-                                                                          "Indian",
-                                                                      "value":
-                                                                          "Indian",
-                                                                    },
-                                                                    {
-                                                                      "display":
-                                                                          "Chinese",
-                                                                      "value":
-                                                                          "Chinese",
-                                                                    },
-                                                                    {
-                                                                      "display":
-                                                                          "Italian",
-                                                                      "value":
-                                                                          "Italian",
-                                                                    },
-                                                                    {
-                                                                      "display":
-                                                                          "Sushi",
-                                                                      "value":
-                                                                          "Sushi",
-                                                                    },
-                                                                    {
-                                                                      "display":
-                                                                          "Mexican",
-                                                                      "value":
-                                                                          "Mexican",
-                                                                    },
-                                                                    {
-                                                                      "display":
-                                                                          "Multi Cuisine",
-                                                                      "value":
-                                                                          "Multi Cuisine",
-                                                                    },
-                                                                    {
-                                                                      "display":
-                                                                          "Continental",
-                                                                      "value":
-                                                                          "Continental",
-                                                                    },
-                                                                  ],
-                                                                  textField:
-                                                                      'display',
-                                                                  valueField:
-                                                                      'value',
-                                                                  okButtonLabel:
-                                                                      'OK',
-                                                                  cancelButtonLabel:
-                                                                      'CANCEL',
-                                                                  hintWidget: Text(
-                                                                      'Select Cusine'),
-                                                                  initialValue:
-                                                                      _myCusine,
-                                                                  onSaved:
-                                                                      (value) {
-                                                                    if (value ==
-                                                                        null)
-                                                                      return;
-                                                                    setState(
-                                                                        () {
-                                                                      // cusineEditingController.text = value!;
-                                                                      _myCusine =
-                                                                          value;
-                                                                    });
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                DropdownButtonFormField<
-                                                                    String>(
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    labelText:
-                                                                        'Budget For Chef Types',
-                                                                    labelStyle:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      fontSize:
-                                                                          14,
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                    ),
-                                                                    prefixIcon:
-                                                                        Icon(Icons
-                                                                            .money),
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    // hintText: 'Select Current Salary',
-                                                                    hintStyle: TextStyle(
                                                                         color: Colors
                                                                             .black,
-                                                                        fontSize:
-                                                                            15),
-                                                                    filled:
-                                                                        true,
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        new OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          new BorderRadius.circular(
-                                                                              10.0),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
                                                                       ),
+                                                                      border:
+                                                                          OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                      ),
+                                                                      focusedBorder:
+                                                                          new OutlineInputBorder(
+                                                                        borderRadius:
+                                                                            new BorderRadius.circular(10.0),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                      ),
+                                                                      // enabledBorder:
+                                                                      //     OutlineInputBorder(
+                                                                      //   borderRadius:
+                                                                      //       BorderRadius
+                                                                      //           .circular(
+                                                                      //               10),
+                                                                      //   borderSide:
+                                                                      //       BorderSide(
+                                                                      //     color: Colors
+                                                                      //         .black,
+                                                                      //     width: 1,
+                                                                      //   ),
+                                                                      // ),
                                                                     ),
                                                                   ),
-                                                                  autofocus:
-                                                                      false,
-                                                                  value:
-                                                                      salaryValue,
-                                                                  isExpanded:
-                                                                      true,
-                                                                  iconSize: 25,
-                                                                  icon: Icon(
-                                                                      Icons
-                                                                          .arrow_drop_down,
-                                                                      color: Colors
-                                                                          .black),
-                                                                  items: salary
-                                                                      .map(
-                                                                          buildMenuItem)
-                                                                      .toList(),
-                                                                  onChanged:
-                                                                      (svalue) =>
-                                                                          setState(
-                                                                              () {
-                                                                    this.salaryValue =
-                                                                        svalue;
-                                                                    kitchensalaryController
-                                                                            .text =
-                                                                        svalue!;
-                                                                  }),
-                                                                  onSaved:
-                                                                      (lvalue) {
-                                                                    kitchensalaryController
-                                                                            .text =
-                                                                        lvalue!;
-                                                                  },
-                                                                ),
-                                                                SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                TextFormField(
-                                                                  controller:
-                                                                      kitchenaddressController,
-                                                                  onSaved:
-                                                                      (value) {
-                                                                    kitchenaddressController
-                                                                            .text =
-                                                                        value!;
-                                                                  },
-                                                                  minLines: 5,
-                                                                  maxLines: 20,
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    fillColor:
-                                                                        Colors
-                                                                            .white70,
-                                                                    filled:
-                                                                        true,
-                                                                    hintText:
-                                                                        'Enter Address',
-                                                                    hintStyle:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Montserrat',
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                    border:
-                                                                        OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              10),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        new OutlineInputBorder(
-                                                                      borderRadius:
-                                                                          new BorderRadius.circular(
-                                                                              10.0),
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .black,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                    ),
-                                                                    // enabledBorder:
-                                                                    //     OutlineInputBorder(
-                                                                    //   borderRadius:
-                                                                    //       BorderRadius
-                                                                    //           .circular(
-                                                                    //               10),
-                                                                    //   borderSide:
-                                                                    //       BorderSide(
-                                                                    //     color: Colors
-                                                                    //         .black,
-                                                                    //     width: 1,
-                                                                    //   ),
-                                                                    // ),
-                                                                  ),
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                           actions: [
@@ -1838,13 +1827,14 @@ class _user_homeState extends State<user_home> {
                                                                     ),
                                                                     onPressed:
                                                                         () {
-                                                                      kitchendb(
-                                                                          data[
-                                                                              'username'],
-                                                                          data[
-                                                                              'mobile1'],
-                                                                          data[
-                                                                              'selectedLocation']);
+                                                                      if (formGlobalKey
+                                                                          .currentState!
+                                                                          .validate()) {
+                                                                        kitchendb(
+                                                                            data['username'],
+                                                                            data['mobile1'],
+                                                                            data['selectedLocation']);
+                                                                      }
                                                                     },
                                                                     child: Text(
                                                                       'Submit',
