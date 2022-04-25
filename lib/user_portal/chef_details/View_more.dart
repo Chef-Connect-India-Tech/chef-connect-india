@@ -148,9 +148,9 @@ class _view_moreState extends State<view_more> {
           return SafeArea(
             child: GestureDetector(
               child: chef_list_view(
-                chefid: dataa!['chefid'],
+                chefid: dataa!['chefid'].toString().toLowerCase(),
                 cusineexpert: dataa['cuisineexpert'],
-                level: dataa['professionallevel'].toString(),
+                level: dataa['level'].toString(),
                 speciality: dataa['specialities'].toString(),
                 experience: dataa['experience'],
                 profilepic: dataa['profilepic'],
@@ -169,8 +169,9 @@ class _view_moreState extends State<view_more> {
         query: FirebaseFirestore.instance
             .collection('chefs')
             .orderBy('firstname')
-            .where('verified', isEqualTo: true)
-            .where('city', isEqualTo: widget.selectedLocation),
+            .where('city', isEqualTo: widget.selectedLocation)
+            .where('verified', isEqualTo: true),
+
         // .where('dutystatus', isEqualTo: true),
         // to fetch real-time data
         isLive: true,

@@ -27,6 +27,18 @@ class user_home extends StatefulWidget {
 }
 
 class _user_homeState extends State<user_home> {
+  String? selectedLocation;
+
+  void Location() async {
+    var collection = FirebaseFirestore.instance.collection('users');
+    var docSnapshot =
+        await collection.doc(FirebaseAuth.instance.currentUser!.uid).get();
+    if (docSnapshot.exists) {
+      var data = docSnapshot.data()!;
+      selectedLocation = data['selectedLocation'];
+    }
+  }
+
   privatedb(customerId, customerPhone, selectedLocation) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var bookingId =
@@ -42,6 +54,7 @@ class _user_homeState extends State<user_home> {
     bookingModel.requirementDate = dateController.text;
     bookingModel.preferedBudget = salaryEditingController.text;
     bookingModel.preferedChefGender = GenderEditingController.text;
+    bookingModel.bookingId = bookingId;
     bookingModel.bookingStatus = 'Submitted';
 
     if (dateController.text.length == 0) {
@@ -236,6 +249,7 @@ class _user_homeState extends State<user_home> {
 
   @override
   Widget build(BuildContext context) {
+    Location();
     return WillPopScope(
       onWillPop: () async {
         if (isDialOpen.value) {
@@ -1902,6 +1916,8 @@ class _user_homeState extends State<user_home> {
                                     ),
                                   ),
                                   onPressed: () {
+                                    print(
+                                        '---------------${data['selectedLocation']}-----------------');
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -1919,8 +1935,7 @@ class _user_homeState extends State<user_home> {
                             stream: FirebaseFirestore.instance
                                 .collection("chefs")
                                 .limit(2)
-                                // .where('city',
-                                //     isEqualTo: data['selectedLocation'])
+                                .where('city', isEqualTo: selectedLocation)
                                 .where('verified', isEqualTo: true)
                                 // .where('dutystatus', isEqualTo: true)
                                 .snapshots(),
