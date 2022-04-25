@@ -101,14 +101,16 @@ class _MyAppState extends State<MyApp> {
                               .collection("users")
                               .doc(FirebaseAuth.instance.currentUser!.uid)
                               .snapshots(),
-                          builder: (context, snapShot) {
-                            if (snapShot.connectionState ==
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            var data = snapshot.data;
+                            if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
                               return Loading();
                             } else {
-                              if (snapShot.hasData) {
+                              if (snapshot.hasData) {
                                 return user_home(
-                                  selectedLocation: '',
+                                  selectedLocation: data['selectedLocation'],
                                 );
                               }
                               log('Has no data');
