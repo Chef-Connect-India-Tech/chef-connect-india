@@ -1,6 +1,6 @@
 // import 'dart:html';
 
-import 'package:chef_connect_india/Drawers/drawer_chef.dart';
+import 'package:chef_connect_india/Drawers/chef_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,7 +14,7 @@ class chef_bookings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: chef_drawer(),
+      drawer: chef_navBar(),
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         title: const Text(
