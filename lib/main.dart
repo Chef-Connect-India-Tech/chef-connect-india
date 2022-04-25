@@ -110,7 +110,7 @@ class _MyAppState extends State<MyApp> {
                             } else {
                               if (snapshot.hasData) {
                                 return user_home(
-                                  selectedLocation: data['selectedLocation'],
+                                  selectedLocation: data!['selectedLocation'],
                                 );
                               }
                               log('Has no data');
