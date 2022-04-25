@@ -361,7 +361,6 @@ class _predefinedState extends State<predefined> {
                           height: 10,
                         ),
                         Container(
-                          height: 150,
                           width: 400,
                           decoration: BoxDecoration(
                             color: Colors.grey.shade100,
@@ -445,7 +444,6 @@ class _predefinedState extends State<predefined> {
                           height: 10,
                         ),
                         Container(
-                          height: 150,
                           width: 400,
                           decoration: BoxDecoration(
                             color: Colors.grey.shade100,
@@ -530,7 +528,6 @@ class _predefinedState extends State<predefined> {
                           height: 10,
                         ),
                         Container(
-                          height: 150,
                           width: 400,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
