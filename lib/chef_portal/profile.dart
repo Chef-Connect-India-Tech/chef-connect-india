@@ -1410,7 +1410,15 @@ class _chef_profileState extends State<chef_profile> {
                                     fontSize: 14.0,
                                   ),
                                 ),
-                              )
+                              ),
+                              Text(
+                                'years',
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.0,
+                                ),
+                              ),
                             ],
                           ),
                         ),
