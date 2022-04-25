@@ -1,4 +1,3 @@
-import 'package:chef_connect_india/user_portal/chef_details/filterpage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
@@ -44,12 +43,12 @@ class _SearchPageState extends State<SearchPage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Select_Mode(),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => Select_Mode(),
+                //   ),
+                // );
               })
         ],
         // title: Card(

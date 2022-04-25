@@ -16,8 +16,10 @@ import 'package:intl/intl.dart';
 class user_home extends StatefulWidget {
   // final String city;
   // final String hiremode;
-  const user_home({
+  String selectedLocation;
+  user_home({
     Key? key,
+    required this.selectedLocation,
     // required this.city,
     // required this.hiremode
   }) : super(key: key);

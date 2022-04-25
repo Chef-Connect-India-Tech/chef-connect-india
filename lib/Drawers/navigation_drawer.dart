@@ -2,6 +2,7 @@
 
 import 'package:chef_connect_india/Drawers/privacypolicy.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
+import 'package:chef_connect_india/Main%20Screen/privacy_policy.dart';
 // import 'package:chef_connect_india/main.dart';
 import 'package:chef_connect_india/Main%20Screen/select_mode.dart';
 import 'package:chef_connect_india/user_portal/user_bookings.dart';
@@ -100,7 +101,9 @@ class NavBar extends StatelessWidget {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => user_home(),
+                                builder: (context) => user_home(
+                                  selectedLocation: data['selectedLocation'],
+                                ),
                               ),
                             );
                           },
@@ -169,17 +172,12 @@ class NavBar extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Privacy_policy(),
-                                ),
-                                (route) => false);
-                            // WebView(
-                            //   javascriptMode: JavascriptMode.unrestricted,
-                            //   initialUrl:
-                            //       'https://github.com/Chef-Connect-India-Tech/Chef-Connect-india-privacy-policy',
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => privacy_polocy(),
+                              ),
+                            );
                           },
                         ),
                         Divider(
