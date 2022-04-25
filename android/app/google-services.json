@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "757812397676",
-    "project_id": "chef-connect-testing",
-    "storage_bucket": "chef-connect-testing.appspot.com"
+    "project_number": "194064177069",
+    "firebase_url": "https://app-chef-connect-india-default-rtdb.firebaseio.com",
+    "project_id": "app-chef-connect-india",
+    "storage_bucket": "app-chef-connect-india.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:757812397676:android:71a06363a078c38ee2fa49",
+        "mobilesdk_app_id": "1:194064177069:android:cd93180bba4241dc6a7324",
         "android_client_info": {
-          "package_name": "com.chefconnect.app.chef_connect"
+          "package_name": "com.admin.chef_connect_india_admin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "757812397676-n3ur88orvbcprodi483lmd5jf4320hbu.apps.googleusercontent.com",
+          "client_id": "194064177069-7otkcehjp4aqt4k8698f4upclq05ag9l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLN_dGhm3SxdMu-rCNCwXjm5EYE4jG-Io"
+          "current_key": "AIzaSyAI52QUSGMlJoUkZYue8jl93T-wVzGUA1s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "757812397676-n3ur88orvbcprodi483lmd5jf4320hbu.apps.googleusercontent.com",
+              "client_id": "194064177069-7otkcehjp4aqt4k8698f4upclq05ag9l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -36,43 +37,51 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:757812397676:android:75481bc755876917e2fa49",
+        "mobilesdk_app_id": "1:194064177069:android:f38aa2ca8affc4d66a7324",
         "android_client_info": {
-          "package_name": "com.example.glass_morphism"
+          "package_name": "com.chefconnect.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "757812397676-5ughhqktbsam3qd06oai0blb72frsiee.apps.googleusercontent.com",
+          "client_id": "194064177069-468v96pj880e528dulfd2t2b470jaj2o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.glass_morphism",
+            "package_name": "com.chefconnect.app",
+            "certificate_hash": "5bc56af5fcf08f96f78a3b720af7db8a79f6f903"
+          }
+        },
+        {
+          "client_id": "194064177069-g6n7e1vbocgnatqejl48lb4i403isfbo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chefconnect.app",
+            "certificate_hash": "003bf0b6c06ac744c7ee0b27f5c225f82f7be1e2"
+          }
+        },
+        {
+          "client_id": "194064177069-ou53c8ul6ak3v7iimj6l1oa9fat5v2la.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chefconnect.app",
             "certificate_hash": "e2e60a6c2bccc0997ba7e4f32cbd5d50611cab45"
           }
         },
         {
-          "client_id": "757812397676-jmakgrptsud1ots26mpdfkmaqukrendc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.glass_morphism",
-            "certificate_hash": "10b60ced2710753c2587aa60036d93edc91a294c"
-          }
-        },
-        {
-          "client_id": "757812397676-n3ur88orvbcprodi483lmd5jf4320hbu.apps.googleusercontent.com",
+          "client_id": "194064177069-7otkcehjp4aqt4k8698f4upclq05ag9l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLN_dGhm3SxdMu-rCNCwXjm5EYE4jG-Io"
+          "current_key": "AIzaSyAI52QUSGMlJoUkZYue8jl93T-wVzGUA1s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "757812397676-n3ur88orvbcprodi483lmd5jf4320hbu.apps.googleusercontent.com",
+              "client_id": "194064177069-7otkcehjp4aqt4k8698f4upclq05ag9l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

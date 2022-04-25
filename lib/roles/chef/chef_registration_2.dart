@@ -1,18 +1,18 @@
 // ignore_for_file: unused_field, deprecated_member_use
+import 'package:chef_connect_india/Helper/models/chef.dart';
+import 'package:chef_connect_india/chef_portal/adddishes.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:chef_connect_india/Helper/model.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 
 class chef_registration_two extends StatefulWidget {
   final String firstname;
   final String lastname;
   // final String phonenumber;
-  final String workexperience;
+  final int workexperience;
   final String worklocation;
   final String currentlocation;
   chef_registration_two(
@@ -95,120 +95,99 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 80),
                   child: Center(
-                    child: GlassmorphicContainer(
-                      width: 330,
-                      height: 750,
-                      borderRadius: 10,
-                      blur: 0.1,
-                      alignment: Alignment.bottomCenter,
-                      border: 0,
-                      linearGradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFFffffff).withOpacity(0.5),
-                            Color(0xFFFFFFFF).withOpacity(0.5),
-                          ],
-                          stops: [
-                            0.1,
-                            1,
-                          ]),
-                      borderGradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFFffffff).withOpacity(1.0),
-                          Color((0xFFFFFFFF)).withOpacity(1.0),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Form(
-                          key: formGlobalKey,
-                          child: Column(children: [
-                            SizedBox(
-                              height: 5,
-                            ),
-                            CircleAvatar(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                        key: formGlobalKey,
+                        child: Column(children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
                               backgroundColor: Color(0xFF092349),
                               radius: 80,
                               child: Image.asset('assets/CCI1.png'),
                             ),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            // DropdownButtonFormField<String>(
-                            //   decoration: InputDecoration(
-                            //     labelText: 'Work Type',
-                            //     labelStyle: TextStyle(
-                            //         fontSize: 15,
-                            //         color: Colors.black,
-                            //         fontWeight: FontWeight.bold),
-                            //     prefixIcon: Icon(Icons.settings),
-                            //     fillColor: Colors.white60,
-                            //     hintText: 'Select Work Type',
-                            //     hintStyle: TextStyle(
-                            //         color: Colors.black, fontSize: 15),
-                            //     filled: true,
-                            //     border: OutlineInputBorder(
-                            //       borderRadius: BorderRadius.circular(10),
-                            //       borderSide: BorderSide(
-                            //         color: Colors.white,
-                            //         width: 2,
-                            //       ),
-                            //     ),
-                            //     focusedBorder: new OutlineInputBorder(
-                            //       borderRadius: new BorderRadius.circular(10.0),
-                            //       borderSide: BorderSide(
-                            //         color: Colors.white60,
-                            //         width: 2,
-                            //       ),
-                            //     ),
-                            //     enabledBorder: OutlineInputBorder(
-                            //       borderRadius: BorderRadius.circular(10),
-                            //       borderSide: BorderSide(
-                            //         color: Colors.white,
-                            //         width: 2,
-                            //       ),
-                            //     ),
-                            //   ),
-                            //   validator: (wvalue) {
-                            //     if (wvalue == null) {
-                            //       //allow upper and lower case alphabets and space
-                            //       return "Select Work Type";
-                            //     }
-                            //     return null;
-                            //   },
-                            //   autofocus: false,
-                            //   value: cheftypeValue,
-                            //   isExpanded: true,
-                            //   iconSize: 25,
-                            //   icon: Icon(Icons.arrow_drop_down,
-                            //       color: Colors.black),
-                            //   items: workType.map(buildChefMenuItem).toList(),
-                            //   onChanged: (wvalue) => setState(() {
-                            //     this.cheftypeValue = wvalue;
-                            //     workTypeEditingController.text = wvalue!;
-                            //   }),
-                            //   onSaved: (wvalue) {
-                            //     workTypeEditingController.text = wvalue!;
-                            //   },
-                            // ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            DropdownButtonFormField<String>(
+                          ),
+                          // SizedBox(
+                          //   height: 20,
+                          // ),
+                          // DropdownButtonFormField<String>(
+                          //   decoration: InputDecoration(
+                          //     labelText: 'Work Type',
+                          //     labelStyle: TextStyle(
+                          //         fontSize: 15,
+                          //         color: Colors.black,
+                          //         fontWeight: FontWeight.w600),
+                          //     prefixIcon: Icon(Icons.settings),
+                          //     fillColor: Colors.white60,
+                          //     hintText: 'Select Work Type',
+                          //     hintStyle: TextStyle(
+                          //         color: Colors.black, fontSize: 15),
+                          //     filled: true,
+                          //     border: OutlineInputBorder(
+                          //       borderRadius: BorderRadius.circular(10),
+                          //       borderSide: BorderSide(
+                          //         color: Colors.white,
+                          //         width: 2,
+                          //       ),
+                          //     ),
+                          //     focusedBorder: new OutlineInputBorder(
+                          //       borderRadius: new BorderRadius.circular(10.0),
+                          //       borderSide: BorderSide(
+                          //         color: Colors.white60,
+                          //         width: 2,
+                          //       ),
+                          //     ),
+                          //     enabledBorder: OutlineInputBorder(
+                          //       borderRadius: BorderRadius.circular(10),
+                          //       borderSide: BorderSide(
+                          //         color: Colors.white,
+                          //         width: 2,
+                          //       ),
+                          //     ),
+                          //   ),
+                          //   validator: (wvalue) {
+                          //     if (wvalue == null) {
+                          //       //allow upper and lower case alphabets and space
+                          //       return "Select Work Type";
+                          //     }
+                          //     return null;
+                          //   },
+                          //   autofocus: false,
+                          //   value: cheftypeValue,
+                          //   isExpanded: true,
+                          //   iconSize: 25,
+                          //   icon: Icon(Icons.arrow_drop_down,
+                          //       color: Colors.black),
+                          //   items: workType.map(buildChefMenuItem).toList(),
+                          //   onChanged: (wvalue) => setState(() {
+                          //     this.cheftypeValue = wvalue;
+                          //     workTypeEditingController.text = wvalue!;
+                          //   }),
+                          //   onSaved: (wvalue) {
+                          //     workTypeEditingController.text = wvalue!;
+                          //   },
+                          // ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButtonFormField<String>(
                               decoration: InputDecoration(
                                 labelText: 'Looking For',
                                 labelStyle: TextStyle(
-                                    fontSize: 15,
+                                    backgroundColor: Colors.white,
+                                    fontSize: 16,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w600),
                                 prefixIcon: Icon(Icons.settings),
-                                fillColor: Colors.white60,
+                                fillColor: Colors.white,
                                 hintText: 'Looking For',
                                 hintStyle: TextStyle(
-                                    color: Colors.black, fontSize: 15),
+                                  backgroundColor: Colors.white,
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: 'Montserrat',
+                                ),
                                 filled: true,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -220,7 +199,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 focusedBorder: new OutlineInputBorder(
                                   borderRadius: new BorderRadius.circular(10.0),
                                   borderSide: BorderSide(
-                                    color: Colors.white60,
+                                    color: Colors.white,
                                     width: 2,
                                   ),
                                 ),
@@ -254,18 +233,21 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 timeEditingController.text = tvalue!;
                               },
                             ),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            DropdownButtonFormField<String>(
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButtonFormField<String>(
                               decoration: InputDecoration(
                                 labelText: 'Current Salary Per Month',
                                 labelStyle: TextStyle(
-                                    fontSize: 15,
+                                    backgroundColor: Colors.white,
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w600),
                                 prefixIcon: Icon(Icons.money),
-                                fillColor: Colors.white60,
+                                fillColor: Colors.white,
                                 // hintText: 'Select Current Salary',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 15),
@@ -280,7 +262,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 focusedBorder: new OutlineInputBorder(
                                   borderRadius: new BorderRadius.circular(10.0),
                                   borderSide: BorderSide(
-                                    color: Colors.white60,
+                                    color: Colors.white,
                                     width: 2,
                                   ),
                                 ),
@@ -313,10 +295,11 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 return null;
                               },
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            TextFormField(
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
                               autofocus: false,
                               controller: cheffeesEditingController,
                               keyboardType: TextInputType.number,
@@ -324,6 +307,8 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 if (value!.isEmpty ||
                                     !RegExp(r'^[0-9]+$').hasMatch(value)) {
                                   return "Enter Correct Rate";
+                                } else if (int.parse(value) >= 20000) {
+                                  return "Rate per day can't be more than 20,000";
                                 } else {
                                   return null;
                                 }
@@ -333,13 +318,15 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                               },
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
-                                labelText: 'Rate Per Plate',
+                                labelText: 'Rate Per Day',
                                 labelStyle: TextStyle(
-                                    fontSize: 15,
+                                    backgroundColor: Colors.white,
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
                                     color: Colors.black,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w600),
                                 prefixIcon: Icon(Icons.attach_money),
-                                fillColor: Colors.white60,
+                                fillColor: Colors.white,
                                 // hintText: 'First Name',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 15),
@@ -354,7 +341,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 focusedBorder: new OutlineInputBorder(
                                   borderRadius: new BorderRadius.circular(10.0),
                                   borderSide: BorderSide(
-                                    color: Colors.white60,
+                                    color: Colors.white,
                                     width: 2,
                                   ),
                                 ),
@@ -367,24 +354,25 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            MultiSelectFormField(
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: MultiSelectFormField(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 2,
-                                ),
+                                // borderSide: BorderSide(
+                                //   color: Colors.white,
+                                //   width: 2,
+                                // ),
                               ),
                               autovalidate: AutovalidateMode.disabled,
-                              chipBackGroundColor: Colors.blue,
+                              chipBackGroundColor: Colors.grey,
                               chipLabelStyle: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                   color: Colors.white),
                               dialogTextStyle:
-                                  TextStyle(fontWeight: FontWeight.bold),
+                                  TextStyle(fontWeight: FontWeight.w600),
                               checkBoxActiveColor: Colors.blue,
                               checkBoxCheckColor: Colors.white,
                               dialogShapeBorder: RoundedRectangleBorder(
@@ -392,7 +380,11 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                       BorderRadius.all(Radius.circular(12.0))),
                               title: Text(
                                 "Cusine Expert",
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Montserrat',
+                                ),
                               ),
                               validator: (value) {
                                 if (value == null || value.length == 0) {
@@ -425,6 +417,10 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                   "display": "Multi Cuisine",
                                   "value": "Multi Cuisine",
                                 },
+                                {
+                                  "display": "Continental",
+                                  "value": "Continental",
+                                },
                               ],
                               textField: 'display',
                               valueField: 'value',
@@ -440,74 +436,91 @@ class _chef_registration_twoState extends State<chef_registration_two> {
                                 });
                               },
                             ),
-                            SizedBox(
-                              height: 10,
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 20,
                             ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                if (formGlobalKey.currentState!.validate()) {
-                                  //   _saveForm();
-                                  //   print(
-                                  //       'salary: ${salaryEditingController.text}');
-                                  //   print(
-                                  //       'cusine: ${cusineEditingController.text}');
-                                  //   print(
-                                  //       'time: ${timeEditingController.text}');
-                                  //   print('fn: ${widget.firstname}');
-                                  //   print('ln: ${widget.lastname}');
-                                  //   print('phn: ${widget.phonenumber}');
-                                  //   print('wrkexp: ${widget.workexperience}');
-                                  //   print('wrkloc: ${widget.worklocation}');
-                                  //   print('curloc: ${widget.currentlocation}');
-                                  // }
-                                  try {
-                                    // await _auth
-                                    //     .signInWithPhoneNumber(
-                                    //         widget.phonenumber)
-                                    postDetailsToFirestore().catchError((e) {
-                                      Fluttertoast.showToast(msg: e!.message);
-                                    });
-                                  } on FirebaseAuthException catch (error) {
-                                    switch (error.code) {
-                                      case "invalid-phone":
-                                        errorMessage =
-                                            "Your phone number appears to be malformed.";
-                                        break;
-                                      case "user-not-found":
-                                        errorMessage =
-                                            "User with this email doesn't exist.";
-                                        break;
-                                      case "user-disabled":
-                                        errorMessage =
-                                            "User with this email has been disabled.";
-                                        break;
-                                      case "too-many-requests":
-                                        errorMessage = "Too many requests";
-                                        break;
-                                      // case "operation-not-allowed":
-                                      //   errorMessage =
-                                      //       "Signing in with Email and Password is not enabled.";
-                                      //   break;
-                                      default:
-                                        errorMessage =
-                                            "An undefined Error happened.";
+                            child: SizedBox(
+                              height: 45,
+                              width: 200,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.white,
+                                  onPrimary: Colors.indigo,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                      10,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  if (formGlobalKey.currentState!.validate()) {
+                                    //   _saveForm();
+                                    //   print(
+                                    //       'salary: ${salaryEditingController.text}');
+                                    //   print(
+                                    //       'cusine: ${cusineEditingController.text}');
+                                    //   print(
+                                    //       'time: ${timeEditingController.text}');
+                                    //   print('fn: ${widget.firstname}');
+                                    //   print('ln: ${widget.lastname}');
+                                    //   print('phn: ${widget.phonenumber}');
+                                    //   print('wrkexp: ${widget.workexperience}');
+                                    //   print('wrkloc: ${widget.worklocation}');
+                                    //   print('curloc: ${widget.currentlocation}');
+                                    // }
+                                    try {
+                                      // await _auth
+                                      //     .signInWithPhoneNumber(
+                                      //         widget.phonenumber)
+                                      postDetailsToFirestore().catchError((e) {
+                                        Fluttertoast.showToast(msg: e!.message);
+                                      });
+                                    } on FirebaseAuthException catch (error) {
+                                      switch (error.code) {
+                                        case "invalid-phone":
+                                          errorMessage =
+                                              "Your phone number appears to be malformed.";
+                                          break;
+                                        case "user-not-found":
+                                          errorMessage =
+                                              "User with this email doesn't exist.";
+                                          break;
+                                        case "user-disabled":
+                                          errorMessage =
+                                              "User with this email has been disabled.";
+                                          break;
+                                        case "too-many-requests":
+                                          errorMessage = "Too many requests";
+                                          break;
+                                        // case "operation-not-allowed":
+                                        //   errorMessage =
+                                        //       "Signing in with Email and Password is not enabled.";
+                                        //   break;
+                                        default:
+                                          errorMessage =
+                                              "An undefined Error happened.";
+                                      }
+                                      Fluttertoast.showToast(
+                                          msg: errorMessage!);
+                                      print(error.code);
                                     }
-                                    Fluttertoast.showToast(msg: errorMessage!);
-                                    print(error.code);
                                   }
-                                }
-                              },
-                              child: Text(
-                                'Register',
-                                style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Color.fromARGB(255, 18, 68, 138)),
+                                },
+                                child: Text(
+                                  'Register',
+                                  style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                      color: Color.fromARGB(255, 18, 68, 138)),
+                                ),
                               ),
-                            )
-                          ]),
-                        ),
+                            ),
+                          )
+                        ]),
                       ),
                     ),
                   ),
@@ -566,14 +579,16 @@ class _chef_registration_twoState extends State<chef_registration_two> {
     chefModel.address = widget.currentlocation;
     chefModel.city = widget.worklocation;
     chefModel.currentsalary = salaryEditingController.text;
-    chefModel.cheffees = cheffeesEditingController.text;
+    chefModel.cheffees = int.parse(cheffeesEditingController.text);
     // chefModel.cuisineexpert = cusineEditingController.text;
     chefModel.cuisineexpert = _myCusine;
     chefModel.workpreference = timeEditingController.text;
     chefModel.dutystatus = true;
+    chefModel.level = 'Expert';
+    chefModel.rating = 3.9;
     chefModel.role = 'chef';
     chefModel.profilepic =
-        'http://chefconnect.co.in/assets/images/logo_chef.png';
+        'https://firebasestorage.googleapis.com/v0/b/chef-connect-testing.appspot.com/o/chef-profile%2Ftyt1vei5Zlfdm2miAs90seonQt22?alt=media&token=8fcaf32d-96d0-4afa-a711-d90cf8911c9e';
 
     await firebaseFirestore
         .collection("chefs")
@@ -583,7 +598,7 @@ class _chef_registration_twoState extends State<chef_registration_two> {
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => chef_dashboard()),
+        MaterialPageRoute(builder: (context) => chef_add_dish()),
         (route) => false);
   }
 }

@@ -1,32 +1,30 @@
+// ignore_for_file: deprecated_member_use
 import 'dart:async';
 import 'dart:developer';
 import 'package:chef_connect_india/Helper/utils.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
+// import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
-import 'package:chef_connect_india/roles/user/Registration_user.dart';
-import 'package:chef_connect_india/roles/user/user_home.dart';
+// import 'package:chef_connect_india/splash_screen.dart';
+import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-// Future<void> main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   var uid = prefs.getString('uid');
-//   runApp(MaterialApp(
-//     debugShowCheckedModeBanner: false,
-//     home: uid == null ? ChefConnectMain() : user_home(),
-//   ));
-// }b
+import 'onboarding_Screen/onboarding_screen.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
+  FlutterNativeSplash.removeAfter(initialization);
   runApp(MyApp());
+}
+
+Future initialization(BuildContext? context) async {
+  await Future.delayed(Duration(seconds: 2));
 }
 
 bool chef = false;
@@ -46,12 +44,11 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> checkRole() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    chef = (pref.getBool('chefRole') ?? false);
+    chef = (pref.getBool('chefRole') ?? true);
   }
 
   Widget build(BuildContext context) {
     final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
     return FutureBuilder(
       future: _initialization,
       builder: (context, snapshot) {
@@ -62,8 +59,8 @@ class _MyAppState extends State<MyApp> {
             primarySwatch: Colors.blue,
           ),
           // routes: {
-          //   // '/detailsScreen': (context) => DetailsScreen(),
-          //   // '/mainPage': (context) => ChefConnectMain(),
+          // '/detailsScreen': (context) => DetailsScreen(),
+          // '/mainPage': (context) => ChefConnectMain(),
           // },
           home: snapshot.connectionState != ConnectionState.done
               ? Loading()
@@ -89,7 +86,6 @@ class _MyAppState extends State<MyApp> {
                             } else {
                               if (snapShot.hasData) {
                                 return chef_dashboard();
-                                // }
                               }
                               log('Has no data');
                               return chef_registration_one();
@@ -112,10 +108,9 @@ class _MyAppState extends State<MyApp> {
                             } else {
                               if (snapShot.hasData) {
                                 return user_home();
-                                // }
                               }
                               log('Has no data');
-                              return Registration_user();
+                              return Onboarding_screen();
                             }
                           },
                         );

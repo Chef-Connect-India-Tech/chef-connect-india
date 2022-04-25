@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:chef_connect_india/Helper/dimensions.dart';
 import 'package:chef_connect_india/Main%20Screen/otp_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:park_place/screens/otpScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,7 +21,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final snackBar = SnackBar(
-    content: Text('Please enter valid phone number'),
+    content: Text(
+      'Please enter valid phone number',
+      style: TextStyle(
+        fontFamily: 'Montserrat',
+      ),
+    ),
     backgroundColor: Colors.red,
     duration: Duration(seconds: 2),
   );
@@ -34,9 +40,9 @@ class _LoginScreenState extends State<LoginScreen> {
   void fetchRole() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     if (widget.isowner) {
-      await pref.setBool('ownerRole', true);
+      await pref.setBool('chefRole', true);
     } else {
-      await pref.setBool('ownerRole', false);
+      await pref.setBool('chefRole', false);
     }
   }
 
@@ -85,41 +91,87 @@ class _LoginScreenState extends State<LoginScreen> {
                     // ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Welcome.",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                                backgroundColor: Colors.black.withOpacity(.4)),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            child: Text(
-                              "Enter your phone number to continue...",
+                      child: Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.isowner
+                                  ? "Find your dream jobs with\n chef connect india"
+                                  : "Hire a Chef",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                  backgroundColor:
-                                      Colors.black.withOpacity(.7)),
+                                fontFamily: 'Montserrat',
+                                color: Colors.white,
+                                fontSize: 24,
+                                backgroundColor: Colors.black54,
+                              ),
+                              // style: GoogleFonts.dancingScript(
+                              //   color: Colors.white,
+                              //   textStyle:
+                              //       Theme.of(context).textTheme.headline4,
+                              //   fontSize: 28,
+                              //   fontWeight: FontWeight.w900,
+                              //   fontStyle: FontStyle.italic,
+                              // ),
+                              // style: TextStyle(
+                              //     fontFamily: 'SquarePeg',
+                              //     color: Colors.white,
+                              //     fontSize: 45,
+                              //     fontWeight: FontWeight.bold,
+                              //     backgroundColor:
+                              //         Colors.black.withOpacity(.4)),
                             ),
-                          ),
-                        ],
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                          ],
+                        ),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 50.0),
                       child: Center(
-                        child: CircleAvatar(
-                          backgroundColor: Color(0xFF092349),
-                          radius: 100,
-                          child: Image.asset('assets/CCI1.png'),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Color(0xFF092349),
+                              radius: 100,
+                              child: Image.asset('assets/CCI1.png'),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              widget.isowner
+                                  ? ""
+                                  : "One Stop Solution for all Your Culinary Needs",
+                              style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 15,
+                                color: Colors.white,
+                                backgroundColor: Colors.black54,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              // textAlign: TextAlign.center,
+                              // style: GoogleFonts.caveat(
+                              //     color: Colors.white,
+                              //     textStyle:
+                              //         Theme.of(context).textTheme.headline4,
+                              //     fontSize: 16,
+                              //     fontWeight: FontWeight.w900,
+                              //     fontStyle: FontStyle.italic,
+                              //     backgroundColor:
+                              //         Colors.black.withOpacity(.7)),
+                              // style: TextStyle(
+                              //     fontFamily: 'Montserrat',
+                              //     color: Colors.white,
+                              //     fontSize: 20,
+                              //     fontWeight: FontWeight.bold,
+                              //     backgroundColor:
+                              //         Colors.black.withOpacity(.7)),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -136,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _formModule() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(30, 100, 30, 0),
+      padding: const EdgeInsets.fromLTRB(30, 50, 30, 0),
       child: Form(
         key: _formkey,
         child: Stack(
@@ -154,10 +206,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Chef Connect",
+                          "Enter Phone Number",
                           style: TextStyle(
+                            fontFamily: 'Montserrat',
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -184,6 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               border: InputBorder.none,
                               hintText: 'Phone Number',
                               hintStyle: TextStyle(
+                                fontFamily: 'Montserrat',
                                 color: Colors.white60.withOpacity(.5),
                               ),
                             ),
@@ -233,6 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       "Send OTP",
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
                         color: Colors.black,
                       ),
                     ),

@@ -1,10 +1,13 @@
 import 'dart:developer';
 import 'package:chef_connect_india/Helper/dimensions.dart';
+import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/Main%20Screen/login_screen.dart';
 import 'package:chef_connect_india/chef_portal/chef_dashboard.dart';
+import 'package:chef_connect_india/chef_portal/onboarding_Screen/onboarding_screen.dart';
+import 'package:chef_connect_india/onboarding_Screen/onboarding_screen.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_1.dart';
-import 'package:chef_connect_india/roles/user/Registration_user.dart';
-import 'package:chef_connect_india/roles/user/user_home.dart';
+// import 'package:chef_connect_india/roles/user/Registration_user.dart';
+import 'package:chef_connect_india/user_portal/user_home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +28,12 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final snackBar = SnackBar(
-    content: Text('Invalid OTP! Try again'),
+    content: Text(
+      'Invalid OTP! Try again',
+      style: TextStyle(
+        fontFamily: 'Montserrat',
+      ),
+    ),
     backgroundColor: Colors.red,
     duration: Duration(seconds: 2),
   );
@@ -44,7 +52,7 @@ class _OTPScreenState extends State<OTPScreen> {
 
   Future<void> checkRole() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    owner = (pref.getBool('ownerRole') ?? false);
+    owner = (pref.getBool('chefRole') ?? false);
   }
 
   _phoneVerified() async {
@@ -56,28 +64,20 @@ class _OTPScreenState extends State<OTPScreen> {
           .then(
         (value) {
           if (value.exists) {
-            // Navigator.pushReplacementNamed(context,'/ownerHomePage');
-            Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (context) => chef_dashboard(),
-              ),
-            );
+            Navigator.pushAndRemoveUntil(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) => chef_dashboard(),
+                ),
+                ((route) => false));
           } else {
             FirebaseFirestore.instance.collection("chefs").doc(
                   FirebaseAuth.instance.currentUser!.uid,
                 );
-            //     .update(
-            //   {
-            //     // 'fullName': 'Name',
-            //     'mobile1': '+91' + LoginScreen.phone!,
-            //   },
-            // );
-            // Navigator.pushReplacementNamed(context, '/detailsScreen');
             Navigator.pushAndRemoveUntil(
                 context,
                 new MaterialPageRoute(
-                  builder: (context) => new chef_registration_one(),
+                  builder: (context) => new Onboarding_screen_chef(),
                 ),
                 ((route) => false));
           }
@@ -91,27 +91,20 @@ class _OTPScreenState extends State<OTPScreen> {
           .then(
         (value) {
           if (value.exists) {
-            // Navigator.pushReplacementNamed(context,'/location_page');
-            Navigator.push(
-              context,
-              new MaterialPageRoute(
-                builder: (context) => user_home(),
-              ),
-            );
+            Navigator.pushAndRemoveUntil(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) => user_home(),
+                ),
+                ((route) => false));
           } else {
             FirebaseFirestore.instance.collection("users").doc(
                   FirebaseAuth.instance.currentUser!.uid,
                 );
-            //     .update(
-            //   {
-            //     'mobile1': '+91' + LoginScreen.phone!,
-            //   },
-            // );
-            // Navigator.pushReplacementNamed(context, '/parkvehicleDetailPage');
             Navigator.pushAndRemoveUntil(
                 context,
                 new MaterialPageRoute(
-                  builder: (context) => Registration_user(),
+                  builder: (context) => Onboarding_screen(),
                 ),
                 ((route) => false));
           }
@@ -136,6 +129,12 @@ class _OTPScreenState extends State<OTPScreen> {
       verificationFailed: (FirebaseAuthException e) {
         log(e.message!);
         showSnackBar('Something went wrong !', Colors.red);
+        Navigator.pushAndRemoveUntil(
+            context,
+            new MaterialPageRoute(
+              builder: (context) => ChefConnectMain(),
+            ),
+            ((route) => false));
         // Navigator.pushReplacementNamed(context, '/loginScreen');
       },
       codeSent: (String? verficationID, int? resendToken) {
@@ -146,6 +145,7 @@ class _OTPScreenState extends State<OTPScreen> {
       },
       codeAutoRetrievalTimeout: (String verificationID) {
         showSnackBar('OTP verification timed out !', Colors.red);
+
         // Navigator.pushReplacementNamed(context, '/loginScreen');
       },
       timeout: Duration(seconds: 60),
@@ -194,86 +194,162 @@ class _OTPScreenState extends State<OTPScreen> {
     vpW = getViewportWidth(context);
     return WillPopScope(
       onWillPop: () {
-        showSnackBar('You cannot go back at this stage ', Colors.grey[600]!);
+        showSnackBar(
+            'You cannot go back at this stage ', Colors.redAccent.shade100);
         return Future.value(false);
       },
-      child: SafeArea(
-        child: Scaffold(
-            // resizeToAvoidBottomInset: false,
-            // backgroundColor: owner ? Colors.blue[200] : Colors.purple[300],
-            body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Stack(
-            children: [
-              Image.asset(
-                "assets/CCI.jpg",
-                fit: BoxFit.cover,
-                height: double.infinity,
-                width: double.infinity,
-                scale: 1,
-              ),
-              SafeArea(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: !codeSent
-                      ? Center(
-                          child: SpinKitFadingCircle(
-                            color: Colors.white,
-                            size: 60,
-                          ),
-                        )
-                      : SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 50,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "OTP sent.",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 40,
-                                          fontWeight: FontWeight.bold,
-                                          backgroundColor:
-                                              Colors.black.withOpacity(.4)),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Container(
-                                      child: Text(
-                                        "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
-                                        style: TextStyle(
-                                            color: Colors.white70,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.normal,
-                                            backgroundColor:
-                                                Colors.black.withOpacity(.7)),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              _formModule(),
-                            ],
-                          ),
-                        ),
+      child: Scaffold(
+          // resizeToAvoidBottomInset: false,
+          // backgroundColor: owner ? Colors.blue[200] : Colors.purple[300],
+          body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: Stack(
+          children: [
+            Image.asset(
+              "assets/CCI.jpg",
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+              scale: 1,
+            ),
+            SafeArea(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
                 ),
+                child: !codeSent
+                    ? Center(
+                        child: SpinKitFadingCircle(
+                          color: Colors.white,
+                          size: 60,
+                        ),
+                      )
+                    : SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "OTP sent.",
+                                    style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        color: Colors.white,
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                        backgroundColor:
+                                            Colors.black.withOpacity(.4)),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "Enter the OTP sent to  +91 ${widget.phone}  to continue...",
+                                      style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: Colors.white70,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.normal,
+                                          backgroundColor:
+                                              Colors.black.withOpacity(.7)),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            _formModule(),
+                            Container(
+                              margin: EdgeInsets.all(25),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.black.withOpacity(.6),
+                              ),
+                              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Entered Phone Number Wrong ?',
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          // backgroundColor:
+                                          //     Colors.black.withOpacity(.7),
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ChefConnectMain()),
+                                              (route) => false);
+                                        },
+                                        child: Text(
+                                          'Click Here',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.redAccent,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Resend OTP',
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          color: Colors.white,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          'Click Here',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.redAccent,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
               ),
-            ],
-          ),
-        )),
-      ),
+            ),
+          ],
+        ),
+      )),
     );
   }
 
@@ -297,10 +373,11 @@ class _OTPScreenState extends State<OTPScreen> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Chef Connect",
+                          "Enter OTP",
                           style: TextStyle(
+                            fontFamily: 'Montserrat',
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -326,6 +403,7 @@ class _OTPScreenState extends State<OTPScreen> {
                               border: InputBorder.none,
                               hintText: 'Enter OTP',
                               hintStyle: TextStyle(
+                                fontFamily: 'Montserrat',
                                 color: Colors.white60.withOpacity(.5),
                               ),
                             ),
@@ -385,6 +463,7 @@ class _OTPScreenState extends State<OTPScreen> {
                             "Log in",
                             style: TextStyle(
                               color: Colors.black,
+                              fontFamily: 'Montserrat',
                             ),
                           ),
                   ),

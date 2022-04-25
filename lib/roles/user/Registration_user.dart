@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:chef_connect_india/Helper/model.dart';
-import 'package:chef_connect_india/roles/user/select_mode.dart';
+import 'package:chef_connect_india/Helper/models/user.dart';
+import 'package:chef_connect_india/Main%20Screen/select_mode.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -103,11 +103,12 @@ class _Registration_userState extends State<Registration_user> {
                                 controller: firstNameEditingController,
                                 keyboardType: TextInputType.name,
                                 validator: (value) {
-                                  if (value!.isEmpty ||
-                                      !RegExp(r'^[a-z A-Z]+$')
-                                          .hasMatch(value)) {
+                                  if (value!.isEmpty) {
+                                    return "First Name cannot be empty";
+                                  } else if (!RegExp(r'^[a-z A-Z]+$')
+                                      .hasMatch(value)) {
                                     //allow upper and lower case alphabets and space
-                                    return "Enter Correct First Name";
+                                    return "Space not allowed in First Name";
                                   } else {
                                     return null;
                                   }
@@ -153,16 +154,16 @@ class _Registration_userState extends State<Registration_user> {
                                 autofocus: false,
                                 controller: lastNameEditingController,
                                 keyboardType: TextInputType.name,
-                                validator: (value) {
-                                  if (value!.isEmpty ||
-                                      !RegExp(r'^[a-z A-Z]+$')
-                                          .hasMatch(value)) {
-                                    //allow upper and lower case alphabets and space
-                                    return "Enter Correct Last Name";
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                // validator: (value) {
+                                //   if (value!.isEmpty ||
+                                //       RegExp(r'^[a-z A-Z]+$')
+                                //           .hasMatch(value)) {
+                                //     //allow upper and lower case alphabets and space
+                                //     return "Enter Correct Last Name";
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
                                 onSaved: (value) {
                                   lastNameEditingController.text = value!;
                                 },
@@ -355,14 +356,15 @@ class _Registration_userState extends State<Registration_user> {
                                 width: 200,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      primary: Colors.white,
-                                      side: BorderSide(
-                                        color: Colors.white70,
-                                        width: 2,
-                                      )),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    primary: Colors.white,
+                                    side: BorderSide(
+                                      color: Colors.white70,
+                                      width: 2,
+                                    ),
+                                  ),
                                   onPressed: () {
                                     //
                                     if (formGlobalKey.currentState!
@@ -408,7 +410,8 @@ class _Registration_userState extends State<Registration_user> {
 
     user!.updateProfile(
         displayName: name,
-        photoURL: 'http://chefconnect.co.in/assets/images/logo_chef.png');
+        photoURL:
+            'https://firebasestorage.googleapis.com/v0/b/chef-connect-testing.appspot.com/o/chef-profile%2Ftyt1vei5Zlfdm2miAs90seonQt22?alt=media&token=8fcaf32d-96d0-4afa-a711-d90cf8911c9e');
 
     UserModel userModel = UserModel();
 
@@ -419,7 +422,7 @@ class _Registration_userState extends State<Registration_user> {
     userModel.lastname = lastNameEditingController.text;
     userModel.mobile1 = user.phoneNumber;
     userModel.profilepic =
-        'http://chefconnect.co.in/assets/images/logo_chef.png';
+        'https://firebasestorage.googleapis.com/v0/b/chef-connect-testing.appspot.com/o/chef-profile%2Ftyt1vei5Zlfdm2miAs90seonQt22?alt=media&token=8fcaf32d-96d0-4afa-a711-d90cf8911c9e';
     userModel.role = 'user';
 
     await firebaseFirestore

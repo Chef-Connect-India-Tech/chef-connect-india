@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:chef_connect_india/roles/chef/chef_registration_2.dart';
-import 'package:glassmorphism/glassmorphism.dart';
 
 class chef_registration_one extends StatefulWidget {
   // final String phonenumber;
@@ -45,52 +44,28 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 80),
                   child: Center(
-                    child: GlassmorphicContainer(
-                      width: 330,
-                      height: 710,
-                      borderRadius: 10,
-                      blur: 0.1,
-                      alignment: Alignment.bottomCenter,
-                      border: 0,
-                      linearGradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFFffffff).withOpacity(0.5),
-                            Color(0xFFFFFFFF).withOpacity(0.5),
-                          ],
-                          stops: [
-                            0.1,
-                            1,
-                          ]),
-                      borderGradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFFffffff).withOpacity(1.0),
-                          Color((0xFFFFFFFF)).withOpacity(1.0),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Form(
-                          // padding: const EdgeInsets.all(8.0),
-                          key: formGlobalKey,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                        // padding: const EdgeInsets.all(8.0),
+                        key: formGlobalKey,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 20,
                               ),
-                              CircleAvatar(
+                              child: CircleAvatar(
                                 backgroundColor: Color(0xFF092349),
                                 radius: 80,
                                 child: Image.asset('assets/CCI1.png'),
                               ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              // firstNameField,
-                              TextFormField(
+                            ),
+
+                            // firstNameField,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
                                 autofocus: false,
                                 controller: firstNameEditingController,
                                 keyboardType: TextInputType.name,
@@ -111,14 +86,19 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 decoration: InputDecoration(
                                   labelText: 'First Name',
                                   labelStyle: TextStyle(
-                                      fontSize: 15,
+                                      backgroundColor: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 16,
                                       color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.w600),
                                   prefixIcon: Icon(Icons.account_circle),
-                                  fillColor: Colors.white60,
+                                  fillColor: Colors.white,
                                   hintText: 'First Name',
                                   hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 15),
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15),
                                   filled: true,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -131,7 +111,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                     borderRadius:
                                         new BorderRadius.circular(10.0),
                                     borderSide: BorderSide(
-                                      color: Colors.white60,
+                                      color: Colors.white,
                                       width: 2,
                                     ),
                                   ),
@@ -144,24 +124,25 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              // secondNameField,
-                              TextFormField(
+                            ),
+
+                            // secondNameField,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
                                 autofocus: false,
                                 controller: lastNameEditingController,
                                 keyboardType: TextInputType.name,
-                                validator: (value) {
-                                  if (value!.isEmpty ||
-                                      !RegExp(r'^[a-z A-Z]+$')
-                                          .hasMatch(value)) {
-                                    //allow upper and lower case alphabets and space
-                                    return "Enter Correct Last Name";
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                // validator: (value) {
+                                //   if (value!.isEmpty ||
+                                //       RegExp(r'^[a-z A-Z]+$')
+                                //           .hasMatch(value)) {
+                                //     //allow upper and lower case alphabets and space
+                                //     return "Enter Correct Last Name";
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
                                 onSaved: (value) {
                                   lastNameEditingController.text = value!;
                                 },
@@ -169,14 +150,18 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 decoration: InputDecoration(
                                   labelText: 'Last Name',
                                   labelStyle: TextStyle(
-                                      fontSize: 15,
+                                      backgroundColor: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 16,
                                       color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.w600),
                                   prefixIcon: Icon(Icons.account_circle),
-                                  fillColor: Colors.white60,
+                                  fillColor: Colors.white,
                                   hintText: 'Last Name',
                                   hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 15),
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.black,
+                                      fontSize: 15),
                                   filled: true,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -189,7 +174,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                     borderRadius:
                                         new BorderRadius.circular(10.0),
                                     borderSide: BorderSide(
-                                      color: Colors.white60,
+                                      color: Colors.white,
                                       width: 2,
                                     ),
                                   ),
@@ -202,10 +187,11 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              TextFormField(
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
                                 autofocus: false,
                                 controller: workExperienceEditingController,
                                 keyboardType: TextInputType.number,
@@ -225,12 +211,14 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 decoration: InputDecoration(
                                   labelText: 'Work Experience',
                                   labelStyle: TextStyle(
-                                      fontSize: 15,
+                                      backgroundColor: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 16,
                                       color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.w600),
                                   prefixIcon: Icon(Icons.history_outlined),
-                                  fillColor: Colors.white60,
-                                  hintText: 'Work Experience',
+                                  fillColor: Colors.white,
+                                  hintText: 'Ex: 11',
                                   hintStyle: TextStyle(
                                       color: Colors.black, fontSize: 15),
                                   filled: true,
@@ -245,7 +233,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                     borderRadius:
                                         new BorderRadius.circular(10.0),
                                     borderSide: BorderSide(
-                                      color: Colors.white60,
+                                      color: Colors.white,
                                       width: 2,
                                     ),
                                   ),
@@ -258,10 +246,11 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              TextFormField(
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
                                 autofocus: false,
                                 controller: currentlocationEditingController,
                                 keyboardType: TextInputType.streetAddress,
@@ -283,14 +272,18 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                 decoration: InputDecoration(
                                   labelText: 'Current Location',
                                   labelStyle: TextStyle(
-                                      fontSize: 15,
+                                      backgroundColor: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 16,
                                       color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.w600),
                                   prefixIcon: Icon(Icons.my_location),
-                                  fillColor: Colors.white60,
+                                  fillColor: Colors.white,
                                   hintText: 'Ex: Jaipur',
                                   hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 15),
+                                      fontFamily: 'Montserrat',
+                                      color: Colors.black,
+                                      fontSize: 15),
                                   filled: true,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -303,7 +296,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                     borderRadius:
                                         new BorderRadius.circular(10.0),
                                     borderSide: BorderSide(
-                                      color: Colors.white60,
+                                      color: Colors.white,
                                       width: 2,
                                     ),
                                   ),
@@ -316,21 +309,28 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              DropdownButtonFormField<String>(
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: DropdownButtonFormField<String>(
                                 decoration: InputDecoration(
                                   labelText: 'Work Location',
                                   labelStyle: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    backgroundColor: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                   prefixIcon: Icon(Icons.pin_drop),
-                                  fillColor: Colors.white60,
+                                  fillColor: Colors.white,
                                   hintText: 'Select Work Location',
                                   hintStyle: TextStyle(
-                                      color: Colors.black, fontSize: 15),
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                  ),
                                   filled: true,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -343,7 +343,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                     borderRadius:
                                         new BorderRadius.circular(10.0),
                                     borderSide: BorderSide(
-                                      color: Colors.white60,
+                                      color: Colors.white,
                                       width: 2,
                                     ),
                                   ),
@@ -376,17 +376,17 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                   return null;
                                 },
                               ),
-                              // SizedBox(
-                              //   height: 15,
-                              // ),
+                            ),
+                            // SizedBox(
+                            //   height: 15,
+                            // ),
 
-                              SizedBox(
-                                height: 10,
-                              ),
-                              // signUpButton
-                              Container(
+                            // signUpButton
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: 45,
                                 width: 200,
-                                height: 50,
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
@@ -396,7 +396,7 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                         ),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      primary: Colors.white54,
+                                      primary: Colors.white,
                                       onPrimary:
                                           Color.fromARGB(255, 18, 68, 138),
                                     ),
@@ -425,9 +425,9 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                                     lastname:
                                                         lastNameEditingController
                                                             .text,
-                                                    workexperience:
+                                                    workexperience: int.parse(
                                                         workExperienceEditingController
-                                                            .text,
+                                                            .text),
                                                     worklocation:
                                                         worklocationEditingController
                                                             .text,
@@ -439,14 +439,14 @@ class _chef_registration_oneState extends State<chef_registration_one> {
                                     child: Text(
                                       "Next",
                                       style: TextStyle(
-                                        fontFamily: 'Roboto',
+                                        fontFamily: 'Montserrat',
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     )),
-                              )
-                            ],
-                          ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),

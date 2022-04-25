@@ -1,7 +1,8 @@
-import 'package:chef_connect_india/Main%20Screen/home.dart';
-import 'package:chef_connect_india/main.dart';
+// import 'package:chef_connect_india/Main%20Screen/home.dart';
+// import 'package:chef_connect_india/main.dart';
+import 'package:chef_connect_india/roles/user/Registration_user.dart';
 import 'package:flutter/material.dart';
-import 'form_page.dart';
+// import 'form_page.dart';
 import 'package:onboarding/onboarding.dart';
 
 class Onboarding_screen extends StatefulWidget {
@@ -14,45 +15,6 @@ class Onboarding_screen extends StatefulWidget {
 class _Onboarding_screenState extends State<Onboarding_screen> {
   late Material materialButton;
   final onboardingPagesList = [
-    PageModel(
-      widget: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 45.0,
-            ),
-            child: Image.asset(
-              'assets/partychef.jpeg',
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 45.0),
-            alignment: Alignment.centerLeft,
-            child: const Text(
-              'Party chef',
-              style: pageTitleStyle,
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
-            alignment: Alignment.centerLeft,
-            child: const Text(
-              '''Special occasions should be savoured 
-Book a party chef with Chef Connect India 
-We provide 3 trial options (3 chefs of different cuisines).
-Customised menu options,
-Ingredients list is shared on time,
-Chef will clean the kitchen and leave''',
-              style: pageInfoStyle,
-              textAlign: TextAlign.left,
-            ),
-          ),
-        ],
-      ),
-    ),
     PageModel(
       widget: Column(
         children: [
@@ -79,10 +41,11 @@ Chef will clean the kitchen and leave''',
                 const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
             alignment: Alignment.centerLeft,
             child: const Text(
-              '''When you have cravings of specific cuisines you don't need to search for multiple restaurants and then worry about the qualityChef connect India gives you the option of Hire a private chef 
--Book according to your budget
--Chef will send you his menu for you to choose your favourites
-- Cleaning will be done by the Chef''',
+              """Book a permanent chef for your home, these will be for full time service
+ -Multiple trial options until satisfaction
+-Chef as per your requirements 
+-Proper background check 
+-2 replacement options given""",
               style: pageInfoStyle,
               textAlign: TextAlign.left,
             ),
@@ -116,11 +79,49 @@ Chef will clean the kitchen and leave''',
                 const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
             alignment: Alignment.centerLeft,
             child: const Text(
-              '''Hiring for skilled chef at your cafe or restaurant ?, Well don't you worry 
-Hire kitchen professionals with the help of Chef Connect India
-- Proper background check of all the chefs provided
-- Budget friendly staff as per your requirement
--3 trial options''',
+              """Hire a chef for your hotel restaurant or pg or any other commercial requirements 
+-3 trial once you buy the services 
+-Yearly replacement services given 
+-Yearly subscription plans available
+-Proper background check done""",
+              style: pageInfoStyle,
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ],
+      ),
+    ),
+    PageModel(
+      widget: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 45.0,
+            ),
+            child: Image.asset(
+              'assets/partychef.jpeg',
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 45.0),
+            alignment: Alignment.centerLeft,
+            child: const Text(
+              'Party chef',
+              style: pageTitleStyle,
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Container(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 45.0, vertical: 10.0),
+            alignment: Alignment.centerLeft,
+            child: const Text(
+              """Book a chef for your party or any other occasion  ( 1 day or multiple day services provided ) but specifically for one day orders
+-Customised menu options
+-Ingredients list shared on time
+-Book a chef within your budget
+-Proper background check done""",
               style: pageInfoStyle,
               textAlign: TextAlign.left,
             ),
@@ -154,7 +155,12 @@ Hire kitchen professionals with the help of Chef Connect India
       color: defaultSkipButtonColor,
       child: InkWell(
         borderRadius: defaultSkipButtonBorderRadius,
-        onTap: () {},
+        onTap: () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => Registration_user()),
+              (route) => false);
+        },
         child: const Padding(
           padding: defaultSkipButtonPadding,
           child: Text(
@@ -176,14 +182,14 @@ Hire kitchen professionals with the help of Chef Connect India
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => ChefConnectMain(),
+                builder: (context) => Registration_user(),
               ),
               (route) => false);
         },
         child: const Padding(
           padding: defaultProceedButtonPadding,
           child: Text(
-            'Sign up',
+            'Register',
             style: defaultProceedButtonTextStyle,
           ),
         ),

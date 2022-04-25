@@ -1,7 +1,7 @@
 import 'package:chef_connect_india/Helper/dimensions.dart';
 import 'package:chef_connect_india/Main%20Screen/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:glassmorphism/glassmorphism.dart';
+// import 'package:glassmorphism/glassmorphism.dart';
 
 // String? finalPhone;
 
@@ -41,7 +41,10 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                       CircleAvatar(
                         backgroundColor: Color(0xFF092349),
                         radius: 100,
-                        child: Image.asset('assets/CCI1.png'),
+                        child: Image.asset(
+                          'assets/CCI1.png',
+                          height: 130,
+                        ),
                       ),
                       SizedBox(
                         height: 240,
@@ -74,9 +77,9 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                           child: Text(
                             'Sign in as Customer',
                             style: TextStyle(
-                              fontFamily: 'Roboto',
+                              fontFamily: 'Montserrat',
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
@@ -112,8 +115,8 @@ class ChefConnectMainState extends State<ChefConnectMain> {
                           child: Text(
                             'Sign in as Chef',
                             style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w600,
                               fontSize: 20,
                             ),
                           ),
