@@ -124,7 +124,6 @@ class _customisedlistState extends State<customisedlist> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 220,
                               width: width - 20,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
