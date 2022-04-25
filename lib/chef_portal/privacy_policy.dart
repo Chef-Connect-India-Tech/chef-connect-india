@@ -1,3 +1,4 @@
+import 'package:chef_connect_india/Drawers/drawer_chef.dart';
 import 'package:chef_connect_india/Drawers/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -14,7 +15,7 @@ class _privacy_polocyState extends State<privacy_polocy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavBar(),
+      drawer: chef_drawer(),
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         title: Text('Privacy Policy'),

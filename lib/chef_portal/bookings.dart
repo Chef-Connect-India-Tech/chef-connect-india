@@ -1,5 +1,6 @@
 // import 'dart:html';
 
+import 'package:chef_connect_india/Drawers/drawer_chef.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,6 +14,7 @@ class chef_bookings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: chef_drawer(),
       appBar: AppBar(
         backgroundColor: Colors.indigo,
         title: const Text(
@@ -34,7 +36,6 @@ class chef_bookings extends StatelessWidget {
                   StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection("bookings")
-                        .limit(4)
                         .where('cid',
                             isEqualTo: FirebaseAuth.instance.currentUser!.uid)
                         .snapshots(),
@@ -160,6 +161,8 @@ class listpredefined extends StatefulWidget {
 class _listpredefinedState extends State<listpredefined> {
   @override
   Widget build(BuildContext context) {
+    var dishes =
+        widget.selectedMenu.toString().replaceAll('[', '').replaceAll(']', '');
     var scwidth = MediaQuery.of(context).size.width;
     bool selected = false;
     return Padding(
@@ -247,7 +250,7 @@ class _listpredefinedState extends State<listpredefined> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  "${widget.bookingId}'s menu",
+                                  "${widget.bookingId}",
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w600,
@@ -275,26 +278,17 @@ class _listpredefinedState extends State<listpredefined> {
                                       fontSize: 16.0,
                                     ),
                                   ),
-                                  Wrap(
-                                    spacing: 5.0,
-                                    children: widget.selectedMenu
-                                        .map(
-                                          (e) => Chip(
-                                            backgroundColor:
-                                                Colors.orange.shade100,
-                                            label: Text(
-                                              e.toString().toLowerCase(),
-                                              style: TextStyle(
-                                                  color: Colors.orange.shade900,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                          ),
-                                        )
-                                        .toList(),
-                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      '${dishes}',
+                                      style: TextStyle(
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             ),
@@ -523,12 +517,15 @@ class _listpredefinedState extends State<listpredefined> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      '${widget.address}',
-                                      style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0,
+                                    child: Container(
+                                      width: scwidth - 200,
+                                      child: Text(
+                                        '${widget.address}',
+                                        style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16.0,
+                                        ),
                                       ),
                                     ),
                                   )

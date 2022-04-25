@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -170,6 +171,41 @@ class _user_homeState extends State<user_home> {
   //     setState(() {
   //       selectedDate = picked;
   //     });
+  //   }
+  // }
+  // static bool updateCheckedOnce = false;
+  // bool updateAvailable = false;
+  // bool updateDownloaded = false;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   if (!updateCheckedOnce) {
+  //     performInAppUpdate();
+  //     updateCheckedOnce = true;
+  //   }
+  // }
+
+  // Future<void> performInAppUpdate() async {
+  //   print("CHECKING FOR UPDATES");
+  //   AppUpdateInfo updateInfo;
+
+  //   updateInfo = await InAppUpdate.checkForUpdate();
+  //   print("UPDATE INFO IS $updateInfo");
+  //   /*   if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
+  //     if (updateInfo.flexibleUpdateAllowed) {
+  //       this.setState(() {
+  //         updateAvailable = true;
+  //       });
+  //     } else if (updateInfo.immediateUpdateAllowed) {
+  //       await InAppUpdate.performImmediateUpdate();
+  //     }
+  //   }*/
+  //   if (updateInfo.updateAvailability == UpdateAvailability.updateAvailable) {
+  //     await InAppUpdate.performImmediateUpdate();
+  //   } else {
+  //     print("No Update available");
   //   }
   // }
 
@@ -360,6 +396,9 @@ class _user_homeState extends State<user_home> {
                     child: Container(
                       child: Column(
                         children: [
+                          // updateAvailable
+                          //     ? _buildUpdateBox(context)
+                          //     : Container(),
                           Container(
                             height: 260,
                             child: ListView(
@@ -2029,4 +2068,62 @@ class _user_homeState extends State<user_home> {
           ),
         ),
       );
+
+  // Padding _buildUpdateBox(BuildContext context) {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(
+  //       vertical: 8.0,
+  //       horizontal: 15,
+  //     ),
+  //     child: Container(
+  //       height: 45,
+  //       decoration: BoxDecoration(
+  //         color: Theme.of(context).primaryColor.withOpacity(0.1),
+  //         borderRadius: BorderRadius.circular(5),
+  //       ),
+  //       child: Row(
+  //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+  //         children: [
+  //           updateDownloaded
+  //               ? Text("App Updated Successfully")
+  //               : Text("New version available"),
+  //           Padding(
+  //             padding: const EdgeInsets.symmetric(
+  //               vertical: 6.0,
+  //               horizontal: 3,
+  //             ),
+  //             child: TextButton(
+  //               onPressed: !updateDownloaded
+  //                   ? () async {
+  //                       await InAppUpdate.startFlexibleUpdate().then(
+  //                         (_) {
+  //                           this.setState(() {
+  //                             updateDownloaded = true;
+  //                           });
+  //                           // InAppUpdate.completeFlexibleUpdate();
+  //                         },
+  //                       );
+  //                     }
+  //                   : () async {
+  //                       await InAppUpdate.completeFlexibleUpdate();
+  //                       this.setState(() {
+  //                         updateDownloaded = false;
+  //                         updateAvailable = false;
+  //                       });
+  //                     },
+  //               style: TextButton.styleFrom(
+  //                 primary: Colors.black,
+  //               ),
+  //               child: Text(
+  //                 updateDownloaded ? "Restart App" : "Update Now!",
+  //                 style: TextStyle(
+  //                     color: Colors.green, fontWeight: FontWeight.bold),
+  //               ),
+  //             ),
+  //           )
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 }

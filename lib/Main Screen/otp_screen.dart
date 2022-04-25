@@ -267,82 +267,82 @@ class _OTPScreenState extends State<OTPScreen> {
                               ),
                             ),
                             _formModule(),
-                            Container(
-                              margin: EdgeInsets.all(25),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.black.withOpacity(.6),
-                              ),
-                              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Entered Phone Number Wrong ?',
-                                        style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          // backgroundColor:
-                                          //     Colors.black.withOpacity(.7),
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pushAndRemoveUntil(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ChefConnectMain()),
-                                              (route) => false);
-                                        },
-                                        child: Text(
-                                          'Click Here',
-                                          style: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.redAccent,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Resend OTP',
-                                        style: TextStyle(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          'Click Here',
-                                          style: TextStyle(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.redAccent,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
+                            // Container(
+                            //   margin: EdgeInsets.all(25),
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(15),
+                            //     color: Colors.black.withOpacity(.6),
+                            //   ),
+                            //   padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                            //   child: Column(
+                            //     mainAxisAlignment: MainAxisAlignment.center,
+                            //     children: [
+                            //       Row(
+                            //         mainAxisAlignment:
+                            //             MainAxisAlignment.spaceBetween,
+                            //         children: [
+                            //           Text(
+                            //             'Entered Phone Number Wrong ?',
+                            //             style: TextStyle(
+                            //               fontFamily: 'Montserrat',
+                            //               color: Colors.white,
+                            //               fontSize: 12,
+                            //               fontWeight: FontWeight.bold,
+                            //               // backgroundColor:
+                            //               //     Colors.black.withOpacity(.7),
+                            //             ),
+                            //           ),
+                            //           TextButton(
+                            //             onPressed: () {
+                            //               Navigator.pushAndRemoveUntil(
+                            //                   context,
+                            //                   MaterialPageRoute(
+                            //                       builder: (context) =>
+                            //                           ChefConnectMain()),
+                            //                   (route) => false);
+                            //             },
+                            //             child: Text(
+                            //               'Click Here',
+                            //               style: TextStyle(
+                            //                 fontFamily: 'Montserrat',
+                            //                 color: Colors.redAccent,
+                            //                 fontSize: 15,
+                            //                 fontWeight: FontWeight.bold,
+                            //               ),
+                            //             ),
+                            //           )
+                            //         ],
+                            //       ),
+                            //       Row(
+                            //         mainAxisAlignment:
+                            //             MainAxisAlignment.spaceBetween,
+                            //         children: [
+                            //           Text(
+                            //             'Resend OTP',
+                            //             style: TextStyle(
+                            //               fontFamily: 'Montserrat',
+                            //               color: Colors.white,
+                            //               fontSize: 12,
+                            //               fontWeight: FontWeight.bold,
+                            //             ),
+                            //           ),
+                            //           TextButton(
+                            //             onPressed: () {},
+                            //             child: Text(
+                            //               'Click Here',
+                            //               style: TextStyle(
+                            //                 fontFamily: 'Montserrat',
+                            //                 color: Colors.redAccent,
+                            //                 fontSize: 15,
+                            //                 fontWeight: FontWeight.bold,
+                            //               ),
+                            //             ),
+                            //           )
+                            //         ],
+                            //       )
+                            //     ],
+                            //   ),
+                            // )
                           ],
                         ),
                       ),
