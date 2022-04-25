@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:chef_connect_india/Drawers/privacypolicy.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/Main%20Screen/privacy_policy.dart';
 // import 'package:chef_connect_india/main.dart';
@@ -13,7 +12,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class NavBar extends StatelessWidget {
   // CollectionReference _collectionRef =
