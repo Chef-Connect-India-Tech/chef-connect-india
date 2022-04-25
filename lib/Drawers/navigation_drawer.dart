@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:chef_connect_india/Drawers/privacypolicy.dart';
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 // import 'package:chef_connect_india/main.dart';
 import 'package:chef_connect_india/Main%20Screen/select_mode.dart';
@@ -11,6 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class NavBar extends StatelessWidget {
   // CollectionReference _collectionRef =
@@ -166,7 +168,19 @@ class NavBar extends StatelessWidget {
                               fontFamily: 'Montserrat',
                             ),
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Privacy_policy(),
+                                ),
+                                (route) => false);
+                            // WebView(
+                            //   javascriptMode: JavascriptMode.unrestricted,
+                            //   initialUrl:
+                            //       'https://github.com/Chef-Connect-India-Tech/Chef-Connect-india-privacy-policy',
+                            // );
+                          },
                         ),
                         Divider(
                           thickness: 2,
