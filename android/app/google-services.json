@@ -37,9 +37,46 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:194064177069:android:cfa102e5a167647f6a7324",
+        "android_client_info": {
+          "package_name": "com.chef.connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194064177069-232f2k4dliacsurpo96jjbason9ma0jh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chef.connect",
+            "certificate_hash": "e2e60a6c2bccc0997ba7e4f32cbd5d50611cab45"
+          }
+        },
+        {
+          "client_id": "194064177069-7otkcehjp4aqt4k8698f4upclq05ag9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI52QUSGMlJoUkZYue8jl93T-wVzGUA1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194064177069-7otkcehjp4aqt4k8698f4upclq05ag9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:194064177069:android:f38aa2ca8affc4d66a7324",
         "android_client_info": {
-          "package_name": "com.chefconnect.app"
+          "package_name": "com.chef.connect"
         }
       },
       "oauth_client": [
@@ -47,23 +84,39 @@
           "client_id": "194064177069-468v96pj880e528dulfd2t2b470jaj2o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.chefconnect.app",
+            "package_name": "com.chef.connect",
             "certificate_hash": "5bc56af5fcf08f96f78a3b720af7db8a79f6f903"
+          }
+        },
+        {
+          "client_id": "194064177069-d08qqqfv4dj7g2ub14jioktou2to01vi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chefconnect.app",
+            "certificate_hash": "6d92a737d8bbbff91cdbf9800e2ac5227a4d491c"
           }
         },
         {
           "client_id": "194064177069-g6n7e1vbocgnatqejl48lb4i403isfbo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.chefconnect.app",
+            "package_name": "com.chef.connect",
             "certificate_hash": "003bf0b6c06ac744c7ee0b27f5c225f82f7be1e2"
+          }
+        },
+        {
+          "client_id": "194064177069-l65vnqv7i03s7dpk3enm7g8s54b7q3u0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chefconnect.app",
+            "certificate_hash": "e63ceaa6ddb427c2c41fa83726f80af53b54bce5"
           }
         },
         {
           "client_id": "194064177069-ou53c8ul6ak3v7iimj6l1oa9fat5v2la.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.chefconnect.app",
+            "package_name": "com.chef.connect",
             "certificate_hash": "e2e60a6c2bccc0997ba7e4f32cbd5d50611cab45"
           }
         },

@@ -156,6 +156,18 @@ class NavBar extends StatelessWidget {
                             );
                           },
                         ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.privacy_tip_outlined,
+                          ),
+                          title: Text(
+                            'Privacy Policy',
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                          onTap: () {},
+                        ),
                         Divider(
                           thickness: 2,
                         ),

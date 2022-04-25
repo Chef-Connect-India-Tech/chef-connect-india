@@ -50,7 +50,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.chefconnect.app"
+        applicationId "com.chef.connect"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
@@ -71,7 +71,7 @@ android {
             minifyEnabled true
             shrinkResources true
             useProguard true
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }
