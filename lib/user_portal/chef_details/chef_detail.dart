@@ -61,21 +61,25 @@ class _chef_detailState extends State<chef_detail> {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => user_home(),
-                  ),
-                  (route) => false);
-            },
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-          )
-        ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       Navigator.pushAndRemoveUntil(
+        //           context,
+        //           MaterialPageRoute(
+        //             builder: (context) => user_home(),
+        //           ),
+        //           (route) => false);
+        //     },
+        //     icon: Icon(
+        //       Icons.arrow_back,
+        //     ),
+        //   )
+        // ],
         backgroundColor: Colors.indigo,
         centerTitle: true,
         title: Text(widget.chefid),

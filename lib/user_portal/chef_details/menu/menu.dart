@@ -61,21 +61,25 @@ class _TabViewState extends State<MenuTab> with SingleTickerProviderStateMixin {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => user_home(),
-                  ),
-                  (route) => false);
-            },
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-          )
-        ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       Navigator.pushAndRemoveUntil(
+        //           context,
+        //           MaterialPageRoute(
+        //             builder: (context) => user_home(),
+        //           ),
+        //           (route) => false);
+        //     },
+        //     icon: Icon(
+        //       Icons.arrow_back,
+        //     ),
+        //   )
+        // ],
         title: Text('Select Menu'),
         centerTitle: true,
         backgroundColor: Colors.indigo,

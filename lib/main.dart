@@ -107,7 +107,9 @@ class _MyAppState extends State<MyApp> {
                               return Loading();
                             } else {
                               if (snapShot.hasData) {
-                                return user_home();
+                                return user_home(
+                                  selectedLocation: '',
+                                );
                               }
                               log('Has no data');
                               return Onboarding_screen();

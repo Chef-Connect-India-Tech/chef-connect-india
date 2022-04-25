@@ -71,7 +71,7 @@ android {
             minifyEnabled true
             shrinkResources true
             useProguard true
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
     }
 }

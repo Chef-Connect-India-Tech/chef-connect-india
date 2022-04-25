@@ -174,7 +174,10 @@ class _Select_mode_newState extends State<Select_mode_new> {
                               Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => user_home(),
+                                    builder: (context) => user_home(
+                                      selectedLocation:
+                                          selectedCity.toString().split('.')[1],
+                                    ),
                                   ),
                                   (route) => false);
                             }
@@ -337,6 +340,6 @@ class _Select_mode_newState extends State<Select_mode_new> {
     return _collectionRef.doc(FirebaseAuth.instance.currentUser!.uid).update({
       'selectedLocation': userModel.selectedLocation,
       'hiremode': userModel.hiremode
-    }).then((value) => user_home());
+    });
   }
 }
