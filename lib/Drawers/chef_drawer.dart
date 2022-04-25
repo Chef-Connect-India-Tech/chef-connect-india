@@ -2,14 +2,6 @@
 
 import 'package:chef_connect_india/Main%20Screen/home.dart';
 import 'package:chef_connect_india/Main%20Screen/privacy_policy.dart';
-// import 'package:chef_connect_india/main.dart';
-import 'package:chef_connect_india/Main%20Screen/select_mode.dart';
-import 'package:chef_connect_india/chef_portal/bookings.dart';
-import 'package:chef_connect_india/chef_portal/profile.dart';
-import 'package:chef_connect_india/user_portal/user_bookings.dart';
-import 'package:chef_connect_india/user_portal/user_home.dart';
-import 'package:chef_connect_india/user_portal/user_profile.dart';
-import 'package:chef_connect_india/user_portal/user_queries.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
