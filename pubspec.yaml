@@ -82,6 +82,8 @@ flutter_native_splash:
   android_12:
     image: assets/mainlogo/cci_main.png
     icon_background_color: "#03203C"
+    android: true
+    ios: true
 
 flutter:
   uses-material-design: true

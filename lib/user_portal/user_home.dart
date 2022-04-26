@@ -252,9 +252,9 @@ class _user_homeState extends State<user_home> {
     "Helper"
   ];
   final levelofchef = [
-    "Basic",
-    "Intermediate",
-    "Expert",
+    "Standard",
+    "Deluxe",
+    "Premium",
   ];
   final salary = [
     'under 10,000',

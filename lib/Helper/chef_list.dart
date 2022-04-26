@@ -186,7 +186,9 @@ class _chef_list_viewState extends State<chef_list_view> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Experince :' + ' ${widget.experience}',
+                                'Experince :' +
+                                    ' ${widget.experience}' +
+                                    'Years',
                                 style: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
