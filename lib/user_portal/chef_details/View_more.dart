@@ -143,6 +143,7 @@ class _view_moreState extends State<view_more> {
         separator: EmptySeparator(),
         padding: const EdgeInsets.all(0.0),
         scrollDirection: Axis.vertical,
+
         itemBuilder: (context, documentSnapshots, index) {
           final dataa = documentSnapshots[index].data() as Map?;
           return SafeArea(
@@ -168,10 +169,12 @@ class _view_moreState extends State<view_more> {
         // orderBy is compulsory to enable pagination
         query: FirebaseFirestore.instance
             .collection('chefs')
-            .orderBy('firstname')
+            //.where('verified', isEqualTo: false),
             .where('city', isEqualTo: widget.selectedLocation)
             .where('verified', isEqualTo: true),
-
+        // .where('city', isEqualTo: "Banglore"),
+        //  .where('verified', isEqualTo: true),
+        // where('city'),
         // .where('dutystatus', isEqualTo: true),
         // to fetch real-time data
         isLive: true,

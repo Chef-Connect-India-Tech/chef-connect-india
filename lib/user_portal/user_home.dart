@@ -1957,6 +1957,7 @@ class _user_homeState extends State<user_home> {
                                     ),
                                   ),
                                   onPressed: () {
+                                    print('hi');
                                     print(
                                         '---------------${data['selectedLocation']}-----------------');
                                     Navigator.push(
@@ -1975,13 +1976,15 @@ class _user_homeState extends State<user_home> {
                           StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection("chefs")
-                                .limit(2)
                                 .where('city', isEqualTo: selectedLocation)
                                 .where('verified', isEqualTo: true)
+                                .limit(2)
                                 // .where('dutystatus', isEqualTo: true)
                                 .snapshots(),
                             builder: (BuildContext context,
                                 AsyncSnapshot<QuerySnapshot> snapshot) {
+                              print('object');
+                              print(selectedLocation);
                               if (!snapshot.hasData) {
                                 return Center(
                                   child: CircularProgressIndicator(),
