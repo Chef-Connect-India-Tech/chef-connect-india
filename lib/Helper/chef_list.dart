@@ -127,7 +127,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                             style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                           ),
                           // Padding(
@@ -193,7 +193,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black,
-                                  fontSize: 13,
+                                  fontSize: 12,
                                 ),
                               ),
                               SizedBox(
@@ -205,7 +205,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black,
-                                  fontSize: 13,
+                                  fontSize: 12,
                                 ),
                               ),
                             ],
@@ -216,7 +216,7 @@ class _chef_list_viewState extends State<chef_list_view> {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
-                              fontSize: 13,
+                              fontSize: 12,
                             ),
                           ),
                         ],
