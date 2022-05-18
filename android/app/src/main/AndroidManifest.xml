@@ -4,6 +4,7 @@
 >
    <application
     android:label="Chef Connect"
+    
     android:name="${applicationName}"
     android:icon="@mipmap/ic_launcher"
   >
