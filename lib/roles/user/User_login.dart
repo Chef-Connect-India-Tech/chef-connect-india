@@ -120,8 +120,8 @@ class _USer_loginState extends State<USer_login> {
           height: 16,
         ),
         Center(
-          child: FlatButton(
-            color: Colors.blueAccent,
+          child: TextButton(
+            // color: Colors.blueAccent,
             onPressed: () async {
               check();
               // alert();
@@ -176,8 +176,8 @@ class _USer_loginState extends State<USer_login> {
         SizedBox(
           height: 16,
         ),
-        FlatButton(
-            color: Colors.blueAccent,
+        TextButton(
+            // color: Colors.blueAccent,
             onPressed: () {
               PhoneAuthCredential phoneAuthCredential =
                   PhoneAuthProvider.credential(

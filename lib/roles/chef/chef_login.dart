@@ -137,8 +137,8 @@ class _chef_loginState extends State<chef_login> {
           height: 16,
         ),
         Center(
-          child: FlatButton(
-            color: Colors.blueAccent,
+          child: TextButton(
+            // color: Colors.blueAccent,
             onPressed: () async {
               check();
               phonealert();
@@ -202,8 +202,7 @@ class _chef_loginState extends State<chef_login> {
         SizedBox(
           height: 16,
         ),
-        FlatButton(
-            color: Colors.blueAccent,
+        TextButton(
             onPressed: () {
               PhoneAuthCredential phoneAuthCredential =
                   PhoneAuthProvider.credential(
